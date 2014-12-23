@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "gerenciador.css",
+  "sources": [
+    "gerenciador.sass"
+  ],
+  "names": [],
+  "mappings": ";AAAA;EACI,OAAO",
+  "sourceRoot": ""
+}
