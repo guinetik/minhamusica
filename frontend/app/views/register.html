@@ -1,8 +1,0 @@
-<form ng-submit="submit()" name="register" class="form-register" novalidate>
-    <input name="email" ng-model="email" type="email"  placeholder="email" required/>
-    <p class="help-block" ng-show="register.email.$dirty && register.email.$invalid">please match the passwords</p>
-    <input name="senha" type="password"  ng-model="senha" placeholder="senha" required/>
-    <input name="conf_senha" type="password" ng-model="conf_senha"  placeholder="confirmar senha" validate-equals="senha" required/>
-    <p class="help-block" ng-show="register.conf_senha.$dirty && register.conf_senha.$invalid">please match the passwords</p>
-    <input value="enviar"  type="submit" ng-disabled="register.$invalid"/>
-</form>
