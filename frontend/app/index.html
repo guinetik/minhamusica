@@ -25,13 +25,13 @@
     
     <!-- Header -->
     <header id="header">
-      <div class="limits">
+      <div class="limits clearfix">
         <h1 class="logo">
           <a ui-sref="main" href="#" title="Minha Música">Minha Música</a>
         </h1>
         <form action="" id="search-form">
-          <input type="search" name="q" id="q" value="" placeholder="busque por artistas, músicas ou evento" class="search-input">
-          <button type="submit" id="search-button">Buscar</button>
+          <input type="text" name="q" id="q" value="" placeholder="busque por artistas, músicas ou evento" class="search-input">
+          <button type="submit" id="search-button" class="search-button"><span></span>Buscar</button>
         </form>
         <div id="genre">
           <a href="#" title="Gêneros" class="genre-trigger">Gêneros <span class="arrow"></span></a>
@@ -42,7 +42,7 @@
         </div><!-- /#genre -->
         <div id="header-user" class="not-logged">
           <span class="icon"></span>
-          <p><a href="#" title="Faça login">Faça login</a> ou <a href="#" title="Cadastre-se">Cadastre-se</a></p>
+          <p><a href="#" title="Faça login">Faça login</a> ou <a ui-sref="register" href="#" title="Cadastre-se">Cadastre-se</a></p>
         </div><!-- /#header-user -->
       </div>
     </header>
@@ -52,7 +52,7 @@
     
     
     <!-- Main -->
-    <main>
+    <main id="content">
       <div ui-view></div>
     </main>
     <!-- end Main -->
