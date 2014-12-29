@@ -1,5 +1,5 @@
 var bcrypt = require('bcrypt-nodejs');
-
+	
 
 module.exports = {
 
@@ -12,25 +12,28 @@ module.exports = {
         nome : {
             type: 'string' , 
 			require : true ,
-			maxLength : 30	
+			maxLength : 200	
 		},
 		email: { 
             type:'string', 
-            require : true,
+           // require : true,
             unique : true ,
-			maxLength : 30	
+			maxLength : 100	
         },
         senha: {
             type: 'string' ,
-            require: true
+         //   require: true
         },
+	
+		sexo : {
+			type : 'string' , 
+		//	require: true ,
+			maxLength : 1
+		},
+		/*
 		nascimento : {
 			type: 'date' , 
 			require: true 
-		},
-		sexo : {
-			type : 'string' , 
-			require: true
 		},
 		cidadeId : {
 			type: 'integer' ,
@@ -44,7 +47,7 @@ module.exports = {
 			type: 'integer' ,
 			require : true 
 			
-		}
+		}*/
 	 },
 		 
  /**
@@ -61,7 +64,7 @@ module.exports = {
    * beforeDestroy
    * afterDestroy
    */ 
-    beforeCreate: function(value,next){
+ /*   beforeCreate: function(value,next){
         var pass  = values.senha;
         
 		bcrypt.hash(pass , 'salt' , null , function(err,hash){
@@ -74,7 +77,7 @@ module.exports = {
 		
 		
         next();
-    }
+    }*/
 
 };
 
