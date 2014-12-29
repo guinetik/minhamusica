@@ -46,6 +46,32 @@ input[type=text], input[type=email], input[type=search], input[type=phone], text
     display: block
     margin: 0
     border: 0      
+ 
+.link-user
+  font-size: 13px
+  font-family: $font-regular
+  display: inline-block
+  
+.button
+  display: inline-block
+  font-family: $font-regular
+  color: $pink
+  border: 1px solid $pink
+  text-transform: uppercase
+  position: relative
+  +transition(all, .2s, linear)
+  +border-radius(3px)
+  &:hover
+    background-color: $pink
+    color: #fff
+  
+.button-arrow
+  @extend .button
+    
+    
+    
+    
+    
     
     
     
@@ -221,9 +247,8 @@ input[type=text], input[type=email], input[type=search], input[type=phone], text
       &:hover
         color: $pink
   .list-cd-box-user
-    font-size: 13px
     @extend .link-pink
-    font-family: $font-regular
+    @extend .link-user
   .time
     font-size: 11px
     display: block
@@ -237,17 +262,56 @@ input[type=text], input[type=email], input[type=search], input[type=phone], text
   .list-events-box-thumb
     margin-bottom: 10px
   .list-events-box-a
+    .title, .button
+      +single-transition(all, .2s, ease-in)
     &:hover
       .title
         color: $pink
+      .button
+        color: #fff
+        background-color: $pink
   .list-events-box-thumb-text
+    position: relative
+    padding-right: 140px
     .dates
       font-size: 12px
       font-weight: 700
+      color: $gray
     .title
       color: $blue
       font-family: $font-bold
       font-size: 16px
+      display: block
+      margin-top: 5px
+    .local
+      font-size: 11px
+      color: $gray-light
+    .button
+      display: block
+      padding: 10px
+      border: 1px solid $pink
+      font: normal 12px $font-regular
+      text-transform: uppercase
+      color: $pink
+      position: absolute
+      right: 0
+      top: 0
+      +border-radius(3px)
+
+.tab-button
+  display: inline-block
+  font-size: 14px
+  text-transform: uppercase
+  padding: 6px 25px
+  text-align: center
+  font-family: $font-regular
+  @extend .link-pink
+  &.active
+    background: $blue
+    color: #fff
+    font-family: $font-bold
+    +border-radius(4px)
+      
 /* end Content */
 
 
@@ -255,10 +319,49 @@ input[type=text], input[type=email], input[type=search], input[type=phone], text
 
 
 /* Main */
+.most-downloaded-list
+  margin-right: -1px
+  li
+    float: left
+    &:first-child
+      .hover
+        width: 214px
+        height: 214px
+        .hover-content
+          padding: 25px
+          position: relative
+          .title
+            a
+              font-size: 18px
+              line-height: 1.3em
+          .user
+            margin-top: 10px
+          .downloads
+            position: absolute
+            left: 25px
+            bottom: 25px
+            strong
+              display: block
+      .number
+        font-size: 24px
+        width: 47px
+        height: 39px
+        padding-top: 8px
+        left: -15px
+        top: -15px
 .most-downloaded-list-box-cd
   position: relative
+  margin: 0
   +box-sizing(border-box)
+  &:hover
+    .cd-thumb
+      border-color: $pink
+    .hover, .number
+      opacity: 1
+  .cd-thumb
+    margin: 0
   .number
+    opacity: 0
     width: 29px
     height: 24px
     padding-top: 5px
@@ -268,13 +371,59 @@ input[type=text], input[type=email], input[type=search], input[type=phone], text
     display: block
     background: $pink
     position: absolute
+    top: -10px
+    left: -10px
+    z-index: 11
+    +single-transition(opacity, .1s, linear)
     +border-radius(100%)
   .hover
     opacity: 0
     position: absolute
-.most-downloaded-list
-  li
-    float: left
+    padding: 3px
+    width: 214px
+    height: 107px
+    border: 1px solid $pink
+    left: 0
+    top: 0
+    background: #fff
+    overflow: hidden
+    z-index: 10
+    +single-transition(opacity, .1s, linear)
+    +border-radius(4px)
+    +box-sizing(border-box)
+    .hover-content
+      background: $pink
+      padding: 15px
+      width: 100%
+      height: 100%
+      +box-sizing(border-box)
+      .user
+        @extend .link-user
+        color: #f3a5c6
+        margin-top: 5px
+        +transition(color, .2s, linear)
+        &:hover
+          color: #fff
+      .title
+        a
+          color: #fff
+          font-family: $font-black
+          font-size: 13px
+          text-transform: uppercase
+          display: block
+          +single-transition(all, .2s, ease-in)
+          &:hover
+            color: #fad4e4
+            text-shadow: 0 1px rgba(0, 0, 0, 0.4)
+      .downloads
+        color: #420620
+        font-family: $font-regular
+        font-size: 12px
+        margin-top: 8px
+        strong
+          font-size: 14px
+          font-family: $font-bold
+
   
 /* end Main */
 
