@@ -1,8 +1,7 @@
 /*
-  Welcome to Compass.
-  In this file you should write your main styles. (or centralize your imports)
-  Import this file using the following HTML or equivalent:
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+ * @author: Victor Aldabalde <victoraldabalde@gmail.com>
+ * @date: 12/2014
+ */
 
 @import compass/reset
 @import compass/css3
@@ -22,7 +21,251 @@ body, input, select, button, textarea
 .limits
   width: 1000px
   margin: auto
+
+input[type=text], input[type=email], input[type=search], input[type=phone], textarea, select
+  font: normal 14px $font-default
+
+.link-pink
+  color: $pink
+  +transition(all, .1s, ease-in)
+  &:hover
+    color: darken($pink, 10%)
   
+.cd-thumb
+  border: 1px solid #a9a9a9
+  background: #fff
+  padding: 3px
+  display: inline-block
+  overflow: hidden
+  +box-sizing(border-box)
+  +border-radius(4px)
+  +single-transition(color, .2s, ease-in)
+  &:hover
+    border-color: $pink
+  img
+    display: block
+    margin: 0
+    border: 0      
+    
+    
+    
+  
+/* Header */
+#header
+  background: #fff url(#{$base-img}/bg-header.png) repeat-x bottom
+  .limits
+    padding-top: 20px
+    padding-bottom: 20px
+  .logo, #search-form, #genre, #header-user
+    float: left
+        
+    
+.logo
+  display: block
+  width: 181px
+  height: 67px
+  a
+    height: 67px
+    display: block
+    background: url(#{$base-img}/logo.png) no-repeat
+    text-indent: -9999em
+    overflow: hidden
+
+#search-form
+  position: relative
+  margin-left: 35px
+  margin-right: 20px
+  .search-input
+    width: 275px
+    border: 1px solid #cacaca
+    background: #fcfcfc
+    color: #bababa
+    padding-left: 20px
+    padding-right: 70px
+    padding-top: 18px
+    padding-bottom: 18px
+    height: 16px
+    line-height: 16px
+    +box-shadow(inset 1px 1px 0 #fff)
+    +border-radius(4px)
+    &:focus, &:active
+      background: #fff
+      outline: none
+      color: $blue
+      border-color: $blue
+      +single-transition(all, .1s, ease-in)
+  .search-input:focus + search-button
+    border-left-color: $blue
+  .search-button
+    position: absolute
+    right: 1px
+    top: 1px
+    width: 54px
+    height: 52px
+    border: 0
+    background: #f1f1f1
+    cursor: pointer
+    display: block
+    text-indent: -9999em
+    border-left: 1px solid #cacaca
+    @include background-image(linear-gradient(white, #e1e1e1))
+    +border-radius(0 4px 4px 0)
+    &:hover, &:focus
+      outline: none
+      background: #fff
+      +transition(all, .2s, ease-in)
+
+#genre
+  border-right: 1px solid #e0e0e0
+  padding-right: 52px
+  position: relative
+  padding: 20px 52px 20px 0
+  .genre-trigger
+    color: $blue
+    font-size: 16px
+    display: block
+    text-transform: uppercase
+    font-family: $font-black
+  .genre-dropdown
+    position: absolute
+    
+#header-user
+  padding: 20px 0 20px 40px
+  border-left: 1px solid #fff
+  p
+    font-family: $font-bold
+    font-size: 14px
+    color: $gray-light
+    a
+      @extend .link-pink
+/* end Header */
+
+
+
+
+
+
+/* Banners */
+#banners-carousel
+  height: 368px
+#banners-ul
+  li
+    float: left
+    a
+      display: block
+#banners-thumbs
+  min-height: 110px
+  background: url(#{$base-img}/bg-sombra-top.png) repeat-x top
+  ul
+    text-align: center
+    li
+      width: 139px
+      display: inline-block
+      a
+        @extend .cd-thumb
+        display: block
+      
+/* end Banners */
+
+
+
+/* Content */
+.main-content
+  padding-top: 55px
+.three-cols
+  .box
+    float: left
+    width: 320px
+    margin-left: 20px
+    &:first-child
+      margin-left: 0
+.box
+  .box-header
+    border-bottom: 3px solid #eee
+    margin-bottom: 30px
+    padding-bottom: 10px
+    .box-title
+      text-transform: uppercase
+      color: $blue
+      font-size: 36px
+      font-family: $font-light
+      letter-spacing: -0.08em
+      line-height: 26px
+      strong
+        display: block
+        font-family: $font-black
+
+.list-cd
+  li
+    margin-top: 15px
+    &:first-child
+      margin-top: 0
+.list-cd-box   
+  padding-left: 90px
+  position: relative
+  height: 80px
+  .list-cd-box-thumb
+    width: 80px
+    float: left
+    position: absolute
+    top: 0
+    left: 0
+  .list-cd-box-title
+    margin-bottom: 5px
+    a
+      font-size: 16px
+      font-family: $font-bold
+      color: $blue
+      display: block
+      +single-transition(color, .2s, ease-in)
+      &:hover
+        color: $pink
+  .list-cd-box-user
+    font-size: 13px
+    @extend .link-pink
+    font-family: $font-regular
+  .time
+    font-size: 11px
+    display: block
+    color: $gray-light
+    position: absolute
+    bottom: 0
+    left: 90px
+/* end Content */
+
+
+
+
+
+/* Main */
+.most-downloaded-list-box-cd
+  position: relative
+  +box-sizing(border-box)
+  .number
+    width: 29px
+    height: 24px
+    padding-top: 5px
+    color: #fff
+    font: normal 14px $font-black
+    text-align: center
+    display: block
+    background: $pink
+    position: absolute
+    +border-radius(100%)
+  .hover
+    opacity: 0
+    position: absolute
+.most-downloaded-list
+  li
+    float: left
+  
+/* end Main */
+
+
+
+
+/* Footer */
+/* end Footer */
   
 
 
