@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title></title>
+  <title>Música Top</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width">
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -35,10 +35,12 @@
         </form>
         <div id="genre">
           <a href="#" title="Gêneros" class="genre-trigger">Gêneros <span class="arrow"></span></a>
-          <ul class="genre-dropdown turn-off">
-            <li><a href="#" title="Arrocha">Arrocha</a></li>
-            <li><a href="#" title="Forró">Forró</a></li>
-          </ul><!-- /.genre-dropdown -->
+          <div class="genre-dropdown">
+            <ul class="genre-dropdown-ul">
+              <li><a href="#" title="Arrocha">Arrocha</a></li>
+              <li><a href="#" title="Forró">Forró</a></li>
+            </ul>
+          </div><!-- /.genre-dropdown -->
         </div><!-- /#genre -->
         <div id="header-user" class="not-logged">
           <span class="icon"></span>
@@ -64,28 +66,29 @@
       <div class="footer-primary">
         <div class="limits">
           <div class="footer-social clearfix">
-            
-            <ul>
+            <ul class="clearfix">
               <li>
                 <a id="social-instagram" href="#" title="Instagram" target="_blank">
                   <span class="icon"></span>
-                  <span class="desc">instagram.com/<strong>minhamusica</strong></span>
+                  <span class="desc">instagram.com/<strong>musicatop</strong></span>
                 </a>
               </li>
               <li>
                 <a id="social-twitter" href="#" title="Twitter" target="_blank">
                   <span class="icon"></span>
-                  <span class="desc">twitter.com/<strong>minhamusica</strong></span>
+                  <span class="desc">twitter.com/<strong>musicatop</strong></span>
                 </a>
               </li>
               <li>
                 <a id="social-facebook" href="#" title="Facebook" target="_blank">
                   <span class="icon"></span>
-                  <span class="desc">facebook.com/<strong>minhamusica</strong></span>
+                  <span class="desc">facebook.com/<strong>musicatop</strong></span>
                 </a>
               </li>
             </ul>
-            <div id="likebox-facebook">Likebox Facebook</div>  
+            <div id="likebox-facebook">
+              <div class="fb-like-box" data-href="https://www.facebook.com/FacebookDevelopers" data-width="680" data-height="180" data-colorscheme="light" data-show-faces="true" data-header="false" data-stream="false" data-show-border="false"></div>
+            </div>  
           </div><!-- /.footer-social -->
           <ul class="footer-links">
             <li><a ui-sref="sobre" href="#" title="Sobre">Sobre</a></li>
@@ -97,7 +100,7 @@
       </div><!-- /.footer-primary -->
       <div class="footer-secondary">
         <div class="limits">
-          <p>&copy; 2014 Minha Música. Todos os direitos reservados.</p>
+          <p>&copy; 2014 Música Top. Todos os direitos reservados.</p>
         </div><!-- /.limits -->
       </div><!-- /.footer-primary -->
     </footer>
@@ -152,6 +155,16 @@
   <script src="scripts/directives/validateEquals.js"></script>
   <script src="scripts/controllers/register.js"></script>
   <!-- endbuild -->
+  
+  <div id="fb-root"></div>
+  <script async>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&appId=425861320888040&version=v2.0";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+  
 </body>
 
 </html>
