@@ -50,6 +50,33 @@ angular.module('musicaApp')
     ], ['Abreulândia','Aguiarnópolis','Aliança do Tocantins','Almas','Alvorada','Ananás','Angico','Aparecida do Rio Negro','Aragominas','Araguacema','Araguaçu','Araguaína','Araguanã','Araguatins','Arapoema','Arraias','Augustinópolis','Aurora do Tocantins','Axixá do Tocantins','Babaçulândia','Bandeirantes do Tocantins','Barra do Ouro','Barrolândia','Bernardo Sayão','Bom Jesus do Tocantins','Brasilândia do Tocantins','Brejinho de Nazaré','Buriti do Tocantins','Cachoeirinha','Campos Lindos','Cariri do Tocantins','Carmolândia','Carrasco Bonito','Caseara','Centenário','Chapada da Natividade','Chapada de Areia','Colinas do Tocantins','Colméia','Combinado','Conceição do Tocantins','Couto de Magalhães','Cristalândia','Crixás do Tocantins','Darcinópolis','Dianópolis','Divinópolis do Tocantins','Dois Irmãos do Tocantins','Dueré','Esperantina','Fátima','Figueirópolis','Filadélfia','Formoso do Araguaia','Fortaleza do Tabocão','Goianorte','Goiatins','Guaraí','Gurupi','Ipueiras','Itacajá','Itaguatins','Itapiratins','Itaporã do Tocantins','Jaú do Tocantins','Juarina','Lagoa da Confusão','Lagoa do Tocantins','Lajeado','Lavandeira','Lizarda','Luzinópolis','Marianópolis do Tocantins','Mateiros','Maurilândia do Tocantins','Miracema do Tocantins','Miranorte','Monte do Carmo','Monte Santo do Tocantins','Muricilândia','Natividade','Nazaré','Nova Olinda','Nova Rosalândia','Novo Acordo','Novo Alegre','Novo Jardim','Oliveira de Fátima','Palmas','Palmeirante','Palmeiras do Tocantins','Palmeirópolis','Paraíso do Tocantins','Paranã','Pau d\'Arco','Pedro Afonso','Peixe','Pequizeiro','Pindorama do Tocantins','Piraquê','Pium','Ponte Alta do Bom Jesus','Ponte Alta do Tocantins','Porto Alegre do Tocantins','Porto Nacional','Praia Norte','Presidente Kennedy','Pugmil','Recursolândia','Riachinho','Rio da Conceição','Rio dos Bois','Rio Sono','Sampaio','Sandolândia','Santa Fé do Araguaia','Santa Maria do Tocantins','Santa Rita do Tocantins','Santa Rosa do Tocantins','Santa Tereza do Tocantins','Santa Terezinha Tocantins','São Bento do Tocantins','São Félix do Tocantins','São Miguel do Tocantins','São Salvador do Tocantins','São Sebastião do Tocantins','São Valério da Natividade','Silvanópolis','Sítio Novo do Tocantins','Sucupira','Taguatinga','Taipas do Tocantins','Talismã','Tocantínia','Tocantinópolis','Tupirama','Tupiratins','Wanderlândia','Xambioá']
 	   ];
 	
+		
+		
+		/*$scope.values = [{
+						  id: 1,
+						  label: 'aLabel'
+						}, {
+						  id: 2,
+						  label: 'bLabel'
+						}];
+		
+		
+		$scope.selected = {id:2};*/
+
+		
+		
+		$scope.estadoSelecionado=null;
+		$scope.estados=[];
+		
+		$http({method:'GET',url:'http://localhost:1337/getestados'})
+		.success(function(result){
+			console.log(result);
+			$scope.estados = result;
+		}).error(function(err){
+			console.log(err);
+		});
+		
+		
 		$scope.submit = function(){
 
 			var url = 'http://localhost:3000/register';
@@ -86,8 +113,7 @@ angular.module('musicaApp')
 				var y = 0 ;
 				cidadesCollection = []; 
 				for( y in $scope.cidades[x]){
-					cidadesCollection.push({id:cid , nome:$scope.cidades[x][y] });
-					cid++;
+					cidadesCollection.push({nome:$scope.cidades[x][y] });
 				}
 				collection.push({nome:estados[x][1],sigla:estados[x][0],cidades:cidadesCollection});	
 				
@@ -106,6 +132,9 @@ angular.module('musicaApp')
 		
 			var test = angular.toJson(collection);
 			
+			//console.log(test);
+			//return false;
+		
 			var url = 'http://localhost:1337/criarestado';
 		
 			

@@ -9,22 +9,15 @@ module.exports = {
 
 	schema: true , 
 	tableName : 'cidades' , 
-	autoPK: false,
-  attributes: {
-	  id:{
-		type : 'Integer' ,  
-	  	primaryKey: true, 
-		unique : true 
-	  },
-	  
+
+	attributes: {
 	  nome:{
-	  	type :'String',
+	  	type :'string',
 		maxLength : 100
 	  },
-	  
-	  estado: {
-	  	 model: 'Estados'
+	  estadoId: {
+	  	 model: 'estados'
 	  }
-}
+	}
 };
 

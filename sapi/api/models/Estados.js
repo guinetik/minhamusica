@@ -9,20 +9,21 @@ module.exports = {
 
   schema: true , 
   tableName: 'estados',
-	  
+  
+	
   attributes: {
 	  nome: {
-	  	type: 'String' ,
+	  	type: 'string' ,
 	  	maxLength : 100,
 	  }, 
 	  sigla:{
-		 type: 'String' ,
+		 type: 'string' ,
 	  	 maxLength : 3,
 		 unique: true
 	  },
 	  cidades:{
   		collection : 'Cidades',
-		via: 'estado'
+		via: 'estadoId'
   	  }
   }
 	
