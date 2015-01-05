@@ -19,6 +19,10 @@ angular
         url:'/',
         templateUrl: '/views/main.html'
     })
+    .state('cd' , { 
+        url:'/cd',
+        templateUrl: '/views/cd.html'
+    })
     .state('register' , { 
         url:'/register',
         templateUrl: '/views/register.html',
