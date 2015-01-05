@@ -34,6 +34,7 @@ angular.module('musicaApp')
 			$scope.tipos = result;
 			$scope.tipoSelecionado=result[0];
 		}).error(function(err){
+			//console.log(err);
 		});	
 	
 		
