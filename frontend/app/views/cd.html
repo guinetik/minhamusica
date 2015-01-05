@@ -1,17 +1,50 @@
-<div id="breadcrumbs">
-  <div class="limits">
-    <ol class="breadcrumb">
-      <li>
-        <a sref="main" href="#" title="Página Inicial">Página Inicial</a> 
-        <span class="arrow">></span>  
-      </li>
-    </ol>
-  </div>    
-</div><!-- /#breadcrumbs -->
+<!-- Breadcrumb -->
+<ng-include src="breadcrumb.html"></ng-include>
+<!-- end Breadcrumb -->
 
- <section id="section-cd" class="main-content">
+
+
+<section id="section-cd" class="main-content">
+  
+  <div class="limits clearfix">
+    
+    <div id="cd-content" class="column-left">
+      <div class="cd-info">
+      
+      </div>
+    </div><!-- /.column-left -->
   
   
+    <aside class="content-aside column-right">
+      <div id="next-events-aside" class="box">
+        <div class="box-header">
+          <h2 class="box-title"><strong>Próximos</strong> Eventos</h2>
+        </div><!-- /.box-header -->
+        <div class="box-content">
+
+          <ul class="list-events">
+            <li class="list-events-box">
+              <a href="#" class="list-events-box-a">
+                <figure class="cd-thumb list-events-box-thumb">
+                  <img src="http://placehold.it/312x110" alt="">
+                </figure>
+                <div class="list-events-box-thumb-text clearfix">
+                  <strong class="dates">01, 02, 03 de JAN/2015</strong>
+                  <h2 class="title">Festival de Verão 2015</h2>
+                  <span class="local">Salvador - BA</span>
+                  <span class="button">Comprar Ingresso</span>
+                </div>
+              </a>
+            </li>
+          </ul><!-- /.list-events -->
+
+
+        </div><!-- /.box-content -->
+      </div>
+    </aside> 
+    
+  </div><!-- /.limits -->
+
   
   
 </section>
