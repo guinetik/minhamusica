@@ -37,14 +37,9 @@ module.exports.routes = {
   }, 
 	
  'post /registrar': 'UserController.create'	 ,
-	
- 'post /criarestado': 'EstadosController.criarEstados',	
-	
+ 
  'get /getestados': 'EstadosController.getEstados',	
 
- 'get /getcidades': 'EstadosController.getCidades',	
-	
-	
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *

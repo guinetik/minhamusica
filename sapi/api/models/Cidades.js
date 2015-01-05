@@ -15,8 +15,8 @@ module.exports = {
 	  	type :'string',
 		maxLength : 100
 	  },
-	  estadoId: {
-	  	 model: 'estados'
+	  estado: {
+	  	model: 'estados'
 	  }
 	}
 };

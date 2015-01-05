@@ -3,7 +3,7 @@ var bcrypt = require('bcrypt-nodejs');
 
 module.exports = {
 
-	tableName : 'user' , 
+	tableName : 'usuarios' , 
 	schema: true , 
 	
     attributes: {
@@ -22,26 +22,21 @@ module.exports = {
             type: 'string' ,
             require: true
         },
-		sexo : {
+		sexo: {
 			type : 'string' , 
 			require: true ,
 			maxLength : 1
 		},
-		nascimento : {
+		nascimento: {
 			type: 'date' , 
 			require: true 
 		},
-		cidadeId : {
+		cidade: {
 			model:'cidades'
 		},
-		estadoId : {
-			model:'estados'
-		},
-		/*tipoId : {
-			type: 'integer' ,
-			require : true 
-			
-		}*/
+		tipo: {
+			model : 'tipos' 
+		}
 	 },
 		 
  /**
