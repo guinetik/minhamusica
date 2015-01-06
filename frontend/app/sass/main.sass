@@ -75,10 +75,19 @@ input[type=text], input[type=email], input[type=search], input[type=phone], text
   width: 158px
   height: 32px
   line-height: 1em
+ 
+.button-download-big    
+  @extend .button
+  font-size: 18px
+  font-family: $font-bold
+  padding: 12px 26px 11px 55px
     
-    
-    
-    
+.button-icon
+  @extend .button
+  width: 26px
+  height: 26px
+  text-indent: -9999em
+  +border-radius(100%)
     
     
     
@@ -167,6 +176,7 @@ input[type=text], input[type=email], input[type=search], input[type=phone], text
     background: #fff
     border: 1px solid #eee
     top: 50px
+    display: none
     +border-radius(4px)
     +box-shadow(0 2px 8px rgba(0, 0, 0, 0.15))
     ul
@@ -219,9 +229,19 @@ input[type=text], input[type=email], input[type=search], input[type=phone], text
 
 
 
+
+
 /* Content */
 .main-content
-  padding-top: 55px
+  &.index
+    padding-top: 55px
+  .column-left
+    float: left
+    width: 660px
+  .column-right
+    width: 320px
+    margin-left: 20px
+    float: left
 .three-cols
   .box
     float: left
@@ -244,6 +264,28 @@ input[type=text], input[type=email], input[type=search], input[type=phone], text
       strong
         display: block
         font-family: $font-black
+.box-inner
+  margin-bottom: 40px
+  .box-header
+    &.box-header-balloon
+      .box-title, .balloon, .button
+        float: left
+    .box-title
+      font-size: 30px
+      letter-spacing: -0.04em
+      strong
+        letter-spacing: -0.08em
+    .balloon
+      width: 64px
+      height: 27px
+      font: normal 18px $font-black
+      color: $blue
+      text-align: center
+      margin-left: 15px
+    .button
+      padding: 7px 10px 7px 30px
+      font: normal 13px $font-bold
+      margin-left: 15px
 
 .list-cd
   li
@@ -256,7 +298,7 @@ input[type=text], input[type=email], input[type=search], input[type=phone], text
   position: relative
   height: 80px
   .list-cd-box-thumb
-    width: 80px
+    width: 79px
     float: left
     position: absolute
     top: 0
@@ -457,6 +499,198 @@ input[type=text], input[type=email], input[type=search], input[type=phone], text
 
   
 /* end Main */
+
+
+
+
+/* Breadcrumb */
+#breadcrumbs
+  margin-top: 38px
+  margin-bottom: 20px
+  .limits
+    border-bottom: 1px solid #efefef
+    padding-bottom: 10px
+  .breadcrumb
+    li
+      display: inline-block
+      font-size: 12px
+      a
+        @extend .link-pink
+        &.active
+          color: $blue
+          font-weight: 700
+/* end Breadcrumb */
+
+
+
+
+/* Cd */
+.cd-user
+  position: relative
+  padding-left: 45px
+  padding-top: 5px
+  .avatar
+    display: block
+    position: absolute
+    top: 0
+    left: 0
+    width: 34px
+    height: 34px
+    overflow: hidden
+    +border-radius(100%)
+    border: 2px solid #ebeeef
+  small
+    display: block
+    font-size: 11px
+    color: $gray-light
+  .user
+    @extend .link-pink
+    font-size: 14px
+    font-family: $font-regular
+.cd-info
+  margin-bottom: 30px
+  .cd-thumb
+    width: 214px
+    float: left
+  .cd-info-content
+    padding-left: 233px
+    .title
+      text-transform: uppercase
+      color: $blue
+      font: normal 24px $font-black
+      margin: 0 0 10px 0
+      line-height: 24px
+    .desc
+      color: $gray-light
+      font: normal 14px $font-regular
+      margin: 0
+    .dados
+      border-top: 1px solid #f3f3f3
+      padding-top: 13px
+      margin-top: 10px
+      margin-bottom: 20px
+      overflow: hidden    
+      dl
+        float: left
+        margin-left: 40px
+        &:first-child
+          margin-left: 0
+        dt
+          display: block
+          text-transform: uppercase
+          font: normal 11px $font-regular
+          color: #999
+        dd
+          font: normal 13px $font-bold
+          color: $blue
+    .button-download-big
+      background: $pink
+      color: #fff
+      float: left
+      &:hover, &:active, &:focus
+        background: #fff
+        color: $pink
+    .cd-user
+      float: right
+.cd-share
+  background: #f7f7f7
+  padding: 15px
+  margin-bottom: 30px
+  +border-radius(4px)
+  .col, .col .title, .social, .social > span, input
+    float: left
+  .col
+    &.link
+      float: right
+    .title
+      font-weight: 700
+      margin-right: 5px
+      font-size: 12px
+      color: #a4a4a4
+      padding-top: 7px
+      text-shadow: 0 1px 0 #fff
+#musics
+  .box-header
+    margin-bottom: 0
+.musics-list
+  > li
+    overflow: hidden
+    padding-top: 18px
+    padding-bottom: 18px
+    padding-left: 43px
+    border-bottom: 1px dashed #dedede
+    position: relative
+    &:hover, &.hover
+      background: #f6f6f6
+    .number
+      display: block
+      position: absolute
+      top: 14px
+      left: 7px
+      background: $blue
+      color: #fff
+      width: 28px
+      height: 23px
+      padding-top: 5px
+      text-align: center
+      font: normal 14px $font-bold
+      +border-radius(100%)
+    .title
+      a
+        @extend .link-pink
+        font: normal 16px $font-bold
+    .options
+      position: absolute
+      top: 14px
+      right: 10px
+      li
+        float: left
+        margin-left: 12px
+        &:first-child
+          margin-left: 0
+        
+/* end Cd */
+
+
+
+
+/* Playlist */
+#playlist
+  position: fixed
+  bottom: 0
+  left: 0
+  width: 100%
+  z-index: 10
+  background: $blue
+  .playlist-plug
+    display: block
+    position: absolute
+    right: 40px
+    width: 40px
+    height: 40px
+    top: -40px
+    background: #404a7d
+    +border-radius(4px 4px 0 0)
+    text-indent: -9999em
+  .playlist-options
+    padding: 10px 0
+  .playlist-count
+    float: left
+    color: #fff
+    .title, .desc
+      display: block
+      line-height: 1em
+    .title
+      text-transform: uppercase
+      font: normal 13px $font-regular
+    .desc
+      font: normal 13px $font-black
+  .playlist-musics
+    height: 91px
+    padding: 15px 30px 0 30px
+    background: #404a7d url(#{$base-img}/bg-playlist-musics.png) repeat-x bottom
+/* end Playlist */
+
 
 
 

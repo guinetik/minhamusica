@@ -1,5 +1,5 @@
 <!-- Breadcrumb -->
-<ng-include src="breadcrumb.html"></ng-include>
+<ng-include src="'views/breadcrumb.html'"></ng-include>
 <!-- end Breadcrumb -->
 
 
@@ -8,20 +8,105 @@
   
   <div class="limits clearfix">
     
-    <div id="cd-content" class="column-left">
-      <div class="cd-info">
+    <article id="cd-content" class="column-left">
+     
+     
+      <div class="cd-info clearfix">
+        <figure class="cd-thumb cd-info-thumb">
+          <a href="http://placehold.it/986x986" class="view-large" titler="Ver maior">
+            <img src="http://placehold.it/206x206" alt="">   
+          </a>
+        </figure>
+        <div class="cd-info-content clearfix">
+          <h1 class="title">Garota Safada - Uma nova história 2014</h1>
+          <p class="desc">Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra, depois divoltis porris, paradis. Paisis, filhis, espiritis santis.</p>
+          <div class="dados">
+            <dl>
+              <dt>Tamanho do CD</dt>
+              <dd>145MB</dd>
+            </dl>
+            <dl>
+              <dt>Data de Envio</dt>
+              <dd>01/01/2015</dd>
+            </dl>
+            <dl>
+              <dt>Downloads</dt>
+              <dd>24533</dd>
+            </dl>
+          </div><!-- /.dados -->
+          <a href="#" class="button-download-big" title="Baixar CD"><span class="icon"></span>Baixar CD</a>
+          <div class="cd-user">
+            <span class="avatar">
+              <img src="http://placehold.it/34x34" alt="">
+            </span>
+            <small>Enviado por:</small>
+            <a href="#" ui-sref="perfil" class="user">victoraldabalde</a>
+          </div>
+        </div>
+      </div><!-- /.cd-info -->
       
+      
+      
+      <div class="cd-share clearfix">
+        <div class="col">
+          <strong class="title">Compartilhe:</strong>
+          <div class="social clearfix">
+            <span id="facebook">Facebook</span>
+            <span id="twitter">Twitter</span>
+            <span id="gplus">Google Plus</span>
+          </div>
+        </div>
+        <div class="col link">
+          <strong class="title">Link:</strong>
+          <input type="text" readonly="readonly" value="http://musicatop.com/garota-safada-uma-nova-historia-2014">
+        </div>
+      </div><!-- /.cd-share -->
+      
+      
+      <div id="musics" class="box box-inner">
+        <div class="box-header clearfix box-header-balloon">
+          <h2 class="box-title">Músicas</h2>
+          <div class="balloon musics-count">4</div>
+          <a href="#" class="button button-play"><span class="icon icon-play"></span> Tocas todas as músicas</a>
+        </div><!-- /.box-header -->
+        <div class="box-content">
+          <ol class="musics-list">
+            <li class="musics-list-li">
+              <span class="number">01</span>
+              <h2 class="title"><a href="#">Vamos tomar uma</a></h2>
+              <ul class="options">
+                <li><a href="#" class="button-icon" title="Tocar música"><span class="icon-play"></span>Tocar música</a></li>
+                <li><a href="#" class="button-icon" title="Baixar música"><span class="icon-play"></span>Baixar música</a></li>
+                <li><a href="#" class="button-icon" title="Compartilhar música"><span class="icon-play"></span>Compartilhar música</a></li>
+              </ul>
+            </li>
+          </ol><!-- /.musics-list -->
+        </div><!-- /.box-content -->
+      </div><!-- /.#musics -->
+      
+      
+      <div id="comments" class="box box-inner">
+        <div class="box-header clearfix box-header-balloon">
+          <h2 class="box-title">Comentários</h2>
+          <div class="balloon comments-count">4</div>
+        </div><!-- /.box-header -->
+        <div class="box-content">
+          
+        </div><!-- /.box-content -->
       </div>
-    </div><!-- /.column-left -->
+      
+      
+      
+    </article><!-- /.column-left -->
   
   
     <aside class="content-aside column-right">
-      <div id="next-events-aside" class="box">
+     
+      <div id="next-events-aside" class="box box-inner">
         <div class="box-header">
           <h2 class="box-title"><strong>Próximos</strong> Eventos</h2>
         </div><!-- /.box-header -->
         <div class="box-content">
-
           <ul class="list-events">
             <li class="list-events-box">
               <a href="#" class="list-events-box-a">
@@ -37,10 +122,38 @@
               </a>
             </li>
           </ul><!-- /.list-events -->
-
-
         </div><!-- /.box-content -->
-      </div>
+      </div><!-- /#next-events-aside -->
+      
+      
+      
+      <div id="related" class="box box-inner">
+      <div class="box-header">
+        <h2 class="box-title">Relacionados</h2>
+      </div><!-- /.box-header -->
+      <div class="box-content">
+        
+        
+        <ul class="list-cd">
+          <li class="list-cd-box clearfix">
+            <figure class="cd-thumb list-cd-box-thumb">
+              <a href="#" title="">
+                <img src="http://placehold.it/71x71" alt="">
+              </a>
+            </figure>
+            <h2 class="list-cd-box-title">
+              <a href="#" title="Aviões do Forró - Ao Vivo Aracajú - 2014">Aviões do Forró - Ao Vivo Aracajú - 2014</a>
+            </h2>
+            <a href="#" class="user list-cd-box-user" title="">BuchechaCDs</a>
+            <span class="time">há 3 min atrás</span>
+          </li>
+        </ul>
+        
+        
+      </div><!-- /.box-content -->
+    </div><!-- /#lastest-uploads -->
+      
+      
     </aside> 
     
   </div><!-- /.limits -->
@@ -48,3 +161,39 @@
   
   
 </section>
+
+
+
+<!-- Playlist -->
+<div id="playlist" class="visible">
+  <a href="#" class="playlist-plug" title="Esconder"><span class="icon"></span>Esconder</a>
+  <div class="playlist-options">
+    <div class="limits clearfix">
+      <div class="playlist-count">
+        <span class="title">Música</span>
+        <strong class="desc">
+         <span id="playlist-count-actual">2</span> de <span id="playlist-count-total">12</span>
+        </strong>
+      </div><!-- /.playlist-count -->
+      <div class="playlist-controls">
+
+      </div>
+    </div>
+  </div><!-- /.playlist-controls -->
+  <div class="playlist-musics">
+    <ul class="playlist-musics-list">
+      <li>
+        <a href="" id="">
+          <figure class="cd-thumb">
+            <img src="http://placehold.it/52x52" alt="">
+          </figure>
+          <div class="text">
+            <strong class="music">Vamos tomar uma</strong>
+            <span class="artist">Garota Safada - Uma nova história 2014</span>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div><!-- /.playlist-musics -->
+</div>
+<!-- end Playlist -->
