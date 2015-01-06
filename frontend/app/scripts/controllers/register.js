@@ -8,11 +8,14 @@
  * Controller of the musicaApp
  */
 angular.module('musicaApp')
-  .controller('RegisterCtrl', function ($scope, $http) {
+  .controller('RegisterCtrl', function ($scope, $http , API_URL) {
 
+			
+	
 		$scope.estadoSelecionado=null;
 		$scope.cidadeSelecionada=null;
 		$scope.tipoSelecionado=null;
+		$scope.usuarioAceitou  = true;
 			
 		$scope.estados=[];
 		$scope.tipos = [];
@@ -20,16 +23,14 @@ angular.module('musicaApp')
 		$scope.sexo = 'm';
 		$scope.nascimento = new Date(1987,2,27); 
 			
-			
-		
-		$http({method:'GET',url:'http://localhost:1337/getestados'})
+		$http({method:'GET',url:API_URL+'getestados'})
 		.success(function(result){
 			$scope.estados = result;
 		}).error(function(err){
 			//console.log(err);
 		});
 	
-		$http({method:'GET',url:'http://localhost:1337/tipos'})
+		$http({method:'GET',url:API_URL+'tipos'})
 		.success(function(result){
 			$scope.tipos = result;
 			$scope.tipoSelecionado=result[0];
@@ -38,27 +39,35 @@ angular.module('musicaApp')
 		});	
 	
 		
-	
 		$scope.submit = function(){
-
-			var url = 'http://localhost:3000/register';
+			
+			var url = API_URL+'usuarios/create/';
 			var user = {
 					nome: $scope.nome,
 					email:$scope.email,
 					senha:$scope.senha,
-					cidade:$scope.cidade,
-					estado:$scope.estado,
-					nascimento:$scope.nascimento ,
+					sexo: $scope.sexo, 
+					nascimento: $scope.nascimento,
+					cidade:$scope.cidadeSelecionada.id,
+					tipo: $scope.tipoSelecionado.id,
 					twitter:$scope.twitter,
-					instagram:$scope.instagram
+					instagram:$scope.instagram	
 			};
-
-			$http.post(url , user )
+			
+			var separador = '?';
+			var params = '';
+			angular.forEach(user ,function(item,key){
+				params+=separador+key+'='+item;	
+				separador = '&';
+			});
+		
+			
+			$http.get(url+params)
 			.success(function(){
 				  console.log('good');
 			})
-			.error(function(){
-				  console.log('fail');
+			.error(function(err){
+				  console.log(err);
 			});
 
 		};

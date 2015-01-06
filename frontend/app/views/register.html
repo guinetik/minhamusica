@@ -4,19 +4,20 @@
 	<input name="nome" ng-model="nome" type="text"  placeholder="nome" required/>
     <p class="help-block" ng-show="register.nome.$touched && register.nome.$invalid">Por favor digite seu nome.</p>
    
-   	<input name="email" ng-model="email" type="email"  placeholder="email" required/>
-    <p class="help-block" ng-show="register.email.$dirty && register.email.$invalid">Por favor digite seu email.</p>
+   	<input name="email" ng-model="email" email-validate type="email"  placeholder="email" required/>
+    <p class="help-block" ng-show="register.email.$error.email">Por favor digite seu email corretamente.</p>
    
    
-	<input name="senha" type="password"  ng-model="senha" placeholder="senha" required/>
-	<input name="conf_senha" type="password" ng-model="conf_senha"  placeholder="confirmar senha" validate-equals="senha" required/>
-    <p class="help-block" ng-show="register.conf_senha.$dirty && register.conf_senha.$invalid">Preencha sua senha corretamente.</p>
+	<input name="senha" type="password" ng-model="senha" ng-minlength="4" placeholder="senha" required/>
+	<p class="help-block" ng-show="register.senha.$error.minlength">Senha muito curta.</p>
 
+	<input name="conf_senha" type="password" ng-model="conf_senha"   placeholder="confirmar senha" validate-equals="senha" required/>
+    <p class="help-block" ng-show="register.conf_senha.$dirty && register.conf_senha.$invalid">Preencha sua senha corretamente.</p>
+	
 	<label>M</label><input name="sexo" type="radio"  ng-model="sexo" value="m"/>
 	<label>F</label><input name="sexo" type="radio"  ng-model="sexo" value="f" selected />
 	
-	<input type="date" name="nascimento"  ng-model="nascimento" type="date"  required/>
-	
+	<input type="date" name="nascimento"  ng-model="nascimento" type="date" placeholder="yyyy-mm-dd"  required/>
 	
 	<select ng-model="tipoSelecionado" ng-options="item.nome for item in tipos" required>
 	</select>
@@ -28,6 +29,12 @@
 		<option value="">Selecione a cidade</option>
 	</select>	
 	
+	<label>Eu aceito</label>
+	<input type="checkbox" ng-model="usuarioAceitou" name="usuarioAceitou" required/>
+	<div ng-show="!usuarioAceitou">Aceite os termos para concluir o cadastro.</div>	
+
+	<input type="text" name="twitter" ng-model="twitter" placeholder="twitter"/>
+	<input type="text" name="instagram" ng-model="instagram" placeholder="instagram"/>
 
 	<input value="enviar"  type="submit" ng-disabled="register.$invalid"/>
 </form>

@@ -9,33 +9,44 @@ module.exports = {
     attributes: {
         nome : {
             type: 'string' , 
-			require : true ,
+			required : true ,
 			maxLength : 200	
 		},
 		email: { 
             type:'string', 
-            require : true,
-            unique : true ,
+          	required : true,
+            //unique : true ,
 			maxLength : 100	
         },
         senha: {
             type: 'string' ,
-            require: true
+            required: true
         },
 		sexo: {
 			type : 'string' , 
-			require: true ,
+			required: true ,
 			maxLength : 1
 		},
 		nascimento: {
 			type: 'date' , 
-			require: true 
+			required: true 
 		},
 		cidade: {
 			model:'cidades'
 		},
 		tipo: {
 			model : 'tipos' 
+		},
+		twitter: {
+			type: 'string' , 
+			maxLength : 100	
+		},
+		instagram: {
+			type: 'string', 
+			maxLength : 100 
+		},
+		facebookId: {
+			type: 'string' 
 		}
 	 },
 		 

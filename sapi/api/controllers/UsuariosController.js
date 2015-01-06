@@ -9,7 +9,7 @@
 
 module.exports = {
 
-	create: function (req, res){
+	/*create: function (req, res){
 			
 		var sendUser = req.body;
 		var newUser = {
@@ -24,7 +24,7 @@ module.exports = {
 		});
 		
 	
-	}
+	}*/
 	
 };	
 
