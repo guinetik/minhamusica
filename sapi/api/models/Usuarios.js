@@ -15,7 +15,7 @@ module.exports = {
 		email: { 
             type:'string', 
           	required : true,
-            //unique : true ,
+            unique : true ,
 			maxLength : 100	
         },
         senha: {

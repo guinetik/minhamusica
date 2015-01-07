@@ -12,23 +12,24 @@ var createSendToken = require('../services/createSendToken.js');
 module.exports = {
 	
     login : function(req ,res){
-        var email = req.body.email;
-        var password = req.body.password;
+		
+		var email = req.body.email;
+        var password = req.body.senha;
         
         if(!email || !password) {
             return res.status(401).send({
                     message:'email and password required'
             });
         }
-        
-        User.findOneByEmail(email , function(err ,foundUser){
+		
+		Usuarios.findOneByEmail(email , function(err ,foundUser){
             if(!foundUser){
                 return res.status(401).send({
                     message:'Email or Password invalid'
                 });
             }
             
-            bcrypt.compare(password , foundUser.password , function(err ,valid){
+            bcrypt.compare(password , foundUser.senha , function(err ,valid){
                 if(err) return res.status(403);
                 
                 if(!valid){
@@ -37,11 +38,15 @@ module.exports = {
                     });
                 
                 }
+				
+				
                 // ready to send user and jwt 
                 createSendToken(foundUser,res);
             }); 
             
         });    
+		
+		
         
     },
     

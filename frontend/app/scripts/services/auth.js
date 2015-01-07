@@ -8,12 +8,12 @@
  * Factory in the musicaApp.
  */
 angular.module('musicaApp')
-  .factory('auth', function () {
+  .factory('auth', function($window) {
     
 	var storage = $window.localStorage;
 	var cachedToken;
     return {
-      setToken: function (token) {
+      setToken: function(token) {
       	cachedToken = token;
 		storage.setItem('userToken', token);
       },
@@ -22,11 +22,11 @@ angular.module('musicaApp')
 		  	cachedToken = storage.getItem('userToken');
 		  return cachedToken;
 	  },
-	  isAuthenticate = function(){
-		 return !!this.getToken();
-	
+	  isAuthenticated : function(){
+		  return !!this.getToken();
+	  },
+	  logout : function(){
+	  	storage.removeItem('userToken');
 	  }
-		
-		
-    };
+	};
   });
