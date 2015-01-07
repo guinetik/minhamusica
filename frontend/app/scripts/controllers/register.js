@@ -8,34 +8,38 @@
  * Controller of the musicaApp
  */
 angular.module('musicaApp')
-  .controller('RegisterCtrl', function ($scope, $http , API_URL) {
+  .controller('RegisterCtrl', function ($scope, $http , $location ,alert ,API_URL) {
 
-			
+		$scope.usuario = {
+			nome:'',
+			email:'',
+			senha:'',
+			sexo : 'm',
+			estadoSelecionado:null,
+			cidadeSelecionada:null,
+			tipoSelecionado:null,
+			usuarioAceitou:true,
+			nascimento :  new Date(1987,2,27),
+			twitter: '',
+			instagram: '',
+		};
 	
-		$scope.estadoSelecionado=null;
-		$scope.cidadeSelecionada=null;
-		$scope.tipoSelecionado=null;
-		$scope.usuarioAceitou  = true;
-			
+		$scope.origem = angular.copy($scope.usuario);
+	
 		$scope.estados=[];
 		$scope.tipos = [];
 	
-		$scope.sexo = 'm';
-		$scope.nascimento = new Date(1987,2,27); 
-			
 		$http({method:'GET',url:API_URL+'getestados'})
 		.success(function(result){
 			$scope.estados = result;
 		}).error(function(err){
-			//console.log(err);
 		});
 	
 		$http({method:'GET',url:API_URL+'tipos'})
 		.success(function(result){
 			$scope.tipos = result;
-			$scope.tipoSelecionado=result[0];
+			$scope.usuario.tipoSelecionado=result[0];
 		}).error(function(err){
-			//console.log(err);
 		});	
 	
 		
@@ -43,15 +47,15 @@ angular.module('musicaApp')
 			
 			var url = API_URL+'usuarios/create/';
 			var user = {
-					nome: $scope.nome,
-					email:$scope.email,
-					senha:$scope.senha,
-					sexo: $scope.sexo, 
-					nascimento: $scope.nascimento,
-					cidade:$scope.cidadeSelecionada.id,
-					tipo: $scope.tipoSelecionado.id,
-					twitter:$scope.twitter,
-					instagram:$scope.instagram	
+					nome: $scope.usuario.nome,
+					email:$scope.usuario.email,
+					senha:$scope.usuario.senha,
+					sexo: $scope.usuario.sexo, 
+					nascimento: $scope.usuario.nascimento,
+					cidade:$scope.usuario.cidadeSelecionada.id,
+					tipo: $scope.usuario.tipoSelecionado.id,
+					twitter:$scope.usuario.twitter,
+					instagram:$scope.usuario.instagram	
 			};
 			
 			var separador = '?';
@@ -61,16 +65,21 @@ angular.module('musicaApp')
 				separador = '&';
 			});
 		
-			
 			$http.get(url+params)
 			.success(function(){
-				  console.log('good');
+				alert('success', 'Cadastro efetuado com sucesso', '');
+				$scope.reset();
 			})
 			.error(function(err){
-				  console.log(err);
+				alert('fail', 'Erro ao efetuar cadastro,', 'por favor tente novamente');
 			});
-
+			
 		};
+	
+	
+		$scope.reset = function(){
+			$scope.usuario = angular.copy($scope.origem);
+		}
 	
 	
 	

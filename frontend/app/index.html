@@ -10,6 +10,7 @@
   <!-- build:css(.) styles/vendor.css -->
   <!-- bower:css -->
   <link rel="stylesheet" href="bower_components/angular-carousel/dist/angular-carousel.css" />
+  <link rel="stylesheet" href="bower_components/animate.css/animate.css" />
   <!-- endbower -->
   <!-- endbuild -->
   <!-- build:css(.tmp) styles/main.css -->
@@ -42,18 +43,19 @@
         </div><!-- /#genre -->
         <div id="header-user" class="not-logged">
           <span class="icon"></span>
-          <p><a href="#" title="Faça login">Faça login</a> ou <a ui-sref="register" href="#" title="Cadastre-se">Cadastre-se</a></p>
+          <p><a  ui-sref="login" href="#" title="Faça login">Faça login</a> ou <a ui-sref="register" href="#" title="Cadastre-se">Cadastre-se</a></p>
         </div><!-- /#header-user -->
       </div>
     </header>
     <!-- end Header -->
     
     
-    
-    
     <!-- Main -->
     <main id="content">
       <div ui-view></div>
+		<!-- Alerts -->
+		<div class ="alert aler-{{alert.type}} animated main-alert"  ng-class="{'flipInY':alert.show,'flipOutY':!alert.show , 'alert-hidden' : !alertHasBeenShown}"> <strong>{{alert.title}}</strong> {{alert.message}}</div>
+		<!-- end Alerts -->
     </main>
     <!-- end Main -->
     
@@ -153,6 +155,9 @@
   <script src="scripts/directives/validateEquals.js"></script>
   <script src="scripts/controllers/register.js"></script>
   <script src="scripts/directives/emailValidate.js"></script>
+  <script src="scripts/services/alert.js"></script>
+  <script src="scripts/controllers/login.js"></script>
+  <script src="scripts/services/auth.js"></script>
   <!-- endbuild -->
   
   <div id="fb-root"></div>

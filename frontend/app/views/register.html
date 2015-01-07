@@ -1,41 +1,39 @@
 <form ng-submit="submit()" name="register" style="margin-top:100px;" class="form-register" novalidate>
 	
 	
-	<input name="nome" ng-model="nome" type="text"  placeholder="nome" required/>
+	<input name="nome" ng-model="usuario.nome" type="text"  placeholder="nome" required/>
     <p class="help-block" ng-show="register.nome.$touched && register.nome.$invalid">Por favor digite seu nome.</p>
    
-   	<input name="email" ng-model="email" email-validate type="email"  placeholder="email" required/>
+   	<input name="email" ng-model="usuario.email" email-validate type="email"  placeholder="email" required/>
     <p class="help-block" ng-show="register.email.$error.email">Por favor digite seu email corretamente.</p>
    
    
-	<input name="senha" type="password" ng-model="senha" ng-minlength="4" placeholder="senha" required/>
-	<p class="help-block" ng-show="register.senha.$error.minlength">Senha muito curta.</p>
+	<input name="senha" type="password" ng-model="usuario.senha" ng-minlength="4" placeholder="senha" required/>
+	<p class="help-block" ng-show="register.usuario.senha.$error.minlength">Senha muito curta.</p>
 
-	<input name="conf_senha" type="password" ng-model="conf_senha"   placeholder="confirmar senha" validate-equals="senha" required/>
+	<input name="conf_senha" type="password" ng-model="usuario.conf_senha" placeholder="confirmar senha" validate-equals="usuario.senha" required/>
     <p class="help-block" ng-show="register.conf_senha.$dirty && register.conf_senha.$invalid">Preencha sua senha corretamente.</p>
 	
-	<label>M</label><input name="sexo" type="radio"  ng-model="sexo" value="m"/>
-	<label>F</label><input name="sexo" type="radio"  ng-model="sexo" value="f" selected />
+	<label>M</label><input name="sexo" type="radio"  ng-model="usuario.sexo" value="m"/>
+	<label>F</label><input name="sexo" type="radio"  ng-model="usuario.sexo" value="f" selected />
 	
-	<input type="date" name="nascimento"  ng-model="nascimento" type="date" placeholder="yyyy-mm-dd"  required/>
+	<input type="date" name="nascimento"  ng-model="usuario.nascimento" type="date" placeholder="yyyy-mm-dd"  required/>
 	
-	<select ng-model="tipoSelecionado" ng-options="item.nome for item in tipos" required>
+	<select ng-model="usuario.tipoSelecionado" ng-options="item.nome for item in tipos" required>
 	</select>
-	
-	<select ng-model="estadoSelecionado" ng-options="item.nome for item in estados track by item.sigla" required>
+	<select ng-model="usuario.estadoSelecionado" ng-options="item.nome for item in estados track by item.sigla" required>
 			<option value="">Selecione o estado</option>
 	</select>	
-	<select ng-model="cidadeSelecionada" ng-show="estadoSelecionado" ng-options="item.nome for item in estadoSelecionado.cidades" required>
+	<select ng-model="usuario.cidadeSelecionada" ng-show="usuario.estadoSelecionado" ng-options="item.nome for item in usuario.estadoSelecionado.cidades" required>
 		<option value="">Selecione a cidade</option>
 	</select>	
 	
 	<label>Eu aceito</label>
-	<input type="checkbox" ng-model="usuarioAceitou" name="usuarioAceitou" required/>
-	<div ng-show="!usuarioAceitou">Aceite os termos para concluir o cadastro.</div>	
+	<input type="checkbox" ng-model="usuario.usuarioAceitou" name="usuarioAceitou" required/>
+	<div ng-show="!usuario.usuarioAceitou">Aceite os termos para concluir o cadastro.</div>	
 
-	<input type="text" name="twitter" ng-model="twitter" placeholder="twitter"/>
-	<input type="text" name="instagram" ng-model="instagram" placeholder="instagram"/>
-
+	<input type="text" name="twitter" ng-model="usuario.twitter" placeholder="twitter"/>
+	<input type="text" name="instagram" ng-model="usuario.instagram" placeholder="instagram"/>
 	<input value="enviar"  type="submit" ng-disabled="register.$invalid"/>
 </form>
 

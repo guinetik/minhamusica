@@ -1,17 +1,17 @@
 'use strict';
 
-describe('Controller: RegistercrlCtrl', function () {
+describe('Controller: LoginCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('front2App'));
+  beforeEach(module('musicaApp'));
 
-  var RegistercrlCtrl,
+  var LoginCtrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    RegistercrlCtrl = $controller('RegistercrlCtrl', {
+    LoginCtrl = $controller('LoginCtrl', {
       $scope: scope
     });
   }));
