@@ -1,0 +1,11 @@
+<form ng-submit="submit()" name="formlogin" style="margin-top:100px;" class="form-register" novalidate>
+	
+	<input name="email" ng-model="usuario.email" email-validate type="email"  placeholder="email" required/>
+    <p class="help-block" ng-show="formlogin.email.$error.email">Por favor digite seu email corretamente.</p>
+   
+	<input name="senha" ng-model="usuario.senha" type="password"  placeholder="senha" required/>
+    <p class="help-block" ng-show="formlogin.senha.$touched && formlogin.senha.$invalid">Por favor digite sua senha.</p>
+   
+
+	<input value="enviar"  type="submit" ng-disabled="formlogin.$invalid"/>
+</form>

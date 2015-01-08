@@ -1,17 +1,17 @@
 'use strict';
 
-describe('Controller: MainCtrl', function () {
+describe('Controller: LogoutCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('front2App'));
+  beforeEach(module('musicaApp'));
 
-  var MainCtrl,
+  var LogoutCtrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    MainCtrl = $controller('MainCtrl', {
+    LogoutCtrl = $controller('LogoutCtrl', {
       $scope: scope
     });
   }));

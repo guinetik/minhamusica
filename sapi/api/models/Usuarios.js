@@ -15,7 +15,7 @@ module.exports = {
 		email: { 
             type:'string', 
           	required : true,
-            //unique : true ,
+            unique : true ,
 			maxLength : 100	
         },
         senha: {
@@ -49,6 +49,24 @@ module.exports = {
 			type: 'string' 
 		}
 	 },
+	
+	 beforeCreate: function(attr,next){
+      	bcrypt.genSalt(10 ,function(err,salt){
+			if(err){ 
+				next(err);
+			}
+			
+			bcrypt.hash(attr.senha,salt,null,function(err,hash){
+			
+				if(err) return next(err);
+				
+				attr.senha = hash;
+				next();
+			
+			});
+		
+		});
+	}
 		 
  /**
    * Lifecycle Callbacks
@@ -64,20 +82,7 @@ module.exports = {
    * beforeDestroy
    * afterDestroy
    */ 
- /*   beforeCreate: function(value,next){
-        var pass  = values.senha;
-        
-		bcrypt.hash(pass , 'salt' , null , function(err,hash){
-			if(err){ 
-				next(err);
-			}
-			values.senha = hash;
-		
-		});
-		
-		
-        next();
-    }*/
+ /*  */
 
 };
 

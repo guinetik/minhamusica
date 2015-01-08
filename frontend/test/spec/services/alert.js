@@ -3,7 +3,7 @@
 describe('Service: alert', function () {
 
   // load the service's module
-  beforeEach(module('front2App'));
+  beforeEach(module('musicaApp'));
 
   // instantiate service
   var alert;
