@@ -52,6 +52,11 @@ input[type=text], input[type=email], input[type=search], input[type=phone], text
     margin: 0
     border: 0      
  
+.sprite 
+  background-image: url(#{$base-img}/sprite.png)
+  background-repeat: no-repeat
+  display: inline-block
+    
 .link-user
   font-size: 13px
   font-family: $font-regular
@@ -78,6 +83,19 @@ input[type=text], input[type=email], input[type=search], input[type=phone], text
   width: 158px
   height: 32px
   line-height: 1em
+  &:hover
+    span
+      background-position: -261px -24px
+  span
+    @extend .sprite
+    display: block
+    background-position: -261px 0
+    width: 24px
+    height: 24px
+    right: 19px
+    top: 13px
+    position: absolute
+      
  
 .button-download-big    
   @extend .button
@@ -214,8 +232,22 @@ input[type=text], input[type=email], input[type=search], input[type=phone], text
 
 
 /* Banners */
+#banners
+  overflow: hidden
+  position: relative
+  .banners-mask
+    height: 368px
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    background: url(#{$base-img}/bg-banner-mask.png) repeat-y top center
+    .limits
+      height: 368px
+      overflow: hidden
 #banners-carousel
   height: 368px
+  background: #000
   padding: 0
   border: 0
   margin: 0
@@ -226,11 +258,29 @@ input[type=text], input[type=email], input[type=search], input[type=phone], text
   .flex-viewport
     width: 1000px
     margin: 0 auto
+    overflow: visible !important
   .flex-direction-nav
-    .flex-prev
-      left: 0
-    .flex-next
-      right: 0
+    a
+      width: 65px
+      height: 54px
+      background: url(#{$base-img}/sprite.png) no-repeat
+      text-indent: -9999em
+      opacity: 1
+      overflow: hidden
+      text-align: left
+      +single-transition(none)
+      &:before
+        display: none
+      &.flex-prev
+        left: 0
+        background-position: 0 0
+        &:hover
+          background-position: 0 -55px
+      &.flex-next
+        right: 0
+        background-position: -65px 0
+        &:hover
+          background-position: -65px -55px
 #banners-ul
   width: 1000px
   zoom: 1
@@ -245,7 +295,7 @@ input[type=text], input[type=email], input[type=search], input[type=phone], text
     a
       display: block
       img
-        width: 100%
+        width: 1000px
         display: block
 #banners-thumbs
   min-height: 110px
@@ -318,6 +368,8 @@ input[type=text], input[type=email], input[type=search], input[type=phone], text
       strong
         display: block
         font-family: $font-black
+  .box-content-buttons
+    padding-left: 106px
 .box-inner
   margin-bottom: 40px
   .box-header
@@ -432,7 +484,10 @@ input[type=text], input[type=email], input[type=search], input[type=phone], text
     color: #fff
     font-family: $font-bold
     +border-radius(4px)
-      
+.tab-content
+  display: none
+.ng-show
+  display: block
 /* end Content */
 
 
@@ -440,6 +495,16 @@ input[type=text], input[type=email], input[type=search], input[type=phone], text
 
 
 /* Main */
+#most-downloaded
+  position: relative
+  .most-downloaded-controls
+    position: absolute
+    top: 26px
+    left: 150px
+    width: 170px
+    overflow: hidden
+    a
+      float: left
 .most-downloaded-list
   margin-right: -1px
   li
@@ -476,6 +541,14 @@ input[type=text], input[type=email], input[type=search], input[type=phone], text
     .button-arrow
       padding-top: 37px
       height: 67px
+      &:hover
+        span
+          background-position: -235px -27px
+      span
+        width: 27px
+        height: 27px
+        top: 38px
+        background-position: -235px 0
 .most-downloaded-list-box-cd
   position: relative
   margin: 0
@@ -551,7 +624,63 @@ input[type=text], input[type=email], input[type=search], input[type=phone], text
           font-size: 14px
           font-family: $font-bold
 
-  
+.flex-direction-nav-a
+  background-image: url(#{$base-img}/sprite.png) !important
+  background-repeat: no-repeat !important
+  opacity: 1 !important
+  overflow: hidden
+  text-align: left
+  text-indent: -9999em
+  display: block
+  cursor: pointer
+  +single-transition(none)
+  &:before
+    display: none !important
+          
+#lastest-uploads
+  position: relative
+#lastest-uploads-list
+  border: 0
+  +box-shadow(none)
+  +border-radius(0)
+  margin: 0
+  position: static
+  .flex-viewport
+    height: 464px
+    margin-bottom: 17px
+  .slides
+    width: 320px !important
+    li
+      width: 320px !important
+      float: none !important
+      margin: 0
+      .list-cd-box
+        margin-top: 16px
+        &:first-child
+          margin-top: 0
+  .flex-direction-nav
+    position: absolute
+    left: 0
+    height: 52px
+    bottom: 0
+    a
+      width: 52px
+      height: 52px
+      top: auto
+      bottom: 0
+      margin: 0
+      @extend .flex-direction-nav-a
+      &.flex-next
+        background-position: -130px 0
+        left: 0
+        right: auto
+        &:hover
+          background-position: -130px -52px
+      &.flex-prev
+        left: 53px
+        background-position: -182px 0
+        &:hover
+          background-position: -182px -52px      
 /* end Main */
 
 

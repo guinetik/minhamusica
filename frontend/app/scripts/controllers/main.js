@@ -19,6 +19,8 @@ angular.module('musicaApp')
 
 $(window).load(function(){
 
+
+
   $('#banners-thumbs').flexslider({
     animation: "slide",
     controlNav: false,
@@ -28,16 +30,30 @@ $(window).load(function(){
     itemMargin: 5,
     asNavFor: '#banners-carousel'
   });
+  
   $('#banners-carousel').flexslider({
     animation: "slide",
     controlNav: false,
-    animationLoop: false,
-    slideshow: false,
+    animationLoop: true,
+    slideshow: true,
+    slideshowSpeed: 7000,
+    pauseOnHover: true,
     itemWidth: 1000,
     sync: "#banners-thumbs",
     start: function(slider){
       $('body').removeClass('loading');
     }
   });
+  
+  
+  $('#lastest-uploads-list').flexslider({
+    animation: "slide",
+    animationLoop: false,
+    slideshow: false,
+    controlNav: false,
+    direction: "vertical"
+  });
 
-});
+  
+  
+});  
