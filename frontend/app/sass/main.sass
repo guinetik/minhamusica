@@ -17,6 +17,9 @@ a
 body, input, select, button, textarea
   font-family: $font-default
   
+
+.wrapper
+  padding-top: 107px
   
 .limits
   width: 1000px
@@ -95,7 +98,12 @@ input[type=text], input[type=email], input[type=search], input[type=phone], text
   
 /* Header */
 #header
+  width: 100%
   background: #fff url(#{$base-img}/bg-header.png) repeat-x bottom
+  position: fixed
+  z-index: 20
+  top: 0
+  height: 107px
   .limits
     padding-top: 20px
     padding-bottom: 20px
@@ -208,22 +216,68 @@ input[type=text], input[type=email], input[type=search], input[type=phone], text
 /* Banners */
 #banners-carousel
   height: 368px
+  padding: 0
+  border: 0
+  margin: 0
+  +border-radius(0)
+  +box-shadow(none)
+  position: relative
+  zoom: 1
+  .flex-viewport
+    width: 1000px
+    margin: 0 auto
+  .flex-direction-nav
+    .flex-prev
+      left: 0
+    .flex-next
+      right: 0
 #banners-ul
+  width: 1000px
+  zoom: 1
+  margin: 0 auto
+  padding: 0
   li
+    width: 1000px
     float: left
+    height: 368px
+    display: none
+    -webkit-backface-visibility: hidden
     a
       display: block
+      img
+        width: 100%
+        display: block
 #banners-thumbs
   min-height: 110px
+  zoom: 1
+  padding: 0
+  margin: 0
+  border: 0
+  +border-radius(0)
+  +box-shadow(none)
+  position: relative
   background: url(#{$base-img}/bg-sombra-top.png) repeat-x top
+  .flex-viewport
+    width: 1000px
+    margin: 0 auto
   ul
     text-align: center
+    padding-top: 17px
     li
       width: 139px
-      display: inline-block
+      //display: inline-block
+      display: none
+      -webkit-backface-visibility: hidden
+      opacity: 0.4
+      margin-right: 5px
+      &.flex-active-slide
+        opacity: 1
       a
         @extend .cd-thumb
         display: block
+        img
+          width: 100%
+          display: block  
       
 /* end Banners */
 
