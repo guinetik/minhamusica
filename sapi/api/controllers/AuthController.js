@@ -11,7 +11,11 @@ var createSendToken = require('../services/createSendToken.js');
 
 module.exports = {
 	
-    login : function(req ,res){
+    login : function(req ,res , setModel){
+		model = Usuarios;
+		if (typeof(setModel) !== 'undefined'){
+			model = setModel;
+		}
 		
 		var email = req.body.email;
         var password = req.body.senha;
@@ -22,7 +26,7 @@ module.exports = {
             });
         }
 		
-		Usuarios.findOneByEmail(email , function(err ,foundUser){
+		model.findOneByEmail(email , function(err ,foundUser){
             if(!foundUser){
                 return res.status(401).send({
                     message:'Email or Password invalid'
@@ -46,32 +50,9 @@ module.exports = {
             
         });    
 		
-		
-        
-    },
+	 },
     
-    register : function(req,res){
-    
-        var email = req.body.email;
-        var password =  req.body.password;
-        
-        if(!email || !password){ 
-            return res.status(401).send({
-                message: 'Email and Password required'
-            });
-       }
-        
-        User.create({
-            email:email,
-            password:password
-        }).exec(function(err,user){
-            if(err) return res.status(403).send({
-                message:'User not created'
-            });
-        
-            createSendToken(user,res);
-        
-        });
-        
-    }
+	loginAdmin : function(req,res){
+    	//this.login(req,res,Admin);
+	}
 };    
