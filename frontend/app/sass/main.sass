@@ -183,6 +183,14 @@ input[type=text], input[type=email], input[type=search], input[type=phone], text
       outline: none
       background: #fff
       +transition(all, .2s, ease-in)
+    span
+      @extend .sprite
+      width: 24px
+      height: 24px
+      background-position: -295px 0
+      position: absolute
+      left: 14px
+      top: 13px
 
 #genre
   border-right: 1px solid #e0e0e0
@@ -645,6 +653,8 @@ input[type=text], input[type=email], input[type=search], input[type=phone], text
   +border-radius(0)
   margin: 0
   position: static
+  background: transparent
+  z-index: 1
   .flex-viewport
     height: 464px
     margin-bottom: 17px
