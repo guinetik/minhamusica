@@ -1,0 +1,91 @@
+@import compass/css3
+@import compass/utilities
+@import config
+
+  
+.button
+  display: inline-block
+  font-family: $font-regular
+  color: $pink
+  border: 1px solid $pink
+  text-transform: uppercase
+  position: relative
+  +transition(all, .2s, linear)
+  +border-radius(3px)
+  .icon-16
+    @extend .sprite-icons
+    width: 16px
+    height: 16px
+    &.icon-play
+      background-position: 0 0
+    &.icon-download
+      background-position: -16px 0  
+    &.icon-share
+      background-position: -32px 0  
+  &:hover
+    background-color: $pink
+    color: #fff
+    .icon-16
+      &.icon-play
+        background-position: 0 -16px
+      &.icon-download
+        background-position: -16px -16px  
+      &.icon-share
+        background-position: -32px -16px  
+
+        
+.button-arrow
+  @extend .button
+  text-align: right
+  padding-right: 54px
+  padding-top: 18px
+  width: 158px
+  height: 32px
+  line-height: 1em
+  &:hover
+    span
+      background-position: -261px -24px
+  span
+    @extend .sprite
+    display: block
+    background-position: -261px 0
+    width: 24px
+    height: 24px
+    right: 19px
+    top: 13px
+    position: absolute
+      
+ 
+.button-download-big    
+  @extend .button
+  font-size: 18px
+  font-family: $font-bold
+  padding: 12px 26px 11px 55px
+  &:hover
+    span
+      background-position: -319px -24px
+  span
+    @extend .sprite
+    width: 24px
+    height: 24px
+    background-position: -319px 0
+    position: absolute
+    left: 20px
+    top: 7px
+    
+.button-icon
+  @extend .button
+  width: 26px
+  height: 26px
+  text-indent: -9999em
+  +border-radius(100%)
+  .icon-16
+    position: absolute
+    left: 5px
+    top: 4px
+    
+.button-play
+  .icon-play
+    position: absolute
+    top: 6px
+    left: 10px

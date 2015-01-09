@@ -25,8 +25,24 @@ body, input, select, button, textarea
   width: 1000px
   margin: auto
 
-input[type=text], input[type=email], input[type=search], input[type=phone], textarea, select
-  font: normal 14px $font-default
+input[type=text], 
+input[type=email], 
+input[type=search], 
+input[type=phone], 
+textarea, 
+select
+  font: normal 14px $font-regular
+  padding: 12px
+  border: 2px solid #ddd
+  background: #f8f8f8
+  color: $gray-light
+  +border-radius(4px)
+  &:focus, &:active
+    outline: none
+    border-color: $blue
+    color: $blue
+    background: #fff
+
 
 .link-pink
   color: $pink
@@ -51,64 +67,16 @@ input[type=text], input[type=email], input[type=search], input[type=phone], text
     display: block
     margin: 0
     border: 0      
- 
-.sprite 
-  background-image: url(#{$base-img}/sprite.png)
-  background-repeat: no-repeat
-  display: inline-block
+   
     
 .link-user
   font-size: 13px
   font-family: $font-regular
   display: inline-block
-  
-.button
-  display: inline-block
-  font-family: $font-regular
-  color: $pink
-  border: 1px solid $pink
-  text-transform: uppercase
-  position: relative
-  +transition(all, .2s, linear)
-  +border-radius(3px)
-  &:hover
-    background-color: $pink
-    color: #fff
-  
-.button-arrow
-  @extend .button
-  text-align: right
-  padding-right: 54px
-  padding-top: 18px
-  width: 158px
-  height: 32px
-  line-height: 1em
-  &:hover
-    span
-      background-position: -261px -24px
-  span
-    @extend .sprite
-    display: block
-    background-position: -261px 0
-    width: 24px
-    height: 24px
-    right: 19px
-    top: 13px
-    position: absolute
-      
- 
-.button-download-big    
-  @extend .button
-  font-size: 18px
-  font-family: $font-bold
-  padding: 12px 26px 11px 55px
-    
-.button-icon
-  @extend .button
-  width: 26px
-  height: 26px
-  text-indent: -9999em
-  +border-radius(100%)
+
+/* Buttons */
+@import buttons
+/* end Buttons */
     
     
     
@@ -203,6 +171,11 @@ input[type=text], input[type=email], input[type=search], input[type=phone], text
     display: block
     text-transform: uppercase
     font-family: $font-black
+    .arrow
+      @extend .sprite
+      width: 14px
+      height: 14px
+      background-position: -319px -54px
   .genre-dropdown
     width: 180px
     padding: 5px 10px
@@ -224,8 +197,17 @@ input[type=text], input[type=email], input[type=search], input[type=phone], text
           
     
 #header-user
-  padding: 20px 0 20px 40px
+  padding: 20px 0 20px 70px
   border-left: 1px solid #fff
+  position: relative
+  .icon
+    @extend .sprite
+    width: 24px
+    height: 24px
+    background-position: -295px -24px
+    position: absolute
+    left: 30px
+    top: 15px
   p
     font-family: $font-bold
     font-size: 14px
@@ -244,15 +226,46 @@ input[type=text], input[type=email], input[type=search], input[type=phone], text
   overflow: hidden
   position: relative
   .banners-mask
-    height: 368px
+    //height: 368px
     position: absolute
     top: 0
     left: 0
     width: 100%
-    background: url(#{$base-img}/bg-banner-mask.png) repeat-y top center
+    margin: 0 auto
+    //z-index: 99
+    //background: url(#{$base-img}/bg-banner-mask.png) repeat-y top center
+    &:after, &:before
+      width: 15%
+      height: 368px
+      position: absolute
+      content: ''
+      background: rgba(255, 255, 255, 0.85)
+      display: block
+    &:after
+      top: 0
+      right: 0
+    &:before
+      top: 0
+      left: 0
     .limits
       height: 368px
       overflow: hidden
+
+@media screen and (max-width: 1024px)        
+  #banners
+    .banners-mask
+      &:after, &:before
+        width: 1.171875%        
+@media screen and (min-width: 1025px) and (max-width: 1280px)        
+  #banners
+    .banners-mask
+      &:after, &:before
+        width: 10.9375%
+@media screen and (min-width: 1441px) and (max-width: 2000px)
+  #banners
+    .banners-mask
+      &:after, &:before
+        width: 23.958333334%
 #banners-carousel
   height: 368px
   background: #000
@@ -390,12 +403,15 @@ input[type=text], input[type=email], input[type=search], input[type=phone], text
       strong
         letter-spacing: -0.08em
     .balloon
-      width: 64px
-      height: 27px
+      width: 66px
+      padding-top: 2px
+      height: 25px
       font: normal 18px $font-black
       color: $blue
       text-align: center
       margin-left: 15px
+      @extend .sprite
+      background-position: -343px -82px
     .button
       padding: 7px 10px 7px 30px
       font: normal 13px $font-bold
@@ -492,10 +508,19 @@ input[type=text], input[type=email], input[type=search], input[type=phone], text
     color: #fff
     font-family: $font-bold
     +border-radius(4px)
-.tab-content
+.tab-content, .ng-hide
   display: none
 .ng-show
   display: block
+.message-empty
+  background: #fff
+  color: #888
+  text-align: center
+  padding: 80px
+  border: 5px solid #eee
+  +border-radius(4px)
+  font: normal 13px $font-light
+  text-transform: uppercase
 /* end Content */
 
 
@@ -505,6 +530,7 @@ input[type=text], input[type=email], input[type=search], input[type=phone], text
 /* Main */
 #most-downloaded
   position: relative
+  z-index: 10
   .most-downloaded-controls
     position: absolute
     top: 26px
@@ -574,9 +600,10 @@ input[type=text], input[type=email], input[type=search], input[type=phone], text
     height: 24px
     padding-top: 5px
     color: #fff
-    font: normal 14px $font-black
+    font: normal 14px $font-bold
     text-align: center
-    background: $pink
+    background: #020202
+    //background: $pink
     position: absolute
     top: -10px
     left: -10px
@@ -601,6 +628,7 @@ input[type=text], input[type=email], input[type=search], input[type=phone], text
     +box-sizing(border-box)
     .hover-content
       background: $pink
+      //background: $blue
       padding: 15px
       width: 100%
       height: 100%
@@ -707,6 +735,15 @@ input[type=text], input[type=email], input[type=search], input[type=phone], text
     li
       display: inline-block
       font-size: 12px
+      span, .arrow
+        @extend .sprite
+        width: 6px
+        height: 6px
+        background-position: -319px -82px
+        text-indent: -9999em
+        overflow: hidden
+        margin-left: 3px
+        margin-right: 3px
       a
         @extend .link-pink
         &.active
@@ -800,8 +837,16 @@ input[type=text], input[type=email], input[type=search], input[type=phone], text
       margin-right: 5px
       font-size: 12px
       color: #a4a4a4
-      padding-top: 7px
+      padding-top: 9px
       text-shadow: 0 1px 0 #fff
+  input
+    background: #fff
+    padding: 8px
+    font-family: $font-default
+    font-size: 12px
+    width: 180px
+    border-width: 1px
+    +box-shadow(0 1px 0 #fff inset)
 #musics
   .box-header
     margin-bottom: 0
@@ -863,13 +908,32 @@ input[type=text], input[type=email], input[type=search], input[type=phone], text
     height: 40px
     top: -40px
     background: #404a7d
+    border: 1px solid #404a7d
+    border-bottom: 0
     +border-radius(4px 4px 0 0)
     text-indent: -9999em
+    +single-transition(background, .1s, linear)
+    &:hover
+      background: #fff
+    &.closed
+      background: #fff
+      border-color: #3a3a3a
+      span
+        background-position: -431px -82px
+    span
+      @extend .sprite
+      width: 16px
+      height: 16px
+      background-position: -415px -82px
+      position: absolute
+      left: 11px
+      top: 12px
   .playlist-options
     padding: 10px 0
   .playlist-count
     float: left
     color: #fff
+    padding-top: 5px
     .title, .desc
       display: block
       line-height: 1em
@@ -878,10 +942,129 @@ input[type=text], input[type=email], input[type=search], input[type=phone], text
       font: normal 13px $font-regular
     .desc
       font: normal 13px $font-black
+  .playlist-controls,
+  .playlist-controls-actions,
+  .playlist-controls-player,
+  .playlist-controls-options
+    float: left
+  .playlist-controls
+    margin-left: 128px
+  .playlist-controls-actions
+    .playlist-controls-actions-button
+      float: left
+      text-indent: -9999em
+      @extend .sprite-controls
+      &.play, &.pause, &.stop
+        width: 46px
+        height: 46px
+        margin-left: 10px
+        margin-right: 10px
+      &.play
+        background-position: 0 0
+        &:hover
+          background-position: 0 -46px
+      &.pause
+        background-position: -51px 0
+        &:hover
+          background-position: -51px -46px
+      &.stop
+        background-position: -102px 0
+        &:hover
+          background-position: -102px -46px
+      &.prev, &.next
+        width: 30px
+        height: 30px
+        margin-top: 8px
+      &.prev
+        background-position: -188px 0
+        &:hover
+          background-position: -188px -30px
+      &.next
+        background-position: -153px 0
+        &:hover
+          background-position: -153px -30px
+  .playlist-controls-player
+    margin-left: 24px
+    padding-top: 8px
+    .playlist-controls-actual
+      font-family: $font-regular
+      font-size: 13px
+      color: #a8b1df
+      .music, .artist
+        color: #fff
+      .music
+        font-family: $font-bold
+    .playlist-controls-progress
+      width: 490px
+      padding-top: 5px
+      .playlist-controls-time,
+      .playlist-controls-progress-slider
+        float: left
+      .playlist-controls-time
+        font: normal 13px $font-regular
+        color: #b8bcd1
+      .playlist-controls-progress-slider
+        width: 400px
+        height: 7px
+        background: #626b97
+        margin: 5px 10px 0 10px
+        +border-radius(10px)
   .playlist-musics
     height: 91px
-    padding: 15px 30px 0 30px
+    padding: 15px 10px 0 10px
     background: #404a7d url(#{$base-img}/bg-playlist-musics.png) repeat-x bottom
+    overflow: hidden
+  #playlist-musics-list
+    border: 0
+    margin: 0
+    padding: 0
+    background: transparent
+    +box-shadow(none)
+    +border-radius(0)
+    > ol, >ul
+      li
+        float: left
+    .flex-viewport
+      overflow: hidden
+      margin-right: 40px
+  .playlist-musics-list-ol
+    list-style: none
+    li
+      float: left
+      width: 203px
+      margin-left: 11px
+      &:first-child
+        margin-left: 0
+      &.active
+        a
+          background: #fff
+          cursor: default
+          +border-radius(3px)
+          .text
+            .music
+              color: $blue
+            .artist
+              color: #7c8198
+      a
+        display: block
+        padding: 5px
+        position: relative
+        height: 60px
+        .cd-thumb
+          top: 5px
+          left: 5px
+          position: absolute
+        .text
+          padding-left: 67px
+          .music
+            font: normal 13px/13px $font-bold
+            display: block
+            color: #fff
+          .artist
+            font: normal 12px/1em $font-regular
+            color: #a5add7
+            
+    
 /* end Playlist */
 
 
@@ -907,10 +1090,33 @@ input[type=text], input[type=email], input[type=search], input[type=phone], text
         float: left
         a
           display: block
+          &:hover
+            .desc
+              color: $pink
+            &#social-instagram
+              .icon
+                background: #a4846b
+            &#social-twitter
+              .icon
+                background: #67b5ed
+            &#social-facebook
+              .icon
+                background: #6882c8
           .icon, .desc, .desc strong
             display: block
+            +single-transition(all, .1s, linear)
           .icon
             height: 104px
+            position: relative
+            &:before  
+              @extend .sprite
+              width: 27px
+              height: 27px
+              content: ''
+              display: block
+              position: absolute
+              top: 38px
+              left: 38px
           .desc
             font-size: 11px
             padding-top: 15px
@@ -923,14 +1129,20 @@ input[type=text], input[type=email], input[type=search], input[type=phone], text
             .icon
               background-color: #866a54
               +border-radius(4px 0 0 4px)
+              &:before
+                background-position: -235px -64px
           &#social-twitter
             .icon
               background-color: #5ba8df
+              &:before
+                background-position: -261px -64px
           &#social-facebook
             width: 108px
             .icon
               background-color: #4761a6
               position: relative
+              &:before
+                background-position: -288px -64px
               &:after
                 content: ''
                 position: absolute

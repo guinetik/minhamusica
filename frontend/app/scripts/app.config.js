@@ -21,7 +21,12 @@ angular
     })
     .state('cd' , { 
         url:'/cd',
-        templateUrl: '/views/cd.html'
+        templateUrl: '/views/cd.html',
+        controller: 'CdCtrl'
+    })
+    .state('perfil' , { 
+        url:'/perfil',
+        templateUrl: '/views/perfil.html'
     })
     .state('register' , { 
         url:'/register',
@@ -41,4 +46,4 @@ angular
 
 
 })
-.constant('API_URL' , 'http://localhost:1337/')
+.constant('API_URL' , 'http://localhost:1337/');

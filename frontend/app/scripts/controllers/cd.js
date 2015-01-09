@@ -8,10 +8,6 @@
  * Controller of the musicaApp
  */
 angular.module('musicaApp')
-  .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('CdCtrl', function ($scope) {
+    
   });
-

@@ -16,15 +16,21 @@
             </ul>
           </div><!-- /.genre-dropdown -->
         </div><!-- /#genre -->
-        <div   id="header-user" class="not-logged">
+        <div id="header-user">
           <span class="icon"></span>
-		  <div ng-hide="isAuthenticated"  > 	
-			  <p><a  ui-sref="login" href="#" title="Faça login">Faça login</a> ou <a ui-sref="register" href="#" title="Cadastre-se">Cadastre-se</a></p></div>
-			
-		   <div ng-show="isAuthenticated"> 	
-			  <p>>Olá, {{usuario.nome}}  <a ng-controller="LogoutCtrl" ng-click="logout()" href="#" title="logout">Sair</a></p>
-		   </div>
-			
+		  <div ng-hide="isAuthenticated" class="not-logged"> 	
+			  <p><a  ui-sref="login" href="#" title="Faça login">Faça login</a> ou <a ui-sref="register" href="#" title="Cadastre-se">Cadastre-se</a></p>
+		  </div>
+          <div ng-show="isAuthenticated" class="logged"> 
+            <span class="avatar">
+              <img src="http://placehold.it/34x34" alt="">
+            </span>
+            <p>Olá, {{usuario.nome}}</p>  
+            <ul class="links clearfix">
+              <li><a href="#" title="Painel">Painel</a></li>
+              <li><a ng-controller="LogoutCtrl" ng-click="logout()" href="#" title="Sair">Sair</a></li>
+            </ul>
+          </div>
         </div><!-- /#header-user -->
-      </div>
+      </div><!-- /.header -->
  </header>
