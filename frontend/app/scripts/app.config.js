@@ -41,6 +41,10 @@ angular
 	state('logout' , { 
         url:'/logout',
         controller: 'LogoutCtrl'
+    }).
+    state('novocd' , { 
+        url:'/novocd',
+        templateUrl: '/views/painel/novocd.html'
     });
 	
 

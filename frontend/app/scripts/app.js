@@ -59,10 +59,6 @@ $(window).load(function(){
            (window.innerWidth < 900) ? 3 : 4;
   }
  
-  $(function() {
-    SyntaxHighlighter.all();
-  });
-  
   
    $('#playlist-musics-list').flexslider({
     animation: 'slide',
