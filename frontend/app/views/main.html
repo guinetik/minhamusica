@@ -1,5 +1,14 @@
 <section id="banners">
-  <div id="banners-carousel" class="flexslider">
+  <div id="banners-carousel" class="flexslider" carousel="{
+    animation: 'slide',
+    controlNav: false,
+    animationLoop: true,
+    slideshow: true,
+    slideshowSpeed: 7000,
+    pauseOnHover: true,
+    itemWidth: 1000,
+    sync: '#banners-thumbs'
+   }">
     <ul id="banners-ul" class="clearfix slides">
       <li class=""><a href="" title=""><img src="images/banners/banner-1.jpg" alt=""></a></li>
       <li class=""><a href="" title=""><img src="images/banners/banner-1.jpg" alt=""></a></li>
@@ -8,7 +17,14 @@
     </ul>
   </div><!-- #banners-carousel -->
   <div class="banners-mask"></div>
-  <div id="banners-thumbs" class="flexslider">
+  <div id="banners-thumbs" class="flexslider" carousel="{
+     animation: 'slide',
+    controlNav: false,
+    animationLoop: false,
+    slideshow: false,
+    itemWidth: 140,
+    itemMargin: 5,
+    asNavFor: '#banners-carousel'}">
     <ul class="banners-thumbs-ul slides">
       <li><a href=""><img src="http://placehold.it/131x42" alt=""></a></li>
       <li><a href=""><img src="http://placehold.it/131x42" alt=""></a></li>
@@ -222,7 +238,13 @@
       </div><!-- /.box-header -->
       <div class="box-content">
         
-        <div id="lastest-uploads-list" class="flexslider">
+        <div id="lastest-uploads-list" class="flexslider" carousel="{
+            animation: 'slide',
+            animationLoop: false,
+            slideshow: false,
+            controlNav: false,
+            direction: 'vertical'
+         }">
           <ul class="list-cd slides">
            
            

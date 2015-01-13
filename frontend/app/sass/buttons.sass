@@ -57,8 +57,31 @@
     top: 13px
     position: absolute
 
+
+.button-highlight
+  background: $pink
+  color: #fff
+  text-align: left
+  font-size: 18px
+  padding: 20px
+      
 .button-highlight-arrow
   @extend .button-arrow
+  @extend .button-highlight
+  width: auto
+  height: auto
+  padding-right: 100px
+  +single-transition(all, .1s, linear)
+  &:hover
+    background: #fff
+    color: $pink
+    span
+      background-position: -261px 0
+  span
+    background-position: -261px -24px
+    top: 17px
+    +single-transition(none)
+  
  
 .button-download-big    
   @extend .button
