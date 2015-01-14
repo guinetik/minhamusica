@@ -222,6 +222,22 @@ select
 
 
 /* Banners */
+.flex-direction-nav-a
+  background-image: url(#{$base-img}/sprite.png) !important
+  background-repeat: no-repeat !important
+  opacity: 1 !important
+  overflow: hidden
+  text-align: left
+  text-indent: -9999em
+  display: block
+  cursor: pointer
+  position: absolute
+  +single-transition(none)
+  &:focus
+    outline: 0
+  &:before
+    display: none !important
+      
 #banners
   overflow: hidden
   position: relative
@@ -266,6 +282,7 @@ select
     .banners-mask
       &:after, &:before
         width: 23.958333334%
+        
 #banners-carousel
   height: 368px
   background: #000
@@ -282,16 +299,13 @@ select
     overflow: visible !important
   .flex-direction-nav
     a
+      @extend .flex-direction-nav-a
       width: 65px
       height: 54px
-      background: url(#{$base-img}/sprite.png) no-repeat
-      text-indent: -9999em
       opacity: 1
-      overflow: hidden
-      text-align: left
-      +single-transition(none)
-      &:before
-        display: none
+      z-index: 10
+      position: absolute
+      top: 150px
       &.flex-prev
         left: 0
         background-position: 0 0
@@ -673,19 +687,6 @@ select
         strong
           font-size: 14px
           font-family: $font-bold
-
-.flex-direction-nav-a
-  background-image: url(#{$base-img}/sprite.png) !important
-  background-repeat: no-repeat !important
-  opacity: 1 !important
-  overflow: hidden
-  text-align: left
-  text-indent: -9999em
-  display: block
-  cursor: pointer
-  +single-transition(none)
-  &:before
-    display: none !important
           
 #lastest-uploads
   position: relative
