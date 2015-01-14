@@ -13,12 +13,12 @@
         <div class="row">
           <div class="col-md-3"><%= banner.titulo %></div>
           <div class="col-md-3"><%= banner.url %></div>
-          <div class="col-md-3"><%= banner.img %></div>
+          <div class="col-md-3"><img src="/images/destaques/thumb/<%= banner.img %>" /></div>
           <div class="col-md-3">  
-           <button class="btn btn-primary" data-toggle="modal" data-target="#modalEdit<%=i%>">Edit</button>
-           <button class="btn">Remove</button></div>
+        <!--<button class="btn btn-primary" data-toggle="modal" data-target="#modalEdit<%=i%>">Edit</button>-->
+          <a class="btn btn-primary" href="/banner/delete/?id=<%= banner.id %>">Remove</a></div>
         
-			<div class="modal fade" id="modalEdit<%=i%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+			<!--<div class="modal fade" id="modalEdit<%=i%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
 			  <div class="modal-dialog">
 				<div class="modal-content">      
 				 <form action="http://localhost:1337/banner/registrar" enctype="multipart/form-data" method="post">
@@ -38,7 +38,7 @@
 					</form>	 
 				</div>
 			  </div>
-			</div>
+			</div>-->
 		</div>
  	 <% });%>
  

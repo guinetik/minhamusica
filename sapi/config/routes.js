@@ -42,6 +42,7 @@ module.exports.routes = {
  'get /': 'BannersController.list',
  'post /banner/registrar':'BannersController.createBanner',
  'post /banner/crop':'BannersController.cropBanner',
+ 'get /banner/delete/':'BannersController.deleteBanner',
  //'get /test' : 'BannersController.testCrop',	
  // site routes
  

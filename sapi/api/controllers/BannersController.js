@@ -17,13 +17,10 @@ module.exports = {
 							   'height' : 42 }
 				  },
 
-	
-	
-	 list: function (req, res) {
+	list: function (req, res) {
 		 Banners.find({}).limit(100).exec(function(err, banners) {
 		  if (err) return serverError(err);
-		  
-			res.view('banner/index', {
+		  	res.view('banner/index', {
 				   banners: banners,
 			  
 		  });
@@ -101,7 +98,7 @@ module.exports = {
 						module.exports.saveBanner(res,req,banner);
 				}else{
 					// abrir crop de imagem 
-						res.view('banner/crop', {
+					res.view('banner/crop', {
 					   banner: banner,
 					   img: '/images/destaques/'+banner.img,
 					   proportions:proportions,	
@@ -124,9 +121,7 @@ module.exports = {
 		});
 	 },
 	 cropBanner: function(req, res){
-	 	
-		 
-		 var dir = function(){
+	 	 var dir = function(){
 			var path= __dirname.split('\\');
 		 	path.pop();
 			path.pop();
@@ -161,12 +156,37 @@ module.exports = {
 	 
 	 }, 
 	 saveBanner: function(res,banner){
-		 if(typeof(banner.cod) !== undefined){
+		
+			Banners.create(banner).exec(function createCB(err,b){
+				if(err) return res.serverError(err);
+					res.redirect('/');
+			});
+		
+	},
+	deleteBanner: function (req,res){
+		
+		var params = req.url.split('/');
+		var param = params.pop();
+		var id = param.replace('?id=', '');	
+		
+		Banners.destroy({id:id}).exec(function(err, users) {	
+			if(err) return res.serverError(err); 
+			res.redirect('/');
+		});
+	}
+
+	
+	
+	
+	
+};
+
+
+ /*if(typeof(banner.cod) !== undefined){
 			Banners.find({id:banner.cod}).exec(function findCB(err,b){
 				if(!err){
 					//console.log(banner);
 					console.log({titulo:banner.titulo,img:banner.img,url:banner.url});
-					
 					Banners.update({id:b.id},{titulo:banner.titulo,img:banner.img,url:banner.url}).exec(function afterwards(err3, upb) {
 						if(err3) return res.serverError(err);
 						console.log(upb);
@@ -174,18 +194,8 @@ module.exports = {
 				 	});
 				}
 			});
-		 }else{
-			 Banners.create(banner).exec(function createCB(err,b){
-				if(err) return res.serverError(err);
-				res.redirect('/');
-			});
-		}
-	}
-};
-
-
-
-
+		 }else{*/
+  //}
 
 /* testCrop: function(req, res){
 	 	

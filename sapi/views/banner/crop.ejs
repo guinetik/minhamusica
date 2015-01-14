@@ -41,14 +41,13 @@
 	  <form method="POST" action="/banner/crop" >
 		  
 		<img id="target" src="<%= img %>" />
-		  
-		<input type="text" name="deltaX" id="deltaX" value=""/>
-		<input type="text" name="deltaY" id="deltaY" value=""/>
+		<input type="hidden" name="deltaX" id="deltaX" value=""/>
+		<input type="hidden" name="deltaY" id="deltaY" value=""/>
 		<input type="hidden" name="titulo" value="<%= banner.titulo %>"/>
 		<input type="hidden" name="url" value="<%= banner.url %>"/>
 		<input type="hidden" name="img" value="<%= banner.img %>"/>
 		<input type="hidden" name="cod" value="<%= banner.cod %>"/>
 		<input type="hidden" name="urlComplete" value="<%= banner.urlComplete %>"/>
-		<input type="submit" value="Crop"/>
+		<input type="submit" value="Crop" class="btn btn-primary"/>
 	  </form>
   <% } %>
