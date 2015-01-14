@@ -33,14 +33,21 @@ module.exports.routes = {
   ***************************************************************************/
 
   /*'/': {
-    view: 'homepage'
+    view: 'banner/index'
   },*/
 	
-  '/': 'AdminController.list',
-	
- //'post /registrar': 'UserController.create'	 ,
+ //'/': {view :'/employee/index.ejs'},
+ 
+ // admin routes	
+ 'get /': 'BannersController.list',
+ 'post /banner/registrar':'BannersController.createBanner',
+ 'post /banner/crop':'BannersController.cropBanner',
+ //'get /test' : 'BannersController.testCrop',	
+ // site routes
+ 
  'get /getestados': 'EstadosController.getEstados',	
  'post /login':'AuthController.login',	
+ 	
 	
   /***************************************************************************
   *                                                                          *

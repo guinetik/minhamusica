@@ -27,16 +27,18 @@
             + Import stylesheets from other directories
             + Use a different or additional preprocessor, like SASS, SCSS or Stylus
     -->
-
     <!--STYLES-->
-	 <link rel="stylesheet" href="vendor/bootstrap/bootstrap.css">
-	 <link rel="stylesheet" href="styles/importer.css">
+    <link rel="stylesheet" href="/styles/importer.css">
     <!--STYLES END-->
-  </head>
+	<script src="/vendor/bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="/vendor/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="/vendor/bower_components/jcrop/js/jquery.Jcrop.min.js"></script>  
+	
+</head>
 
 
   <body>
-    <%- body %>   
+     <%- body %>
     
   
 
@@ -64,6 +66,7 @@
     -->
 
     <!--TEMPLATES-->
+    
     <!--TEMPLATES END-->
 
 
@@ -89,9 +92,7 @@
           + Use a different preprocessor, like TypeScript
 
     -->
+    <script src="/js/dependencies/sails.io.js"></script>
 
-    <!--SCRIPTS-->
-	  <script src="vendor/requirejs/require.js" data-main="js/main"></script>   
-    <!--SCRIPTS END-->
   </body>
 </html>

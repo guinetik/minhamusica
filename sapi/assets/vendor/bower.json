@@ -1,0 +1,17 @@
+{
+  "name": "sapi",
+  "version": "0.0.0",
+  "homepage": "https://github.com/HMCLDevs/minhamusica",
+  "authors": [
+    "jazielmatoso <jazielsmatoso@gmail.com>"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "~3.3.1",
+    "jquery": "~2.1.3",
+    "requirejs": "~2.1.15",
+    "angular": "~1.3.8",
+    "jcrop": "~0.9.12",
+    "fancybox": "~2.1.5"
+  }
+}
