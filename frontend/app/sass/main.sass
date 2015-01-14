@@ -91,18 +91,20 @@ select
   top: 0
   height: 107px
   .limits
-    padding-top: 20px
-    padding-bottom: 20px
+    //padding-top: 20px
+    //padding-bottom: 20px
   .logo, #search-form, #genre, #header-user
     float: left
-        
+  #search-form, #genre, #header-user
+    margin-top: 25px
     
 .logo
   display: block
-  width: 181px
-  height: 67px
+  width: 141px
+  height: 83px
+  margin-top: 10px
   a
-    height: 67px
+    height: 83px
     display: block
     background: url(#{$base-img}/logo.png) no-repeat
     text-indent: -9999em
@@ -847,6 +849,15 @@ select
   .col, .col .title, .social, .social > span, input
     float: left
   .col
+    &.share
+      width: 417px
+      .social 
+        padding-top: 5px
+        span
+          margin-right: 5px
+      #twitter
+        iframe
+          width: 90px !important
     &.link
       float: right
     .title
@@ -861,7 +872,7 @@ select
     padding: 8px
     font-family: $font-default
     font-size: 12px
-    width: 180px
+    width: 160px
     border-width: 1px
     +box-shadow(0 1px 0 #fff inset)
 #musics
