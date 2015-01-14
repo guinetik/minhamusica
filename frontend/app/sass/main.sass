@@ -1069,6 +1069,184 @@ select
 
 
 
+/* Painel */
+.painel-section
+  .col-nav, .painel-section-content
+    float: left
+  .col-nav
+    width: 220px
+    margin-right: 20px
+    ul
+      li
+        &:first-child
+          a
+            +border-radius(4px 4px 0 0)
+            border-top-color: #e3e3e3
+        &:last-child
+          a
+            +border-radius(0 0 4px 4px)
+            border-bottom-color: #e3e3e3
+        a
+          display: block
+          background: #f6f6f6
+          border: 1px solid #e3e3e3
+          border-left: 1px solid #e3e3e3
+          border-right: 1px solid #e3e3e3
+          border-top: 1px solid #fff
+          padding: 10px 20px 10px 40px
+          text-transform: uppercase
+          font: normal 16px $font-regular
+          color: $pink
+          position: relative
+          .icon-16
+            width: 16px
+            height: 16px
+            @extend .sprite-icons
+            position: absolute
+            top: 11px
+            left: 18px
+          .icon-cd
+            background-position: -48px 0
+          .icon-new
+            background-position: -64px 0
+          .icon-config
+            background-position: -80px 0
+          .icon-calendar
+            background-position: -128px 0
+          .icon-pin
+            background-position: -144px 0
+          .icon-lock
+            background-position: -160px 0
+          &.active, &:hover
+            background: $pink
+            color: #fff
+        a.active, a:hover
+          .icon-new
+            background-position: -64px -16px
+          .icon-cd
+            background-position: -48px -16px
+          .icon-config
+            background-position: -80px -16px
+          .icon-calendar
+            background-position: -128px -16px
+          .icon-pin
+            background-position: -144px -16px
+          .icon-lock
+            background-position: -160px -16px
+  .painel-section-content
+    width: 760px
+
+.painel-section-header
+  margin-bottom: 30px
+  .title, .subtitle
+    text-transform: uppercase
+  .title
+    color: $blue
+    font: normal 24px $font-black
+  .subtitle
+    font: normal 14px $font-regular
+    color: #818181
+.painel-section-content-title
+  text-transform: uppercase
+  color: $blue
+  font: normal 30px/30px $font-black
+  letter-spacing: -0.06em
+  margin-bottom: 30px
+.steps
+  margin-bottom: 35px
+  li
+    float: left
+    width: 230px
+    margin-left: 20px
+    a
+      border-bottom: 3px solid #eee
+      display: block
+      overflow: hidden
+      &.active
+        border-color: $blue
+        span
+          color: $blue
+          &.text
+            font-family: $font-bold
+      span
+        float: left
+        font: normal 18px $font-bold
+        color: #818181
+      .text
+        width: 200px
+        text-align: right
+        text-transform: uppercase
+        font: normal 14px $font-regular
+        color: #818181
+        float: right
+    &:first-child
+      margin-left: 0
+
+.form-row
+  margin-bottom: 20px
+  &.form-row-double
+    &:before
+      content: " "
+      display: table
+    &:after
+      content: " "
+      display: table
+      clear: both
+    *zoom: 1
+    .col
+      width: 370px
+      float: left
+      margin-left: 20px
+      .form-row-field
+        margin-bottom: 20px
+      &:first-child
+        margin-left: 0
+  .form-row-field
+    &:before
+      content: " "
+      display: table
+    &:after
+      content: " "
+      display: table
+      clear: both
+    *zoom: 1
+    input, select, textarea
+      float: left
+  .legend
+    color: $gray-light
+    font: normal 11px $font-default
+    float: left
+    margin-left: 5px
+    margin-top: 5px
+  .field-370
+    max-width: 342px
+    width: 342px
+  textarea
+    height: 50px
+.form-list-options    
+  li
+    margin-bottom: 10px
+    .legend
+      margin-left: 25px
+.form-label
+  color: $gray
+  font: normal 14px $font-bold
+  span
+    color: #991d1d
+.cover-wrapper
+  .cover-thumb
+    width: 176px
+    float: left
+  .cover-option
+    padding-top: 20px
+    padding-left: 190px
+.form-default
+  .button-area
+    padding-top: 10px
+/* end Painel */
+
+
+
 
 
 /* Footer */

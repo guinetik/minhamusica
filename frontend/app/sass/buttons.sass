@@ -9,6 +9,7 @@
   color: $pink
   border: 1px solid $pink
   text-transform: uppercase
+  cursor: pointer
   position: relative
   +transition(all, .2s, linear)
   +border-radius(3px)
@@ -41,6 +42,7 @@
   padding-top: 18px
   width: 158px
   height: 32px
+  background: #fff
   line-height: 1em
   &:hover
     span
@@ -54,7 +56,32 @@
     right: 19px
     top: 13px
     position: absolute
+
+
+.button-highlight
+  background: $pink
+  color: #fff
+  text-align: left
+  font-size: 18px
+  padding: 20px
       
+.button-highlight-arrow
+  @extend .button-arrow
+  @extend .button-highlight
+  width: auto
+  height: auto
+  padding-right: 100px
+  +single-transition(all, .1s, linear)
+  &:hover
+    background: #fff
+    color: $pink
+    span
+      background-position: -261px 0
+  span
+    background-position: -261px -24px
+    top: 17px
+    +single-transition(none)
+  
  
 .button-download-big    
   @extend .button
@@ -72,6 +99,11 @@
     position: absolute
     left: 20px
     top: 7px
+
+.button-medium
+  @extend .button
+  padding: 10px 16px
+  font: normal 13px $font-bold
     
 .button-icon
   @extend .button
