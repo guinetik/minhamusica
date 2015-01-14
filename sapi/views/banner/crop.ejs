@@ -1,0 +1,54 @@
+<% if(img) { %>
+
+  <script type="text/javascript">
+    var width = <%= proportions.banner.width %> ;
+    var height = <%= proportions.banner.height %> ;
+
+
+    $(document).ready(function() {
+
+      var jcrop_api;
+      $('#target').Jcrop({
+        onChange: showCoords,
+        onSelect: showCoords
+      }, function() {
+
+        jcrop_api = this;
+
+        jcrop_api.animateTo([100, 100, 400, 300]);
+        jcrop_api.setOptions({
+          minSize: [width, height],
+          maxSize: [width, height]
+        });
+        jcrop_api.setOptions({
+          allowResize: false
+        });
+      });
+	  var deltaX = 0;
+	  var deltaY = 0;	
+	 
+	  function showCoords(c){
+		 
+		 deltaX= c.x;
+		 deltaY= c.y;
+		 $("#deltaX").val(deltaX);
+		 $("#deltaY").val(deltaY);
+	  } 	
+		
+    });
+  </script>
+  <!--  CROP-->
+	  <form method="POST" action="/banner/crop" >
+		  
+		<img id="target" src="<%= img %>" />
+		  
+		<input type="text" name="deltaX" id="deltaX" value=""/>
+		<input type="text" name="deltaY" id="deltaY" value=""/>
+		<input type="hidden" name="titulo" value="<%= banner.titulo %>"/>
+		<input type="hidden" name="url" value="<%= banner.url %>"/>
+		<input type="hidden" name="img" value="<%= banner.img %>"/>
+		<input type="hidden" name="cod" value="<%= banner.cod %>"/>
+		<input type="hidden" name="urlComplete" value="<%= banner.urlComplete %>"/>
+		<input type="submit" value="Crop"/>
+	  </form>
+  <% } %>
