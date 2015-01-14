@@ -26,7 +26,7 @@ angular
     })
     .state('perfil' , { 
         url:'/perfil',
-        templateUrl: '/views/perfil.html'
+        templateUrl: '/views/profile.html'
     })
     .state('register' , { 
         url:'/register',

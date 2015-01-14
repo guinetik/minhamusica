@@ -379,6 +379,20 @@ select
     border-bottom: 3px solid #eee
     margin-bottom: 30px
     padding-bottom: 10px
+    &.divider
+      .box-title, .count-description
+        float: left
+      .count-description
+        border-left: 1px solid #eee
+        padding-left: 17px
+        margin-left: 17px
+        font: normal 14px/14px $font-regular
+        color: #929bc6
+        text-transform: uppercase
+        strong
+          color: $blue
+          font: normal 44px/40px $font-black
+          display: block
     .box-title
       text-transform: uppercase
       color: $blue
@@ -755,20 +769,22 @@ select
 
 
 /* Cd */
+.avatar
+  width: 34px
+  height: 34px
+  overflow: hidden
+  +border-radius(100%)
+  border: 2px solid #ebeeef
 .cd-user
   position: relative
   padding-left: 45px
   padding-top: 5px
   .avatar
+    @extend .avatar
     display: block
     position: absolute
     top: 0
     left: 0
-    width: 34px
-    height: 34px
-    overflow: hidden
-    +border-radius(100%)
-    border: 2px solid #ebeeef
   small
     display: block
     font-size: 11px
@@ -1245,6 +1261,113 @@ select
     padding-top: 10px
 /* end Painel */
 
+
+
+
+
+/* Profile */
+.profile-header
+  margin-bottom: 40px
+  .profile-cover
+    height: 368px
+    overflow: hidden
+    z-index: -1
+    position: relative
+    +border-radius(0 0 4px 4px)
+  .profile-dados
+    padding: 20px 40px 0 40px
+    z-index: 2
+    .avatar, .info, .redes
+      float: left
+    .avatar
+      width: 124px
+      height: 124px
+      border-width: 4px
+      border-color: #ebeeef
+      margin-top: -64px
+    .info
+      margin-left: 17px
+      .name
+        font: normal 20px $font-bold
+        color: $blue
+      .desc
+        font: normal 14px $font-regular
+        color: $gray-light
+        display: block
+    .redes
+      border-left: 1px solid #eee
+      padding-left: 30px
+      margin-left: 30px
+.profile-content
+  .profile-uploads, .profile-calendar
+    float: left
+  .profile-uploads
+    width: 660px
+    margin-right: 20px
+    .list-cd
+      margin-left: -20px
+      li
+        width: 320px
+        float: left
+        margin-top: 0
+        margin-bottom: 27px
+        margin-left: 20px
+  .profile-calendar
+    width: 320px
+    
+.calendar-ul
+  li
+    margin-bottom: 24px
+    overflow: hidden
+    .date
+      width: 36px
+      float: left
+      border-right: 1px solid #eee
+      color: $gray-light
+      font: normal 26px/26px $font-light
+      span
+        display: block
+        font: normal 14px/14px $font-regular
+        text-transform: uppercase
+    .text
+      float: left
+      margin-left: 10px
+      width: 270px
+      .title
+        display: block
+        color: $blue
+        font: normal 18px/18px $font-bold
+      .desc
+        color: $gray-light
+        font: normal 14px $font-regular
+    
+.redes
+  ul
+    li
+      float: left
+      margin-left: 8px
+      &:first-child
+        margin-left: 0
+      a
+        display: block
+        @extend .sprite
+        overflow: hidden
+        width: 36px
+        height: 36px
+        text-indent: -9999em
+        &.instagram
+          background-position: -343px 0
+          &:hover
+            background-position: -343px -36px
+        &.twitter
+          background-position: -379px 0
+          &:hover
+            background-position: -379px -36px
+        &.facebook
+          background-position: -415px 0
+          &:hover
+            background-position: -415px -36px
+/* end Profile */
 
 
 
