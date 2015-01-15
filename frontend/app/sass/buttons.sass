@@ -10,9 +10,15 @@
   border: 1px solid $pink
   text-transform: uppercase
   cursor: pointer
+  padding: 8px
   position: relative
   +transition(all, .2s, linear)
   +border-radius(3px)
+  &[disabled=disabled]
+    background: #eee !important
+    border-color: #eee !important
+    color: #aaa !important
+    cursor: default
   .icon-16
     @extend .sprite-icons
     width: 16px
@@ -38,6 +44,8 @@
 .button-arrow
   @extend .button
   text-align: right
+  padding-left: 0
+  padding-bottom: 0
   padding-right: 54px
   padding-top: 18px
   width: 158px
@@ -59,17 +67,23 @@
 
 
 .button-highlight
+  @extend .button
   background: $pink
   color: #fff
   text-align: left
   font-size: 18px
-  padding: 20px
+  padding: 18px 20px
+  &:hover, &:active
+    background: #fff
+    color: $pink
+
       
 .button-highlight-arrow
   @extend .button-arrow
   @extend .button-highlight
   width: auto
   height: auto
+  padding: 20px
   padding-right: 100px
   +single-transition(all, .1s, linear)
   &:hover
@@ -109,6 +123,7 @@
   @extend .button
   width: 26px
   height: 26px
+  padding: 0
   text-indent: -9999em
   +border-radius(100%)
   .icon-16

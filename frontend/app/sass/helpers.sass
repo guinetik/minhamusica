@@ -1,3 +1,4 @@
+@import compass/css3
 @import config
   
 .sprite, .sprite-icons, .sprite-controls
@@ -27,7 +28,19 @@
 
 .turn-off
   opacity: 0
-    
+
+
+.helper-invalid  
+  display: inline-block
+  *display: inline
+  zoom: 1
+  margin: 5px 0
+  padding: 5px 10px
+  font: normal 12px $font-default
+  color: #991d1d
+  background: #f5dfdf
+  +border-radius(3px)
+  
 .hidden
   display: none !important
   visibility: hidden

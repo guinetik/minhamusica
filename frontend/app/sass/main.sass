@@ -26,6 +26,8 @@ body, input, select, button, textarea
   margin: auto
 
 input[type=text], 
+input[type=password], 
+input[type=date], 
 input[type=email], 
 input[type=search], 
 input[type=phone], 
@@ -1227,6 +1229,8 @@ select
       margin-left: 20px
       .form-row-field
         margin-bottom: 20px
+        &.no-margin-bottom
+          margin-bottom: 0
       &:first-child
         margin-left: 0
   .form-row-field
@@ -1246,14 +1250,22 @@ select
     float: left
     margin-left: 5px
     margin-top: 5px
+  .field-240
+    width: 212px
+    max-width: 212px
   .field-370
     max-width: 342px
     width: 342px
+  .field-500
+    width: 472px
+    max-width: 472px
   textarea
     height: 50px
 .form-list-options    
   li
     margin-bottom: 10px
+    color: $gray
+    font: normal 13px $font-default
     .legend
       margin-left: 25px
 .form-label
@@ -1270,9 +1282,49 @@ select
     padding-left: 190px
 .form-default
   .button-area
-    padding-top: 10px
+    padding-top: 20px
+  a
+    @extend .link-pink
 /* end Painel */
 
+
+
+.section-header
+  margin-bottom: 30px
+.section-title
+  font: normal 32px $font-black
+  color: $blue
+  text-transform: uppercase
+  text-indent: -0.08em
+.section-content
+  .area-form, .call-area, .area-form .col
+    float: left
+  .area-form
+    width: 500px
+    margin-right: 20px
+    .col, .form-row-double .col
+      float: left
+      width: 240px
+  .call-area
+    width: 480px
+    .call-area-text
+      text-align: center
+      padding: 110px
+      padding-left: 80px
+      padding-right: 80px
+      .title
+        font: normal 32px $font-light
+        color: $blue
+      .desc
+        font: normal 18px $font-regular
+        color: $gray-light
+        margin: 30px 0
+      .button
+        padding-left: 20px
+        padding-right: 20px
+        padding-top: 20px
+        padding-bottom: 20px
+      
 
 
 
