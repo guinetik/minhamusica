@@ -254,17 +254,17 @@ select
     margin: 0 auto
     //z-index: 99
     //background: url(#{$base-img}/bg-banner-mask.png) repeat-y top center
-    &:after, &:before
+    .left, .right
       width: 15%
       height: 368px
       position: absolute
       content: ''
       background: rgba(255, 255, 255, 0.85)
       display: block
-    &:after
+    .right
       top: 0
       right: 0
-    &:before
+    .left
       top: 0
       left: 0
     .limits
@@ -274,17 +274,17 @@ select
 @media screen and (max-width: 1024px)        
   #banners
     .banners-mask
-      &:after, &:before
+      .left, .right
         width: 1.171875%        
 @media screen and (min-width: 1025px) and (max-width: 1280px)        
   #banners
     .banners-mask
-      &:after, &:before
+      .left, .right
         width: 10.9375%
 @media screen and (min-width: 1441px) and (max-width: 2000px)
   #banners
     .banners-mask
-      &:after, &:before
+      .left, .right
         width: 23.958333334%
         
 #banners-carousel
@@ -1324,7 +1324,11 @@ select
         padding-right: 20px
         padding-top: 20px
         padding-bottom: 20px
-      
+
+#login
+  .section-content
+    .call-area-text
+      padding-top: 20px
 
 
 

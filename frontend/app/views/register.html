@@ -11,10 +11,8 @@
     
     <div class="section-content clearfix">
       
-      <div class="area-form">
-        
+      <div class="area-form">  
         <form ng-submit="submit()" name="register" class="form-default form-register" novalidate>
-	
           <div class="form-row">
             <label for="nome" class="form-label">Nome Completo: <span>*</span></label>
             <div class="form-row-field">
@@ -22,8 +20,6 @@
               <p class="help-block helper-invalid" ng-show="register.nome.$touched && register.nome.$invalid">Por favor digite seu nome.</p>
             </div>  
           </div><!-- /.form-row -->
-          
-          
           <div class="form-row">
             <label for="email" class="form-label">E-mail <span>*</span></label>
             <div class="form-row-field">
@@ -31,9 +27,6 @@
               <p class="help-block helper-invalid" ng-show="register.email.$error.email">Por favor digite seu email corretamente.</p>
             </div>
           </div><!-- /.form-row -->
-          
-          
-          
           <div class="form-row form-row-double">
             <div class="col">
               <label for="senha" class="form-label">Senha: <span>*</span></label>
@@ -50,9 +43,6 @@
               </div>
             </div><!-- /.col -->
           </div><!-- /.form-row-double -->
-          
-          
-          
           <div class="form-row form-row-double">
             <div class="col">
               <label for="" class="form-label">Sexo: <span>*</span></label>
@@ -103,12 +93,8 @@
             </label>            
             <div ng-show="!usuario.usuarioAceitou">Aceite os termos para concluir o cadastro.</div>	  
           </p>
-          
-<!--
-          <input type="text" name="twitter" ng-model="usuario.twitter" placeholder="twitter"/>
-          <input type="text" name="instagram" ng-model="usuario.instagram" placeholder="instagram"/>
--->
-          
+   
+         
           <div class="button-area">
             <button type="submit" ng-disabled="register.$invalid" class="button-highlight">Cadastrar</button>            
           </div>  
