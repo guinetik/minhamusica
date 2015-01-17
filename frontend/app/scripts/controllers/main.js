@@ -16,44 +16,38 @@ angular.module('musicaApp')
   });
 
 
-/*
-$(window).load(function(){
+
+var main = {
+  windowWidth : $(window).width(),
+  windowHeight : $(window).height(),
+  htmlHeight : $(document).height(),
+  init : function(e){
+    main.windowWidth = $(window).width();
+    main.windowHeight = $(window).height();
+    main.htmlHeight = $(document).height();
+    main.maskBanner();  
+  },
+  maskBanner: function(){
+  
+    var widthBanner = $('#banners-carousel .flex-viewport').width();
+    var widthOuter = main.windowWidth;
+    var widthMask = (parseInt(widthOuter) - parseInt(widthBanner))/2;
+    
+    $('#banners .banners-mask .left, #banners .banners-mask .right').css('width', widthMask + 'px');
+    
+  }
+}
 
 
+$(window).on('load', function(){
 
-  $('#banners-thumbs').flexslider({
-    animation: 'slide',
-    controlNav: false,
-    animationLoop: false,
-    slideshow: false,
-    itemWidth: 140,
-    itemMargin: 5,
-    asNavFor: '#banners-carousel'
-  });
-  
-  $('#banners-carousel').flexslider({
-    animation: 'slide',
-    controlNav: false,
-    animationLoop: true,
-    slideshow: true,
-    slideshowSpeed: 7000,
-    pauseOnHover: true,
-    itemWidth: 1000,
-    sync: '#banners-thumbs'
-  });
-  
-  
-  $('#lastest-uploads-list').flexslider({
-    animation: 'slide',
-    animationLoop: false,
-    slideshow: false,
-    controlNav: false,
-    direction: 'vertical'
-  });
-  
-  
-  
-
+  main.init();
   
 });
-*/
+
+
+$(window).on('resize', function(){
+
+  main.init();
+
+});
