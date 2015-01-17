@@ -1,0 +1,16 @@
+.bs-docs-masthead, .bs-docs-header{
+	color: #cdbfe3;
+	background-color:#6f5499;
+	padding: 30px 15px;
+}
+.bs-docs-header h1{
+	color: #fff;
+	
+}
+.bs-docs-container{
+	padding-top: 20px;
+	padding-bottom: 60px;
+	font-size: 18px;
+	text-align: left;
+}
+	

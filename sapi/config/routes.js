@@ -43,6 +43,9 @@ module.exports.routes = {
  'post /banner/registrar':'BannersController.createBanner',
  'post /banner/crop':'BannersController.cropBanner',
  'get /banner/delete/':'BannersController.deleteBanner',
+ 'post /banner/posicao': 'BannersController.changePosition',  	 
+	
+	
  //'get /test' : 'BannersController.testCrop',	
  // site routes
  
