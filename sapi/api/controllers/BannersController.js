@@ -23,17 +23,16 @@ module.exports = {
   },
   msgError: '',
   list: function(req, res) {
-	  
-	console.log(module.exports.msgError);  
-    Banners.find({}).sort('posicao DESC').limit(100).exec(function(err, banners) {
+	Banners.find({}).sort('posicao DESC').limit(100).exec(function(err, banners) {
       if (err) return serverError(err);
       res.view('banner/index', {
         banners: banners,
         error: module.exports.msgError
       });
 
+	  module.exports.msgError = '';
     })
-    module.exports.msgError = '';
+   
 
   },
 
@@ -150,8 +149,8 @@ module.exports = {
 
                 }
 			  } else {
-                var msgError = 'Imagem com proporções menores que o padrão ,largura ' + proportions.banner.width;
-                msgError += ' altura ' + proportions.banner.height+ '.';
+                var msgError = 'Imagem com proporções menores que o padrão (largura =' + proportions.banner.width + 'px';
+                msgError += ' e altura =' + proportions.banner.height+'px).';
                 fs.unlinkSync(file[0].fd);
 				module.exports.msgError = msgError;
                 module.exports.list(req, res);
