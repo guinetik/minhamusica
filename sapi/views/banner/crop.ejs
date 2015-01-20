@@ -1,3 +1,11 @@
+<div class="bs-docs-header" id="content">
+      <div class="container">
+        <h1>Cadastro de Banners</h1>
+        <p>Cadastre o banner, escolha título, url e imagem. Mova-os para alterar sua ordem de exibição.</p>
+      </div>
+    </div>
+	<div class="container bs-docs-container">
+
 <% if(img) { %>
 
   <script type="text/javascript">
@@ -48,6 +56,10 @@
 		<input type="hidden" name="img" value="<%= banner.img %>"/>
 		<input type="hidden" name="cod" value="<%= banner.cod %>"/>
 		<input type="hidden" name="urlComplete" value="<%= banner.urlComplete %>"/>
-		<input type="submit" value="Crop" class="btn btn-primary"/>
+		<br/><br/>
+		  <input type="submit" value="Crop" class="btn btn-primary"/>
 	  </form>
   <% } %>
+
+		
+</div>

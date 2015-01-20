@@ -48,8 +48,43 @@ module.exports = {
         });    
 		
 	 },
-    
 	loginAdmin : function(req,res){
-    	//this.login(req,res,Admin);
-	}
+		
+		res.locals.layout = 'loginLayout';
+		
+		if(req.method == 'POST'){
+			var email = req.body.email;
+			var password = req.body.senha;
+
+			if(!email || !password) {
+				return res.view('login',{error:'Email e Senha são requeridos!'});
+			}
+
+			Admin.findOneByEmail(email , function(err ,foundUser){
+				if(!foundUser){
+					return res.view('login',{error:'Email e Senha inválidos!'});
+				}
+
+				bcrypt.compare(password , foundUser.senha , function(err ,valid){
+					if(err) return res.view('login',{error:'Ops! ocorreu um erro, por favor tente novamente.'});
+
+					if(!valid){
+						return res.view('login',{error:'Email e Senha inválidos!'});
+					}
+
+					req.session.authenticated = foundUser;
+					console.log('teste');
+					return res.redirect('/');
+				}); 
+
+			});
+		}else{
+			return res.view('login',{error:false ,telaLogin:true});
+		}
+		
+	},
+	logoutAdmin: function(req, res) {
+		delete req.session.authenticated;
+    	res.redirect('/');
+  	},	
 };    
