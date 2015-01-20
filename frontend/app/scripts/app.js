@@ -12,24 +12,47 @@ angular
   .module('musicaApp', ['ui.router']);
 
 
-var playlist = playlist || {}
+var helpers = helpers || {};
 
-playlist = {
-  show: function(){
-    $('#playlist').animate({'height' : '172px', 
-                              'border-top' : 0});
-    $('#playlist .playlist-plug').attr('title', 'Esconder Playlist');
-    $('#playlist').addClass('visible');
+helpers = {
+  genreDropdown : {
+    show: function(event){
+      event.stopPropagation();
+    },
+    hide: function(){
+    
+    }
   },
-  hide: function(){
-    
-    $('#playlist').animate({'height' : '5px', 
-                              'border-top': '1px solid #3a3a3a'});
-    $('#playlist .playlist-plug').attr('title', 'Abrir Playlist');
-    $('#playlist').removeClass('visible');
-    
+  playlist: {
+    init: function(element){
+      var _this = $(element);
+      _this.toggleClass('closed');
+      if( $('#playlist').hasClass('visible')){
+        helpers.playlist.hide();
+      }else{
+        helpers.playlist.show();
+      }
+    },
+    show: function(event){
+      $('#playlist').animate({'height' : '172px', 
+                                'border-top' : 0});
+      $('#playlist .playlist-plug').attr('title', 'Esconder Playlist');
+      $('#playlist').addClass('visible');
+    },
+    hide: function(){
+      $('#playlist').animate({'height' : '5px', 
+                                'border-top': '1px solid #3a3a3a'});
+      $('#playlist .playlist-plug').attr('title', 'Abrir Playlist');
+      $('#playlist').removeClass('visible');
+    }
   }
-}
+};
+
+
+$(document).on('click', function(){
+  $('#box-type-login').stop().fadeOut(300);
+  $('#open-type-login').removeClass('open');
+});
 
 
 $(window).load(function(){
@@ -38,16 +61,8 @@ $(window).load(function(){
   
   // Plug Playlist
   $(document).on('click', '#playlist .playlist-plug', function(e){
-    
     e.preventDefault();
-    
-    $(this).toggleClass('closed');
-    if( $('#playlist').hasClass('visible')){
-      playlist.hide();
-    }else{
-      playlist.show();
-    }
-    
+    helpers.playlist.init(this);
   });
   
   
@@ -56,6 +71,7 @@ $(window).load(function(){
   $(document).on('click', '#genre .genre-trigger', function(e){
     
     e.preventDefault();
+    helpers.genreDropdown.init();
     
   });
   

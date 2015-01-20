@@ -34,7 +34,6 @@ var main = {
     var widthMask = (parseInt(widthOuter) - parseInt(widthBanner))/2;
     
     $('#banners .banners-mask .left, #banners .banners-mask .right').css('width', widthMask + 'px');
-    
   }
 }
 
