@@ -7,8 +7,8 @@
  * # LoginCtrl
  * Controller of the musicaApp
  */
-angular.module('musicaApp').controller('LoginCtrl', ['$scope', 'api', 'toastr', '$state', LoginCtrl]);
-function LoginCtrl($scope, api, toastr, $state) {
+angular.module('musicaApp').controller('LoginCtrl', ['$scope', 'api', 'toastr', LoginCtrl]);
+function LoginCtrl($scope, api, toastr) {
   $scope.usuario = {
     email: '',
     senha: ''
