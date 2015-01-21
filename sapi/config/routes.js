@@ -23,62 +23,60 @@
 module.exports.routes = {
 
   /***************************************************************************
-  *                                                                          *
-  * Make the view located at `views/homepage.ejs` (or `views/homepage.jade`, *
-  * etc. depending on your default view engine) your home page.              *
-  *                                                                          *
-  * (Alternatively, remove this and add an `index.html` file in your         *
-  * `assets` directory)                                                      *
-  *                                                                          *
-  ***************************************************************************/
+   *                                                                          *
+   * Make the view located at `views/homepage.ejs` (or `views/homepage.jade`, *
+   * etc. depending on your default view engine) your home page.              *
+   *                                                                          *
+   * (Alternatively, remove this and add an `index.html` file in your         *
+   * `assets` directory)                                                      *
+   *                                                                          *
+   ***************************************************************************/
 
   /*'/': {
-    view: 'banner/index'
-  },*/
-	
- //'/': {view :'/employee/index.ejs'},
- 
-	
-	
- // admin routes
-	
-	//auth routes 
-	  	'/admin/login':'AuthController.loginAdmin',
-		'/admin/logout':'AuthController.logoutAdmin',
+   view: 'banner/index'
+   },*/
 
-	//banner routes 
-		'get /': 'BannersController.list',
- 		'post /banner/registrar':'BannersController.createBanner',
- 		'post /banner/crop':'BannersController.cropBanner',
- 		'get /banner/delete/':'BannersController.deleteBanner',
- 		'post /banner/posicao': 'BannersController.changePosition',  	 
-	
-	//admin routes
-		'get /admin/listar/': 'AdminController.list',
- 		'post /admin/registrar':'AdminController.createAdmin',
- 		'get /admin/deletar/':'AdminController.deleteAdmin',
-		'post /admin/atualizar/':'AdminController.updateAdmin',
- 		
-		
-	
-	  //'AuthController.loginAdmin'
-	
-	
- //'get /test' : 'BannersController.testCrop',	
- // site routes
- 
- 'get /getestados': 'EstadosController.getEstados',	
- 'post /login':'AuthController.login',	
- 	
-	
+  //'/': {view :'/employee/index.ejs'},
+
+
+  // admin routes
+
+  //auth routes
+  '/admin/login': 'AuthController.loginAdmin',
+  '/admin/logout': 'AuthController.logoutAdmin',
+
+  //banner routes
+  'get /': 'BannersController.list',
+  'post /banner/registrar': 'BannersController.createBanner',
+  'post /banner/crop': 'BannersController.cropBanner',
+  'get /banner/delete/': 'BannersController.deleteBanner',
+  'post /banner/posicao': 'BannersController.changePosition',
+
+  //admin routes
+  'get /admin/listar/': 'AdminController.list',
+  'post /admin/registrar': 'AdminController.createAdmin',
+  'get /admin/deletar/': 'AdminController.deleteAdmin',
+  'post /admin/atualizar/': 'AdminController.updateAdmin',
+
+
+  //'AuthController.loginAdmin'
+
+
+  //'get /test' : 'BannersController.testCrop',
+  // site routes
+
+  'get /getestados': 'EstadosController.getEstados',
+  'post /login': 'AuthController.login'
+
+
   /***************************************************************************
-  *                                                                          *
-  * Custom routes here...                                                    *
-  *                                                                          *
-  *  If a request to a URL doesn't match any of the custom routes above, it  *
-  * is matched against Sails route blueprints. See `config/blueprints.js`    *
-  * for configuration options and examples.                                  *
-  *                                                                          *
-  ***************************************************************************/
+   *                                                                          *
+   * Custom routes here...                                                    *
+   *                                                                          *
+   *  If a request to a URL doesn't match any of the custom routes above, it  *
+   * is matched against Sails route blueprints. See `config/blueprints.js`    *
+   * for configuration options and examples.                                  *
+   *                                                                          *
+   ***************************************************************************/
 
 };

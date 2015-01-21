@@ -8,118 +8,104 @@
   <meta name="viewport" content="width=device-width">
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
   <!-- build:css(.) styles/vendor.css -->
+  <link rel="stylesheet" href="bower_components/fancybox/source/jquery.fancybox.css"/>
+  <link rel="stylesheet" href="bower_components/flexslider/flexslider.css"/>
   <!-- bower:css -->
   <link rel="stylesheet" href="bower_components/angular-carousel/dist/angular-carousel.css" />
-  <link rel="stylesheet" href="bower_components/fancybox/source/jquery.fancybox.css" />
-  <link rel="stylesheet" href="bower_components/flexslider/flexslider.css" />
   <link rel="stylesheet" href="bower_components/animate.css/animate.css" />
+  <link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.css" />
   <!-- endbower -->
   <!-- endbuild -->
   <!-- build:css(.tmp) styles/main.css -->
   <link rel="stylesheet" href="styles/main.css">
   <!-- endbuild -->
 </head>
-
 <body>
-
-
-  <div class="wrapper">
-    
-    <!-- Header -->
-    <ng-include src="'views/header.html'"></ng-include>
-    <!-- end Header -->
-    
-    
-    <!-- Main -->
-    <main id="content">
-      <div ui-view></div>
-		<!-- Alerts -->
-		<div class ="alert aler-{{alert.type}} animated main-alert"  ng-class="{'flipInY':alert.show,'flipOutY':!alert.show , 'alert-hidden' : !alertHasBeenShown}"> <strong>{{alert.title}}</strong> {{alert.message}}</div>
-		<!-- end Alerts -->
-    </main>
-    <!-- end Main -->
-    
-    
-    
-    <!-- Footer -->
-    <ng-include src="'views/footer.html'"></ng-include>
-    <!-- end Footer -->
-    
-
-  </div><!-- /.wrapper -->
-
-
-
-
-
-
-  <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
-  <script>
-    (function(i, s, o, g, r, a, m) {
-      i['GoogleAnalyticsObject'] = r;
-      i[r] = i[r] || function() {
-        (i[r].q = i[r].q || []).push(arguments)
-      }, i[r].l = 1 * new Date();
-      a = s.createElement(o),
+<div class="wrapper">
+  <!-- Header -->
+  <ng-include src="'views/header.html'"></ng-include>
+  <!-- end Header -->
+  <!-- Main -->
+  <main id="content">
+    <div ui-view></div>
+  </main>
+  <!-- end Main -->
+  <!-- Footer -->
+  <ng-include src="'views/footer.html'"></ng-include>
+  <!-- end Footer -->
+</div>
+<!-- /.wrapper -->
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
       m = s.getElementsByTagName(o)[0];
-      a.async = 1;
-      a.src = g;
-      m.parentNode.insertBefore(a, m)
-    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-    ga('create', 'UA-XXXXX-X');
-    ga('send', 'pageview');
-  </script>
-  <script src="https://apis.google.com/js/platform.js" async defer>
-    {lang: 'pt-BR'}
-  </script>
-  <!-- build:js(.) scripts/oldieshim.js -->
-  <!--[if lt IE 9]>
-    <script src="bower_components/es5-shim/es5-shim.js"></script>
-    <script src="bower_components/json3/lib/json3.js"></script>
-    <![endif]-->
-  <!-- endbuild -->
+  ga('create', 'UA-XXXXX-X');
+  ga('send', 'pageview');
+</script>
+<script src="https://apis.google.com/js/platform.js" async defer>
+  {
+    lang: 'pt-BR'
+  }
+</script>
+<!-- build:js(.) scripts/oldieshim.js -->
+<!--[if lt IE 9]>
+<script src="bower_components/es5-shim/es5-shim.js"></script>
+<script src="bower_components/json3/lib/json3.js"></script>
+<![endif]-->
+<!-- endbuild -->
 
-  <!-- build:js(.) scripts/vendor.js -->
-  <!-- bower:js -->
-  <script src="bower_components/jquery/dist/jquery.js"></script>
-  <script src="bower_components/angular/angular.js"></script>
-  <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-  <script src="bower_components/angular-touch/angular-touch.js"></script>
-  <script src="bower_components/angular-carousel/dist/angular-carousel.js"></script>
-  <script src="bower_components/angular-route/angular-route.js"></script>
-  <script src="bower_components/ng-breadcrumbs/dist/ng-breadcrumbs.min.js"></script>
-  <script src="bower_components/fancybox/source/jquery.fancybox.pack.js"></script>
-  <script src="bower_components/flexslider/jquery.flexslider-min.js"></script>
-  <!-- endbower -->
-  <!-- endbuild -->
+<!-- build:js(.) scripts/vendor.js -->
+<!-- bower:js -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="bower_components/angular-touch/angular-touch.js"></script>
+<script src="bower_components/angular-carousel/dist/angular-carousel.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/ng-breadcrumbs/dist/ng-breadcrumbs.min.js"></script>
+<script src="bower_components/angular-toastr/dist/angular-toastr.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
 
-  <!-- build:js({.tmp,app}) scripts/scripts.js -->
-  <script src="scripts/app.js"></script>
-  <script src="scripts/app.config.js"></script>
-  <script src="scripts/directives/validateEquals.js"></script>
-  <script src="scripts/controllers/main.js"></script>
-  <script src="scripts/controllers/register.js"></script>
-  <script src="scripts/directives/emailValidate.js"></script>
-  <script src="scripts/directives/tabs.js"></script>
-  <script src="scripts/directives/carousel.js"></script>
-  <script src="scripts/services/alert.js"></script>
-  <script src="scripts/controllers/login.js"></script>
-  <script src="scripts/controllers/header.js"></script>	
-  <script src="scripts/services/auth.js"></script>
-  <script src="scripts/controllers/logout.js"></script>
-  <script src="scripts/controllers/cd.js"></script>
-  <!-- endbuild -->
-  
-  <div id="fb-root"></div>
-  <script async>(function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&appId=425861320888040&version=v2.0";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));</script>
-  
+<script src="bower_components/fancybox/source/jquery.fancybox.pack.js"></script>
+<script src="bower_components/flexslider/jquery.flexslider-min.js"></script>
+
+<!-- build:js({.tmp,app}) scripts/scripts.js -->
+<script src="scripts/app.js"></script>
+<script src="scripts/app.config.js"></script>
+<script src="scripts/directives/validateEquals.js"></script>
+<script src="scripts/controllers/main.js"></script>
+<script src="scripts/controllers/signup.js"></script>
+<script src="scripts/directives/emailValidate.js"></script>
+<script src="scripts/directives/tabs.js"></script>
+<script src="scripts/directives/carousel.js"></script>
+<script src="scripts/controllers/login.js"></script>
+<script src="scripts/controllers/header.js"></script>
+<script src="scripts/services/auth.js"></script>
+<script src="scripts/controllers/cd.js"></script>
+<script src="scripts/services/api.js"></script>
+<script src="scripts/services/ws.js"></script>
+<!-- endbuild -->
+
+<div id="fb-root"></div>
+<script async>(function (d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&appId=425861320888040&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 </body>
 
 </html>

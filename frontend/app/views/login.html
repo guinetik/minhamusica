@@ -1,46 +1,57 @@
 <!-- Breadcrumb -->
 <ng-include src="'views/breadcrumb.html'"></ng-include>
 <!-- end Breadcrumb -->
-
-
- <section id="login" class="main-content section-content">
+<section id="login" class="main-content section-content">
   <div class="limits">
-    
     <div class="section-header">
       <h1 class="section-title">Login</h1>
     </div>
-    
     <div class="section-content clearfix">
       <div class="area-form">
         <form ng-submit="submit()" name="formlogin" class="form-default form-register" novalidate>
           <div class="form-row">
             <label for="email" class="form-label">E-mail: </label>
+
             <div class="form-row-field">
-              <input id="email" name="email" ng-model="usuario.email" email-validate type="email"  placeholder="" required class="field-500"/>
-              <p class="help-block helper-invalid" ng-show="formlogin.email.$error.email">Por favor digite seu email corretamente.</p>
-            </div>  
-          </div><!-- /.form-row -->
+              <input id="email" name="email" ng-model="usuario.email" email-validate type="email" placeholder=""
+                     required class="field-500"/>
+
+              <p class="help-block helper-invalid" ng-show="formlogin.email.$error.email">Por favor digite seu email
+                corretamente.</p>
+            </div>
+          </div>
+          <!-- /.form-row -->
           <div class="form-row">
             <label for="senha" class="form-label">Senha: </label>
+
             <div class="form-row-field">
-              <input id="senha" name="senha" ng-model="usuario.senha" type="password"  placeholder="" required class="field-500"/>
-              <p class="help-block helper-invalid" ng-show="formlogin.senha.$touched && formlogin.senha.$invalid">Por favor digite sua senha.</p>
-            </div>  
-          </div><!-- /.form-row -->
+              <input id="senha" name="senha" ng-model="usuario.senha" type="password" placeholder="" required
+                     class="field-500"/>
+
+              <p class="help-block helper-invalid" ng-show="formlogin.senha.$touched && formlogin.senha.$invalid">Por
+                favor digite sua senha.</p>
+            </div>
+          </div>
+          <!-- /.form-row -->
           <div class="button-area">
-              <button type="submit" ng-disabled="formlogin.$invalid" class="button-highlight">Entrar</button>            
-          </div>  
-        </form>         
-      </div><!-- /.area-form -->
+            <button type="submit" ng-disabled="formlogin.$invalid" class="button-highlight">Entrar</button>
+          </div>
+        </form>
+      </div>
+      <!-- /.area-form -->
       <div class="call-area">
         <div class="call-area-text">
           <h2 class="title">Não possuo cadastro</h2>
+
           <p class="desc">Se você não possui cadastro, faça um cadastro agora mesmo. É grátis.</p>
-          <a ui-sref="register" href="#" title="Fazer login" class="button">Cadastre-se</a>  
+          <a ui-sref="register" href="#" title="Fazer login" class="button">Cadastre-se</a>
         </div>
-      </div><!-- /.call-area -->
-    </div><!-- /.section-content -->
-  </div><!-- /.limits -->
+      </div>
+      <!-- /.call-area -->
+    </div>
+    <!-- /.section-content -->
+  </div>
+  <!-- /.limits -->
 </section>
 
 
