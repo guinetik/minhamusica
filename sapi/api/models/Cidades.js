@@ -7,8 +7,8 @@
 
 module.exports = {
 
-	schema: true , 
-	tableName : 'cidades' , 
+	schema: true ,
+	tableName : 'cidades' ,
 
 	attributes: {
 	  nome:{
@@ -17,7 +17,13 @@ module.exports = {
 	  },
 	  estado: {
 	  	model: 'estados'
-	  }
+	  },
+    toJSON: function() {
+      var obj = this.toObject();
+      delete obj.createdAt;
+      delete obj.updatedAt;
+      return obj;
+    }
 	}
 };
 

@@ -10,7 +10,6 @@ var createSendToken = require('../services/createSendToken.js');
 
 module.exports = {
   login: function (req, res) {
-    console.log("body",req.body, req.body.email);
     var email = req.body.email;
     var password = req.body.senha;
     if (!email || !password) {
@@ -18,15 +17,13 @@ module.exports = {
         message: 'email and password required'
       });
     }
-    Usuarios.findOneByEmail(email, function (err, foundUser) {
+    Usuarios.findOneByEmail(email).populate("cidade").exec(function (err, foundUser) {
       if (!foundUser) {
         return res.status(401).send({
           message: 'Email or Password invalid'
         });
       }
-      console.log("user", foundUser);
       bcrypt.compare(password, foundUser.senha, function (err, valid) {
-        console.log("err", err);
         if (err) return res.status(403);
         if (!valid) {
           return res.status(401).send({
@@ -34,14 +31,12 @@ module.exports = {
           });
         }
         // ready to send user and jwt
-        createSendToken(foundUser, res);
+        createSendToken(foundUser.toJSON(), res);
       });
     });
   },
   loginAdmin: function (req, res) {
-
     res.locals.layout = 'loginLayout';
-
     if (req.method == 'POST') {
       var email = req.body.email;
       var password = req.body.senha;

@@ -17,7 +17,7 @@ function SignUpCtrl($scope, api, toastr) {
     estadoSelecionado: null,
     cidadeSelecionada: null,
     usuarioAceitou: true,
-    nascimento: new Date(1987, 2, 27),
+    nascimento: new Date(),
     twitter: '',
     instagram: ''
   };
@@ -39,7 +39,11 @@ function SignUpCtrl($scope, api, toastr) {
       instagram: $scope.usuario.instagram
     };
     api.signup(user, function(result){
-      $scope.reset();
+      if(result.status == 200) {
+        toastr.success(result.message);
+      } else {
+        toastr.warning(result.message);
+      }
     })
   };
   $scope.reset = function () {
