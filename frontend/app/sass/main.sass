@@ -187,9 +187,19 @@ select
     background: #fff
     border: 1px solid #eee
     top: 50px
-    display: none
+    left: -50px
+    display: block
     +border-radius(4px)
     +box-shadow(0 2px 8px rgba(0, 0, 0, 0.15))
+    &:before
+      border: 8px solid #fff
+      border-top-color: transparent
+      border-left-color: transparent
+      border-right-color: transparent
+      content: ''
+      position: absolute
+      top: -16px
+      left: 80px
     ul
       li
         a
