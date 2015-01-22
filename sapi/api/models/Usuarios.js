@@ -31,7 +31,7 @@ module.exports = {
       model: 'Cidades'
     },
     tipo: {
-      model: 'tipos'
+      type: 'integer'
     },
     twitter: {
       type: 'string',

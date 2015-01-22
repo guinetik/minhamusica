@@ -1,42 +1,8 @@
 <section id="banners">
-  <div id="banners-carousel" class="flexslider" carousel="{
-    animation: 'slide',
-    controlNav: false,
-    animationLoop: true,
-    slideshow: true,
-    slideshowSpeed: 7000,
-    pauseOnHover: true,
-    playing:true,
-    itemWidth: 1000,
-    sync: '#banners-thumbs'
-   }">
-    <ul id="banners-ul" class="clearfix slides">
-      <li class=""><a href="" title=""><img src="images/banners/banner-1.jpg" alt=""></a></li>
-      <li class=""><a href="" title=""><img src="images/banners/banner-1.jpg" alt=""></a></li>
-      <li class=""><a href="" title=""><img src="images/banners/banner-1.jpg" alt=""></a></li>
-      <li class=""><a href="" title=""><img src="images/banners/banner-1.jpg" alt=""></a></li>
-    </ul>
-  </div>
-  <!-- #banners-carousel -->
-  <div class="banners-mask"><span class="left"></span><span class="right"></span></div>
-  <div id="banners-thumbs" class="flexslider" carousel="{
-     animation: 'slide',
-    controlNav: false,
-    animationLoop: false,
-    playing:true,
-    slideshow: false,
-    itemWidth: 140,
-    itemMargin: 5,
-    asNavFor: '#banners-carousel'}">
-    <ul class="banners-thumbs-ul slides">
-      <li><a href=""><img src="http://placehold.it/131x42" alt=""></a></li>
-      <li><a href=""><img src="http://placehold.it/131x42" alt=""></a></li>
-      <li><a href=""><img src="http://placehold.it/131x42" alt=""></a></li>
-      <li><a href=""><img src="http://placehold.it/131x42" alt=""></a></li>
-    </ul>
-  </div>
-  <!-- /#banners-thumbs -->
-</section><!-- /#banners -->
+  <slick dots="true" infinite="true" speed="1000" slides-to-show="1" autoplay="true" easing="easeInOutExpo" pauseOnHover="true" autoplaySpeed="800">
+    <div ng-repeat="banner in banners"><a href="{{banner.link}}"><img ng-src="{{banner.image}}" class="banner_img"></a></div>
+  </slick>
+</section>
 <section class="main-content index">
   <div class="limits clearfix three-cols">
     <div id="most-downloaded" class="box">
@@ -275,7 +241,7 @@
               <div class="list-cd-box clearfix">
                 <figure class="cd-thumb list-cd-box-thumb">
                   <a ui-sref="cd" href="#" title="">
-                    <img src="http://placehold.it/71x71" alt="">
+                    <img src="http://placehold.it/71x71">
                   </a>
                 </figure>
                 <h2 class="list-cd-box-title">
@@ -289,7 +255,7 @@
               <div class="list-cd-box clearfix">
                 <figure class="cd-thumb list-cd-box-thumb">
                   <a ui-sref="cd" href="#" title="">
-                    <img src="http://placehold.it/71x71" alt="">
+                    <img src="http://placehold.it/71x71">
                   </a>
                 </figure>
                 <h2 class="list-cd-box-title">
@@ -303,7 +269,7 @@
               <div class="list-cd-box clearfix">
                 <figure class="cd-thumb list-cd-box-thumb">
                   <a ui-sref="cd" href="#" title="">
-                    <img src="http://placehold.it/71x71" alt="">
+                    <img src="http://placehold.it/71x71">
                   </a>
                 </figure>
                 <h2 class="list-cd-box-title">
@@ -317,7 +283,7 @@
               <div class="list-cd-box clearfix">
                 <figure class="cd-thumb list-cd-box-thumb">
                   <a ui-sref="cd" href="#" title="">
-                    <img src="http://placehold.it/71x71" alt="">
+                    <img src="http://placehold.it/71x71">
                   </a>
                 </figure>
                 <h2 class="list-cd-box-title">
@@ -331,7 +297,7 @@
               <div class="list-cd-box clearfix">
                 <figure class="cd-thumb list-cd-box-thumb">
                   <a ui-sref="cd" href="#" title="">
-                    <img src="http://placehold.it/71x71" alt="">
+                    <img src="http://placehold.it/71x71">
                   </a>
                 </figure>
                 <h2 class="list-cd-box-title">
@@ -347,7 +313,7 @@
               <div class="list-cd-box clearfix">
                 <figure class="cd-thumb list-cd-box-thumb">
                   <a ui-sref="cd" href="#" title="">
-                    <img src="http://placehold.it/71x71" alt="">
+                    <img src="http://placehold.it/71x71">
                   </a>
                 </figure>
                 <h2 class="list-cd-box-title">
@@ -361,7 +327,7 @@
               <div class="list-cd-box clearfix">
                 <figure class="cd-thumb list-cd-box-thumb">
                   <a ui-sref="cd" href="#" title="">
-                    <img src="http://placehold.it/71x71" alt="">
+                    <img src="http://placehold.it/71x71">
                   </a>
                 </figure>
                 <h2 class="list-cd-box-title">
@@ -375,7 +341,7 @@
               <div class="list-cd-box clearfix">
                 <figure class="cd-thumb list-cd-box-thumb">
                   <a ui-sref="cd" href="#" title="">
-                    <img src="http://placehold.it/71x71" alt="">
+                    <img src="http://placehold.it/71x71">
                   </a>
                 </figure>
                 <h2 class="list-cd-box-title">
@@ -389,7 +355,7 @@
               <div class="list-cd-box clearfix">
                 <figure class="cd-thumb list-cd-box-thumb">
                   <a ui-sref="cd" href="#" title="">
-                    <img src="http://placehold.it/71x71" alt="">
+                    <img src="http://placehold.it/71x71">
                   </a>
                 </figure>
                 <h2 class="list-cd-box-title">
@@ -403,7 +369,7 @@
               <div class="list-cd-box clearfix">
                 <figure class="cd-thumb list-cd-box-thumb">
                   <a ui-sref="cd" href="#" title="">
-                    <img src="http://placehold.it/71x71" alt="">
+                    <img src="http://placehold.it/71x71">
                   </a>
                 </figure>
                 <h2 class="list-cd-box-title">
@@ -440,7 +406,7 @@
           <li class="list-events-box">
             <a href="#" class="list-events-box-a">
               <figure class="cd-thumb list-events-box-thumb">
-                <img src="http://placehold.it/312x110" alt="">
+                <img src="http://placehold.it/312x110">
               </figure>
               <div class="list-events-box-thumb-text clearfix">
                 <strong class="dates">01, 02, 03 de JAN/2015</strong>
