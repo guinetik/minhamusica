@@ -11,9 +11,8 @@ module.exports = {
 	  titulo : {
 	  	type : 'string'
 	  },
-	  download: {
-	  	type: 'collection',
-		via : 'cd'
+	  downloads : {
+	  	type : 'integer'
 	  }
   }
 };

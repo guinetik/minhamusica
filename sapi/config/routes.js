@@ -29,7 +29,7 @@ module.exports.routes = {
   'get /data/generos' : 'GenerosController.getGeneros',	
 	
 // cd 
-  'post /cd/download' : 'CdController.createDownload',
+  'post /cd/download' : 'CdController.downloadCount',
 // home do site	
 
 	

@@ -9,16 +9,22 @@ module.exports = {
 	
 	
 	
-	createDownload : function(req, res){
-		var params = req.body; 
+	downloadCount : function(req,res){
+	  	var params = req.url.split('/');
+		var param = params.pop();
+		var id = param.replace('?id=', '');
 		
-		Cd.find({id:params.cd}).exec(function findCB(err,foundCd){
-			if(err) return res.status(404).send({message:'Cd não encontrado!'});
-			Download.create({usuario: params.usuario,cd: params.cd}).exec(function createCB(err2 , d){
-				if(err) return res.status(500).send({message:'Erro ao computar download'});
-				return res.status(200).send({message : 'download computado com successo'});
-			});
+		Cd.find({id:id}).exec(function findCB(err ,cdFound){
+			if(err) return res.status(404).send({message:'Erro ao computar download'})
 			
+			if(cdFound){
+				var downloadInt = cdFound.downloads + 1;
+				Cd.update({id:id},{downloads:downloadInt}).exec(function afterwards(err2, up){
+					if(err2) return res.status(404).send({message:'Erro ao computar download'})
+					
+					return res.status(200).send({message:'Sucesso ao computar download'})
+				});	
+			}
 		});
 		
 	}
