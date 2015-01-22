@@ -21,15 +21,14 @@
     </div>
     <!-- /#genre -->
     <div id="header-user">
-      <span class="icon"></span>
       <div ng-hide="isAuthenticated" class="not-logged">
-        <p><a ui-sref="login" href="#" title="Faça login">Faça login</a> ou <a ui-sref="signup" href="#"
-                                                                               title="Cadastre-se">Cadastre-se</a></p>
+        <span class="icon"></span>
+        <p><a ui-sref="login" href="#" title="Faça login">Faça login</a> ou <a ui-sref="signup" href="#"                                                                      title="Cadastre-se">Cadastre-se</a></p>
       </div>
-      <div ng-show="isAuthenticated" class="logged">
-            <span class="avatar">
-              <img src="http://placehold.it/34x34" alt="">
-            </span>
+      <div ng-show="isAuthenticated" class="logged clearfix">
+        <span class="avatar">
+          <img src="http://placehold.it/34x34" alt="">
+        </span>
         <p>Olá, </p>
         <ul class="links clearfix">
           <li><a href="#" title="Painel">Painel</a></li>
