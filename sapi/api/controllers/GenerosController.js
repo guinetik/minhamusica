@@ -14,10 +14,10 @@ module.exports = {
 	getGeneros : function(req,res){
 		Generos.find({}).exec(function(err,g){
 			if(err) return res.status(500).send({message: 'Erro ao consultar genero'})
-			return res.status(200).send({generos:g.toJSON}); 
+			return res.status(200).send({generos:g}); 
 		})
 	}, 
-	
+  
    list: function(req, res, next) {
     Generos.find({}).limit(10).exec(function(err, generos) {
       if (err) return next(err);
@@ -28,6 +28,7 @@ module.exports = {
       module.exports.msgError = ''
     })
   },
+	
   updateGenero: function(req, res) {
     var admin = req.body;
 
@@ -42,6 +43,7 @@ module.exports = {
       res.redirect('/genero/listar/');
     });
   },
+	
   createGenero: function(req, res) {
     var genero = req.body;
    
@@ -54,6 +56,7 @@ module.exports = {
     });
 
   },
+	
   deleteGenero: function(req, res) {
 
     var params = req.url.split('/');
