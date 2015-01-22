@@ -1,7 +1,8 @@
 module.exports.routes = {
 //auth routes
-  'post /admin/login': 'AuthController.loginAdmin',
-  'post /admin/logout': 'AuthController.logoutAdmin',
+  '/admin/login': 'AuthController.loginAdmin',
+  '/admin/logout': 'AuthController.logoutAdmin',
+  
   'post /user/login': 'AuthController.login',
 //banner routes
   'get /': 'BannersController.list',

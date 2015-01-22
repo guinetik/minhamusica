@@ -26,22 +26,24 @@ module.exports.policies = {
   *                                                                          *
   ***************************************************************************/
 
-	 //'*' : true , 
+	 
+ //'*' : true , 
   /*'CdController':{
     'find' : ['jwtAuth']
   } */   
     
- 'BannersController':{
+  'BannersController':{
     '*' : ['sessionAuth']
   },
 	
  'AdminController':{
     '*' : ['sessionAuth']
   }	
-	
-	
     
-  // '*': true,
+  // 
+	
+	
+	//'*': true,
 
   /***************************************************************************
   *                                                                          *

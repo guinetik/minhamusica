@@ -37,7 +37,7 @@ module.exports = {
   },
   loginAdmin: function (req, res) {
     res.locals.layout = 'loginLayout';
-    if (req.method == 'POST') {
+	if (req.method == 'POST') {
       var email = req.body.email;
       var password = req.body.senha;
 
@@ -58,8 +58,7 @@ module.exports = {
           }
 
           req.session.authenticated = foundUser;
-          console.log('teste');
-          return res.redirect('/');
+				return res.redirect('/');
         });
 
       });

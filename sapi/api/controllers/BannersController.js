@@ -75,14 +75,14 @@ module.exports = {
 		path.pop();
 		return path.join('\\');
   	}
-  	var pathDir = dir() + '\\.tmp\\public\\images\\destaques\\';
-  	var pathDirThumb = dir() + '\\.tmp\\public\\images\\destaques\\thumb\\';  
+  	var pathDir = dir() + '\\assets\\images\\destaques\\';
+  	var pathDirThumb = dir() + '\\assets\\images\\destaques\\thumb\\';  
 	  
     var supportedTypes = [
       'image/jpeg',
       'image/jpg',
       'image/gif',
-      'image/png'
+      'image/png'	
     ];
 
     var proportions = module.exports.proportions;
@@ -130,6 +130,7 @@ module.exports = {
                           .write(pathDirThumb + banner.img, function(err2) {
                             if (err2) {
                               fs.unlinkSync(file[0].fd);
+							  fs.unlinkSync(pathDir + banner.img);
                               module.exports.msgError = 'Erro ao criar thumb de imagem.';
                               module.exports.list(req, res);
                             }else{
@@ -182,13 +183,16 @@ cropBanner: function(req, res) {
     path.pop();
     return path.join('\\');
   }
-  var pathDir = dir() + '\\.tmp\\public\\images\\destaques\\';
-  var pathDirThumb = dir() + '\\.tmp\\public\\images\\destaques\\thumb\\';
-
+  var pathTmpDir = dir() + '\\.tmp\\public\\images\\destaques\\';
+  var pathDir = dir() + '\\assets\\images\\destaques\\';
+  var pathDirThumb = dir() + '\\assets\\images\\destaques\\thumb\\'; 
+  
+	
+  
   var proportions = module.exports.proportions;
   var ban = req.body;
 
-  gm(pathDir + ban.img)
+  gm(pathTmpDir + ban.img)
     .crop(proportions.banner.width,
       proportions.banner.height,
       ban.deltaX,
@@ -201,10 +205,12 @@ cropBanner: function(req, res) {
             if (!err2) {
               module.exports.saveBanner(res, ban);
             } else {
+			  fs.unlinkSync(pathDir + banner.img);
               console.log(err2);
             }
           });
       } else {
+		fs.unlinkSync(pathTmpDir + banner.img);  
         console.log(err);
       }
     });

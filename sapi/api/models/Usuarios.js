@@ -30,9 +30,6 @@ module.exports = {
     cidade: {
       model: 'Cidades'
     },
-    tipo: {
-      model: 'tipos'
-    },
     twitter: {
       type: 'string',
       maxLength: 100
