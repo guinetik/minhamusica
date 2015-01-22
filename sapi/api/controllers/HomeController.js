@@ -10,7 +10,19 @@ module.exports = {
 	
 	getHome: function(req, res ){
 		
-		Banners.find({}).sort('posicao DESC').limit(10).exec(function(err, b) {
+		//.limit(10)
+		
+		Download
+		.find({})
+		.groupBy('cd')
+		.sum('1')
+		.exec(function findCB(err, b) {
+		  if (err) return res.status(401).send({message:'Erro ao carregar dowloads'});
+		  console.log(b);
+		  //return res.status(200).send({banners:b});
+		});
+		
+		/*Banners.find({}).sort('posicao DESC').limit(10).exec(function(err, b) {
 		  if (err) return res.status(401).send({message:'Erro ao carregar banners'});
 		  return res.status(200).send({banners:b});
 		});
@@ -18,13 +30,7 @@ module.exports = {
 		Cd.find({}).sort('createdAt DESC').limit(10).exec(function(err, b) {
 		  if (err) return res.status(401).send({message:'Erro ao carregar banners'});
 		  return res.status(200).send({banners:b});
-		});
-		
-		Downloads.find({}).sort('createdAt DESC').limit(10).exec(function(err, b) {
-		  if (err) return res.status(401).send({message:'Erro ao carregar banners'});
-		  return res.status(200).send({banners:b});
-		});
-		
+		});*/
 	}
 	
 	
