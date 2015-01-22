@@ -168,9 +168,8 @@ select
 
 #genre
   border-right: 1px solid #e0e0e0
-  padding-right: 52px
   position: relative
-  padding: 20px 52px 20px 0
+  padding: 20px 25px 25px 0
   .genre-trigger
     color: $blue
     font-size: 16px
@@ -213,7 +212,7 @@ select
 
 
 #header-user
-  padding: 20px 0 20px 70px
+  padding: 20px 0 20px 20px
   border-left: 1px solid #fff
   position: relative
   .icon
@@ -222,17 +221,22 @@ select
     height: 24px
     background-position: -295px -24px
     position: absolute
-    left: 30px
+    left: 10px
     top: 15px
   p
     font-family: $font-bold
     font-size: 14px
+    margin-left: 20px
     color: $gray-light
     a
       @extend .link-pink
   .logged
     position: relative
     padding-left: 48px
+    .welcome
+    font-family: $font-bold
+    font-size: 14px
+    color: $gray-light
     .avatar
       position: absolute
       left: 0
