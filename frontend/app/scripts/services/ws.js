@@ -30,12 +30,12 @@ function ws($rootScope, $http, API_URL) {
       result.status = status;
       if(status == 200) {
         if (result.token) {
-          console.log("tem token");
+          //console.log("tem token");
           $rootScope.$emit("update-user-token", result.token);
         }
       }
       if (cb) {
-        console.log("dispatching callback", result, result.token);
+        //console.log("dispatching callback", result, result.token);
         cb(result);
       }
     }).error(function(err){

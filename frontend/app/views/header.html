@@ -13,8 +13,7 @@
 
       <div class="genre-dropdown">
         <ul class="genre-dropdown-ul">
-          <li><a href="#" title="Arrocha">Arrocha</a></li>
-          <li><a href="#" title="Forró">Forró</a></li>
+          <li ng-repeat="genero in generos"><a href="#" title="{{genero.descricao}}">{{genero.nome}}</a></li>
         </ul>
       </div>
       <!-- /.genre-dropdown -->
@@ -27,9 +26,9 @@
       </div>
       <div ng-show="isAuthenticated" class="logged clearfix">
         <span class="avatar">
-          <img src="http://placehold.it/34x34" alt="">
+          <img src="http://placehold.it/34x34" ng-src="{{user.imagem}}" style="width: 34px;height: 34px">
         </span>
-        <p>Olá, </p>
+        <span class="welcome">Olá, {{user.nome}}</span>
         <ul class="links clearfix">
           <li><a href="#painel" title="Painel">Painel</a></li>
           <li><a ng-click="logout()" href="#" title="Sair">Sair</a></li>
