@@ -228,6 +228,22 @@ select
     color: $gray-light
     a
       @extend .link-pink
+  .logged
+    position: relative
+    padding-left: 48px
+    .avatar
+      position: absolute
+      left: 0
+      top: -5px
+    .links
+      li
+        float: left
+        margin-left: 10px
+        &:first-child
+          margin-left: 0
+        a
+          @extend .link-pink
+          font: normal 13px $font-regular
 /* end Header */
 
 
@@ -788,6 +804,7 @@ select
   width: 34px
   height: 34px
   overflow: hidden
+  display: inline-block
   +border-radius(100%)
   border: 2px solid #ebeeef
 .cd-user
