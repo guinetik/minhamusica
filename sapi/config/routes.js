@@ -17,5 +17,13 @@ module.exports.routes = {
   'post /admin/atualizar/': 'AdminController.updateAdmin',
 // user
 // data
-  'get /data/estados': 'EstadosController.getEstados'
+  'get /data/estados': 'EstadosController.getEstados',
+  'get /data/home' : 'HomeController.gethome',
+  'get /data/generos' : 'GenerosController.getGeneros',	
+	
+// cd 
+  'post /cd/download' : 'CdController.createDownload',
+// home do site	
+
+	
 };
