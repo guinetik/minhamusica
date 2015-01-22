@@ -20,4 +20,8 @@ function HeaderCtrl($scope , $rootScope, auth, $state) {
     $scope.isAuthenticated = auth.isAuthenticated();
     $state.go("main");
   });
+  $scope.$on('$viewContentLoaded', function (event) {
+    // EQUIVALENTE AO READY DO JQUERY
+    console.log("Header:viewContentLoaded");
+  });
 }
