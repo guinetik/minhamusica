@@ -16,6 +16,7 @@ function MainCtrl($scope, $rootScope, auth) {
     {link: "#", image: "images/banners/banner-1.jpg"}
   ];
   $scope.$on('$viewContentLoaded', function (event) {
+    // EQUIVALENTE AO READY DO JQUERY
     console.log("viewContentLoaded");
   });
 }

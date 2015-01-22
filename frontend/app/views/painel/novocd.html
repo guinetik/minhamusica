@@ -1,88 +1,84 @@
-<!-- Breadcrumb -->
-<ng-include src="'views/breadcrumb.html'"></ng-include>
-<!-- end Breadcrumb -->
-<section id="new-cd" class="main-content painel-section">
-  <div class="limits">
-    <header class="painel-section-header">
-      <h1 class="title">Painel do Usuário</h1>
-      <span class="subtitle">Usuário Divulgador</span>
-    </header>
-    <!-- Painel Nav -->
-    <aside class="col-esq col-nav">
-      <ng-include src="'views/painel/painelnav.html'"></ng-include>
-    </aside>
-    <!-- end Painel Nav -->
-    <article class="painel-section-content">
-      <h2 class="painel-section-content-title">Novo CD</h2>
-      <ol class="steps clearfix">
-        <li>
-          <a href="#" class="active" title="Informações Básicas">
-            <span>1</span>
-            <span class="text">Informações Básicas</span>
-          </a>
-        </li>
-        <li>
-          <a href="#" title="Upload das Músicas">
-            <span>2</span>
-            <span class="text">Upload das Músicas</span>
-          </a>
-        </li>
-      </ol>
-      <form ng-submit="submit()" action="" class="form-default">
-        <div class="form-row">
-          <label for="titulo" class="form-label">Título: <span>*</span></label>
-          <div class="form-row-field">
-            <input type="text" name="titulo" id="titulo" required placeholder="Nome ou Título do CD" class="field-370">
-            <small class="legend">Ex.: Banda da Internet - Coleção 2015</small>
-          </div>
-        </div><!-- /.form-row -->
-        <div class="form-row">
-          <label for="descricao" class="form-label">Descrição: <span>*</span></label>
-          <div class="form-row-field">
-            <textarea name="descricao" id="descricao" required placeholder="Escreva uma descrição do CD ou observação" class="field-370"></textarea>
-            <small class="legend">Ex.: Gravação do CD na cidade de Recife, PE</small>
-          </div>
-        </div><!-- /.form-row -->
-        <div class="form-row form-row-double">
-          <div class="col">
-            <label for="genero" class="form-label">Gênero: <span>*</span></label>
-            <div class="form-row-field">
-              <select name="genero" id="genero" required placeholder="Escreva uma descrição do CD ou observação" class="field-370">
-                <option value="">Gênero musical predominante do CD</option>
-                <option value="1">Arrocha</option>
-              </select>
-              <small class="legend">Ex.: MPB</small>
-            </div>
-            <ul class="form-list-options">
-              <li>
-                <input type="checkbox" name="reproduzir" id="check-reproduzir">
-                <label for="check-reproduzir" class="form-label">Reproduzir músicas ao finalizar envio</label>
-              </li>
-              <li>
-                <input type="checkbox" name="privado" id="check-privado">
-                <label for="check-privado" class="form-label">Tornar CD privado ao criá-lo</label>
-                <small class="legend">Ao marcar essa opção, o CD ficará privado por 3 dias.</small>
-              </li>
-            </ul><!-- /.form-list-options -->
-          </div><!-- /.col -->
-          <div class="col">
-            <label for="capa" class="form-label">Capa:</label>
-            <div class="cover-wrapper clearfix">
-              <figure class="cover-thumb">
-                <img src="http://placehold.it/175x175"/>
-              </figure>
-              <div class="cover-option">
-                <a href="" class="button-medium">Trocar Capa</a>
-                <small class="legend">Dimensão: 986 x 986px</small>
-              </div>
-            </div>
-          </div><!-- /.col -->
-        </div><!-- /.form-row-double -->
-        <div class="button-area">
-          <button type="button" class="button-highlight-arrow"><span></span> Continuar</button>
+<article class="painel-section-content">
+  <h2 class="painel-section-content-title">Novo CD</h2>
+  <ol class="steps clearfix">
+    <li>
+      <a href="#" class="active" title="Informações Básicas">
+        <span>1</span>
+        <span class="text">Informações Básicas</span>
+      </a>
+    </li>
+    <li>
+      <a href="#" title="Upload das Músicas">
+        <span>2</span>
+        <span class="text">Upload das Músicas</span>
+      </a>
+    </li>
+  </ol>
+  <form ng-submit="submit()" action="" class="form-default">
+    <div class="form-row">
+      <label for="titulo" class="form-label">Título: <span>*</span></label>
+
+      <div class="form-row-field">
+        <input type="text" name="titulo" id="titulo" required placeholder="Nome ou Título do CD" class="field-370">
+        <small class="legend">Ex.: Banda da Internet - Coleção 2015</small>
+      </div>
+    </div>
+    <!-- /.form-row -->
+    <div class="form-row">
+      <label for="descricao" class="form-label">Descrição: <span>*</span></label>
+
+      <div class="form-row-field">
+        <textarea name="descricao" id="descricao" required placeholder="Escreva uma descrição do CD ou observação"
+                  class="field-370"></textarea>
+        <small class="legend">Ex.: Gravação do CD na cidade de Recife, PE</small>
+      </div>
+    </div>
+    <!-- /.form-row -->
+    <div class="form-row form-row-double">
+      <div class="col">
+        <label for="genero" class="form-label">Gênero: <span>*</span></label>
+
+        <div class="form-row-field">
+          <select name="genero" id="genero" required placeholder="Escreva uma descrição do CD ou observação"
+                  class="field-370">
+            <option value="">Gênero musical predominante do CD</option>
+            <option value="1">Arrocha</option>
+          </select>
+          <small class="legend">Ex.: MPB</small>
         </div>
-      </form><!-- /.form-default -->
-    </article><!-- /.painel-section-content -->
-    <div class="clear"></div>
-  </div><!-- /.limits -->
-</section>
+        <ul class="form-list-options">
+          <li>
+            <input type="checkbox" name="reproduzir" id="check-reproduzir">
+            <label for="check-reproduzir" class="form-label">Reproduzir músicas ao finalizar envio</label>
+          </li>
+          <li>
+            <input type="checkbox" name="privado" id="check-privado">
+            <label for="check-privado" class="form-label">Tornar CD privado ao criá-lo</label>
+            <small class="legend">Ao marcar essa opção, o CD ficará privado por 3 dias.</small>
+          </li>
+        </ul>
+        <!-- /.form-list-options -->
+      </div>
+      <!-- /.col -->
+      <div class="col">
+        <label for="capa" class="form-label">Capa:</label>
+
+        <div class="cover-wrapper clearfix">
+          <figure class="cover-thumb">
+            <img src="http://placehold.it/175x175"/>
+          </figure>
+          <div class="cover-option">
+            <a href="" class="button-medium">Trocar Capa</a>
+            <small class="legend">Dimensão: 986 x 986px</small>
+          </div>
+        </div>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.form-row-double -->
+    <div class="button-area">
+      <button type="button" class="button-highlight-arrow"><span></span> Continuar</button>
+    </div>
+  </form>
+  <!-- /.form-default -->
+</article><!-- /.painel-section-content -->
