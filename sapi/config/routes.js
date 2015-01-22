@@ -15,6 +15,13 @@ module.exports.routes = {
   'get /admin/deletar/': 'AdminController.deleteAdmin',
   'post /admin/registrar': 'AdminController.createAdmin',
   'post /admin/atualizar/': 'AdminController.updateAdmin',
+	
+//genero routes
+  'get /genero/listar/': 'GenerosController.list',
+  'get /genero/deletar/': 'GenerosController.deleteGenero',
+  'post /genero/registrar': 'GenerosController.createGenero',
+  'post /genero/atualizar/': 'GenerosController.updateGenero',	
+	
 // user
 // data
   'get /data/estados': 'EstadosController.getEstados',

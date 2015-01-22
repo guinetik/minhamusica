@@ -15,11 +15,11 @@ module.exports = {
 		Download
 		.find({})
 		.groupBy('cd')
-		.sum('1')
-		.exec(function findCB(err, b) {
+		.sum(1)
+		.exec(function findCB(err, cd) {
 		  if (err) return res.status(401).send({message:'Erro ao carregar dowloads'});
-		  console.log(b);
-		  //return res.status(200).send({banners:b});
+		
+		  return res.status(200).send({cds:cd});
 		});
 		
 		/*Banners.find({}).sort('posicao DESC').limit(10).exec(function(err, b) {
