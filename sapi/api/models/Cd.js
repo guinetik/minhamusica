@@ -8,8 +8,24 @@
 module.exports = {
 
   attributes: {
+    artista:{
+      model:'Usuarios'
+    },
 	  titulo : {
 	  	type : 'string'
+	  },
+    descricao : {
+	  	type : 'string'
+	  },
+    capa : {
+      type : 'string'
+    },
+    genero : {
+	  	model : 'Generos'
+	  },
+	  private : {
+	  	type : 'integer',
+      default:0
 	  },
 	  downloads : {
 	  	type : 'integer'

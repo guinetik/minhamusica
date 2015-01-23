@@ -1,4 +1,5 @@
 var bcrypt = require('bcrypt-nodejs');
+var jwt = require('jwt-simple');
 module.exports = {
   tableName: 'usuarios',
   schema: true,
@@ -59,6 +60,15 @@ module.exports = {
         attr.senha = hash;
         next();
       });
+    });
+  },
+  findOneByToken:function(token, cb) {
+    var palyload = jwt.decode(token, 'shhh..');
+    Usuarios.findOneById(palyload.sub).populate("cidade").exec(function (err, foundUser) {
+      if (!foundUser) {
+        cb(false);
+      }
+      cb(foundUser);
     });
   }
 };

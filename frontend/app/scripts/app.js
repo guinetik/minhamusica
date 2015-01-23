@@ -8,7 +8,7 @@
  *
  * Main module of the application.
  */
-var mm = angular.module('musicaApp', ['ui.router', 'toastr', 'slick']);
+angular.module('musicaApp', ['ui.router', 'toastr', 'slick', 'angularFileUpload']);
 var functions = functions || {}
 functions = {
   playlist: {

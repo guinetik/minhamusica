@@ -31,7 +31,6 @@ function HeaderCtrl($scope , $rootScope, auth, api, $state) {
     $state.go("main");
   });
   api.getGeneros(function(result) {
-    console.log("result", result);
     if(result.status == 200) {
       $scope.generos = result.generos;
     }
