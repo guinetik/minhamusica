@@ -29,7 +29,11 @@ module.exports = {
     },
     downloads: {
       type: 'integer',
-      default:0
+      default: 0
+    },
+    musicas: {
+      collection: 'Musica',
+      via: 'cd'
     }
   }
 };
