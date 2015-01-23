@@ -27,7 +27,7 @@ module.exports.routes = {
   'get /data/estados': 'EstadosController.getEstados',
   'get /data/home' : 'HomeController.gethome',
   'get /data/generos' : 'GenerosController.getGeneros',	 
-  'get /data/perfil' : 'GenerosController.getGeneros',	
+  'get /data/perfil' : 'UsuariosController.perfil',	
 	
 // cd 
   'post /cd/download' : 'CdController.downloadCount',
