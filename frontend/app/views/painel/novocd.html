@@ -112,19 +112,31 @@
          allow-dir="false"
          accept="*mp3"
          class="drop-box">
-      <ul>
-        <li ng-repeat="musica in cd.musicas">{{musica.name}}</li>
-      </ul>
+     <table>
+       <thead>
+         <tr>
+          <th>Nome</th>
+          <th>Status</th>
+          <th>Opções</th>
+         </tr>
+       </thead>
+       <tbody>
+        <tr ng-repeat="musica in cd.musicas">
+          <td>{{musica.name}}</td>
+          <td>Enviando</td>
+          <td>Cancelar</td>
+        </tr>
+       </tbody>
+     </table>
     </div>
     <div class="button-area">
       <div ng-file-select
            ng-model="files"
            allow-dir="false"
            ng-file-change="fileDropped($files, $event, $rejectedFiles)"
-           class="button-highlight-arrow"
            ng-multiple="true"
-           accept="'*mp3'"
-           tabindex="0"><span></span>Procurar músicas
+           accept="*mp3"
+           class="button-highlight-arrow"><span></span>Procurar músicas
       </div>
       <button type="submit"
               style="float: right;margin-right: -10px!important;"

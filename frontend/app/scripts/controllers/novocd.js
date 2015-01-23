@@ -9,7 +9,7 @@
  */
 angular.module('musicaApp').controller('NovoCDCtrl', ['$scope', 'api', 'auth', 'toastr', '$upload', NovoCDCtrl]);
 function NovoCDCtrl($scope, api, auth, toastr, $upload) {
-  $scope.cd = {};
+  $scope.cd = {saved: true};
   $scope.cd.musicas = [];
   $scope.generos = [];
   $scope.files = [];
