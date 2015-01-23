@@ -31,20 +31,25 @@ module.exports = {
   },
   perfil: function(req,res){
 	  
-	  var params = req.url.split('/');
-	  var param = params.pop();
-	  var id = param.replace('?id=', '');
+	 var id = req.query.id; 
+	  var collection = {};
 	  
 	  Usuarios.find({id:id}).exec(function findCB(err,usuario){
 	  	if(err) return res.status(500).send({message : 'Erro ao buscar usuário.'});
 		
 		if(usuario.length){
-		  	Cd.find({artista:usuario.id}).sort('createdAt DESC').limit(10).exec(function(err2, c) {
+			collection.usuario = usuario;
+			
+			Cd.find({artista:usuario.id}).sort('createdAt DESC').limit(10).exec(function(err2, c) {
 				if(err2) return res.status(500).send({message : 'ultimos cds do usuario.'});
+				
+				collection.cds = c;
+				
 				Eventos.find({usuario:usuario.id}).sort('createdAt DESC').limit(10).exec(function(err3, e) {
 					if(err3) return res.status(500).send({message : 'ultimos eventos do usuario.'});
-				
 					
+					collection.eventos = e; 	
+					return res.status(200).send({perfil:collection});
 				});
 			});
 		}else
