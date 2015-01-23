@@ -30,6 +30,32 @@ module.exports = {
         data: foundUser.toJSON()
       });
     });
-  }
+  },
+  perfil: function(req,res){
+	  
+	  var params = req.url.split('/');
+	  var param = params.pop();
+	  var id = param.replace('?id=', '');
+	  
+	  Usuarios.find({id:id}).exec(function findCB(err,usuario){
+	  	if(err) return res.status(500).send({message : 'Erro ao buscar usuário.'});
+		
+		if(usuario.length){
+		  	Cd.find({usuario:usuario.id}).sort('createdAt DESC').limit(10).exec(function(err2, c) {
+				if(err2) return res.status(500).send({message : 'ultimos cds do usuario.'});
+				Eventos.find({usuario:usuario.id}).sort('createdAt DESC').limit(10).exec(function(err3, e) {
+					if(err3) return res.status(500).send({message : 'ultimos eventos do usuario.'});
+				
+					
+				});
+			});
+		}else
+			return res.status(404).send({message:'Usuário não encontrado!'});
+		  
+	  });
+	  
+  }	
+	
+	
 };
 

@@ -11,6 +11,9 @@ module.exports = {
 	  titulo : {
 	  	type : 'string'
 	  },
+	  usuario : {
+	  	model : 'usuarios'
+	  },
 	  downloads : {
 	  	type : 'integer'
 	  }

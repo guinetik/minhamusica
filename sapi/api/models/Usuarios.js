@@ -30,6 +30,12 @@ module.exports = {
     cidade: {
       model: 'Cidades'
     },
+	capa: {
+      type: 'string',
+    },
+	foto: {
+      type: 'string',
+    },
     twitter: {
       type: 'string',
       maxLength: 100
@@ -40,6 +46,14 @@ module.exports = {
     },
     facebookId: {
       type: 'string'
+    },
+	eventos: {
+      colletion : 'evento',
+	  via: 'usuario' 	
+    },
+	cds: {
+      colletion : 'cd',
+	  via: 'usuario' 	
     },
     toJSON: function() {
       var obj = this.toObject();
