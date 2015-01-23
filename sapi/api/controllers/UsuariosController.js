@@ -1,5 +1,4 @@
 var createSendToken = require('../services/createSendToken.js');
-var jwt = require('jwt-simple');
 /**
  * UserController
  *
@@ -17,18 +16,17 @@ module.exports = {
   lookup: function (req, res) {
     var token = req.body.token;
     if(token == null) if (err) res.status(403).send({message: 'please provide a token'});
-    var palyload = jwt.decode(token, 'shhh..');
-    Usuarios.findOneById(palyload.sub).populate("cidade").exec(function (err, foundUser) {
-      if (!foundUser) {
+    Usuarios.findOneByToken(token, function(result){
+      if(result) {
+        return res.status(200).send({
+          message: 'User found',
+          data: result.toJSON()
+        });
+      } else {
         return res.status(404).send({
           message: 'User not found'
         });
       }
-      console.log(foundUser.prototype);
-      return res.status(200).send({
-        message: 'User found',
-        data: foundUser.toJSON()
-      });
     });
   },
   perfil: function(req,res){
@@ -41,7 +39,7 @@ module.exports = {
 	  	if(err) return res.status(500).send({message : 'Erro ao buscar usuário.'});
 		
 		if(usuario.length){
-		  	Cd.find({usuario:usuario.id}).sort('createdAt DESC').limit(10).exec(function(err2, c) {
+		  	Cd.find({artista:usuario.id}).sort('createdAt DESC').limit(10).exec(function(err2, c) {
 				if(err2) return res.status(500).send({message : 'ultimos cds do usuario.'});
 				Eventos.find({usuario:usuario.id}).sort('createdAt DESC').limit(10).exec(function(err3, e) {
 					if(err3) return res.status(500).send({message : 'ultimos eventos do usuario.'});
