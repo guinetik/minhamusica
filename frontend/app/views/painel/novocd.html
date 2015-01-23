@@ -1,106 +1,135 @@
 <article class="painel-section-content">
-    <h2 class="painel-section-content-title">Novo CD</h2>
-    <ol class="steps clearfix">
-        <li>
-            <a href="#"
-               class="active"
-               title="Informações Básicas"> <span>1</span> <span class="text">Informações Básicas</span> </a>
-        </li>
-        <li>
-            <a href="#"
-               title="Upload das Músicas"> <span>2</span> <span class="text">Upload das Músicas</span> </a>
-        </li>
-    </ol>
-    <form ng-submit="submit()"
-          class="form-default"
-          ng-show="{{!cd.saved}}">
-        <div class="form-row">
-            <label for="titulo"
-                   class="form-label">Título: <span>*</span></label>
-            <div class="form-row-field">
-                <input type="text"
-                       name="titulo"
-                       id="titulo"
-                       ng-model="cd.titulo"
-                       required
-                       placeholder="Nome ou Título do CD"
-                       class="field-370">
-                <small class="legend">Ex.: Banda da Internet - Coleção 2015</small>
-            </div>
-        </div>
-        <!-- /.form-row -->
-        <div class="form-row">
-            <label for="descricao"
-                   class="form-label">Descrição: <span>*</span></label>
-            <div class="form-row-field">
+  <h2 class="painel-section-content-title">Novo CD</h2>
+  <ol class="steps clearfix">
+    <li>
+      <a href="#"
+         ng-class="{'active':!cd.saved}"
+         title="Informações Básicas"> <span>1</span> <span class="text">Informações Básicas</span> </a>
+    </li>
+    <li>
+      <a href="#"
+         ng-class="{'active':cd.saved}"
+         title="Upload das Músicas"> <span>2</span> <span class="text">Upload das Músicas</span> </a>
+    </li>
+  </ol>
+  <form ng-submit="submit()"
+        class="form-default"
+        ng-hide="cd.saved">
+    <div class="form-row">
+      <label for="titulo"
+             class="form-label">Título: <span>*</span></label>
+      <div class="form-row-field">
+        <input type="text"
+               name="titulo"
+               id="titulo"
+               ng-model="cd.titulo"
+               required
+               placeholder="Nome ou Título do CD"
+               class="field-370">
+        <small class="legend">Ex.: Banda da Internet - Coleção 2015</small>
+      </div>
+    </div>
+    <!-- /.form-row -->
+    <div class="form-row">
+      <label for="descricao"
+             class="form-label">Descrição: <span>*</span></label>
+      <div class="form-row-field">
         <textarea name="descricao"
                   id="descricao"
                   ng-model="cd.descricao"
                   required
                   placeholder="Escreva uma descrição do CD ou observação"
                   class="field-370"></textarea>
-                <small class="legend">Ex.: Gravação do CD na cidade de Recife, PE</small>
-            </div>
+        <small class="legend">Ex.: Gravação do CD na cidade de Recife, PE</small>
+      </div>
+    </div>
+    <!-- /.form-row -->
+    <div class="form-row form-row-double">
+      <div class="col">
+        <label for="genero"
+               class="form-label">Gênero: <span>*</span></label>
+        <div class="form-row-field">
+          <select name="genero"
+                  id="genero"
+                  required
+                  ng-options="genero.nome for genero in generos track by genero.id"
+                  placeholder="Escreva uma descrição do CD ou observação"
+                  ng-model="cd.genero"
+                  class="field-370">
+            <option value="">Gênero musical predominante do CD</option>
+          </select>
+          <small class="legend">Ex.: MPB</small>
         </div>
-        <!-- /.form-row -->
-        <div class="form-row form-row-double">
-            <div class="col">
-                <label for="genero"
-                       class="form-label">Gênero: <span>*</span></label>
-                <div class="form-row-field">
-                    <select name="genero"
-                            id="genero"
-                            required
-                            ng-options="genero.nome for genero in generos track by genero.id"
-                            placeholder="Escreva uma descrição do CD ou observação"
-                            ng-model="cd.genero"
-                            class="field-370">
-                        <option value="">Gênero musical predominante do CD</option>
-                    </select>
-                    <small class="legend">Ex.: MPB</small>
-                </div>
-                <ul class="form-list-options">
-                    <li>
-                        <input type="checkbox"
-                               name="reproduzir"
-                               id="check-reproduzir"> <label for="check-reproduzir"
-                                                             class="form-label">Reproduzir músicas ao finalizar
-                                                                                envio</label>
-                    </li>
-                    <li>
-                        <input type="checkbox"
-                               name="privado"
-                               ng-model="cd.private"
-                               id="check-privado"> <label for="check-privado"
-                                                          class="form-label">Tornar CD privado ao criá-lo</label>
-                        <small class="legend">Ao marcar essa opção, o CD ficará privado por 3 dias.</small>
-                    </li>
-                </ul>
-                <!-- /.form-list-options -->
-            </div>
-            <!-- /.col -->
-            <div class="col">
-                <label for="capa"
-                       class="form-label">Capa:</label>
-                <div class="cover-wrapper clearfix">
-                    <figure class="cover-thumb">
-                        <img src="http://placehold.it/175x175"/>
-                    </figure>
-                    <div class="cover-option">
-                        <a href=""
-                           class="button-medium">Trocar Capa</a>
-                        <small class="legend">Dimensão: 986 x 986px</small>
-                    </div>
-                </div>
-            </div>
-            <!-- /.col -->
+        <ul class="form-list-options">
+          <li>
+            <input type="checkbox"
+                   name="reproduzir"
+                   id="check-reproduzir"> <label for="check-reproduzir"
+                                                 class="form-label">Reproduzir músicas ao finalizar envio</label>
+          </li>
+          <li>
+            <input type="checkbox"
+                   name="privado"
+                   ng-model="cd.private"
+                   id="check-privado"> <label for="check-privado"
+                                              class="form-label">Tornar CD privado ao criá-lo</label>
+            <small class="legend">Ao marcar essa opção, o CD ficará privado por 3 dias.</small>
+          </li>
+        </ul>
+        <!-- /.form-list-options -->
+      </div>
+      <!-- /.col -->
+      <div class="col">
+        <label for="capa"
+               class="form-label">Capa:</label>
+        <div class="cover-wrapper clearfix">
+          <figure class="cover-thumb">
+            <img src="http://placehold.it/175x175"/>
+          </figure>
+          <div class="cover-option">
+            <a href=""
+               class="button-medium">Trocar Capa</a>
+            <small class="legend">Dimensão: 986 x 986px</small>
+          </div>
         </div>
-        <!-- /.form-row-double -->
-        <div class="button-area">
-            <button type="submit"
-                    class="button-highlight-arrow"><span></span> Continuar
-            </button>
-        </div>
-    </form>
-    <div ng-show="{{cd.saved}}"></div>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.form-row-double -->
+    <div class="button-area">
+      <button type="submit"
+              class="button-highlight-arrow"><span></span> Continuar
+      </button>
+    </div>
+  </form>
+  <div ng-show="cd.saved">
+    <p>Arraste as músicas para a caixa abaixo</p>
+    <div ng-file-drop
+         ng-model="files"
+         ng-file-change="fileDropped($files, $event, $rejectedFiles)"
+         drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
+         ng-multiple="true"
+         allow-dir="false"
+         accept="*mp3"
+         class="drop-box">
+      <ul>
+        <li ng-repeat="musica in cd.musicas">{{musica.name}}</li>
+      </ul>
+    </div>
+    <div class="button-area">
+      <div ng-file-select
+           ng-model="files"
+           allow-dir="false"
+           ng-file-change="fileDropped($files, $event, $rejectedFiles)"
+           class="button-highlight-arrow"
+           ng-multiple="true"
+           accept="'*mp3'"
+           tabindex="0"><span></span>Procurar músicas
+      </div>
+      <button type="submit"
+              style="float: right;margin-right: -10px!important;"
+              class="button-highlight-arrow"><span></span>Salvar
+      </button>
+    </div>
+  </div>
 </article><!-- /.painel-section-content -->

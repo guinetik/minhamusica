@@ -28,7 +28,8 @@ module.exports = {
       default: 0
     },
     downloads: {
-      type: 'integer'
+      type: 'integer',
+      default:0
     }
   }
 };
