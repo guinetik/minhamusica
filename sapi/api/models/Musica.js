@@ -10,7 +10,7 @@ module.exports = {
     nome: {
       type: 'string'
     },
-    url: {
+    filename: {
       type: 'string'
     },
     tempo: {
@@ -19,15 +19,15 @@ module.exports = {
     cd: {
       model: 'Cd'
     },
-    downloads:{
-      type:'integer',
-      default:0
+    downloads: {
+      type: 'integer',
+      default: 0
     }
   },
-  afterDestroy: function(deleted_record, next){
-    var musica = deleted_record[0];
-    fs.unlink(musica.url, function(err) {
-      if(err) throw err;
+  afterDestroy: function (deleted_record, next) {
+    var filename = "/Users/guinetik/Developer/projects/HMCL/minhamusica/sapi/assets/music/" + deleted_record[0].filename;
+    fs.unlink(filename, function (err) {
+      if (err) next(err);
       next();
     });
   }

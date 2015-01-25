@@ -9,26 +9,28 @@ function ws($rootScope, $http, API_URL) {
   ws.baseURL = API_URL;
   ws.consumeService = function (endpoint, params, token, cb, overrideBase, method) {
     var serviceURL;
+    var headers = {
+      'content-type': 'application/json'
+    };
     if (!params) params = {};
-    if(!method) method = m;
+    if (!method) method = m;
     if (token) {
-      params.token = token;
-      console.log("injecting token", token, params.token);
+      headers.token = token;
     }
     if (!overrideBase) {
       serviceURL = ws.baseURL + endpoint;
     } else {
       serviceURL = endpoint;
     }
-    console.log("serviceURL", serviceURL, params);
     $http({
       url: serviceURL,
       method: method,
-      data: params
+      data: params,
+      headers:headers
     }).success(function (result, status, headers, config) {
       //console.log("data", result, status, headers, config);
       result.status = status;
-      if(status == 200) {
+      if (status == 200) {
         if (result.token) {
           //console.log("tem token");
           $rootScope.$emit("update-user-token", result.token);
@@ -38,8 +40,8 @@ function ws($rootScope, $http, API_URL) {
         //console.log("dispatching callback", result, result.token);
         cb(result);
       }
-    }).error(function(err){
-      cb(err);
+    }).error(function (err, status) {
+      cb({message:err, status:status});
     });
   }
 }

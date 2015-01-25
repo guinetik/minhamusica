@@ -26,7 +26,7 @@ function api(ws, $upload, API_URL) {
     ws.consumeService("user/login", user, null, cb, false);
   };
   api.lookup = function (token, cb) {
-    ws.consumeService("usuarios/lookup", null, token, cb, false);
+    ws.consumeService("usuarios/lookup", {token:token}, token, cb, false);
   };
   api.addCd = function (token, cd, cb) {
     ws.consumeService("cd/add", cd, token, cb, false);
@@ -48,7 +48,7 @@ function api(ws, $upload, API_URL) {
         musica.cd = data.musica.cd;
         musica.id = data.musica.id;
         musica.nome = data.musica.nome;
-        musica.url = data.musica.url;
+        musica.filename = data.musica.filename;
         delete musica.file;
       } else {
         musica.status = -1;
@@ -59,5 +59,12 @@ function api(ws, $upload, API_URL) {
   };
   api.deleteMusic = function(music, token, cb) {
     ws.consumeService("musica/destroy/" + music.id, null, token, cb, false, "GET");
+  };
+  api.updateMusic = function(music, token, cb) {
+    var m = {
+      id:music.id,
+      nome:music.nome
+    };
+    ws.consumeService("musica/update/" + music.id, m, token, cb, false);
   }
 }

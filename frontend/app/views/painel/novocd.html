@@ -85,14 +85,14 @@
         <div class="cover-wrapper clearfix">
           <figure class="cover-thumb">
             <img src="http://placehold.it/175x175"
-                 style="width: 175px;height: 175px"
-                 ng-src="{{capa[0].dataUrl}}"/>
+                 ng-class="{'enviada':capa.url, 'enviando':!capa.url}"
+                 style="width: 175px;max-height: 175px"
+                 ng-src="{{capa.dataUrl}}"/>
           </figure>
           <div class="cover-option">
             <button ng-file-select
-                    ng-model="capa"
                     allow-dir="false"
-                    ng-file-change="generateThumb(capa[0], $files)"
+                    ng-file-change="generateThumb($files[0])"
                     ng-multiple="false"
                     accept="image/*.jpg,image/*.png"
                     class="button-medium">Trocar Capa
@@ -124,6 +124,7 @@
              style="width: 100%;">
         <thead>
         <tr>
+          <th style="padding: 10px;">#</th>
           <th style="padding: 10px;">Nome</th>
           <th width="120px">Status</th>
           <th width="200px">Opções</th>
@@ -131,14 +132,16 @@
         </thead>
         <tbody>
         <tr ng-repeat="musica in cd.musicas">
+          <td style="background:#EEEEEE;padding: 10px">{{$index+1}}</td>
           <td style="padding:10px;background:#EEEEEE"><input type="text"
+                                                             ng-disabled="musica.status!=2"
                                                              style="width: 90%"
                                                              placeholder="{{musica.name}}"
                                                              ng-model="musica.nome"/></td>
           <td style="background:#EEEEEE">{{musica.message}}</td>
           <td style="background:#EEEEEE">
             <button class="button"
-                    ng-if="musica.url != null"
+                    ng-if="musica.filename != null"
                     style="color:white">Play
             </button>
             <button class="button"
@@ -151,6 +154,7 @@
             </button>
             <button class="button"
                     ng-if="musica.status == 2"
+                    ng-click="updateMusic(musica)"
                     style="color:white">Renomear
             </button>
             <button class="button"

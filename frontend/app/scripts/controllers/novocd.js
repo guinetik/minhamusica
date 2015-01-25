@@ -9,13 +9,14 @@
  */
 angular.module('musicaApp').controller('NovoCDCtrl', ['$scope', 'api', 'auth', 'toastr', '$state','$timeout', NovoCDCtrl]);
 function NovoCDCtrl($scope, api, auth, toastr, $state, $timeout) {
-  $scope.cd = {};
-  $scope.cd.musicas = [];
+  $scope.cd = {
+    musicas:[]
+  };
   $scope.generos = [];
   $scope.files = [];
-  $scope.capa = [];
+  $scope.capas = [];
+  $scope.capa = {};
   $scope.generateThumb = function(file) {
-    console.log("generateThumb", file);
     if (file != null) {
       if (file.type.indexOf('image') > -1) {
         $timeout(function() {
@@ -23,7 +24,7 @@ function NovoCDCtrl($scope, api, auth, toastr, $state, $timeout) {
           fileReader.readAsDataURL(file);
           fileReader.onload = function(e) {
             $timeout(function() {
-              file.dataUrl = e.target.result;
+              $scope.capa.dataUrl = e.target.result;
             });
           }
         });
@@ -71,9 +72,11 @@ function NovoCDCtrl($scope, api, auth, toastr, $state, $timeout) {
     var token = auth.getToken();
     api.deleteMusic(musica, token, function(result) {
       if(result.status == 200) {
-        toastr.success("Musica deletada");
+        toastr.info("Música deletada");
         var index = $scope.cd.musicas.indexOf(musica);
         $scope.cd.musicas.splice(index, 1);
+      } else {
+        toastr.error("Houve um erro ao apagar a música");
       }
     });
   };
@@ -93,5 +96,16 @@ function NovoCDCtrl($scope, api, auth, toastr, $state, $timeout) {
   $scope.salvarCd = function() {
     toastr.info("Cd Criado com sucesso!");
     $state.go("cd", {id:$scope.cd.id});
+  };
+  $scope.updateMusic = function(music) {
+    var token = auth.getToken();
+    api.updateMusic(music, token, function(result){
+      console.log("updateMusic", result);
+      if(result.status == 200) {
+        toastr.info("Música renomeada");
+      } else {
+        toastr.error("Houve um erro ao renomear a música");
+      }
+    });
   }
 }

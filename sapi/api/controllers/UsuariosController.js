@@ -15,7 +15,7 @@ module.exports = {
   },
   lookup: function (req, res) {
     var token = req.body.token;
-    if(token == null) if (err) res.status(403).send({message: 'please provide a token'});
+    if(token == null) res.status(403).send({message: 'please provide a token'});
     Usuarios.findOneByToken(token, function(result){
       if(result) {
         return res.status(200).send({
@@ -30,35 +30,35 @@ module.exports = {
     });
   },
   perfil: function(req,res){
-	  
-	 var id = req.query.id; 
+
+	 var id = req.query.id;
 	  var collection = {};
-	  
+
 	  Usuarios.find({id:id}).exec(function findCB(err,usuario){
 	  	if(err) return res.status(500).send({message : 'Erro ao buscar usuário.'});
-		
+
 		if(usuario.length){
 			collection.usuario = usuario;
-			
+
 			Cd.find({artista:usuario.id}).sort('createdAt DESC').limit(10).exec(function(err2, c) {
 				if(err2) return res.status(500).send({message : 'ultimos cds do usuario.'});
-				
+
 				collection.cds = c;
-				
+
 				Eventos.find({usuario:usuario.id}).sort('createdAt DESC').limit(10).exec(function(err3, e) {
 					if(err3) return res.status(500).send({message : 'ultimos eventos do usuario.'});
-					
-					collection.eventos = e; 	
+
+					collection.eventos = e;
 					return res.status(200).send({perfil:collection});
 				});
 			});
 		}else
 			return res.status(404).send({message:'Usuário não encontrado!'});
-		  
+
 	  });
-	  
-  }	
-	
-	
+
+  }
+
+
 };
 

@@ -24,14 +24,14 @@ module.exports = {
   },
   add: function (req, res) {
     var cd = req.body;
-    if (!cd.token) {
+    var token = req.headers.token;
+    if (!token) {
       res.status(403).send({message: 'Token inválido'})
     }
-    Usuarios.findOneByToken(cd.token, function (result) {
+    Usuarios.findOneByToken(token, function (result) {
       if (!result) {
         res.status(404).send({message: 'Artista não encontrado'})
       }
-      delete cd.token;
       cd.artista = result;
       Cd.create(cd).exec(function createCB(err, cd) {
         if (err) {
@@ -51,9 +51,11 @@ module.exports = {
       if (err) return res.status(404).send({message: 'Erro ao salvar a música. Cd não encontrado'});
       uploadFile.upload({dirname: '../../assets/music'}, function onUploadComplete(err, files) {
         if (err) return res.serverError(err);
+        console.log("file", files[0]);
+        console.log("file.fd", files[0].fd);
         var song = {
           nome: files[0].filename,
-          url: files[0].fd,
+          filename: files[0].fd.split("/").pop(),
           cd: cd
         };
         Musica.create(song).exec(function createCB(err, musica) {
