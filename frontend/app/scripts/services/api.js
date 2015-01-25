@@ -7,28 +7,57 @@
  * # Api
  * Service in the musicaApp.
  */
-angular.module('musicaApp').service('api', ['ws', api]);
-function api(ws) {
-    var api = this;
-    api.getEstados = function (cb) {
-        ws.consumeService("data/estados", null, null, cb, false, "GET");
-    };
-    api.getHome = function (cb) {
-        ws.consumeService("data/home", null, null, cb, false, "GET");
-    };
-    api.getGeneros = function (cb) {
-        ws.consumeService("data/generos", null, null, cb, false, "GET");
-    };
-    api.signup = function (user, cb) {
-        ws.consumeService("usuarios/create", user, null, cb, false);
-    };
-    api.login = function (user, cb) {
-        ws.consumeService("user/login", user, null, cb, false);
-    };
-    api.lookup = function (token, cb) {
-        ws.consumeService("usuarios/lookup", null, token, cb, false);
-    };
-    api.addCd = function (token, cd, cb) {
-        ws.consumeService("cd/add", cd, token, cb, false);
-    };
+angular.module('musicaApp').service('api', ['ws', '$upload', 'API_URL', api]);
+function api(ws, $upload, API_URL) {
+  var api = this;
+  api.getEstados = function (cb) {
+    ws.consumeService("data/estados", null, null, cb, false, "GET");
+  };
+  api.getHome = function (cb) {
+    ws.consumeService("data/home", null, null, cb, false, "GET");
+  };
+  api.getGeneros = function (cb) {
+    ws.consumeService("data/generos", null, null, cb, false, "GET");
+  };
+  api.signup = function (user, cb) {
+    ws.consumeService("usuarios/create", user, null, cb, false);
+  };
+  api.login = function (user, cb) {
+    ws.consumeService("user/login", user, null, cb, false);
+  };
+  api.lookup = function (token, cb) {
+    ws.consumeService("usuarios/lookup", null, token, cb, false);
+  };
+  api.addCd = function (token, cd, cb) {
+    ws.consumeService("cd/add", cd, token, cb, false);
+  };
+  api.addMusic = function (musica, cb) {
+    $upload.upload({
+      url: API_URL + 'cd/music/add',
+      method: 'POST',
+      data: {id_cd: musica.cd},
+      file: musica.file
+    }).progress(function (evt) {
+      musica.progress = parseInt(100.0 * evt.loaded / evt.total);
+      musica.status = 1;
+      musica.message = 'Enviando: ' + musica.progress + '%';
+    }).success(function (data, status, headers, config) {
+      if (status == 200) {
+        musica.status = 2;
+        musica.message = 'Enviada';
+        musica.cd = data.musica.cd;
+        musica.id = data.musica.id;
+        musica.nome = data.musica.nome;
+        musica.url = data.musica.url;
+        delete musica.file;
+      } else {
+        musica.status = -1;
+        musica.message = 'Erro ao enviar';
+      }
+      cb(data, status, headers, config);
+    });
+  };
+  api.deleteMusic = function(music, token, cb) {
+    ws.consumeService("musica/destroy/" + music.id, null, token, cb, false, "GET");
+  }
 }

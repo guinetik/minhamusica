@@ -17,7 +17,7 @@ angular.module('musicaApp').config(function ($urlRouterProvider, $stateProvider)
       controller: 'MainCtrl'
     })
     .state('cd', {
-      url: '/cd',
+      url: '/cd/:id',
       templateUrl: '/views/cd.html',
       controller: 'CdCtrl'
     })

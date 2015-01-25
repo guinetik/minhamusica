@@ -84,11 +84,19 @@
                class="form-label">Capa:</label>
         <div class="cover-wrapper clearfix">
           <figure class="cover-thumb">
-            <img src="http://placehold.it/175x175"/>
+            <img src="http://placehold.it/175x175"
+                 style="width: 175px;height: 175px"
+                 ng-src="{{capa[0].dataUrl}}"/>
           </figure>
           <div class="cover-option">
-            <a href=""
-               class="button-medium">Trocar Capa</a>
+            <button ng-file-select
+                    ng-model="capa"
+                    allow-dir="false"
+                    ng-file-change="generateThumb(capa[0], $files)"
+                    ng-multiple="false"
+                    accept="image/*.jpg,image/*.png"
+                    class="button-medium">Trocar Capa
+            </button>
             <small class="legend">Dimensão: 986 x 986px</small>
           </div>
         </div>
@@ -112,22 +120,48 @@
          allow-dir="false"
          accept="*mp3"
          class="drop-box">
-     <table ng-show="cd.musicas.length>0" style="width: 100%;">
-       <thead>
-         <tr>
+      <table ng-show="cd.musicas.length>0"
+             style="width: 100%;">
+        <thead>
+        <tr>
           <th style="padding: 10px;">Nome</th>
-          <th width="200px">Status</th>
-          <th width="80px">Opções</th>
-         </tr>
-       </thead>
-       <tbody>
-        <tr ng-repeat="musica in cd.musicas">
-          <td style="padding:10px;background:#EEEEEE">{{musica.name}}</td>
-          <td style="background:#EEEEEE">Enviando</td>
-          <td style="background:#EEEEEE"><button class="button" style="color:white">Cancelar</button></td>
+          <th width="120px">Status</th>
+          <th width="200px">Opções</th>
         </tr>
-       </tbody>
-     </table>
+        </thead>
+        <tbody>
+        <tr ng-repeat="musica in cd.musicas">
+          <td style="padding:10px;background:#EEEEEE"><input type="text"
+                                                             style="width: 90%"
+                                                             placeholder="{{musica.name}}"
+                                                             ng-model="musica.nome"/></td>
+          <td style="background:#EEEEEE">{{musica.message}}</td>
+          <td style="background:#EEEEEE">
+            <button class="button"
+                    ng-if="musica.url != null"
+                    style="color:white">Play
+            </button>
+            <button class="button"
+                    ng-if="musica.status < 0"
+                    style="color:white">Reenviar
+            </button>
+            <button class="button"
+                    ng-if="musica.status != 2"
+                    style="color:white">Cancelar
+            </button>
+            <button class="button"
+                    ng-if="musica.status == 2"
+                    style="color:white">Renomear
+            </button>
+            <button class="button"
+                    ng-if="musica.status == 2"
+                    ng-click="deleteMusic(musica)"
+                    style="color:white">Apagar
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
     </div>
     <div class="button-area">
       <div ng-file-select
@@ -139,6 +173,8 @@
            class="button-highlight-arrow"><span></span>Procurar músicas
       </div>
       <button type="submit"
+              ng-click="salvarCd()"
+              ng-disabled="cd.musicas.length==0"
               style="float: right;margin-right: -10px!important;"
               class="button-highlight-arrow"><span></span>Salvar
       </button>
