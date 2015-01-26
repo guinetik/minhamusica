@@ -6,7 +6,6 @@
  */
 
 module.exports = {
-
   attributes: {
     artista: {
       model: 'Usuarios'
@@ -29,7 +28,7 @@ module.exports = {
     },
     downloads: {
       type: 'integer',
-      default: 0
+      defaultsTo: 0
     },
     musicas: {
       collection: 'Musica',

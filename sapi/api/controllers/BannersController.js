@@ -67,8 +67,8 @@ module.exports = {
       path.pop();
       return path.join('\\');
     }
-    var pathDir = dir() + '\\assets\\images\\destaques\\';
-    var pathDirThumb = dir() + '\\assets\\images\\destaques\\thumb\\';
+    var pathDir = "../../../frontend/app/public/img";
+    var pathDirThumb = "../../../frontend/app/public/img/thumb";
 
 
     var supportedTypes = [

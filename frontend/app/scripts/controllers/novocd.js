@@ -44,10 +44,6 @@ function NovoCDCtrl($scope, api, auth, toastr, $state, $timeout) {
       }
     });
   };
-  $scope.imageDropped = function ($files, $event, $rejectedFiles) {
-    console.log("acceped", $files);
-    console.log("rejected", $rejectedFiles);
-  };
   $scope.fileDropped = function ($files, $event, $rejectedFiles) {
     for (var i = 0; i < $files.length; i++) {
       var filename = $files[i].name;
@@ -61,7 +57,7 @@ function NovoCDCtrl($scope, api, auth, toastr, $state, $timeout) {
         $scope.cd.musicas.push(music);
         api.addMusic(music, function(data, status, headers, config){
           if(status == 200) {
-            toastr.success(data.message);
+            toastr.info(data.message);
             config.file.message = 'Enviada';
             config.file.status = 2;
           } else {

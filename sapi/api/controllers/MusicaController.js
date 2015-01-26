@@ -13,7 +13,7 @@ module.exports = {
     }
     Cd.findOneById(req.body.id_cd, function (err, cd) {
       if (err) return res.status(404).send({message: 'Erro ao salvar a música. Cd não encontrado'});
-      uploadFile.upload({dirname: '../../assets/music'}, function onUploadComplete(err, files) {
+      uploadFile.upload({dirname: '../../../frontend/app/public/music'}, function onUploadComplete(err, files) {
         if (err) return res.serverError(err);
         console.log("file", files[0]);
         console.log("file.fd", files[0].fd);

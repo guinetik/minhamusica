@@ -8,7 +8,7 @@
  *
  * Main module of the application.
  */
-angular.module('musicaApp', ['ui.router', 'toastr', 'slick', 'angularFileUpload']);
+angular.module('musicaApp', ['ui.router', 'ngAnimate', 'toastr', 'slick', 'angularFileUpload', 'blockUI']);
 var functions = functions || {}
 functions = {
   playlist: {
@@ -48,7 +48,7 @@ functions = {
       _this.find('.genre-dropdown').stop().hide();
     }
   }
-  
+
 };
 
 
@@ -58,7 +58,7 @@ $(window).load(function(){
   $(document).on('click', '#playlist .playlist-plug', function(e){
     e.preventDefault();
     functions.playlist.init( this );
-    
+
   });
   // Genre dropdown
   $(document).on('mouseover', '#genre', function(e){
@@ -70,6 +70,6 @@ $(window).load(function(){
     functions.dropdownGenre.hide( this );
   });
 
-  
-  
+
+
 });

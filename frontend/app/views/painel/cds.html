@@ -1,3 +1,35 @@
 <article class="painel-section-content">
   <h2 class="painel-section-content-title">Meus CDS</h2>
+  <div class="cd-info clearfix"
+       ng-repeat="cd in cds">
+    <figure class="cd-thumb cd-info-thumb">
+      <a href="http://placehold.it/986x986"
+         class="view-large"
+         titler="Ver maior"> <img src="http://placehold.it/206x206"
+                                  ng-src="{{'http://localhost:1337/assets/images/cover/' + cd.capa}}"
+                                  alt=""> </a>
+    </figure>
+    <div class="cd-info-content clearfix">
+      <h1 class="title">{{cd.titulo}}</h1>
+      <p class="desc">{{cd.descricao}}</p>
+      <div class="dados">
+        <dl>
+          <dt>Tamanho do CD</dt>
+          <dd>145MB</dd>
+        </dl>
+        <dl>
+          <dt>Data de Envio</dt>
+          <dd>{{cd.createdAt|date : "dd/MM/yyyy"}}</dd>
+        </dl>
+        <dl>
+          <dt>Downloads</dt>
+          <dd>{{cd.downloads}}</dd>
+        </dl>
+      </div>
+      <!-- /.dados -->
+      <a href="#"
+         class="button-download-big"
+         title="Baixar CD"><span class="icon"></span>Baixar CD</a>
+    </div>
+  </div>
 </article><!-- /.painel-section-content -->

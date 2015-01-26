@@ -50,11 +50,11 @@ module.exports = {
     },
 	eventos: {
       colletion : 'evento',
-	  via: 'usuario' 	
+	  via: 'usuario'
     },
 	cds: {
       colletion : 'cd',
-	  via: 'artista' 	
+	  via: 'artista'
     },
     toJSON: function() {
       var obj = this.toObject();
@@ -77,13 +77,18 @@ module.exports = {
     });
   },
   findOneByToken:function(token, cb) {
-    var palyload = jwt.decode(token, 'shhh..');
-    Usuarios.findOneById(palyload.sub).populate("cidade").exec(function (err, foundUser) {
-      if (!foundUser) {
-        cb(false);
-      }
-      cb(foundUser);
-    });
+    try {
+      var palyload = jwt.decode(token, 'shhh..');
+      Usuarios.findOneById(palyload.sub).populate("cidade").exec(function (err, foundUser) {
+        if (!foundUser) {
+          cb(false);
+        }
+        cb(foundUser);
+      });
+    } catch(err) {
+      console.log("findOneByToken", err);
+      cb(false);
+    }
   }
 };
 

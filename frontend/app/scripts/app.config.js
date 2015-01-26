@@ -40,40 +40,58 @@ angular.module('musicaApp').config(function ($urlRouterProvider, $stateProvider)
       templateUrl: '/views/painel/painel.html'
     }).
     state('novo_cd', {
-      parent:"painel",
+      parent: "painel",
       url: '/painel/cds/novo',
-      controller:'NovoCDCtrl',
+      controller: 'NovoCDCtrl',
       templateUrl: '/views/painel/novocd.html'
     }).
     state('meus_cds', {
-      parent:"painel",
+      parent: "painel",
       url: '/painel/cds',
-      controller:'MeusCDsCtrl',
+      controller: 'MeusCDsCtrl',
       templateUrl: '/views/painel/cds.html'
     }).
     state('novo_evento', {
-      parent:"painel",
+      parent: "painel",
       url: '/painel/eventos/novo',
-      controller:'NovoEventoCtrl',
+      controller: 'NovoEventoCtrl',
       templateUrl: '/views/painel/novo_evento.html'
     }).
     state('meus_eventos', {
-      parent:"painel",
+      parent: "painel",
       url: '/painel/eventos',
-      controller:'MeusEventosCtrl',
+      controller: 'MeusEventosCtrl',
       templateUrl: '/views/painel/meus_eventos.html'
     }).
     state('config', {
-      parent:"painel",
+      parent: "painel",
       url: '/painel/config',
-      controller:'ConfigsCtrl',
+      controller: 'ConfigsCtrl',
       templateUrl: '/views/painel/config.html'
     }).
     state('config_password', {
-      parent:"painel",
+      parent: "painel",
       url: '/painel/config/password',
-      controller:'ConfigPasswordCtrl',
+      controller: 'ConfigPasswordCtrl',
       templateUrl: '/views/painel/config_password.html'
     });
-})
-  .constant('API_URL', 'http://localhost:1337/');
+}).constant('API_URL', 'http://localhost:1337/').config(function (toastrConfig) {
+  angular.extend(toastrConfig, {
+    allowHtml: false,
+    closeButton: true,
+    closeHtml: '<button>&times;</button>',
+    containerId: 'toast-container',
+    extendedTimeOut: 500,
+    iconClasses: {
+      error: 'toast-error',
+      info: 'toast-info',
+      success: 'toast-success',
+      warning: 'toast-warning'
+    },
+    tapToDismiss: true,
+    timeOut: 1000
+  });
+}).config(function (blockUIConfig) {
+  blockUIConfig.message = 'Carregando';
+  blockUIConfig.delay = 10;
+});

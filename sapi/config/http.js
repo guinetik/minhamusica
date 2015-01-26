@@ -8,9 +8,7 @@
  * For more information on configuration, check out:
  * http://sailsjs.org/#/documentation/reference/sails.config/sails.config.http.html
  */
-
 module.exports.http = {
-
   /****************************************************************************
   *                                                                           *
   * Express middleware to use for every Sails request. To add custom          *

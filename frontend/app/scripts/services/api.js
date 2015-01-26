@@ -26,7 +26,7 @@ function api(ws, $upload, API_URL) {
     ws.consumeService("user/login", user, null, cb, false);
   };
   api.lookup = function (token, cb) {
-    ws.consumeService("usuarios/lookup", {token:token}, token, cb, false);
+    ws.consumeService("usuarios/lookup", null, token, cb, false);
   };
   api.addCd = function (token, cd, cb) {
     ws.consumeService("cd/add", cd, token, cb, false);
@@ -93,4 +93,7 @@ function api(ws, $upload, API_URL) {
       cb(data, status, headers, config);
     });
   };
+  api.getUserCollection = function(token, cb) {
+    ws.consumeService("usuarios/collection", null, token, cb, false, "GET");
+  }
 }
