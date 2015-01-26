@@ -7,15 +7,28 @@
  * # MeuscdsCtrl
  * Controller of the musicaApp
  */
-angular.module('musicaApp').controller('MeusCDsCtrl', ['$scope', 'api', 'auth', MeusCDsCtrl]);
-function MeusCDsCtrl($scope, api, auth) {
+angular.module('musicaApp').controller('MeusCDsCtrl', ['$scope', 'api', 'auth', 'toastr', MeusCDsCtrl]);
+function MeusCDsCtrl($scope, api, auth, toastr) {
   $scope.cds = [];
+  var token = auth.getToken();
   $scope.$on('$viewContentLoaded', function (event) {
-    var token = auth.getToken();
+    $scope.updateCollection();
+  });
+  $scope.updateCollection = function () {
     api.getUserCollection(token, function (result) {
-      if(result.status == 200) {
+      if (result.status == 200) {
         $scope.cds = result.cds;
       }
     });
-  });
+  };
+  $scope.deleteCd = function (cd) {
+    api.deleteCd(cd, token, function (result) {
+      if (result.status == 200) {
+        toastr.info("CD Excluído");
+        $scope.updateCollection();
+      } else {
+        toastr.warning("Houve um erro ao excluir o cd");
+      }
+    });
+  }
 }

@@ -60,6 +60,9 @@ function api(ws, $upload, API_URL) {
   api.deleteMusic = function(music, token, cb) {
     ws.consumeService("musica/destroy/" + music.id, null, token, cb, false, "GET");
   };
+  api.deleteCd = function(cd, token, cb) {
+    ws.consumeService("cd/destroy/" + cd.id, null, token, cb, false, "GET");
+  };
   api.updateMusic = function(music, token, cb) {
     var m = {
       id:music.id,

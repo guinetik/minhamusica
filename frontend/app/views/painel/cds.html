@@ -15,12 +15,16 @@
       <p class="desc">{{cd.descricao}}</p>
       <div class="dados">
         <dl>
-          <dt>Tamanho do CD</dt>
-          <dd>145MB</dd>
-        </dl>
-        <dl>
           <dt>Data de Envio</dt>
           <dd>{{cd.createdAt|date : "dd/MM/yyyy"}}</dd>
+        </dl>
+        <dl>
+          <dt>Músicas</dt>
+          <dd>{{cd.musicas.length}}</dd>
+        </dl>
+        <dl>
+          <dt>Tamanho</dt>
+          <dd>145MB</dd>
         </dl>
         <dl>
           <dt>Downloads</dt>
@@ -29,8 +33,15 @@
       </div>
       <!-- /.dados -->
       <a href="#"
-         class="button-download-big"
-         title="Baixar CD"><span class="icon"></span>Baixar CD</a>
+         class="button-medium"
+         title="Editar CD"><span class="icon"></span>Editar</a>
+      <a href="#"
+         class="button-medium"
+         ng-click="deleteCd(cd)"
+         title="Excluir CD"><span class="icon"></span>Excluir</a>
     </div>
+  </div>
+  <div ng-if="cds.length == 0">
+    <h1>Você ainda não cadastrou nenhum cd</h1>
   </div>
 </article><!-- /.painel-section-content -->

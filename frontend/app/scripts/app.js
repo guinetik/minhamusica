@@ -9,7 +9,7 @@
  * Main module of the application.
  */
 angular.module('musicaApp', ['ui.router', 'ngAnimate', 'toastr', 'slick', 'angularFileUpload', 'blockUI', 'dcbImgFallback']);
-var functions = functions || {}
+var functions = functions || {};
 functions = {
   playlist: {
     init: function(element){
@@ -48,11 +48,7 @@ functions = {
       _this.find('.genre-dropdown').stop().hide();
     }
   }
-
 };
-
-
-
 $(window).load(function(){
   // Plug Playlist
   $(document).on('click', '#playlist .playlist-plug', function(e){
@@ -69,7 +65,4 @@ $(window).load(function(){
     e.preventDefault();
     functions.dropdownGenre.hide( this );
   });
-
-
-
 });
