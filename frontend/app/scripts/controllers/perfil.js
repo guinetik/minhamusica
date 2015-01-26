@@ -7,12 +7,12 @@
  * # PerfilCtrl
  * Controller of the musicaApp
  */
-angular.module('musicaApp').controller('PerfilCtrl', ['$scope', 'api', '$stateParams',PerfilCtrl]);
-function PerfilCtrl($scope, api, $stateParams) {
+angular.module('musicaApp').controller('PerfilCtrl', ['$scope', 'api', '$stateParams', '$timeout',PerfilCtrl]);
+function PerfilCtrl($scope, api, $stateParams, $timeout) {
   $scope.perfil = {};
   $scope.id = $stateParams.id;
   $scope.$on('$viewContentLoaded', function (event) {
-    $scope.updateProfile();
+    $timeout($scope.updateProfile);
   });
   $scope.updateProfile = function() {
     console.log("updateProfile", $scope.id);

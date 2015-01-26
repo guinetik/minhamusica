@@ -3,14 +3,13 @@
   <div class="cd-info clearfix"
        ng-repeat="cd in cds">
     <figure class="cd-thumb cd-info-thumb">
-      <a
-        href="#"
+      <a href="#"
          class="view-large"
          title="Ver maior"> <img src="http://placehold.it/206x206"
-                                  fallback-src="http://placehold.it/206x206"
-                                  style="width: 206px;height: 206px"
-                                  ng-src="{{'public/img/cover/' + cd.capa}}"
-                                  alt=""> </a>
+                                 fallback-src="http://placehold.it/206x206"
+                                 style="width: 206px;height: 206px"
+                                 ng-src="{{'public/img/cover/' + cd.capa}}"
+                                 alt=""> </a>
     </figure>
     <div class="cd-info-content clearfix">
       <h1 class="title">{{cd.titulo}}</h1>
@@ -34,16 +33,20 @@
         </dl>
       </div>
       <!-- /.dados -->
-      <a href="#"
-         class="button-medium"
-         title="Editar CD"><span class="icon"></span>Editar</a>
-      <a href="#"
-         class="button-medium"
-         ng-click="deleteCd(cd)"
-         title="Excluir CD"><span class="icon"></span>Excluir</a>
+      <div>
+        <a ui-sref="editar_cd({id:cd.id})"
+           class="button-medium"
+           title="Editar CD"><span class="icon"></span>Editar</a>
+        <a href="#"
+           class="button-medium"
+           ng-click="deleteCd(cd)"
+           title="Excluir CD"><span class="icon"></span>Excluir</a>
+      </div>
     </div>
   </div>
-  <div ng-if="cds.length == 0">
-    <h1>Você ainda não cadastrou nenhum cd</h1>
+  <div class="box-content"
+       ng-if="cds.length==0">
+    <p class="message-empty">
+      Você não tem nenhum CD Cadastrado</p>
   </div>
 </article><!-- /.painel-section-content -->

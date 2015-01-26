@@ -44,7 +44,13 @@ angular.module('musicaApp').config(function ($urlRouterProvider, $stateProvider)
       parent: "painel",
       url: '/painel/cds/novo',
       controller: 'NovoCDCtrl',
-      templateUrl: '/views/painel/novocd.html'
+      templateUrl: '/views/painel/cd_form.html'
+    }).
+    state('editar_cd', {
+      parent: "painel",
+      url: '/painel/cd/edit/:id',
+      controller: 'EditCDCtrl',
+      templateUrl: '/views/painel/cd_form.html'
     }).
     state('meus_cds', {
       parent: "painel",

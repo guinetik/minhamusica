@@ -23,8 +23,9 @@ var Cd = module.exports = {
       model: 'Generos'
     },
     private: {
-      type: 'integer',
-      default: 0
+      type: 'boolean',
+      defaultsTo: false,
+      boolean: true
     },
     downloads: {
       type: 'integer',

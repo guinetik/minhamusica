@@ -21,7 +21,7 @@ var Musica = module.exports = {
     },
     downloads: {
       type: 'integer',
-      default: 0
+      defaultsTo: 0
     }
   },
   afterDestroy: function (deleted_record, next) {

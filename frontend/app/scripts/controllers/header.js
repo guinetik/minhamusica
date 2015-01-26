@@ -19,7 +19,7 @@ function HeaderCtrl($scope , $rootScope, auth, api, $state) {
   }
   $scope.logout = function() {
     auth.logout();
-    $scope.isAuthenticated = auth.isAuthenticated();
+    $scope.isAuthenticated = false;
     $state.go("main");
   };
   $rootScope.$on("user-lookup", function (event, user) {
@@ -29,6 +29,9 @@ function HeaderCtrl($scope , $rootScope, auth, api, $state) {
     //console.log("update-user-token", token);
     auth.setToken(token);
     $scope.isAuthenticated = auth.isAuthenticated();
+    if(!$scope.isAuthenticated) {
+      $scope.logout();
+    }
     //console.log("update-user-token : isAuthenticated", $scope.isAuthenticated, auth.isAuthenticated());
     if(token != '-1') {
       var u = auth.getUser(token);

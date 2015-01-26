@@ -101,5 +101,19 @@ function api(ws, $upload, API_URL) {
   };
   api.getProfile = function(id, cb) {
     ws.consumeService("usuarios/perfil?id=" + id, null, null, cb, false, "GET");
+  };
+  api.getCD = function(id, cb) {
+    ws.consumeService("cd/" + id, null, null, cb, false, "GET");
+  };
+  api.updateCD = function(cd, token, cb) {
+    var c = {
+      id:cd.id,
+      titulo:cd.titulo,
+      descricao:cd.descricao,
+      private:cd.private,
+      capa:cd.capa,
+      genero:cd.genero
+    };
+    ws.consumeService("cd/update/" + cd.id, c, token, cb, false);
   }
 }
