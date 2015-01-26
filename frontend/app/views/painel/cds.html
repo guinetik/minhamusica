@@ -3,10 +3,11 @@
   <div class="cd-info clearfix"
        ng-repeat="cd in cds">
     <figure class="cd-thumb cd-info-thumb">
-      <a href="http://placehold.it/986x986"
+      <a href="{{'#/cd/' + cd.id}}"
          class="view-large"
          titler="Ver maior"> <img src="http://placehold.it/206x206"
-                                  ng-src="{{'http://localhost:1337/assets/images/cover/' + cd.capa}}"
+                                  fallback-src="http://placehold.it/206x206"
+                                  ng-src="{{'public/img/cover/' + cd.capa}}"
                                   alt=""> </a>
     </figure>
     <div class="cd-info-content clearfix">
