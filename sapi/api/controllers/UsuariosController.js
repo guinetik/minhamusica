@@ -5,7 +5,7 @@ var createSendToken = require('../services/createSendToken.js');
  * @description :: Server-side logic for managing users
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
-module.exports = {
+var UsuariosController = module.exports = {
   create: function (req, res) {
     var sendUser = req.body;
     Usuarios.create(sendUser).exec(function createCB(err, s) {
@@ -26,7 +26,7 @@ module.exports = {
         });
       } else {
         return res.status(404).send({
-          message: 'User not found'
+          message: 'User not found. Token: ' + token
         });
       }
     });
@@ -38,15 +38,15 @@ module.exports = {
       res.status(403).send({message: 'Você deve informar um token válido ou um id de usuario'});
     }
     var collection = {};
-    if(id != null) {
-      Usuarios.findOne({id: id}).exec(function findCB(err, usuario) {
+    if (id != null) {
+      Usuarios.findOne({id: id}).populateAll().exec(function findCB(err, usuario) {
         if (err) return res.status(500).send({message: 'Erro ao buscar usuário.'});
         if (usuario.id) {
           getUserProfile(usuario);
         } else return res.status(404).send({message: 'Usuário não encontrado!'});
       });
     } else {
-      if(token != null) {
+      if (token != null) {
         Usuarios.findOneByToken(token, function (result) {
           if (result) {
             getUserProfile(result);
@@ -57,7 +57,7 @@ module.exports = {
     function getUserProfile(usuario) {
       collection.usuario = usuario;
       console.log("user.id", usuario.id);
-      Cd.find().where({'artista': usuario.id}).sort('createdAt DESC').limit(10).populate("musicas").exec(function (err2, c) {
+      Cd.find().where({'artista': usuario.id}).sort('createdAt DESC').limit(10).populateAll().exec(function (err2, c) {
         if (err2) return res.status(500).send({message: 'ultimos cds do usuario.'});
         collection.cds = c;
         Eventos.find().where({usuario: usuario.id}).sort('createdAt DESC').limit(10).exec(function (err3, e) {
@@ -68,16 +68,16 @@ module.exports = {
       });
     }
   },
-  collection:function(req, res) {
+  collection: function (req, res) {
     var token = req.headers.token;
     if (!token) {
       res.status(403).send({message: 'Token inválido'});
     }
     Usuarios.findOneByToken(token, function (usuario) {
       if (usuario) {
-        Cd.find().where({'artista': usuario.id}).populate("musicas").sort('createdAt DESC').exec(function (err, c) {
+        Cd.find().where({'artista': usuario.id}).populateAll().sort('createdAt DESC').exec(function (err, c) {
           if (err) return res.status(500).send({message: 'Erro ao trazer os cds do usuario.'});
-          return res.status(200).send({cds: c, message:'Cds obtidos com sucesso'});
+          return res.status(200).send({cds: c, message: 'Cds obtidos com sucesso'});
         });
       } else {
         return res.status(404).send({

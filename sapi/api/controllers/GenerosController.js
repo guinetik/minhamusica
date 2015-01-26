@@ -5,7 +5,7 @@
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
-module.exports = {
+var GenerosController = module.exports = {
   msgError: '',
   getGeneros: function (req, res) {
     Generos.find({}).exec(function (err, g) {

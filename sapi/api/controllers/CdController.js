@@ -4,19 +4,18 @@
  * @description :: Server-side logic for managing cds
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
-
-module.exports = {
+var CdController = module.exports = {
   download: function (req, res) {
     var id = req.query.id;
     Cd.findOne({id: id}).exec(function findCB(err, cdFound) {
-      if (err) return res.status(404).send({message: 'Erro ao computar download'})
+      if (err) return res.status(404).send({message: 'Erro ao computar download'});
       if (cdFound) {
         var downloadInt = cdFound.downloads + 1;
         console.log("downloads", cdFound.downloads);
         Cd.update({id: id}, {downloads: downloadInt}).exec(function afterwards(err2, up) {
           console.log("err2", err2);
           if (err2) return res.status(500).send({message: 'Erro ao computar download'});
-          return res.status(200).send({message: 'Download iniciado', downloads:up[0].downloads});
+          return res.status(200).send({message: 'Download iniciado', downloads: up[0].downloads});
         });
       }
     });
@@ -41,15 +40,15 @@ module.exports = {
       });
     });
   },
-  updateCover:function(req, res) {
+  updateCover: function (req, res) {
     var uploadFile = req.file('file');
     var cd = req.body;
     uploadFile.upload({dirname: '../../../frontend/app/public/img/cover'}, function onUploadComplete(err, files) {
       if (err) return res.serverError(err);
       var imagem = files[0].fd.split("/").pop();
-      if(cd.id != null) {
-        Cd.update({id:cd.id}, {capa:imagem}).exec(function(err, updated){
-          if(err) return res.status(400).send({message: 'Erro ao atualizar a capa'});
+      if (cd.id != null) {
+        Cd.update({id: cd.id}, {capa: imagem}).exec(function (err, updated) {
+          if (err) return res.status(400).send({message: 'Erro ao atualizar a capa'});
           return res.status(200).send({message: 'Imagem Enviada', imagem: imagem});
         });
       } else {

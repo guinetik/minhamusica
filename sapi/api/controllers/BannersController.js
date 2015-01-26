@@ -7,7 +7,7 @@
 var gm = require('gm');
 var fs = require('fs');
 
-module.exports = {
+var BannersController = module.exports = {
   uploadPath: '../public/images/destaques',
   uploadThumb: '../public/images/thumb/',
   proportions: {
@@ -21,8 +21,8 @@ module.exports = {
     }
   },
   msgError: '',
-  list: function(req, res) {
-    Banners.find({}).sort('posicao DESC').limit(100).exec(function(err, banners) {
+  list: function (req, res) {
+    Banners.find({}).sort('posicao DESC').limit(100).exec(function (err, banners) {
       if (err) return serverError(err);
       res.view('banner/index', {
         banners: banners,
@@ -31,11 +31,10 @@ module.exports = {
       module.exports.msgError = '';
     });
   },
-  changePosition: function(req, res) {
+  changePosition: function (req, res) {
     var newData = req.body.data;
     var newPositions = newData.split(',');
-
-    _.each(newPositions, function(pos) {
+    _.each(newPositions, function (pos) {
       var pIds = pos.split('-');
       Banners.update({
         id: pIds[0]
@@ -55,13 +54,13 @@ module.exports = {
     });
   },
   // @TODO:redimensionar imagem , cadastrar como destaque , editar , excluir
-  createBanner: function(req, res, next) {
+  createBanner: function (req, res, next) {
     var uploadPath = module.exports.uploadPath;
     var uploadThumb = module.exports.uploadThumb;
     var banner = req.body;
     var cod = banner.cod;
 
-    var dir = function() {
+    var dir = function () {
       var path = __dirname.split('\\');
       path.pop();
       path.pop();
@@ -90,18 +89,18 @@ module.exports = {
       }
 
       banner.cod = cod;
-      var checkType = supportedTypes.filter(function(type) {
+      var checkType = supportedTypes.filter(function (type) {
         return type === file[0].type;
       });
 
       if (checkType.length) {
-        var nameImg = function() {
+        var nameImg = function () {
           var Arr = file[0].fd.split('\\')
           return Arr[Arr.length - 1];
         };
 
         banner.img = nameImg();
-        gm(file[0].fd).size(function(err, img) {
+        gm(file[0].fd).size(function (err, img) {
           if (!err) {
 
             if (proportions.banner.width <= img.width && proportions.banner.height <= img.height) {
@@ -112,7 +111,7 @@ module.exports = {
               if (isProportional) {
                 gm(file[0].fd)
                   .resize(proportions.banner.width, proportions.banner.height)
-                  .write(pathDir + banner.img, function(err) {
+                  .write(pathDir + banner.img, function (err) {
                     if (err) {
                       fs.unlinkSync(file[0].fd);
                       module.exports.msgError = 'Erro ao redimensionar imagem.';
@@ -120,7 +119,7 @@ module.exports = {
                     } else {
                       gm(pathDir + banner.img)
                         .resize(proportions.thumb.width, proportions.thumb.height)
-                        .write(pathDirThumb + banner.img, function(err2) {
+                        .write(pathDirThumb + banner.img, function (err2) {
                           if (err2) {
                             fs.unlinkSync(file[0].fd);
                             module.exports.msgError = 'Erro ao criar thumb de imagem.';
@@ -159,8 +158,8 @@ module.exports = {
     });
   },
 
-  cropBanner: function(req, res) {
-    var dir = function() {
+  cropBanner: function (req, res) {
+    var dir = function () {
       var path = __dirname.split('\\');
       path.pop();
       path.pop();
@@ -171,20 +170,19 @@ module.exports = {
     var pathDirThumb = dir() + '\\assets\\images\\destaques\\thumb\\';
 
 
-
     var proportions = module.exports.proportions;
     var ban = req.body;
 
     gm(pathTmpDir + ban.img)
       .crop(proportions.banner.width,
-        proportions.banner.height,
-        ban.deltaX,
-        ban.deltaY)
-      .write(pathDir + ban.img, function(err) {
+      proportions.banner.height,
+      ban.deltaX,
+      ban.deltaY)
+      .write(pathDir + ban.img, function (err) {
         if (!err) {
           gm(pathDir + ban.img)
             .resize(proportions.thumb.width, proportions.thumb.height)
-            .write(pathDirThumb + ban.img, function(err2) {
+            .write(pathDirThumb + ban.img, function (err2) {
               if (!err2) {
                 module.exports.saveBanner(res, ban);
               } else {
@@ -201,19 +199,19 @@ module.exports = {
       });
 
   },
-  saveBanner: function(res, banner) {
+  saveBanner: function (res, banner) {
     Banners.create(banner).exec(function createCB(err, b) {
       if (err) return res.serverError(err);
       res.redirect('/');
     });
   },
-  deleteBanner: function(req, res) {
+  deleteBanner: function (req, res) {
     var params = req.url.split('/');
     var param = params.pop();
     var id = param.replace('?id=', '');
     Banners.destroy({
       id: id
-    }).exec(function(err, users) {
+    }).exec(function (err, users) {
       if (err) return res.serverError(err);
       res.redirect('/');
     });

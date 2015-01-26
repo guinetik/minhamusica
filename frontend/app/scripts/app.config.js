@@ -22,7 +22,8 @@ angular.module('musicaApp').config(function ($urlRouterProvider, $stateProvider)
       controller: 'CdCtrl'
     })
     .state('perfil', {
-      url: '/perfil',
+      url: '/perfil/:id',
+      controller:'PerfilCtrl',
       templateUrl: '/views/profile.html'
     })
     .state('signup', {

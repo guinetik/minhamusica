@@ -8,7 +8,7 @@ var createSendToken = require('../services/createSendToken.js');
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
-module.exports = {
+var AuthController = module.exports = {
   login: function (req, res) {
     var email = req.body.email;
     var password = req.body.senha;
@@ -37,7 +37,7 @@ module.exports = {
   },
   loginAdmin: function (req, res) {
     res.locals.layout = 'loginLayout';
-	if (req.method == 'POST') {
+    if (req.method == 'POST') {
       var email = req.body.email;
       var password = req.body.senha;
 
@@ -58,7 +58,7 @@ module.exports = {
           }
 
           req.session.authenticated = foundUser;
-				return res.redirect('/');
+          return res.redirect('/');
         });
 
       });

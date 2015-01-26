@@ -5,7 +5,7 @@
  * @docs        :: http://sailsjs.org/#!documentation/models
  */
 
-module.exports = {
+var Cd = module.exports = {
   attributes: {
     artista: {
       model: 'Usuarios'

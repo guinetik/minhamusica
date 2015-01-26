@@ -6,11 +6,9 @@ var bcrypt = require('bcrypt-nodejs');
  * @docs        :: http://sailsjs.org/#!documentation/models
  */
 
-module.exports = {
-
+var Admin = module.exports = {
   tableName: 'admin',
   schema: true,
-
   attributes: {
     nome: {
       type: 'string',
@@ -24,17 +22,16 @@ module.exports = {
       maxLength: 100
     },
     senha: {
-      type: 'string',
-    },
-
+      type: 'string'
+    }
   },
-  beforeCreate: function(attr, next) {
-    bcrypt.genSalt(10, function(err, salt) {
+  beforeCreate: function (attr, next) {
+    bcrypt.genSalt(10, function (err, salt) {
       if (err) {
         next(err);
       }
 
-      bcrypt.hash(attr.senha, salt, null, function(err, hash) {
+      bcrypt.hash(attr.senha, salt, null, function (err, hash) {
 
         if (err) next(err);
 
@@ -45,17 +42,17 @@ module.exports = {
 
     });
   },
-  beforeUpdate: function(attr, next) {
-   if (typeof(attr.senha) === 'undefined') {
+  beforeUpdate: function (attr, next) {
+    if (typeof(attr.senha) === 'undefined') {
       delete attr.senha;
       next();
-   } else {
-      bcrypt.genSalt(10, function(err, salt) {
+    } else {
+      bcrypt.genSalt(10, function (err, salt) {
         if (err) {
           next(err);
         }
 
-        bcrypt.hash(attr.senha, salt, null, function(err, hash) {
+        bcrypt.hash(attr.senha, salt, null, function (err, hash) {
 
           if (err) next(err);
 
@@ -63,14 +60,7 @@ module.exports = {
           next();
 
         });
-
       });
-
-
     }
-
-
-  },
-
-
+  }
 };

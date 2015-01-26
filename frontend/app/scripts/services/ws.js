@@ -41,6 +41,7 @@ function ws($rootScope, $http, API_URL) {
         cb(result);
       }
     }).error(function (err, status) {
+      console.log("errror");
       cb({message:err, status:status});
     });
   }

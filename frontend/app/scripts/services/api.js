@@ -98,5 +98,8 @@ function api(ws, $upload, API_URL) {
   };
   api.getUserCollection = function(token, cb) {
     ws.consumeService("usuarios/collection", null, token, cb, false, "GET");
+  };
+  api.getProfile = function(id, cb) {
+    ws.consumeService("usuarios/perfil?id=" + id, null, null, cb, false, "GET");
   }
 }

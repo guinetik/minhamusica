@@ -5,7 +5,7 @@
  * @docs        :: http://sailsjs.org/#!documentation/models
  */
 var fs = require('fs');
-module.exports = {
+var Musica = module.exports = {
   attributes: {
     nome: {
       type: 'string'

@@ -5,7 +5,7 @@
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
-module.exports = {
+var MusicaController = module.exports = {
   addMusic: function (req, res) {
     var uploadFile = req.file('file');
     if (!req.body.id_cd) {

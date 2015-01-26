@@ -1,6 +1,6 @@
 var bcrypt = require('bcrypt-nodejs');
 var jwt = require('jwt-simple');
-module.exports = {
+var Usuarios = module.exports = {
   tableName: 'usuarios',
   schema: true,
   attributes: {
@@ -31,11 +31,11 @@ module.exports = {
     cidade: {
       model: 'Cidades'
     },
-	capa: {
-      type: 'string',
+    capa: {
+      type: 'string'
     },
-	foto: {
-      type: 'string',
+    foto: {
+      type: 'string'
     },
     twitter: {
       type: 'string',
@@ -45,18 +45,18 @@ module.exports = {
       type: 'string',
       maxLength: 100
     },
-    facebookId: {
+    facebook: {
       type: 'string'
     },
-	eventos: {
-      colletion : 'evento',
-	  via: 'usuario'
+    eventos: {
+      colletion: 'evento',
+      via: 'usuario'
     },
-	cds: {
-      colletion : 'cd',
-	  via: 'artista'
+    cds: {
+      colletion: 'cd',
+      via: 'artista'
     },
-    toJSON: function() {
+    toJSON: function () {
       var obj = this.toObject();
       delete obj.senha;
       delete obj.createdAt;
@@ -76,16 +76,16 @@ module.exports = {
       });
     });
   },
-  findOneByToken:function(token, cb) {
+  findOneByToken: function (token, cb) {
     try {
       var palyload = jwt.decode(token, 'shhh..');
-      Usuarios.findOneById(palyload.sub).populate("cidade").exec(function (err, foundUser) {
+      this.findOne({id:palyload.sub}).populate("cidade").exec(function (err, foundUser) {
         if (!foundUser) {
           cb(false);
         }
         cb(foundUser);
       });
-    } catch(err) {
+    } catch (err) {
       console.log("findOneByToken", err);
       cb(false);
     }
