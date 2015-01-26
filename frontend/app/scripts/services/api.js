@@ -66,5 +66,31 @@ function api(ws, $upload, API_URL) {
       nome:music.nome
     };
     ws.consumeService("musica/update/" + music.id, m, token, cb, false);
-  }
+  };
+  api.updateCover = function(file, capa, token, cb) {
+    var data = {};
+    if(capa.cd) {
+      data.id = capa.cd;
+    }
+    $upload.upload({
+      url: API_URL + 'cd/cover/update',
+      method: 'POST',
+      data: data,
+      file: file
+    }).progress(function (evt) {
+      capa.progress = parseInt(100.0 * evt.loaded / evt.total);
+      capa.status = 1;
+      capa.message = 'Enviando: ' + capa.progress + '%';
+    }).success(function (data, status, headers, config) {
+      if (status == 200) {
+        capa.status = 2;
+        capa.message = 'Enviada';
+        capa.imagem = data.imagem;
+      } else {
+        capa.status = -1;
+        capa.message = 'Erro ao enviar';
+      }
+      cb(data, status, headers, config);
+    });
+  };
 }

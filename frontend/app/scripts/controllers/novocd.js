@@ -19,6 +19,7 @@ function NovoCDCtrl($scope, api, auth, toastr, $state, $timeout) {
   $scope.generateThumb = function(file) {
     if (file != null) {
       if (file.type.indexOf('image') > -1) {
+        $scope.updateCover(file);
         $timeout(function() {
           var fileReader = new FileReader();
           fileReader.readAsDataURL(file);
@@ -30,6 +31,18 @@ function NovoCDCtrl($scope, api, auth, toastr, $state, $timeout) {
         });
       }
     }
+  };
+  $scope.updateCover = function(file) {
+    if($scope.cd.id != null) $scope.capa.cd = $scope.cd.id;
+    var token = auth.getToken();
+    api.updateCover(file, $scope.capa, token, function(data, status, headers, config){
+      if(status == 200) {
+        toastr.info(data.message);
+        $scope.cd.capa = data.imagem;
+      } else {
+        toastr.warning(data.message);
+      }
+    });
   };
   $scope.imageDropped = function ($files, $event, $rejectedFiles) {
     console.log("acceped", $files);
@@ -81,6 +94,7 @@ function NovoCDCtrl($scope, api, auth, toastr, $state, $timeout) {
     });
   };
   $scope.submit = function () {
+    console.log("cd", $scope.cd);
     var token = auth.getToken();
     api.addCd(token, $scope.cd, function (result) {
       if (result.status == 200) {

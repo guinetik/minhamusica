@@ -21,11 +21,12 @@ module.exports.routes = {
   'post /genero/atualizar/': 'GenerosController.updateGenero',
 // data
   'get /data/estados': 'EstadosController.getEstados',
-  'get /data/home' : 'HomeController.gethome',
-  'get /data/generos' : 'GenerosController.getGeneros',
-  'get /data/perfil' : 'UsuariosController.perfil',
+  'get /data/home': 'HomeController.gethome',
+  'get /data/generos': 'GenerosController.getGeneros',
+  'get /data/perfil': 'UsuariosController.perfil',
 // cd
-  'post /cd/download' : 'CdController.downloadCount',
-  'post /cd/music/add' : 'CdController.addMusic'
+  'post /cd/download': 'CdController.downloadCount',
+  'post /cd/music/add': 'MusicaController.addMusic',
+  'post /cd/cover/update': 'CdController.updateCover'
 // home do site
 };
