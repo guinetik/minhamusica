@@ -24,7 +24,7 @@ var CdController = module.exports = {
     var cd = req.body;
     var token = req.headers.token;
     if (!token) {
-      res.status(403).send({message: 'Token inválido'});
+      res.status(401).send({message: 'Token inválido'});
     }
     Usuarios.findOneByToken(token, function (result) {
       if (!result) {

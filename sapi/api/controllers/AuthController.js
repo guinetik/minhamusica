@@ -20,14 +20,14 @@ var AuthController = module.exports = {
     Usuarios.findOneByEmail(email).populate("cidade").exec(function (err, foundUser) {
       if (!foundUser) {
         return res.status(401).send({
-          message: 'Email or Password invalid'
+          message: 'Não autorizado'
         });
       }
       bcrypt.compare(password, foundUser.senha, function (err, valid) {
         if (err) return res.status(403);
         if (!valid) {
           return res.status(401).send({
-            message: 'username or password invalid'
+            message: 'Não autorizado!'
           });
         }
         // ready to send user and jwt

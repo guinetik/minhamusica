@@ -1,4 +1,5 @@
 var createSendToken = require('../services/createSendToken.js');
+var bcrypt = require('bcrypt-nodejs');
 /**
  * UserController
  *
@@ -9,14 +10,14 @@ var UsuariosController = module.exports = {
   create: function (req, res) {
     var sendUser = req.body;
     Usuarios.create(sendUser).exec(function createCB(err, s) {
-      if (err) res.status(301).send({message: 'user not created'});
+      if (err) res.status(400).send({message: 'user not created'});
       createSendToken(s, res);
     });
   },
   lookup: function (req, res) {
     var token = req.headers.token;
     if (!token) {
-      res.status(403).send({message: 'Token inválido'});
+      res.status(401).send({message: 'Token inválido'});
     }
     Usuarios.findOneByToken(token, function (result) {
       if (result) {
@@ -31,11 +32,51 @@ var UsuariosController = module.exports = {
       }
     });
   },
+  updatePassword: function (req, res) {
+    var token = req.headers.token;
+    var current_password = req.body.current_password;
+    var new_password = req.body.new_password;
+    if (!token) {
+      res.status(401).send({message: 'Token inválido'});
+    }
+    if(!current_password) {
+      res.status(400).send({message: 'Você deve informar a senha atual'});
+    }
+    if(!new_password) {
+      res.status(400).send({message: 'Você deve informar a nova senha'});
+    }
+    Usuarios.findOneByToken(token, function (result) {
+      if (result) {
+        bcrypt.compare(current_password, result.senha, function (err, valid) {
+          if (err) return res.status(401);
+          if (!valid) {
+            return res.status(401).send({
+              message: 'As senhas não conferem'
+            });
+          }
+          bcrypt.genSalt(10, function (err, salt) {
+            if (err) {
+              return res.status(500).send({message:"Houve um erro ao gerar a senha"});
+            }
+            bcrypt.hash(new_password, salt, null, function (err, hash) {
+              if (err) return res.status(500).send({message:"Houve um erro ao gerar a senha"});
+              Usuarios.update({id:result.id}, {senha:hash}).exec(function (err, updated) {
+                if (err) return res.status(500).send({message:"Houve um erro ao salvar a senha"});
+                return res.status(200).send({message:"Senha atualizada"});
+              });
+            });
+          });
+        });
+      } else {
+        return res.status(401).send({message: 'User not found'});
+      }
+    });
+  },
   perfil: function (req, res) {
     var token = req.headers.token;
     var id = req.query.id;
     if (!token && !id) {
-      res.status(403).send({message: 'Você deve informar um token válido ou um id de usuario'});
+      res.status(401).send({message: 'Você deve informar um token válido ou um id de usuario'});
     }
     var collection = {};
     if (id != null) {

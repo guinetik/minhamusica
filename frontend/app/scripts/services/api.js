@@ -181,5 +181,8 @@ function api(ws, $upload, API_URL) {
       genero:cd.genero
     };
     ws.consumeService("cd/update/" + cd.id, c, token, cb, false);
-  }
+  };
+  api.updatePassword = function(user, token, cb) {
+    ws.consumeService("user/password/update", user, token, cb, false);
+  };
 }

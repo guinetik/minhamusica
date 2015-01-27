@@ -28,5 +28,6 @@ module.exports.routes = {
   'post /cd/cover/update': 'CdController.updateCover',
   //usuario
   'post /user/cover/update': 'UsuariosController.updateCover',
-  'post /user/foto/update': 'UsuariosController.updateFoto'
+  'post /user/foto/update': 'UsuariosController.updateFoto',
+  'post /user/password/update': 'UsuariosController.updatePassword'
 };
