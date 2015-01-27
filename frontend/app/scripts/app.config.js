@@ -38,47 +38,48 @@ angular.module('musicaApp').config(function ($urlRouterProvider, $stateProvider)
     }).
     state('painel', {
       url: '/painel',
+      abstract:true,
       templateUrl: '/views/painel/painel.html'
     }).
     state('novo_cd', {
       parent: "painel",
-      url: '/painel/cds/novo',
+      url: '/cd/novo',
       controller: 'NovoCDCtrl',
       templateUrl: '/views/painel/cd_form.html'
     }).
     state('editar_cd', {
       parent: "painel",
-      url: '/painel/cd/edit/:id',
+      url: '/cd/edit/:id',
       controller: 'EditCDCtrl',
       templateUrl: '/views/painel/cd_form.html'
     }).
     state('meus_cds', {
       parent: "painel",
-      url: '/painel/cds',
+      url: '/cds',
       controller: 'MeusCDsCtrl',
       templateUrl: '/views/painel/cds.html'
     }).
     state('novo_evento', {
       parent: "painel",
-      url: '/painel/eventos/novo',
+      url: '/eventos/novo',
       controller: 'NovoEventoCtrl',
       templateUrl: '/views/painel/novo_evento.html'
     }).
     state('meus_eventos', {
       parent: "painel",
-      url: '/painel/eventos',
+      url: '/eventos',
       controller: 'MeusEventosCtrl',
       templateUrl: '/views/painel/meus_eventos.html'
     }).
     state('config', {
       parent: "painel",
-      url: '/painel/config',
+      url: '/config',
       controller: 'ConfigsCtrl',
       templateUrl: '/views/painel/config.html'
     }).
     state('config_password', {
       parent: "painel",
-      url: '/painel/config/password',
+      url: '/config/password',
       controller: 'ConfigPasswordCtrl',
       templateUrl: '/views/painel/config_password.html'
     });

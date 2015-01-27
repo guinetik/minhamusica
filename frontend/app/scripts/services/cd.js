@@ -7,8 +7,8 @@
  * # cd
  * Service in the musicaApp.
  */
-angular.module('musicaApp').service('cd', ['$timeout', 'toastr', 'api', 'auth', cd]);
-function cd($timeout, toastr, api, auth) {
+angular.module('musicaApp').service('cd', ['$timeout', 'toastr', 'api', 'auth','$state', cd]);
+function cd($timeout, toastr, api, auth, $state) {
   var cd = this;
   cd.getGeneros = function($scope) {
     $timeout(function(){

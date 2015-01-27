@@ -30,7 +30,7 @@ function HeaderCtrl($scope , $rootScope, auth, api, $state) {
     auth.setToken(token);
     $scope.isAuthenticated = auth.isAuthenticated();
     if(!$scope.isAuthenticated) {
-      $scope.logout();
+      $state.go("main");
     }
     //console.log("update-user-token : isAuthenticated", $scope.isAuthenticated, auth.isAuthenticated());
     if(token != '-1') {

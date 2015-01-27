@@ -105,6 +105,20 @@ function api(ws, $upload, API_URL) {
   api.getCD = function(id, cb) {
     ws.consumeService("cd/" + id, null, null, cb, false, "GET");
   };
+  api.updateProfile = function(user, token, cb) {
+    var u = {
+      id:user.id,
+      nome:user.nome,
+      email:user.email,
+      sexo:user.sexo,
+      cidade:user.cidade,
+      twitter:user.twitter,
+      facebook:user.facebook,
+      instagram:user.instagram,
+      nascimento:user.nascimento
+    };
+    ws.consumeService("usuarios/" + user.id, u, token, cb, false);
+  };
   api.updateCD = function(cd, token, cb) {
     var c = {
       id:cd.id,
