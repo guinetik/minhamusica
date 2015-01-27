@@ -1,21 +1,22 @@
 <!-- Breadcrumb -->
-<ng-include src="'views/breadcrumb.html'"></ng-include>
-<!-- end Breadcrumb -->
-<section id="section-cd" class="main-content">
+<ng-include src="'views/breadcrumb.html'"></ng-include><!-- end Breadcrumb -->
+<section id="section-cd"
+         class="main-content">
   <div class="limits clearfix">
-    <article id="cd-content" class="column-left">
+    <article id="cd-content"
+             class="column-left">
       <div class="cd-info clearfix">
         <figure class="cd-thumb cd-info-thumb">
-          <a href="http://placehold.it/986x986" class="view-large" titler="Ver maior">
-            <img src="http://placehold.it/206x206" alt="">
-          </a>
+          <a href="http://placehold.it/986x986"
+             class="view-large"
+             titler="Ver maior"> <img src="http://placehold.it/206x206"
+                                      width="206"
+                                      height="206"
+                                      ng-src="public/img/cover/{{cd.capa}}"> </a>
         </figure>
         <div class="cd-info-content clearfix">
-          <h1 class="title">Garota Safada - Uma nova história 2014</h1>
-
-          <p class="desc">Mussum ipsum cacilds, vidis litro abertis. Consetis adipiscings elitis. Pra, depois divoltis
-            porris, paradis. Paisis, filhis, espiritis santis.</p>
-
+          <h1 class="title">{{cd.titulo}}</h1>
+          <p class="desc">{{cd.descricao}}</p>
           <div class="dados">
             <dl>
               <dt>Tamanho do CD</dt>
@@ -23,22 +24,26 @@
             </dl>
             <dl>
               <dt>Data de Envio</dt>
-              <dd>01/01/2015</dd>
+              <dd>{{cd.createdAt|date : "dd/MM/yyyy"}}</dd>
             </dl>
             <dl>
               <dt>Downloads</dt>
-              <dd>24533</dd>
+              <dd>{{cd.downloads}}</dd>
             </dl>
           </div>
           <!-- /.dados -->
-          <a href="#" class="button-download-big" title="Baixar CD"><span class="icon"></span>Baixar CD</a>
-
+          <a href="#"
+             class="button-download-big"
+             title="Baixar CD"><span class="icon"></span>Baixar CD</a>
           <div class="cd-user">
             <span class="avatar">
-              <img src="http://placehold.it/34x34" alt="">
+              <img src="http://placehold.it/34x34"
+                   style="width: 34px;height:34px"
+                   ng-src="public/img/{{cd.artista.foto}}">
             </span>
             <small>Enviado por:</small>
-            <a href="#" ui-sref="perfil" class="user">victoraldabalde</a>
+            <a ui-sref="perfil({id:cd.artista.id})"
+               class="user">{{cd.artista.nome}}</a>
           </div>
         </div>
       </div>
@@ -46,14 +51,18 @@
       <div class="cd-share clearfix">
         <div class="col share">
           <strong class="title">Compartilhe:</strong>
-
           <div class="social clearfix">
             <span id="facebook">
-              <div class="fb-like" data-href="" data-layout="button_count" data-action="like" data-show-faces="false"
+              <div class="fb-like"
+                   data-href=""
+                   data-layout="button_count"
+                   data-action="like"
+                   data-show-faces="false"
                    data-share="false"></div>
             </span><!-- /.facebook -->
             <span id="twitter">
-              <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+              <a href="https://twitter.com/share"
+                 class="twitter-share-button">Tweet</a>
 <script>!function (d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
   if (!d.getElementById(id)) {
@@ -70,58 +79,37 @@
           </div>
         </div>
         <div class="col link">
-          <strong class="title">Link:</strong>
-          <input type="text" readonly="readonly" value="http://musicatop.com/garota-safada-uma-nova-historia-2014">
+          <strong class="title">Link:</strong> <input type="text"
+                                                      readonly="readonly"
+                                                      value="http://musicatop.com/garota-safada-uma-nova-historia-2014">
         </div>
       </div>
       <!-- /.cd-share -->
-      <div id="musics" class="box box-inner">
+      <div id="musics"
+           class="box box-inner">
         <div class="box-header clearfix box-header-balloon">
           <h2 class="box-title">Músicas</h2>
-
           <div class="balloon musics-count">4</div>
-          <a href="#" class="button button-play"><span class="icon-16 icon-play"></span> Tocas todas as músicas</a>
+          <a href="#"
+             class="button button-play"><span class="icon-16 icon-play"></span> Tocas todas as músicas</a>
         </div>
         <!-- /.box-header -->
         <div class="box-content">
           <ol class="musics-list">
-            <li class="musics-list-li">
-              <span class="number">01</span>
-
-              <h2 class="title"><a href="#">Vamos tomar uma</a></h2>
+            <li class="musics-list-li"
+                ng-repeat="musica in cd.musicas">
+              <span class="number">{{$index+1}}</span>
+              <h2 class="title"><a>{{musica.nome}}</a></h2>
               <ul class="options">
-                <li><a href="#" class="button-icon" title="Tocar música"><span class="icon-16 icon-play"></span>Tocar
-                  música</a></li>
-                <li><a href="#" class="button-icon" title="Baixar música"><span class="icon-16 icon-download"></span>Baixar
-                  música</a></li>
-                <li><a href="#" class="button-icon" title="Compartilhar música"><span class="icon-16 icon-share"></span>Compartilhar
-                  música</a></li>
-              </ul>
-            </li>
-            <li class="musics-list-li">
-              <span class="number">02</span>
-
-              <h2 class="title"><a href="#">Vamos tomar uma</a></h2>
-              <ul class="options">
-                <li><a href="#" class="button-icon" title="Tocar música"><span class="icon-16 icon-play"></span>Tocar
-                  música</a></li>
-                <li><a href="#" class="button-icon" title="Baixar música"><span class="icon-16 icon-download"></span>Baixar
-                  música</a></li>
-                <li><a href="#" class="button-icon" title="Compartilhar música"><span class="icon-16 icon-share"></span>Compartilhar
-                  música</a></li>
-              </ul>
-            </li>
-            <li class="musics-list-li">
-              <span class="number">03</span>
-
-              <h2 class="title"><a href="#">Vamos tomar uma</a></h2>
-              <ul class="options">
-                <li><a href="#" class="button-icon" title="Tocar música"><span class="icon-16 icon-play"></span>Tocar
-                  música</a></li>
-                <li><a href="#" class="button-icon" title="Baixar música"><span class="icon-16 icon-download"></span>Baixar
-                  música</a></li>
-                <li><a href="#" class="button-icon" title="Compartilhar música"><span class="icon-16 icon-share"></span>Compartilhar
-                  música</a></li>
+                <li><a href="#"
+                       class="button-icon"
+                       title="Tocar música"><span class="icon-16 icon-play"></span>Tocar música</a></li>
+                <li><a href="#"
+                       class="button-icon"
+                       title="Baixar música"><span class="icon-16 icon-download"></span>Baixar música</a></li>
+                <li><a href="#"
+                       class="button-icon"
+                       title="Compartilhar música"><span class="icon-16 icon-share"></span>Compartilhar música</a></li>
               </ul>
             </li>
           </ol>
@@ -130,24 +118,29 @@
         <!-- /.box-content -->
       </div>
       <!-- /.#musics -->
-      <div id="comments" class="box box-inner">
+      <div id="comments"
+           class="box box-inner">
         <div class="box-header clearfix box-header-balloon">
           <h2 class="box-title">Comentários</h2>
-
           <div class="balloon comments-count">
-            <fb:comments-count href=/>
+            <fb:comments-count href='#/cd/{{cd.id}}'/>
             </fb:comments-count></div>
         </div>
         <!-- /.box-header -->
         <div class="box-content">
-          <div class="fb-comments" data-width="660" data-numposts="5" data-colorscheme="light"></div>
+          <div class="fb-comments"
+               data-href="http://localhost:9000/#/cd/{{cd.id}}}"
+               data-width="660"
+               data-numposts="5"
+               data-colorscheme="light"></div>
         </div>
         <!-- /.box-content -->
       </div>
     </article>
     <!-- /.column-left -->
     <aside class="content-aside column-right">
-      <div id="next-events-aside" class="box box-inner">
+      <div id="next-events-aside"
+           class="box box-inner">
         <div class="box-header">
           <h2 class="box-title"><strong>Próximos</strong> Eventos</h2>
         </div>
@@ -155,16 +148,16 @@
         <div class="box-content">
           <ul class="list-events">
             <li class="list-events-box">
-              <a href="#" class="list-events-box-a">
+              <a href="#"
+                 class="list-events-box-a">
                 <figure class="cd-thumb list-events-box-thumb">
-                  <img src="http://placehold.it/312x110" alt="">
+                  <img src="http://placehold.it/312x110"
+                       alt="">
                 </figure>
                 <div class="list-events-box-thumb-text clearfix">
                   <strong class="dates">01, 02, 03 de JAN/2015</strong>
-
                   <h2 class="title">Festival de Verão 2015</h2>
-                  <span class="local">Salvador - BA</span>
-                  <span class="button">Comprar Ingresso</span>
+                  <span class="local">Salvador - BA</span> <span class="button">Comprar Ingresso</span>
                 </div>
               </a>
             </li>
@@ -174,7 +167,8 @@
         <!-- /.box-content -->
       </div>
       <!-- /#next-events-aside -->
-      <div id="related" class="box box-inner">
+      <div id="related"
+           class="box box-inner">
         <div class="box-header">
           <h2 class="box-title">Relacionados</h2>
         </div>
@@ -183,16 +177,17 @@
           <ul class="list-cd">
             <li class="list-cd-box clearfix">
               <figure class="cd-thumb list-cd-box-thumb">
-                <a href="#" title="">
-                  <img src="http://placehold.it/71x71" alt="">
-                </a>
+                <a href="#"
+                   title=""> <img src="http://placehold.it/71x71"
+                                  alt=""> </a>
               </figure>
               <h2 class="list-cd-box-title">
-                <a href="#" title="Aviões do Forró - Ao Vivo Aracajú - 2014">Aviões do Forró - Ao Vivo Aracajú -
-                  2014</a>
+                <a href="#"
+                   title="Aviões do Forró - Ao Vivo Aracajú - 2014">Aviões do Forró - Ao Vivo Aracajú - 2014</a>
               </h2>
-              <a href="#" class="user list-cd-box-user" title="">BuchechaCDs</a>
-              <span class="time">há 3 min atrás</span>
+              <a href="#"
+                 class="user list-cd-box-user"
+                 title="">BuchechaCDs</a> <span class="time">há 3 min atrás</span>
             </li>
           </ul>
         </div>
@@ -203,153 +198,3 @@
   </div>
   <!-- /.limits -->
 </section>
-<!-- Playlist -->
-<div id="playlist" class="visible">
-  <a href="javascript:void(0)" class="playlist-plug" title="Esconder Playlist"><span class="icon"></span>Esconder</a>
-
-  <div class="playlist-options">
-    <div class="limits clearfix">
-      <div class="playlist-count">
-        <span class="title">Música</span>
-        <strong class="desc">
-          <span id="playlist-count-actual">2</span> de <span id="playlist-count-total">12</span>
-        </strong>
-      </div>
-      <!-- /.playlist-count -->
-      <div class="playlist-controls clearfix">
-        <div class="playlist-controls-actions clearfix">
-          <a href="#" class="playlist-controls-actions-button prev" title="Anterior">Anterior</a>
-          <a href="#" class="playlist-controls-actions-button play" title="Tocar">Tocar</a>
-          <a href="#" class="playlist-controls-actions-button next" title="Próximo">Próximo</a>
-        </div>
-        <!-- /.playlist-controls-actions -->
-        <div class="playlist-controls-player">
-          <div class="playlist-controls-actual">
-            <strong id="playlist-actual-music" class="music">Vamos tomar uma agora, pode ser?</strong>
-            por
-            <span id="playlist-actual-artist" class="artist">Garota Safada - Uma nova história 2014</span>
-          </div>
-          <div class="playlist-controls-progress clearfix">
-            <span class="playlist-controls-time init">0:00</span>
-
-            <div class="playlist-controls-progress-slider">
-            </div>
-            <span class="playlist-controls-time end">3:34</span>
-          </div>
-        </div>
-        <!-- /.playlist-controls-player -->
-        <div class="playlist-controls-options">
-        </div>
-        <!-- /.playlist-controls-options -->
-      </div>
-    </div>
-  </div>
-  <!-- /.playlist-controls -->
-  <div class="playlist-musics">
-    <div id="playlist-musics-list" class="playlist-musics-list-wrapper flexslider" carousel-playlist>
-      <ol class="playlist-musics-list-ol slides clearfix">
-        <li>
-          <a href="" id="">
-            <figure class="cd-thumb">
-              <img src="http://placehold.it/52x52" alt="">
-            </figure>
-            <div class="text">
-              <strong class="music">Vamos tomar uma</strong>
-              <span class="artist">Garota Safada - Uma nova história 2014</span>
-            </div>
-          </a>
-        </li>
-        <li class="active">
-          <a href="" id="">
-            <figure class="cd-thumb">
-              <img src="http://placehold.it/52x52" alt="">
-            </figure>
-            <div class="text">
-              <strong class="music">Vamos tomar uma agora, pode ser?</strong>
-              <span class="artist">Garota Safada - Uma nova história 2014</span>
-            </div>
-          </a>
-        </li>
-        <li>
-          <a href="" id="">
-            <figure class="cd-thumb">
-              <img src="http://placehold.it/52x52" alt="">
-            </figure>
-            <div class="text">
-              <strong class="music">Vamos tomar uma</strong>
-              <span class="artist">Garota Safada - Uma nova história 2014</span>
-            </div>
-          </a>
-        </li>
-        <li>
-          <a href="" id="">
-            <figure class="cd-thumb">
-              <img src="http://placehold.it/52x52" alt="">
-            </figure>
-            <div class="text">
-              <strong class="music">Vamos tomar uma</strong>
-              <span class="artist">Garota Safada - Uma nova história 2014</span>
-            </div>
-          </a>
-        </li>
-        <li>
-          <a href="" id="">
-            <figure class="cd-thumb">
-              <img src="http://placehold.it/52x52" alt="">
-            </figure>
-            <div class="text">
-              <strong class="music">Vamos tomar uma</strong>
-              <span class="artist">Garota Safada - Uma nova história 2014</span>
-            </div>
-          </a>
-        </li>
-        <li>
-          <a href="" id="">
-            <figure class="cd-thumb">
-              <img src="http://placehold.it/52x52" alt="">
-            </figure>
-            <div class="text">
-              <strong class="music">Vamos tomar uma</strong>
-              <span class="artist">Garota Safada - Uma nova história 2014</span>
-            </div>
-          </a>
-        </li>
-        <li>
-          <a href="" id="">
-            <figure class="cd-thumb">
-              <img src="http://placehold.it/52x52" alt="">
-            </figure>
-            <div class="text">
-              <strong class="music">Vamos tomar uma</strong>
-              <span class="artist">Garota Safada - Uma nova história 2014</span>
-            </div>
-          </a>
-        </li>
-        <li>
-          <a href="" id="">
-            <figure class="cd-thumb">
-              <img src="http://placehold.it/52x52" alt="">
-            </figure>
-            <div class="text">
-              <strong class="music">Vamos tomar uma</strong>
-              <span class="artist">Garota Safada - Uma nova história 2014</span>
-            </div>
-          </a>
-        </li>
-        <li>
-          <a href="" id="">
-            <figure class="cd-thumb">
-              <img src="http://placehold.it/52x52" alt="">
-            </figure>
-            <div class="text">
-              <strong class="music">Vamos tomar uma</strong>
-              <span class="artist">Garota Safada - Uma nova história 2014</span>
-            </div>
-          </a>
-        </li>
-      </ol>
-    </div>
-  </div>
-  <!-- /.playlist-musics -->
-</div>
-<!-- end Playlist -->
