@@ -96,6 +96,58 @@ function api(ws, $upload, API_URL) {
       cb(data, status, headers, config);
     });
   };
+  api.updateUserCover = function(file, capa, token, cb) {
+    var data = {};
+    if(capa.user) {
+      data.id = capa.user;
+    }
+    $upload.upload({
+      url: API_URL + 'user/cover/update',
+      method: 'POST',
+      data: data,
+      file: file
+    }).progress(function (evt) {
+      capa.progress = parseInt(100.0 * evt.loaded / evt.total);
+      capa.status = 1;
+      capa.message = 'Enviando: ' + capa.progress + '%';
+    }).success(function (data, status, headers, config) {
+      if (status == 200) {
+        capa.status = 2;
+        capa.message = 'Enviada';
+        capa.imagem = data.imagem;
+      } else {
+        capa.status = -1;
+        capa.message = 'Erro ao enviar';
+      }
+      cb(data, status, headers, config);
+    });
+  };
+  api.updateUserFoto = function(file, foto, token, cb) {
+    var data = {};
+    if(foto.user) {
+      data.id = foto.user;
+    }
+    $upload.upload({
+      url: API_URL + 'user/foto/update',
+      method: 'POST',
+      data: data,
+      file: file
+    }).progress(function (evt) {
+      foto.progress = parseInt(100.0 * evt.loaded / evt.total);
+      foto.status = 1;
+      foto.message = 'Enviando: ' + foto.progress + '%';
+    }).success(function (data, status, headers, config) {
+      if (status == 200) {
+        foto.status = 2;
+        foto.message = 'Enviada';
+        foto.imagem = data.imagem;
+      } else {
+        foto.status = -1;
+        foto.message = 'Erro ao enviar';
+      }
+      cb(data, status, headers, config);
+    });
+  };
   api.getUserCollection = function(token, cb) {
     ws.consumeService("usuarios/collection", null, token, cb, false, "GET");
   };

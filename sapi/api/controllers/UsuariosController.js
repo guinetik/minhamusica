@@ -85,6 +85,38 @@ var UsuariosController = module.exports = {
         });
       }
     });
+  },
+  updateCover: function (req, res) {
+    var uploadFile = req.file('file');
+    var user = req.body;
+    uploadFile.upload({dirname: '../../../frontend/app/public/img'}, function onUploadComplete(err, files) {
+      if (err) return res.serverError(err);
+      var imagem = files[0].fd.split("/").pop();
+      if (user.id != null) {
+        Usuarios.update({id: user.id}, {capa: imagem}).exec(function (err, updated) {
+          if (err) return res.status(400).send({message: 'Erro ao atualizar a capa'});
+          return res.status(200).send({message: 'Imagem Enviada', imagem: imagem});
+        });
+      } else {
+        return res.status(200).send({message: 'Imagem Enviada', imagem: imagem});
+      }
+    });
+  },
+  updateFoto: function (req, res) {
+    var uploadFile = req.file('file');
+    var user = req.body;
+    uploadFile.upload({dirname: '../../../frontend/app/public/img'}, function onUploadComplete(err, files) {
+      if (err) return res.serverError(err);
+      var imagem = files[0].fd.split("/").pop();
+      if (user.id != null) {
+        Usuarios.update({id: user.id}, {foto: imagem}).exec(function (err, updated) {
+          if (err) return res.status(400).send({message: 'Erro ao atualizar a foto'});
+          return res.status(200).send({message: 'Imagem Enviada', imagem: imagem});
+        });
+      } else {
+        return res.status(200).send({message: 'Imagem Enviada', imagem: imagem});
+      }
+    });
   }
 };
 

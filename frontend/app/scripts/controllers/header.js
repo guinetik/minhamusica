@@ -23,6 +23,7 @@ function HeaderCtrl($scope , $rootScope, auth, api, $state) {
     $state.go("main");
   };
   $rootScope.$on("user-lookup", function (event, user) {
+    console.log("user-lookup", user.foto);
     $scope.user = user;
   });
   $rootScope.$on("update-user-token", function (event, token) {

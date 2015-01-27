@@ -25,5 +25,8 @@ module.exports.routes = {
   'get /data/generos': 'GenerosController.getGeneros',
   // cd
   'post /cd/music/add': 'MusicaController.addMusic',
-  'post /cd/cover/update': 'CdController.updateCover'
+  'post /cd/cover/update': 'CdController.updateCover',
+  //usuario
+  'post /user/cover/update': 'UsuariosController.updateCover',
+  'post /user/foto/update': 'UsuariosController.updateFoto'
 };
