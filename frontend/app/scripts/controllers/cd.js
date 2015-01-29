@@ -21,6 +21,16 @@ function CdCtrl($scope, api, $timeout, $stateParams, $rootScope) {
     });
   });
   $scope.addToPlaylist = function(musica) {
+    musica.cd = $scope.cd;
     $rootScope.$emit("add-to-playlist", musica);
+  };
+  $scope.addAll = function() {
+    $rootScope.$emit("add-cd-to-playlist", $scope.cd);
+  };
+  $scope.shareSong = function(song) {
+    alert("SHARE");
+  };
+  $scope.downloadSong = function(song) {
+    alert("DOWNLOAD");
   };
 }

@@ -98,7 +98,7 @@ var UsuariosController = module.exports = {
     function getUserProfile(usuario) {
       collection.usuario = usuario;
       console.log("user.id", usuario.id);
-      Cd.find().where({'artista': usuario.id}).sort('createdAt DESC').limit(10).populateAll().exec(function (err2, c) {
+      Cd.find().where({'artista': usuario.id}).sort('createdAt DESC').limit(10).populate('musicas').exec(function (err2, c) {
         if (err2) return res.status(500).send({message: 'ultimos cds do usuario.'});
         collection.cds = c;
         Eventos.find().where({usuario: usuario.id}).sort('createdAt DESC').limit(10).exec(function (err3, e) {

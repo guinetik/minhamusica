@@ -16,7 +16,18 @@ angular.module('musicaApp',
     'angularFileUpload',
     'blockUI',
     'dcbImgFallback',
-    'angularMoment']);
+    'mediaPlayer',
+    'angularMoment']).run(function ($rootScope) {
+    // helper function to seek to a percentage
+    $rootScope.seekPercentage = function ($event) {
+      var percentage = ($event.offsetX / $event.target.offsetWidth);
+      if (percentage <= 1) {
+        return percentage;
+      } else {
+        return 0;
+      }
+    };
+  });
 var functions = functions || {};
 functions = {
   playlist: {
@@ -28,6 +39,7 @@ functions = {
       } else {
         functions.playlist.show();
       }
+
     },
     show: function () {
       $('#playlist').animate({'height': '172px', 'border-top': 0});
@@ -55,10 +67,10 @@ functions = {
 };
 $(window).load(function () {
   // Plug Playlist
+  functions.playlist.init(this);
   $(document).on('click', '#playlist .playlist-plug', function (e) {
     e.preventDefault();
     functions.playlist.init(this);
-
   });
   // Genre dropdown
   $(document).on('mouseover', '#genre', function (e) {

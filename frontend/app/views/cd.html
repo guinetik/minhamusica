@@ -16,9 +16,7 @@
         </figure>
         <div class="cd-info-content clearfix">
           <h1 class="title">{{cd.titulo}}</h1>
-
           <p class="desc">{{cd.descricao}}</p>
-
           <div class="dados">
             <dl>
               <dt>Tamanho do CD</dt>
@@ -37,7 +35,6 @@
           <a href="#"
              class="button-download-big"
              title="Baixar CD"><span class="icon"></span>Baixar CD</a>
-
           <div class="cd-user">
             <span class="avatar">
               <img src="http://placehold.it/34x34"
@@ -54,7 +51,6 @@
       <div class="cd-share clearfix">
         <div class="col share">
           <strong class="title">Compartilhe:</strong>
-
           <div class="social clearfix">
             <span id="facebook">
               <div class="fb-like"
@@ -93,10 +89,9 @@
            class="box box-inner">
         <div class="box-header clearfix box-header-balloon">
           <h2 class="box-title">Músicas</h2>
-
-          <div class="balloon musics-count">4</div>
-          <a href="#"
-             class="button button-play"><span class="icon-16 icon-play"></span>Tocas todas as músicas</a>
+          <div class="balloon musics-count">{{cd.musicas.length}}</div>
+          <a ng-click="addAll()"
+             class="button button-play"><span class="icon-16 icon-play"></span>Tocar todas as músicas</a>
         </div>
         <!-- /.box-header -->
         <div class="box-content">
@@ -104,17 +99,18 @@
             <li class="musics-list-li"
                 ng-repeat="musica in cd.musicas">
               <span class="number">{{$index+1}}</span>
-
-              <h2 class="title"><a>{{musica.nome}}</a></h2>
+              <h2 class="title"><a style="cursor:pointer;" ng-click="addToPlaylist(musica)">{{musica.nome}}</a></h2>
               <ul class="options">
                 <li><a ng-click="addToPlaylist(musica)"
                        class="button-icon"
                        title="Tocar música"><span class="icon-16 icon-play"></span>Tocar música</a></li>
                 <li><a href="#"
                        class="button-icon"
+                       ng-click="downloadSong(musica)"
                        title="Baixar música"><span class="icon-16 icon-download"></span>Baixar música</a></li>
                 <li><a href="#"
                        class="button-icon"
+                       ng-click="shareSong(musica)"
                        title="Compartilhar música"><span class="icon-16 icon-share"></span>Compartilhar música</a></li>
               </ul>
             </li>
@@ -128,7 +124,6 @@
            class="box box-inner">
         <div class="box-header clearfix box-header-balloon">
           <h2 class="box-title">Comentários</h2>
-
           <div class="balloon comments-count">
             <fb:comments-count href='#/cd/{{cd.id}}'/>
             </fb:comments-count></div>
@@ -163,7 +158,6 @@
                 </figure>
                 <div class="list-events-box-thumb-text clearfix">
                   <strong class="dates">01, 02, 03 de JAN/2015</strong>
-
                   <h2 class="title">Festival de Verão 2015</h2>
                   <span class="local">Salvador - BA</span> <span class="button">Comprar Ingresso</span>
                 </div>

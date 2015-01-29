@@ -19,7 +19,11 @@ function LoginCtrl($scope, api, toastr) {
       if(result.status == 200) {
         toastr.success(result.message);
       } else {
-        toastr.warning(result.message.message);
+        if(result.message) {
+          toastr.warning(result.message.message);
+        } else {
+          toastr.warning("Ocorreu um erro, tente novamente.");
+        }
       }
     });
   };

@@ -19,6 +19,10 @@ var Musica = module.exports = {
     cd: {
       model: 'Cd'
     },
+    artista:function() {
+      console.log("cd", this.cd);
+      return this.cd.artista;
+    },
     downloads: {
       type: 'integer',
       defaultsTo: 0
