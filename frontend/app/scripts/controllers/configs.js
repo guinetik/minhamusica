@@ -53,6 +53,7 @@ function ConfigsCtrl($rootScope, $scope, api, auth, $timeout, $state, toastr) {
   };
   $scope.generateCoverThumb = function(file) {
     if (file != null) {
+      console.log("capa nova", file);
       if (file.type.indexOf('image') > -1) {
         $scope.updateUserCover(file);
         $timeout(function() {
@@ -60,6 +61,7 @@ function ConfigsCtrl($rootScope, $scope, api, auth, $timeout, $state, toastr) {
           fileReader.readAsDataURL(file);
           fileReader.onload = function(e) {
             $timeout(function() {
+              console.log("capa nova", e.target.result);
               $scope.capa.dataUrl = e.target.result;
             });
           }
@@ -94,6 +96,7 @@ function ConfigsCtrl($rootScope, $scope, api, auth, $timeout, $state, toastr) {
     });
   };
   $scope.generateThumb = function(file) {
+    console.log("foto nova", file);
     if (file != null) {
       if (file.type.indexOf('image') > -1) {
         $scope.updateUserFoto(file);
@@ -103,6 +106,7 @@ function ConfigsCtrl($rootScope, $scope, api, auth, $timeout, $state, toastr) {
           fileReader.onload = function(e) {
             $timeout(function() {
               $scope.foto.dataUrl = e.target.result;
+              console.log("foto nova", e.target.result);
             });
           }
         });

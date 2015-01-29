@@ -1,9 +1,11 @@
 <!-- Playlist -->
 <div id="playlist"
      class="visible">
+  <audio media-player="player" data-playlist="playlist"></audio>
   <a href="javascript:void(0)"
      class="playlist-plug"
      title="Esconder Playlist"><span class="icon"></span>Esconder</a>
+
   <div class="playlist-options">
     <div class="limits clearfix">
       <div class="playlist-count">
@@ -13,13 +15,18 @@
       <!-- /.playlist-count -->
       <div class="playlist-controls clearfix">
         <div class="playlist-controls-actions clearfix">
-          <a href="#"
-             class="playlist-controls-actions-button prev"
-             title="Anterior">Anterior</a> <a href="#"
-                                              class="playlist-controls-actions-button play"
-                                              title="Tocar">Tocar</a> <a href="#"
-                                                                         class="playlist-controls-actions-button next"
-                                                                         title="Próximo">Próximo</a>
+          <a
+            ng-click="player.prev()"
+            class="playlist-controls-actions-button prev"
+            title="Anterior">Anterior</a>
+          <a
+            ng-click="player.playPause()"
+            class="playlist-controls-actions-button play"
+            title="Tocar">Tocar</a>
+          <a
+            ng-click="player.next()"
+            class="playlist-controls-actions-button next"
+            title="Próximo">Próximo</a>
         </div>
         <!-- /.playlist-controls-actions -->
         <div class="playlist-controls-player">
@@ -30,6 +37,7 @@
           </div>
           <div class="playlist-controls-progress clearfix">
             <span class="playlist-controls-time init">0:00</span>
+
             <div class="playlist-controls-progress-slider"></div>
             <span class="playlist-controls-time end">3:34</span>
           </div>
@@ -70,5 +78,4 @@
       </div>
     </div>
   </div>
-  <!-- /.playlist-musics -->
-</div><!-- end Playlist -->
+</div>

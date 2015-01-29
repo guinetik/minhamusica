@@ -7,8 +7,8 @@
  * # MainCtrl
  * Controller of the musicaApp
  */
-angular.module('musicaApp').controller('CdCtrl', ['$scope', 'api', '$timeout', '$stateParams', CdCtrl]);
-function CdCtrl($scope, api, $timeout, $stateParams) {
+angular.module('musicaApp').controller('CdCtrl', ['$scope', 'api', '$timeout', '$stateParams', '$rootScope', CdCtrl]);
+function CdCtrl($scope, api, $timeout, $stateParams, $rootScope) {
   $scope.cd = {};
   $scope.cd.id = $stateParams.id;
   $scope.$on('$viewContentLoaded', function (event) {
@@ -20,4 +20,7 @@ function CdCtrl($scope, api, $timeout, $stateParams) {
       });
     });
   });
+  $scope.addToPlaylist = function(musica) {
+    $rootScope.$emit("add-to-playlist", musica);
+  };
 }
