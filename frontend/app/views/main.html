@@ -1,221 +1,71 @@
 <section id="banners">
-  <slick dots="true" infinite="true" speed="1000" slides-to-show="1" autoplay="true" easing="easeInOutExpo" pauseOnHover="true" autoplaySpeed="800">
-    <div ng-repeat="banner in banners"><a href="{{banner.link}}"><img ng-src="{{banner.image}}" class="banner_img"></a></div>
+  <slick settings="slickConfig"
+         style="overflow: hidden;max-height: 368px;"
+         control="scoped-control-handle"
+         media="home.banners"
+         on-directive-init="onDirectiveInit()"
+         is-image="isImage(media)"
+         is-video="isVideo(media)"></slick>
   </slick>
 </section>
 <section class="main-content index">
   <div class="limits clearfix three-cols">
-    <div id="most-downloaded" class="box">
+    <div id="most-downloaded"
+         class="box">
       <div class="box-header">
         <h2 class="box-title"><strong>Mais</strong> Baixados</h2>
       </div>
       <!-- /.box-header -->
-      <div ng-tabs class="box-content">
+      <div ng-tabs
+           class="box-content">
         <div class="most-downloaded-controls">
-          <a ng-tab-head="active" href="#" ng-click="$event.preventDefault()" title="Mês"
-             class="tab-button active">Mês</a>
-          <a ng-tab-head href="#" ng-click="$event.preventDefault()" title="Geral" class="tab-button">Geral</a>
+          <a ng-tab-head="active"
+             href="#"
+             ng-show="false"
+             ng-click="$event.preventDefault()"
+             title="Mês"
+             class="tab-button active">Mês</a> <a ng-tab-head
+                                                  href="#"
+                                                  ng-show="false"
+                                                  ng-click="$event.preventDefault()"
+                                                  title="Geral"
+                                                  class="tab-button">Geral</a>
         </div>
         <!-- /.most-downloaded-controls -->
-        <div class="tab-content most-download-wrapper" ng-tab-body="animated fadeIn">
+        <div class="tab-content most-download-wrapper"
+             ng-tab-body="animated fadeIn">
           <ul class="most-downloaded-list">
-            <li id="most-downloaded-item" class="most-downloaded-list-box-cd">
-              <span class="number">1</span>
-
+            <li id="most-downloaded-item"
+                ng-repeat="cd in home.mais_baixados"
+                class="most-downloaded-list-box-cd">
+              <span class="number">{{$index+1}}</span>
               <div class="hover">
                 <div class="hover-content">
                   <h2 class="title">
-                    <a ui-sref="cd" href="#" title="Garota Safada - Uma nova história 2014" class="title-a">Garota
-                      Safada - Uma nova história 2014</a>
+                    <a ui-sref="cd({id:cd.id})"
+                       href="#"
+                       title="{{cd.titulo}}"
+                       class="title-a">{{cd.titulo}}</a>
                   </h2>
-                  <a ui-sref="perfil" href="#" class="user" title="Usuário">logindeusuario</a>
-
-                  <p class="downloads"><strong>353153</strong> downloads</p>
+                  <a ui-sref="perfil({id:cd.artista.id})"
+                     class="user"
+                     title="Usuário">{{cd.artista.nome}}</a>
+                  <p class="downloads"><strong>{{cd.downloads}}</strong> downloads</p>
                 </div>
                 <!-- /.hover-content -->
               </div>
               <figure class="cd-thumb list-box-cd-thumb">
-                <img src="http://placehold.it/206x206" alt="Garota Safada - Uma nova história 2014">
+                <img src="http://placehold.it/206x206"
+                     ng-style="{width: $index==0?206:99, height: $index==0?206:99}"
+                     ng-src="public/img/cover/{{cd.capa}}"
+                     alt="{{cd.titulo}}">
               </figure>
-            </li>
-            <li class="most-downloaded-list-box-cd">
-              <span class="number">2</span>
-
-              <div class="hover">
-                <div class="hover-content">
-                  <h2 class="title">
-                    <a ui-sref="cd" href="#" title="Garota Safada - Uma nova história 2014" class="title-a">Garota
-                      Safada - Uma nova história 2014</a>
-                  </h2>
-                  <a ui-sref="perfil" href="#" class="user" title="Usuário">logindeusuario</a>
-
-                  <p class="downloads"><strong>353153</strong> downloads</p>
-                </div>
-                <!-- /.hover-content -->
-              </div>
-              <figure class="cd-thumb list-box-cd-thumb">
-                <img src="http://placehold.it/99x99" alt="Garota Safada - Uma nova história 2014">
-              </figure>
-            </li>
-            <li class="most-downloaded-list-box-cd">
-              <span class="number">3</span>
-
-              <div class="hover">
-                <div class="hover-content">
-                  <h2 class="title">
-                    <a href="#" title="Garota Safada - Uma nova história 2014" class="title-a">Garota Safada - Uma nova
-                      história 2014</a>
-                  </h2>
-                  <a href="#" class="user" title="Usuário">logindeusuario</a>
-
-                  <p class="downloads"><strong>353153</strong> downloads</p>
-                </div>
-                <!-- /.hover-content -->
-              </div>
-              <figure class="cd-thumb list-box-cd-thumb">
-                <img src="http://placehold.it/99x99" alt="Garota Safada - Uma nova história 2014">
-              </figure>
-            </li>
-            <li class="most-downloaded-list-box-cd">
-              <span class="number">4</span>
-
-              <div class="hover">
-                <div class="hover-content">
-                  <h2 class="title">
-                    <a href="#" title="Garota Safada - Uma nova história 2014" class="title-a">Garota Safada - Uma nova
-                      história 2014</a>
-                  </h2>
-                  <a href="#" class="user" title="Usuário">logindeusuario</a>
-
-                  <p class="downloads"><strong>353153</strong> downloads</p>
-                </div>
-                <!-- /.hover-content -->
-              </div>
-              <figure class="cd-thumb list-box-cd-thumb">
-                <img src="http://placehold.it/99x99" alt="Garota Safada - Uma nova história 2014">
-              </figure>
-            </li>
-            <li class="most-downloaded-list-box-cd">
-              <span class="number">5</span>
-
-              <div class="hover">
-                <div class="hover-content">
-                  <h2 class="title">
-                    <a href="#" title="Garota Safada - Uma nova história 2014" class="title-a">Garota Safada - Uma nova
-                      história 2014</a>
-                  </h2>
-                  <a href="#" class="user" title="Usuário">logindeusuario</a>
-
-                  <p class="downloads"><strong>353153</strong> downloads</p>
-                </div>
-                <!-- /.hover-content -->
-              </div>
-              <figure class="cd-thumb list-box-cd-thumb">
-                <img src="http://placehold.it/99x99" alt="Garota Safada - Uma nova história 2014">
-              </figure>
-            </li>
-            <li class="most-downloaded-list-box-cd">
-              <span class="number">6</span>
-
-              <div class="hover">
-                <div class="hover-content">
-                  <h2 class="title">
-                    <a href="#" title="Garota Safada - Uma nova história 2014" class="title-a">Garota Safada - Uma nova
-                      história 2014</a>
-                  </h2>
-                  <a href="#" class="user" title="Usuário">logindeusuario</a>
-
-                  <p class="downloads"><strong>353153</strong> downloads</p>
-                </div>
-                <!-- /.hover-content -->
-              </div>
-              <figure class="cd-thumb list-box-cd-thumb">
-                <img src="http://placehold.it/99x99" alt="Garota Safada - Uma nova história 2014">
-              </figure>
-            </li>
-            <li class="most-downloaded-list-box-cd">
-              <span class="number">7</span>
-
-              <div class="hover">
-                <div class="hover-content">
-                  <h2 class="title">
-                    <a href="#" title="Garota Safada - Uma nova história 2014" class="title-a">Garota Safada - Uma nova
-                      história 2014</a>
-                  </h2>
-                  <a href="#" class="user" title="Usuário">logindeusuario</a>
-
-                  <p class="downloads"><strong>353153</strong> downloads</p>
-                </div>
-                <!-- /.hover-content -->
-              </div>
-              <figure class="cd-thumb list-box-cd-thumb">
-                <img src="http://placehold.it/99x99" alt="Garota Safada - Uma nova história 2014">
-              </figure>
-            </li>
-            <li class="most-downloaded-list-box-cd">
-              <span class="number">8</span>
-
-              <div class="hover">
-                <div class="hover-content">
-                  <h2 class="title">
-                    <a href="#" title="Garota Safada - Uma nova história 2014" class="title-a">Garota Safada - Uma nova
-                      história 2014</a>
-                  </h2>
-                  <a href="#" class="user" title="Usuário">logindeusuario</a>
-
-                  <p class="downloads"><strong>353153</strong> downloads</p>
-                </div>
-                <!-- /.hover-content -->
-              </div>
-              <figure class="cd-thumb list-box-cd-thumb">
-                <img src="http://placehold.it/99x99" alt="Garota Safada - Uma nova história 2014">
-              </figure>
-            </li>
-            <li class="most-downloaded-list-box-cd">
-              <span class="number">9</span>
-
-              <div class="hover">
-                <div class="hover-content">
-                  <h2 class="title">
-                    <a href="#" title="Garota Safada - Uma nova história 2014" class="title-a">Garota Safada - Uma nova
-                      história 2014</a>
-                  </h2>
-                  <a href="#" class="user" title="Usuário">logindeusuario</a>
-
-                  <p class="downloads"><strong>353153</strong> downloads</p>
-                </div>
-                <!-- /.hover-content -->
-              </div>
-              <figure class="cd-thumb list-box-cd-thumb">
-                <img src="http://placehold.it/99x99" alt="Garota Safada - Uma nova história 2014">
-              </figure>
-            </li>
-            <li class="most-downloaded-list-box-cd">
-              <span class="number">10</span>
-
-              <div class="hover">
-                <div class="hover-content">
-                  <h2 class="title">
-                    <a href="#" title="Garota Safada - Uma nova história 2014" class="title-a">Garota Safada - Uma nova
-                      história 2014</a>
-                  </h2>
-                  <a href="#" class="user" title="Usuário">logindeusuario</a>
-
-                  <p class="downloads"><strong>353153</strong> downloads</p>
-                </div>
-                <!-- /.hover-content -->
-              </div>
-              <figure class="cd-thumb list-box-cd-thumb">
-                <img src="http://placehold.it/99x99" alt="Garota Safada - Uma nova história 2014">
-              </figure>
-            </li>
-            <li class="button-area">
-              <a href="#" class="button-arrow">Ver<br/> todos <span class="arrow"></span></a>
             </li>
           </ul>
         </div>
         <!-- /.tab-content -->
-        <div class="tab-content" ng-tab-body="animated fadeIn">
+        <div class="tab-content"
+             ng-tab-body="animated fadeIn">
           :)
         </div>
         <!-- /.tab-content -->
@@ -223,203 +73,80 @@
       <!-- /.box-content -->
     </div>
     <!-- /#most-downloaded -->
-    <div id="lastest-uploads" class="box">
+    <div id="lastest-uploads"
+         class="box">
       <div class="box-header">
         <h2 class="box-title"><strong>Últimos</strong> Uploads</h2>
       </div>
       <!-- /.box-header -->
       <div class="box-content">
-        <div id="lastest-uploads-list" class="flexslider" carousel="{
-            animation: 'slide',
-            animationLoop: false,
-            slideshow: false,
-            controlNav: false,
-            direction: 'vertical'
-         }">
+        <div id="lastest-uploads-list">
           <ul class="list-cd slides">
-            <li>
+            <li ng-repeat="cd in home.uploads"
+                style="margin-top: 10px;margin-bottom: 10px">
               <div class="list-cd-box clearfix">
                 <figure class="cd-thumb list-cd-box-thumb">
-                  <a ui-sref="cd" href="#" title="">
-                    <img src="http://placehold.it/71x71">
-                  </a>
+                  <a ui-sref="cd({id:cd.id})"
+                     href="#"
+                     title=""> <img src="http://placehold.it/71x71"
+                                    width="71"
+                                    height="71"
+                                    ng-src="public/img/cover/{{cd.capa}}"> </a>
                 </figure>
                 <h2 class="list-cd-box-title">
-                  <a ui-sref="cd" href="#" title="Aviões do Forró - Ao Vivo Aracajú - 2014">Aviões do Forró - Ao Vivo
-                    Aracajú - 2014</a>
+                  <a ui-sref="cd({id:cd.id})"
+                     href="#"
+                     title="Aviões do Forró - Ao Vivo Aracajú - 2014">{{cd.titulo}}</a>
                 </h2>
-                <a ui-sref="perfil" href="#" class="user list-cd-box-user" title="">BuchechaCDs</a>
-                <span class="time">há 3 min atrás</span>
+                <a ui-sref="perfil({id:cd.artista.id})"
+                   class="user list-cd-box-user"
+                   title="Enviado por {{cd.artista.nome}}">Enviado por {{cd.artista.nome}}</a>
+                <span class="time"><span am-time-ago="cd.createdAt"></span></span>
               </div>
-              <!-- /.list-cd-box -->
-              <div class="list-cd-box clearfix">
-                <figure class="cd-thumb list-cd-box-thumb">
-                  <a ui-sref="cd" href="#" title="">
-                    <img src="http://placehold.it/71x71">
-                  </a>
-                </figure>
-                <h2 class="list-cd-box-title">
-                  <a ui-sref="cd" href="#" title="Aviões do Forró - Ao Vivo Aracajú - 2014">Aviões do Forró - Ao Vivo
-                    Aracajú - 2014</a>
-                </h2>
-                <a ui-sref="perfil" href="#" class="user list-cd-box-user" title="">BuchechaCDs</a>
-                <span class="time">há 3 min atrás</span>
-              </div>
-              <!-- /.list-cd-box -->
-              <div class="list-cd-box clearfix">
-                <figure class="cd-thumb list-cd-box-thumb">
-                  <a ui-sref="cd" href="#" title="">
-                    <img src="http://placehold.it/71x71">
-                  </a>
-                </figure>
-                <h2 class="list-cd-box-title">
-                  <a ui-sref="cd" href="#" title="Aviões do Forró - Ao Vivo Aracajú - 2014">Aviões do Forró - Ao Vivo
-                    Aracajú - 2014</a>
-                </h2>
-                <a ui-sref="perfil" href="#" class="user list-cd-box-user" title="">BuchechaCDs</a>
-                <span class="time">há 3 min atrás</span>
-              </div>
-              <!-- /.list-cd-box -->
-              <div class="list-cd-box clearfix">
-                <figure class="cd-thumb list-cd-box-thumb">
-                  <a ui-sref="cd" href="#" title="">
-                    <img src="http://placehold.it/71x71">
-                  </a>
-                </figure>
-                <h2 class="list-cd-box-title">
-                  <a ui-sref="cd" href="#" title="Aviões do Forró - Ao Vivo Aracajú - 2014">Aviões do Forró - Ao Vivo
-                    Aracajú - 2014</a>
-                </h2>
-                <a ui-sref="perfil" href="#" class="user list-cd-box-user" title="">BuchechaCDs</a>
-                <span class="time">há 3 min atrás</span>
-              </div>
-              <!-- /.list-cd-box -->
-              <div class="list-cd-box clearfix">
-                <figure class="cd-thumb list-cd-box-thumb">
-                  <a ui-sref="cd" href="#" title="">
-                    <img src="http://placehold.it/71x71">
-                  </a>
-                </figure>
-                <h2 class="list-cd-box-title">
-                  <a ui-sref="cd" href="#" title="Aviões do Forró - Ao Vivo Aracajú - 2014">Aviões do Forró - Ao Vivo
-                    Aracajú - 2014</a>
-                </h2>
-                <a ui-sref="perfil" href="#" class="user list-cd-box-user" title="">BuchechaCDs</a>
-                <span class="time">há 3 min atrás</span>
-              </div>
-              <!-- /.list-cd-box -->
-            </li>
-            <li>
-              <div class="list-cd-box clearfix">
-                <figure class="cd-thumb list-cd-box-thumb">
-                  <a ui-sref="cd" href="#" title="">
-                    <img src="http://placehold.it/71x71">
-                  </a>
-                </figure>
-                <h2 class="list-cd-box-title">
-                  <a ui-sref="cd" href="#" title="Aviões do Forró - Ao Vivo Aracajú - 2014">Aviões do Forró - Ao Vivo
-                    Aracajú - 2014</a>
-                </h2>
-                <a ui-sref="perfil" href="#" class="user list-cd-box-user" title="">BuchechaCDs</a>
-                <span class="time">há 3 min atrás</span>
-              </div>
-              <!-- /.list-cd-box -->
-              <div class="list-cd-box clearfix">
-                <figure class="cd-thumb list-cd-box-thumb">
-                  <a ui-sref="cd" href="#" title="">
-                    <img src="http://placehold.it/71x71">
-                  </a>
-                </figure>
-                <h2 class="list-cd-box-title">
-                  <a ui-sref="cd" href="#" title="Aviões do Forró - Ao Vivo Aracajú - 2014">Aviões do Forró - Ao Vivo
-                    Aracajú - 2014</a>
-                </h2>
-                <a ui-sref="perfil" href="#" class="user list-cd-box-user" title="">BuchechaCDs</a>
-                <span class="time">há 3 min atrás</span>
-              </div>
-              <!-- /.list-cd-box -->
-              <div class="list-cd-box clearfix">
-                <figure class="cd-thumb list-cd-box-thumb">
-                  <a ui-sref="cd" href="#" title="">
-                    <img src="http://placehold.it/71x71">
-                  </a>
-                </figure>
-                <h2 class="list-cd-box-title">
-                  <a ui-sref="cd" href="#" title="Aviões do Forró - Ao Vivo Aracajú - 2014">Aviões do Forró - Ao Vivo
-                    Aracajú - 2014</a>
-                </h2>
-                <a ui-sref="perfil" href="#" class="user list-cd-box-user" title="">BuchechaCDs</a>
-                <span class="time">há 3 min atrás</span>
-              </div>
-              <!-- /.list-cd-box -->
-              <div class="list-cd-box clearfix">
-                <figure class="cd-thumb list-cd-box-thumb">
-                  <a ui-sref="cd" href="#" title="">
-                    <img src="http://placehold.it/71x71">
-                  </a>
-                </figure>
-                <h2 class="list-cd-box-title">
-                  <a ui-sref="cd" href="#" title="Aviões do Forró - Ao Vivo Aracajú - 2014">Aviões do Forró - Ao Vivo
-                    Aracajú - 2014</a>
-                </h2>
-                <a ui-sref="perfil" href="#" class="user list-cd-box-user" title="">BuchechaCDs</a>
-                <span class="time">há 3 min atrás</span>
-              </div>
-              <!-- /.list-cd-box -->
-              <div class="list-cd-box clearfix">
-                <figure class="cd-thumb list-cd-box-thumb">
-                  <a ui-sref="cd" href="#" title="">
-                    <img src="http://placehold.it/71x71">
-                  </a>
-                </figure>
-                <h2 class="list-cd-box-title">
-                  <a ui-sref="cd" href="#" title="Aviões do Forró - Ao Vivo Aracajú - 2014">Aviões do Forró - Ao Vivo
-                    Aracajú - 2014</a>
-                </h2>
-                <a ui-sref="perfil" href="#" class="user list-cd-box-user" title="">BuchechaCDs</a>
-                <span class="time">há 3 min atrás</span>
-              </div>
-              <!-- /.list-cd-box -->
             </li>
           </ul>
         </div>
         <!-- #lastest-uploads-list -->
         <div class="box-content-buttons">
-          <a href="#" class="button-arrow" title="Ver todos os uploads">Ver todos <span class="arrow"></span></a>
+          <a href="#"
+             class="button-arrow"
+             title="Ver todos os uploads">Ver todos <span class="arrow"></span></a>
         </div>
         <!-- /.box-content-buttons -->
       </div>
       <!-- /.box-content -->
     </div>
     <!-- /#lastest-uploads -->
-    <div id="next-events" class="box">
+    <div id="next-events"
+         class="box">
       <div class="box-header">
         <h2 class="box-title"><strong>Próximos</strong> Eventos</h2>
       </div>
       <!-- /.box-header -->
       <div class="box-content">
-        <p class="message-empty">
-          Nenhum evento cadastrado no momento.
-        </p>
-
-        <ul class="list-events">
+        <p class="message-empty"
+           ng-if="home.eventos.length == 0">
+          Nenhum evento cadastrado no momento. </p>
+        <!--<ul class="list-events">
           <li class="list-events-box">
-            <a href="#" class="list-events-box-a">
+            <a href="#"
+               class="list-events-box-a">
               <figure class="cd-thumb list-events-box-thumb">
                 <img src="http://placehold.it/312x110">
               </figure>
               <div class="list-events-box-thumb-text clearfix">
                 <strong class="dates">01, 02, 03 de JAN/2015</strong>
                 <h2 class="title">Festival de Verão 2015</h2>
-                <span class="local">Salvador - BA</span>
-                <span class="button">Comprar Ingresso</span>
+                <span class="local">Salvador - BA</span> <span class="button">Comprar Ingresso</span>
               </div>
             </a>
           </li>
         </ul>
         <div class="box-content-buttons">
-          <a href="#" class="button-arrow" title="Ver todos os uploads">Ver todos <span class="arrow"></span></a>
-        </div>
+          <a href="#"
+             class="button-arrow"
+             title="Ver todos os uploads">Ver todos <span class="arrow"></span></a>
+        </div>-->
       </div>
       <!-- /.box-content -->
     </div>

@@ -8,8 +8,8 @@ var gm = require('gm');
 var fs = require('fs');
 
 var BannersController = module.exports = {
-  uploadPath: '../public/images/destaques',
-  uploadThumb: '../public/images/thumb/',
+  uploadPath: '../public/img/banner',
+  uploadThumb: '../public/img/banner/',
   proportions: {
     'banner': {
       'width': 1000,
@@ -66,8 +66,8 @@ var BannersController = module.exports = {
       path.pop();
       return path.join('\\');
     }
-    var pathDir = "../../../frontend/app/public/img";
-    var pathDirThumb = "../../../frontend/app/public/img/thumb";
+    var pathDir = "../../../frontend/app/public/img/banner";
+    var pathDirThumb = "../../../frontend/app/public/img/banner";
 
 
     var supportedTypes = [
@@ -99,7 +99,7 @@ var BannersController = module.exports = {
           return Arr[Arr.length - 1];
         };
 
-        banner.img = nameImg();
+        banner.src = nameImg();
         gm(file[0].fd).size(function (err, img) {
           if (!err) {
 
@@ -111,15 +111,15 @@ var BannersController = module.exports = {
               if (isProportional) {
                 gm(file[0].fd)
                   .resize(proportions.banner.width, proportions.banner.height)
-                  .write(pathDir + banner.img, function (err) {
+                  .write(pathDir + banner.src, function (err) {
                     if (err) {
                       fs.unlinkSync(file[0].fd);
                       module.exports.msgError = 'Erro ao redimensionar imagem.';
                       module.exports.list(req, res);
                     } else {
-                      gm(pathDir + banner.img)
+                      gm(pathDir + banner.src)
                         .resize(proportions.thumb.width, proportions.thumb.height)
-                        .write(pathDirThumb + banner.img, function (err2) {
+                        .write(pathDirThumb + banner.src, function (err2) {
                           if (err2) {
                             fs.unlinkSync(file[0].fd);
                             module.exports.msgError = 'Erro ao criar thumb de imagem.';
@@ -135,7 +135,7 @@ var BannersController = module.exports = {
                 // abrir crop de imagem
                 res.view('banner/crop', {
                   banner: banner,
-                  img: '/images/destaques/' + banner.img,
+                  img: '/images/destaques/' + banner.src,
                   proportions: proportions
                 });
               }
@@ -173,25 +173,25 @@ var BannersController = module.exports = {
     var proportions = module.exports.proportions;
     var ban = req.body;
 
-    gm(pathTmpDir + ban.img)
+    gm(pathTmpDir + ban.src)
       .crop(proportions.banner.width,
       proportions.banner.height,
       ban.deltaX,
       ban.deltaY)
-      .write(pathDir + ban.img, function (err) {
+      .write(pathDir + ban.src, function (err) {
         if (!err) {
-          gm(pathDir + ban.img)
+          gm(pathDir + ban.src)
             .resize(proportions.thumb.width, proportions.thumb.height)
-            .write(pathDirThumb + ban.img, function (err2) {
+            .write(pathDirThumb + ban.src, function (err2) {
               if (!err2) {
                 module.exports.saveBanner(res, ban);
               } else {
-                fs.unlinkSync(pathDir + banner.img);
+                fs.unlinkSync(pathDir + banner.src);
                 console.log(err2);
               }
             });
         } else {
-          fs.unlinkSync(pathTmpDir + banner.img);
+          fs.unlinkSync(pathTmpDir + banner.src);
           module.exports.msgError = 'Erro ao carregar tamanho de imagem.';
           module.exports.list(req, res);
         }

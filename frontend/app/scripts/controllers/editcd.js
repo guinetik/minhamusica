@@ -46,4 +46,7 @@ function EditCDCtrl($scope, cd, $stateParams) {
   $scope.$on('$viewContentLoaded', function (event) {
     cd.getCd($scope);
   });
+  $scope.addToPlaylist = function(song) {
+    cd.addToPlaylist($scope, song);
+  }
 }

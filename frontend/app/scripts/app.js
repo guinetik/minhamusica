@@ -12,7 +12,7 @@ angular.module('musicaApp',
   ['ui.router',
     'ngAnimate',
     'toastr',
-    'slick',
+    'bardo.directives',
     'angularFileUpload',
     'blockUI',
     'dcbImgFallback',
@@ -44,7 +44,7 @@ functions = {
     show: function () {
       $('#playlist').animate({'height': '172px', 'border-top': 0});
       $('#playlist .playlist-plug').attr('title', 'Esconder Playlist');
-      $('#playlist').addClass('visible');
+      $('#playlist').addClass('visible')
     },
     hide: function () {
       $('#playlist').animate({'height': '5px', 'border-top': '1px solid #3a3a3a'});

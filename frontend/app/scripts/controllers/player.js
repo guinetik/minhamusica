@@ -20,6 +20,26 @@ function PlayerCtrl($scope, $rootScope, $timeout) {
     slidesToScroll: 4,
     cssEase:        'linear'
   };
+  $scope.hasBeenAddedToPlaylist = function(id) {
+    var r = false;
+    angular.forEach($scope.playlist, function (song, key) {
+      if(song.id == id) {
+        console.log("if");
+        r = true;
+      }
+    });
+    return r;
+  };
+  $scope.getSongById = function(id) {
+    var k = -1;
+    for(var i = 0;i<$scope.playlist.length;i++) {
+      var song = $scope.playlist[i];
+      if(song.id == id) {
+        k = i;
+      }
+    }
+    return k;
+  };
   $rootScope.$on("add-cd-to-playlist", function (event, _cd) {
     var cd = angular.copy(_cd);
     var songs = angular.copy(cd.musicas).reverse();
@@ -29,6 +49,7 @@ function PlayerCtrl($scope, $rootScope, $timeout) {
       $scope.playlist.unshift(
         {
           title: song.nome,
+          id:song.id,
           cd: cd,
           src: 'public/music/' + song.filename,
           type: 'audio/mp3'
@@ -41,19 +62,25 @@ function PlayerCtrl($scope, $rootScope, $timeout) {
     });
   });
   $rootScope.$on("add-to-playlist", function (event, music) {
-    $scope.playload = true;
-    $scope.playlist.push(
-      {
-        title: music.nome,
-        cd: music.cd,
-        src: 'public/music/' + music.filename,
-        type: 'audio/mp3'
-      }
-    );
-    functions.playlist.show();
-    $timeout(function(){
-      $scope.player.play($scope.playlist.length-1, false);
-    });
+    var k = $scope.hasBeenAddedToPlaylist(music.id);
+    if(!k) {
+      $scope.playlist.unshift(
+        {
+          id:music.id,
+          title: music.nome,
+          cd: music.cd,
+          src: 'public/music/' + music.filename,
+          type: 'audio/mp3'
+        }
+      );
+      functions.playlist.show();
+      $timeout(function(){
+        $scope.player.play(0, false);
+      });
+    } else {
+      k = $scope.getSongById(music.id);
+      $scope.player.play(k);
+    }
   });
   $scope.next = function(id) {
     $scope.player.play(id, false);

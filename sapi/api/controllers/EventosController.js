@@ -5,5 +5,7 @@
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
-var EventosController = module.exports = {};
+var EventosController = module.exports = {
+
+};
 

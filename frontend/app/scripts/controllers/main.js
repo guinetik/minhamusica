@@ -7,16 +7,34 @@
  * # MainCtrl
  * Controller of the musicaApp
  */
-angular.module('musicaApp').controller('MainCtrl', ['$scope', '$rootScope', 'auth', MainCtrl]);
-function MainCtrl($scope, $rootScope, auth) {
-  $scope.banners = [
-    {link: "#", image: "images/banners/banner-1.jpg"},
-    {link: "#", image: "images/banners/banner-1.jpg"},
-    {link: "#", image: "images/banners/banner-1.jpg"},
-    {link: "#", image: "images/banners/banner-1.jpg"}
-  ];
+angular.module('musicaApp').controller('MainCtrl', ['$scope', '$rootScope', 'api','$timeout', MainCtrl]);
+function MainCtrl($scope, $rootScope, api, $timeout) {
+  $scope.home = {};
   $scope.$on('$viewContentLoaded', function (event) {
-    // EQUIVALENTE AO READY DO JQUERY
-    console.log("viewContentLoaded");
+    $timeout($scope.updateHome);
   });
+  $scope.updateHome = function() {
+    api.getHome(function(result) {
+      if(result.status == 200) {
+        $scope.home = result.home;
+        angular.forEach($scope.home.banners, function (banner, key) {
+          banner.mimeType = 'image/png';
+          banner.src = 'public/img/banner/' + banner.src;
+        });
+        console.log("home", $scope.home);
+      } else {
+        window.location.reload();
+      }
+    });
+  };
+  $scope.slickConfig = {
+    dots: true,
+    autoplay: true,
+    slidesToShow: 1,
+    centerMode: true,
+    variableWidth: true,
+    adaptiveHeight: false,
+    autoplaySpeed: 3000
+  };
+
 }

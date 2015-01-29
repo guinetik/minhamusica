@@ -185,4 +185,7 @@ function api(ws, $upload, API_URL) {
   api.updatePassword = function(user, token, cb) {
     ws.consumeService("user/password/update", user, token, cb, false);
   };
+  api.downloadCD = function(id, cb) {
+    ws.consumeService("cd/download/", {id:id}, null, cb, false, "POST");
+  };
 }

@@ -147,6 +147,7 @@
           <td style="background:#EEEEEE">{{musica.message}}</td>
           <td style="background:#EEEEEE">
             <button class="button"
+                    ng-click="addToPlaylist(musica)"
                     ng-if="musica.filename != null"
                     style="color:white">Play
             </button>

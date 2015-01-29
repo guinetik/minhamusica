@@ -17,7 +17,7 @@ var Banners = module.exports = {
     url: {
       type: 'string'
     },
-    img: {
+    src: {
       type: 'string',
       required: true
     },

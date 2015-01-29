@@ -6,7 +6,7 @@
  */
 var CdController = module.exports = {
   download: function (req, res) {
-    var id = req.query.id;
+    var id = req.body.id;
     Cd.findOne({id: id}).exec(function findCB(err, cdFound) {
       if (err) return res.status(404).send({message: 'Erro ao computar download'});
       if (cdFound) {
@@ -15,7 +15,7 @@ var CdController = module.exports = {
         Cd.update({id: id}, {downloads: downloadInt}).exec(function afterwards(err2, up) {
           console.log("err2", err2);
           if (err2) return res.status(500).send({message: 'Erro ao computar download'});
-          return res.status(200).send({message: 'Download iniciado', downloads: up[0].downloads});
+          return res.status(200).send({message: 'Inicializando o download...', downloads: up[0].downloads});
         });
       }
     });

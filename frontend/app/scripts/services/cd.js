@@ -7,8 +7,8 @@
  * # cd
  * Service in the musicaApp.
  */
-angular.module('musicaApp').service('cd', ['$timeout', 'toastr', 'api', 'auth','$state', cd]);
-function cd($timeout, toastr, api, auth, $state) {
+angular.module('musicaApp').service('cd', ['$timeout', 'toastr', 'api', 'auth','$state', '$rootScope', cd]);
+function cd($timeout, toastr, api, auth, $state, $rootScope) {
   var cd = this;
   cd.getGeneros = function($scope) {
     $timeout(function(){
@@ -18,6 +18,13 @@ function cd($timeout, toastr, api, auth, $state) {
         }
       });
     });
+  };
+  cd.addToPlaylist = function($scope,musica) {
+    var song = angular.copy(musica);
+    var _cd = angular.copy($scope.cd);
+    delete _cd.musicas;
+    song.cd = _cd;
+    $rootScope.$emit("add-to-playlist", song);
   };
   cd.getCd = function($scope) {
     $timeout(function(){
