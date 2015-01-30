@@ -2,11 +2,11 @@
   <div class="limits">
     <header class="profile-header">
       <figure class="profile-cover">
-        <img src="http://placehold.it/1000x368" ng-src="public/img/{{perfil.usuario.capa}}">
+        <img src="http://placehold.it/1000x368" ng-src="/public/img/{{perfil.usuario.capa}}">
       </figure>
       <div class="profile-dados clearfix">
         <figure class="avatar">
-          <img src="http://placehold.it/124x124" style="width: 124px;height: 124px;" ng-src="public/img/{{perfil.usuario.foto}}">
+          <img src="http://placehold.it/124x124" style="width: 124px;height: 124px;" ng-src="/public/img/{{perfil.usuario.foto}}">
         </figure>
         <div class="info">
           <h1 class="name">{{perfil.usuario.nome}}</h1>
@@ -37,7 +37,7 @@
               <div class="list-cd-box clearfix">
                 <figure class="cd-thumb list-cd-box-thumb">
                   <a ui-sref="cd({id:cd.id})" title="{{cd.titulo}}">
-                    <img ng-src="public/img/{{cd.capa}}"
+                    <img ng-src="/public/img/{{cd.capa}}"
                          style="width: 70px;height: 70px;">
                   </a>
                 </figure>
