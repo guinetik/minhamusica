@@ -18,7 +18,7 @@ module.exports = {
    ***************************************************************************/
 
   models: {
-     connection: 'MongodbLOCAL'
+     connection: 'mongo_prod'
   }
 
 };
