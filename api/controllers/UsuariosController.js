@@ -130,7 +130,7 @@ var UsuariosController = module.exports = {
   updateCover: function (req, res) {
     var uploadFile = req.file('file');
     var user = req.body;
-    uploadFile.upload({dirname: 'public/img'}, function onUploadComplete(err, files) {
+    uploadFile.upload({dirname: '../public/img'}, function onUploadComplete(err, files) {
       if (err) return res.serverError(err);
       var imagem = files[0].fd.split("/").pop();
       if (user.id != null) {
@@ -146,7 +146,7 @@ var UsuariosController = module.exports = {
   updateFoto: function (req, res) {
     var uploadFile = req.file('file');
     var user = req.body;
-    uploadFile.upload({dirname: 'public/img'}, function onUploadComplete(err, files) {
+    uploadFile.upload({dirname: '../public/img'}, function onUploadComplete(err, files) {
       if (err) return res.serverError(err);
       var imagem = files[0].fd.split("/").pop();
       if (user.id != null) {
