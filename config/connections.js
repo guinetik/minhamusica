@@ -49,10 +49,18 @@ module.exports.connections = {
   },
   'mongo_local': {
     adapter: 'sails-mongo',
+    host: 'mongodb22639-musicatop.jelastic.websolute.net.br',
+    port: 27017,
+    user: 'mtopadmin',
+    password: 'mtop123',
+    database: 'musicatop'
+  }
+  /*'mongo_local': {
+    adapter: 'sails-mongo',
     host: 'localhost',
     port: 27017,
     user: '',
     password: '',
     database: 'minhamusica'
-  },
+  },*/
 };
