@@ -8,8 +8,6 @@ var gm = require('gm');
 var fs = require('fs');
 
 var BannersController = module.exports = {
-  uploadPath: '../public/img/banner',
-  uploadThumb: '../public/img/banner/',
   proportions: {
     'banner': {
       'width': 1000,
@@ -55,8 +53,6 @@ var BannersController = module.exports = {
   },
   // @TODO:redimensionar imagem , cadastrar como destaque , editar , excluir
   createBanner: function (req, res, next) {
-    var uploadPath = module.exports.uploadPath;
-    var uploadThumb = module.exports.uploadThumb;
     var banner = req.body;
     var cod = banner.cod;
 
@@ -66,8 +62,8 @@ var BannersController = module.exports = {
       path.pop();
       return path.join('\\');
     }
-    var pathDir = "../../../frontend/app/public/img/banner";
-    var pathDirThumb = "../../../frontend/app/public/img/banner";
+    var pathDir = '../../public/img';
+    var pathDirThumb = '../../public/img';
 
 
     var supportedTypes = [
@@ -135,7 +131,7 @@ var BannersController = module.exports = {
                 // abrir crop de imagem
                 res.view('banner/crop', {
                   banner: banner,
-                  img: '/images/destaques/' + banner.src,
+                  img: '../../public/img/' + banner.src,
                   proportions: proportions
                 });
               }

@@ -19,7 +19,7 @@ function MainCtrl($scope, $rootScope, api, $timeout) {
         $scope.home = result.home;
         angular.forEach($scope.home.banners, function (banner, key) {
           banner.mimeType = 'image/png';
-          banner.src = 'public/img/' + banner.src;
+          banner.src = '/public/img/' + banner.src;
         });
         console.log("home", $scope.home);
       } else {
