@@ -25,7 +25,12 @@
     "mime": "^1.2.11",
     "rc": "~0.5.0",
     "sails": "~0.10.5",
-    "sails-disk": "~0.10.0"
+    "sails-disk": "~0.10.0",
+    "bcrypt-nodejs": "0.0.3",
+    "jwt-simple": "^0.2.0",
+    "moment": "^2.8.4",
+    "sails-disk": "^0.10.5",
+    "sails-mongo": "^0.10.4"
   },
   "scripts": {
     "start": "node app.js --prod",
@@ -37,12 +42,5 @@
     "url": "git://github.com/anonymous node/sails user/sapi.git"
   },
   "author": "anonymous node/sails user",
-  "license": "",
-  "devDependencies": {
-    "bcrypt-nodejs": "0.0.3",
-    "jwt-simple": "^0.2.0",
-    "moment": "^2.8.4",
-    "sails-disk": "^0.10.5",
-    "sails-mongo": "^0.10.4"
-  }
+  "license": ""
 }
