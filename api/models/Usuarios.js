@@ -83,7 +83,7 @@ var Usuarios = module.exports = {
   findOneByToken: function (token, cb) {
     try {
       var palyload = jwt.decode(token, 'shhh..');
-      this.findOne({id:palyload.sub}).populate("cidade").exec(function (err, foundUser) {
+      this.findOne({id:palyload.sub}).populateAll().exec(function (err, foundUser) {
         if (!foundUser) {
           cb(false);
         }
