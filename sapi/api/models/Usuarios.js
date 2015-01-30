@@ -32,10 +32,14 @@ var Usuarios = module.exports = {
       model: 'Cidades'
     },
     capa: {
-      type: 'string'
+      type: 'string',
+      required:true,
+      defaultsTo:"capa.jpg"
     },
     foto: {
-      type: 'string'
+      type: 'string',
+      required:true,
+      defaultsTo:"foto.jpg"
     },
     twitter: {
       type: 'string',

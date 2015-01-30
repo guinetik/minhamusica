@@ -18,6 +18,7 @@ angular.module('musicaApp',
     'dcbImgFallback',
     'mediaPlayer',
     'angularMoment']).run(function ($rootScope) {
+    functions.playlist.init(this);
     // helper function to seek to a percentage
     $rootScope.seekPercentage = function ($event) {
       var percentage = ($event.offsetX / $event.target.offsetWidth);
@@ -67,7 +68,6 @@ functions = {
 };
 $(window).load(function () {
   // Plug Playlist
-  functions.playlist.init(this);
   $(document).on('click', '#playlist .playlist-plug', function (e) {
     e.preventDefault();
     functions.playlist.init(this);

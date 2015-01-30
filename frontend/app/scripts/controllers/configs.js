@@ -7,12 +7,13 @@
  * # ConfigsCtrl
  * Controller of the musicaApp
  */
-angular.module('musicaApp').controller('ConfigsCtrl', ['$rootScope', '$scope', 'api', 'auth', '$timeout', '$state', 'toastr', ConfigsCtrl]);
-function ConfigsCtrl($rootScope, $scope, api, auth, $timeout, $state, toastr) {
+angular.module('musicaApp').controller('ConfigsCtrl', ['$rootScope', '$scope', 'api', 'auth', '$timeout', '$state', 'toastr','$upload', ConfigsCtrl]);
+function ConfigsCtrl($rootScope, $scope, api, auth, $timeout, $state, toastr, $upload) {
   $scope.usuario = {};
   $scope.capa = {};
   $scope.foto = {};
   $scope.estados = [];
+  console.log($upload);
   $scope.$on('$viewContentLoaded', function (event) {
     $timeout(function(){
       api.getEstados(function(result){
@@ -83,6 +84,7 @@ function ConfigsCtrl($rootScope, $scope, api, auth, $timeout, $state, toastr) {
     });
   };
   $scope.updateUserFoto = function(file) {
+    console.log("updateFoto");
     if($scope.usuario.id != null) $scope.foto.user = $scope.usuario.id;
     var token = auth.getToken();
     api.updateUserFoto(file, $scope.foto, token, function(data, status, headers, config){

@@ -48,4 +48,7 @@ function NovoCDCtrl($scope, cd) {
   $scope.updateMusic = function(music) {
     cd.updateMusic($scope, music);
   };
+  $scope.addToPlaylist = function(song) {
+    cd.addToPlaylist($scope, song);
+  }
 }

@@ -1111,19 +1111,34 @@ select
       float: left
       width: 203px
       margin-left: 11px
+      .text
+        position: relative
+        left: 70px
+        top: -60px
+        .link-pink
+          color: #64D303
+        .music
+          font: normal 13px/13px $font-bold
+          display: block
+          color: #fff
+        .artist
+          font: normal 12px/1em $font-regular
+          color: #a5add7
       &:first-child
         margin-left: 0
       &.active
-        a
+        .song_bt
           background: #fff
           cursor: default
           +border-radius(3px)
-          .text
-            .music
-              color: $blue
-            .artist
-              color: #7c8198
-      a
+        .text
+          .link-pink
+            color: #e11d70
+          .music
+            color: $blue
+          .artist
+            color: #7c8198
+      .song_bt
         display: block
         padding: 5px
         position: relative
@@ -1132,15 +1147,6 @@ select
           top: 5px
           left: 5px
           position: absolute
-        .text
-          padding-left: 67px
-          .music
-            font: normal 13px/13px $font-bold
-            display: block
-            color: #fff
-          .artist
-            font: normal 12px/1em $font-regular
-            color: #a5add7
 
 /* end Playlist */
 

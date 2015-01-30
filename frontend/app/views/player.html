@@ -66,22 +66,10 @@
     <div id="playlist-musics-list"
          class="playlist-musics-list-wrapper flexslider">
       <div class="playlist-musics-list-ol slides clearfix">
-        <slick dots="false"
-               id="slick"
-               touch-move="true"
-               infinite="false"
-               slides-to-show="3"
-               slides-to-scroll="3"
-               variable-width="false"
-               autoplay="false"
-               arrows="true"
-               easing="easeInOutExpo"
-               pauseOnHover="false"
-               autoplaySpeed="800">
           <div class="list_item"
                ng-class="{'active':player.playing && $index== player.currentTrack-1}"
                ng-repeat="song in playlist">
-            <a ng-click="player.play($index)">
+            <a ng-click="player.play($index)" class="song_bt">
               <figure class="cd-thumb">
                 <img src="http://placehold.it/52x52"
                      width="52"
@@ -89,12 +77,14 @@
                      ng-src="public/img/cover/{{song.cd.capa}}"
                      alt="">
               </figure>
-              <div class="text">
-                <strong class="music">{{song.title}}</strong> <span class="artist">{{song.cd.titulo}}<br/>{{song.cd.artista.nome}}</span>
-              </div>
             </a>
+            <p class="text">
+              <strong class="music">{{song.title}}</strong>
+              <span class="artist"><a class="link-pink" ui-sref="cd({id:cd.id})">{{song.cd.titulo}}</a></span>
+              <br/>
+              <span class="artist">Enviando por: <a class="link-pink" ui-sref="perfil({id:cd.artista.id})">{{song.cd.artista.nome}}</a></span>
+            </p>
           </div>
-        </slick>
       </div>
     </div>
   </div>
