@@ -21,7 +21,6 @@ function MainCtrl($scope, $rootScope, api, $timeout) {
           banner.mimeType = 'image/png';
           banner.src = '/public/img/' + banner.src;
         });
-        console.log("home", $scope.home);
       } else {
         window.location.reload();
       }

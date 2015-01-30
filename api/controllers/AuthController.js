@@ -58,7 +58,7 @@ var AuthController = module.exports = {
           }
 
           req.session.authenticated = foundUser;
-          return res.redirect('/');
+          return res.redirect('/banners/list');
         });
 
       });
