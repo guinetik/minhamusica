@@ -1,0 +1,161 @@
+<!-- Breadcrumb -->
+<ng-include src="'views/breadcrumb.html'"></ng-include>
+<!-- end Breadcrumb -->
+
+<section id="register" class="main-content section-content">
+  <div class="limits">
+
+    <div class="section-header">
+      <h1 class="section-title">Cadastre-se</h1>
+    </div>
+
+    <div class="section-content clearfix">
+
+      <div class="area-form">
+        <form ng-submit="submit()" name="register" class="form-default form-register" novalidate>
+          <div class="form-row">
+            <label for="nome" class="form-label">Nome Completo: <span>*</span></label>
+
+            <div class="form-row-field">
+              <input id="nome" name="nome" ng-model="usuario.nome" type="text" placeholder="" required
+                     class="field-500"/>
+
+              <p class="help-block helper-invalid" ng-show="register.nome.$touched && register.nome.$invalid">Por favor
+                digite seu nome.</p>
+            </div>
+          </div>
+          <!-- /.form-row -->
+          <div class="form-row">
+            <label for="email" class="form-label">E-mail <span>*</span></label>
+
+            <div class="form-row-field">
+              <input id="email" name="email" ng-model="usuario.email" email-validate type="email" placeholder=""
+                     required class="field-500"/>
+
+              <p class="help-block helper-invalid" ng-show="register.email.$error.email">Por favor digite seu email
+                corretamente.</p>
+            </div>
+          </div>
+          <!-- /.form-row -->
+          <div class="form-row form-row-double">
+            <div class="col">
+              <label for="senha" class="form-label">Senha: <span>*</span></label>
+
+              <div class="form-row-field no-margin-bottom">
+                <input id="senha" name="senha" type="password" ng-model="usuario.senha" ng-minlength="6" placeholder=""
+                       required class="field-240"/>
+
+                <p class="help-block helper-invalid" ng-show="register.usuario.senha.$error.minlength">A senha precisa
+                  ter no mínimo 6 caracteres</p>
+              </div>
+            </div>
+            <!-- /.col -->
+            <div class="col">
+              <label for="confirmar-senha" class="form-label">Confirmar Senha: <span>*</span></label>
+
+              <div class="form-row-field no-margin-bottom">
+                <input id="confirmar-senha" name="conf_senha" type="password" ng-model="usuario.conf_senha"
+                       placeholder="" validate-equals="usuario.senha" required class="field-240"/>
+
+                <p class="help-block helper-invalid"
+                   ng-show="register.conf_senha.$dirty && register.conf_senha.$invalid">Preencha sua senha
+                  corretamente.</p>
+              </div>
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.form-row-double -->
+          <div class="form-row form-row-double">
+            <div class="col">
+              <label for="" class="form-label">Sexo: <span>*</span></label>
+
+              <div class="form-row-field no-margin-bottom">
+                <ul class="form-list-options inline">
+                  <li><label>Masculino<input name="sexo" type="radio" ng-model="usuario.sexo" value="m"/> </label></li>
+                  <li><label>Feminino<input name="sexo" type="radio" ng-model="usuario.sexo" value="f"/> </label></li>
+                </ul>
+                <!-- /.form-list-options -->
+              </div>
+            </div>
+            <!-- /.col -->
+            <div class="col">
+              <label for="nascimento" class="form-label">Data de Nascimento <span>*</span></label>
+
+              <div class="form-row-field no-margin-bottom">
+                <input id="nascimento" type="date" name="nascimento" ng-model="usuario.nascimento" type="date"
+                       placeholder="yyyy-mm-dd" required class="field-240"/>
+              </div>
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.form-row-double -->
+
+
+          <div class="form-row form-row-double">
+            <div class="col">
+              <label for="estado" class="form-label">Estado: <span>*</span></label>
+
+              <div class="form-row-field no-margin-bottom">
+                <select id="estado" ng-model="usuario.estadoSelecionado"
+                        ng-options="item.nome for item in estados track by item.sigla" required>
+                  <option value="">Selecione seu estado</option>
+                </select>
+              </div>
+            </div>
+            <!-- /.col -->
+            <div class="col">
+              <label for="cidade" class="form-label">Cidade: <span>*</span></label>
+
+              <div class="form-row-field no-margin-bottom">
+                <select id="cidade" ng-model="usuario.cidadeSelecionada"
+                        ng-options="item.nome for item in usuario.estadoSelecionado.cidades" required>
+                  <option value="">Selecione primeiro o estado</option>
+                </select>
+              </div>
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.form-row-double -->
+
+          <!--
+                    <select ng-model="usuario.tipoSelecionado" ng-options="item.nome for item in tipos" required>
+                    </select>
+          -->
+
+          <p class="row-desc clearfix">
+            <input type="checkbox" ng-model="usuario.usuarioAceitou" name="usuarioAceitou" required/>
+            <label class="form-label">
+              Eu aceito os <a href="#" title="Termos de uso">Termos de uso</a>
+            </label>
+
+          <div ng-show="!usuario.usuarioAceitou">Aceite os termos para concluir o cadastro.</div>
+          </p>
+
+
+          <div class="button-area">
+            <button type="submit" ng-disabled="register.$invalid" class="button-highlight">Cadastrar</button>
+          </div>
+        </form>
+      </div>
+      <!-- /.form-area -->
+
+      <div class="call-area">
+
+        <div class="call-area-text">
+          <h2 class="title">Já possuo cadastro</h2>
+
+          <p class="desc">Se você já possui cadastro, acesse agora mesmo seu painel.</p>
+          <a ui-sref="login" href="#" title="Fazer login" class="button">Faça login agora</a>
+        </div>
+
+      </div>
+      <!-- /.call-area -->
+
+
+    </div>
+    <!-- /.section-content -->
+  </div>
+  <!-- /.limits -->
+</section>
+
+

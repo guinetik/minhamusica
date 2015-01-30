@@ -1,0 +1,153 @@
+
+<div class="bs-docs-header" id="content">
+      <div class="container">
+        <h1>Cadastro de Banners</h1>
+        <p>Cadastre o banner, escolha título, url e imagem. Mova-os para alterar sua ordem de exibição.</p>
+      </div>
+    </div>
+	<div class="container bs-docs-container">
+  <div>
+	  <% if(error){ %>
+		<div class="alert alert-danger alert-dismissible fade in" role="alert">
+		  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+		  <h4></h4>
+		  <p><%= error %></p>
+		</div>  
+	 <% } %> 
+	  
+ 	  
+    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalAdd">Add</button>
+  
+	  
+	<% if(banners.length){ %>  
+		<table class="table table-striped table-hover" id="dragTd" >
+		  <thead>
+			<tr class="nodrag">
+			  <th>Título</th>
+			  <th>Url</th>
+			  <th>Imagem</th>
+			  <th></th>
+			</tr>
+		  </thead>
+
+		  <tbody>
+
+		<% _.each(banners,function(banner,i){ %>
+			  <tr id="<%= banner.posicao %>" >
+				<td>
+				  <%= banner.titulo %>
+				</td>
+				<td>
+				  <%= banner.url %>
+				</td>
+				<td>
+				 <img src="/images/destaques/thumb/<%= banner.img %>" />
+				</td>
+				<td>
+				  <!--<button class="btn btn-primary" data-toggle="modal" data-target="#modalEdit<%=i%>">Edit</button>-->
+				  <a class="btn btn-danger" href="/banner/delete/?id=<%= banner.id %>">Remove</a>
+				  <input type="hidden" value="<%= banner.id %>" class="idf"/>
+				 </td>
+			  </tr>
+		<% });%>
+			</tbody>
+		  </table>
+	<% }else{ %>
+	  	<br/><br/>
+		<div class="alert alert-warning alert-dismissible fade in" role="alert">
+		  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+		  <h4></h4>
+			<p>Você <strong>não posssui banners</strong> cadastrados!</p>
+		</div>
+	<% } %> 
+    <!-- Modal -->
+    <div class="modal fade" id="modalAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form action="http://localhost:1337/banner/registrar" enctype="multipart/form-data" method="post">
+            <div class="modal-body">
+
+              <div class="form-group">
+                <input type="text" name="titulo" class="form-control" placeholder="Título" />
+              </div>
+              <div class="form-group">
+                <input type="text" name="url" class="form-control" placeholder="http://www.seulink.com" />
+              </div>
+              <div class="form-group">
+                <input type="file" name="img" class="form-control" placeholder="Imagem" />
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <input type="submit" class="btn btn-primary" value="Save" />
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+</div>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		
+		
+		var oldPositions=[];  
+		var i = 0;
+		$('#dragTd tbody tr').each(function(obj){
+			
+			oldPositions[i] = $(this).attr('id');
+			i++;	
+		});
+		
+		$('#dragTd').tableDnD({
+			onDrop: function(table, row) {
+		   
+				var rows = table.tBodies[0].rows;
+				var dataStr = "data=";	
+				var separator = "";
+				for (var i=0; i<rows.length; i++) {
+					var nId  = $('#'+rows[i].id).children('td').find('.idf').val();
+					var s = nId+'-'+oldPositions[i];
+					dataStr+= separator+s;
+					separator = ",";
+				}
+				
+				$.ajax({
+				  method: 'POST',
+				  url: '/banner/posicao',
+				  data: dataStr,
+				  dataType: 'json'	
+				}).done(function() {
+					//alert('sucesso');
+				});
+
+			
+			}
+		});
+	});
+
+</script>
+<!--<div class="modal fade" id="modalEdit<i>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+			  <div class="modal-dialog">
+				<div class="modal-content">
+				 <form action="http://localhost:1337/banner/registrar" enctype="multipart/form-data" method="post">
+					<div class="modal-body">
+
+					  <div class="form-group"><input type="text" name="titulo" value="<banner.titulo>" class="form-control" placeholder="Título"/></div>
+					  <div class="form-group"><input type="text" name="url"  value="<banner.url>" class="form-control" placeholder="http://www.seulink.com"/></div>
+					  <div class="form-group"><input type="text" name="cod" value="<banner.id>"/></div>
+					  <div class="form-group"><input type="file" multiple="multiple" name="img" class="form-control" placeholder="Imagem"/></div>
+
+
+					 </div>
+					 <div class="modal-footer">
+						 <input type="submit" class="btn btn-primary" value="Save" />
+						 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					 </div>
+					</form>
+				</div>
+			  </div>
+			</div>-->

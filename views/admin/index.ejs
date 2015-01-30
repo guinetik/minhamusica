@@ -1,0 +1,119 @@
+<div class="bs-docs-header" id="content">
+      <div class="container">
+        <h1>Cadastro de Administradores</h1>
+        <p>Cadastre o administrador, escolha nome, email e senha ou altere-os se preferir.</p>
+      </div>
+    </div>
+	<div class="container bs-docs-container">
+<div>
+  <% if(error){ %>
+    <div class="alert alert-danger alert-dismissible fade in" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+      </button>
+      <h4></h4>
+      <p>
+        <%= error %>
+      </p>
+    </div>
+    <% } %>
+
+
+      <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modalAdd">Add</button>
+
+
+      <% if(users.length){ %>
+        <table class="table table-striped table-hover" id="dragTd">
+          <thead>
+            <tr class="nodrag">
+              <th>Nome</th>
+              <th>Email</th>
+              <th></th>
+            </tr>
+          </thead>
+		<tbody>
+			  <% _.each(users,function(user,i){ %>
+              <tr>
+                <td>
+                  <%=user.nome %>
+                </td>
+                <td>
+                  <%=user.email %>
+                </td>
+                <td>
+                  <button class="btn btn-primary" data-toggle="modal" data-target="#modalEdit<%=i%>">Edit</button>
+                  <a class="btn btn-danger" href="/admin/deletar/?id=<%= user.id %>">Remove</a>
+                  <div class="modal fade" id="modalEdit<%=i%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <form action="http://localhost:1337/admin/atualizar/" enctype="multipart/form-data" method="post">
+                          <div class="modal-body">
+
+                            <div class="form-group">
+                              <input type="text" name="nome" value="<%= user.nome %>" class="form-control" placeholder="Nome" />
+                            </div>
+                            <div class="form-group">
+                              <input type="text" name="email" value="<%= user.email %>" class="form-control" placeholder="email@email.com" />
+                            </div>
+                            <div class="form-group">
+                              <input type="password" name="senha" value="" class="form-control" placeholder="Digite sua senha"/>
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                              <input type="hidden" name="id" value="<%= user.id %>" />
+                            
+							 <input type="submit" class="btn btn-primary" value="Save" />
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>	
+                  </div>
+                </td>
+
+
+
+              </tr>
+              <% });%>
+          </tbody>
+        </table>
+        <% }else{ %>
+          <br/>
+          <br/>
+          <div class="alert alert-warning alert-dismissible fade in" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+            </button>
+            <h4></h4>
+            <p>Você <strong>não posssui Usuários</strong> cadastrados!</p>
+          </div>
+          <% } %>
+            <!-- Modal -->
+            <div class="modal fade" id="modalAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <form action="http://localhost:1337/admin/registrar" enctype="multipart/form-data" method="post">
+                    <div class="modal-body">
+					 <div class="form-group">
+                        <input type="text" name="nome" class="form-control" placeholder="Digite seu nome" />
+                      </div>
+                      <div class="form-group">
+                        <input type="text" name="email" class="form-control" placeholder="Digite seu email" />
+                      </div>
+                      <div class="form-group">
+                        <input type="password" name="senha" class="form-control"  />
+                      </div>
+
+                    </div>
+                    <div class="modal-footer">
+                      <input type="submit" class="btn btn-primary" value="Save" />
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+</div>
+</div>
+
+
+

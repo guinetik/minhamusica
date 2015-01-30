@@ -1,0 +1,1635 @@
+/*
+ * @author: Victor Aldabalde <victoraldabalde@gmail.com>
+ * @date: 12/2014
+ */
+
+@import compass/reset
+@import compass/css3
+@import compass/utilities
+@import fonts
+@import helpers
+@import fancybox
+@import config
+
+a
+  text-decoration: none
+
+body, input, select, button, textarea
+  font-family: $font-default
+
+.wrapper
+  padding-top: 107px
+
+.limits
+  width: 1000px
+  margin: auto
+
+input[type=text],
+input[type=password],
+input[type=date],
+input[type=email],
+input[type=search],
+input[type=phone],
+textarea,
+select
+  font: normal 14px $font-regular
+  padding: 12px
+  border: 2px solid #ddd
+  background: #f8f8f8
+  color: $gray-light
+  +border-radius(4px)
+  &:focus, &:active
+    outline: none
+    border-color: $blue
+    color: $blue
+    background: #fff
+
+.banner_img
+  width: 100%
+
+.link-pink
+  color: $pink
+  +single-transition(all, .1s, linear)
+  &:hover
+    //color: darken($pink, 10%)
+    color: $blue
+    text-decoration: underline
+
+.cd-thumb
+  border: 1px solid #a9a9a9
+  background: #fff
+  padding: 3px
+  display: inline-block
+  overflow: hidden
+  +box-sizing(border-box)
+  +border-radius(4px)
+  +single-transition(color, .2s, ease-in)
+  &:hover
+    border-color: $pink
+  img
+    display: block
+    margin: 0
+    border: 0
+
+.link-user
+  font-size: 13px
+  font-family: $font-regular
+  display: inline-block
+
+/* Buttons */
+@import buttons
+/* end Buttons */
+
+
+
+
+
+/* Header */
+#header
+  width: 100%
+  background: #fff url(#{$base-img}/bg-header.png) repeat-x bottom
+  position: fixed
+  z-index: 20
+  top: 0
+  height: 107px
+  .limits
+  //padding-top: 20px
+  //padding-bottom: 20px
+  .logo, #search-form, #genre, #header-user
+    float: left
+  #search-form, #genre, #header-user
+    margin-top: 25px
+
+.logo
+  display: block
+  width: 141px
+  height: 83px
+  margin-top: 10px
+  a
+    height: 83px
+    display: block
+    background: url(#{$base-img}/logo.png) no-repeat
+    text-indent: -9999em
+    overflow: hidden
+
+#search-form
+  position: relative
+  margin-left: 35px
+  margin-right: 20px
+  .search-input
+    width: 275px
+    border: 1px solid #cacaca
+    background: #fcfcfc
+    color: #bababa
+    padding-left: 20px
+    padding-right: 70px
+    padding-top: 18px
+    padding-bottom: 18px
+    height: 16px
+    line-height: 16px
+    +box-shadow(inset 1px 1px 0 #fff)
+    +border-radius(4px)
+    &:focus, &:active
+      background: #fff
+      outline: none
+      color: $blue
+      border-color: $blue
+      +single-transition(all, .1s, ease-in)
+  .search-input:focus + search-button
+    border-left-color: $blue
+  .search-button
+    position: absolute
+    right: 1px
+    top: 1px
+    width: 54px
+    height: 52px
+    border: 0
+    background: #f1f1f1
+    cursor: pointer
+    display: block
+    text-indent: -9999em
+    border-left: 1px solid #cacaca
+    @include background-image(linear-gradient(white, #e1e1e1))
+    +border-radius(0 4px 4px 0)
+    &:hover, &:focus
+      outline: none
+      background: #fff
+      +transition(all, .2s, ease-in)
+    span
+      @extend .sprite
+      width: 24px
+      height: 24px
+      background-position: -295px 0
+      position: absolute
+      left: 14px
+      top: 13px
+
+#genre
+  border-right: 1px solid #e0e0e0
+  position: relative
+  padding: 20px 25px 25px 0
+  .genre-trigger
+    color: $blue
+    font-size: 16px
+    display: block
+    text-transform: uppercase
+    font-family: $font-black
+    .arrow
+      @extend .sprite
+      width: 14px
+      height: 14px
+      background-position: -319px -54px
+  .genre-dropdown
+    width: 180px
+    padding: 5px 10px
+    position: absolute
+    background: #fff
+    border: 1px solid #eee
+    top: 50px
+    left: -50px
+    display: none
+    +border-radius(4px)
+    +box-shadow(0 2px 8px rgba(0, 0, 0, 0.15))
+    &:before
+      border: 8px solid #fff
+      border-top-color: transparent
+      border-left-color: transparent
+      border-right-color: transparent
+      content: ''
+      position: absolute
+      top: -16px
+      left: 80px
+    ul
+      li
+        a
+          display: block
+          padding: 5px 0
+          font: normal 13px $font-regular
+          text-transform: uppercase
+          @extend .link-pink
+
+#header-user
+  padding: 20px 0 20px 20px
+  border-left: 1px solid #fff
+  position: relative
+  .icon
+    @extend .sprite
+    width: 24px
+    height: 24px
+    background-position: -295px -24px
+    position: absolute
+    left: 10px
+    top: 15px
+  p
+    font-family: $font-bold
+    font-size: 14px
+    margin-left: 20px
+    color: $gray-light
+    a
+      @extend .link-pink
+  .logged
+    position: relative
+    padding-left: 48px
+    .welcome
+    font-family: $font-bold
+    font-size: 14px
+    color: $gray-light
+    .avatar
+      position: absolute
+      left: 0
+      top: -5px
+    .links
+      li
+        float: left
+        margin-left: 10px
+        &:first-child
+          margin-left: 0
+        a
+          @extend .link-pink
+          font: normal 13px $font-regular
+/* end Header */
+
+
+
+
+
+
+/* Banners */
+.flex-direction-nav-a
+  background-image: url(#{$base-img}/sprite.png) !important
+  background-repeat: no-repeat !important
+  opacity: 1 !important
+  overflow: hidden
+  text-align: left
+  text-indent: -9999em
+  display: block
+  cursor: pointer
+  position: absolute
+  +single-transition(none)
+  &:focus
+    outline: 0
+  &:before
+    display: none !important
+
+#banners
+  overflow: hidden
+  position: relative
+  .banners-mask
+    //height: 368px
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    margin: 0 auto
+    //z-index: 99
+    //background: url(#{$base-img}/bg-banner-mask.png) repeat-y top center
+    .left, .right
+      width: 15%
+      height: 368px
+      position: absolute
+      content: ''
+      background: rgba(255, 255, 255, 0.85)
+      display: block
+    .right
+      top: 0
+      right: 0
+    .left
+      top: 0
+      left: 0
+    .limits
+      height: 368px
+      overflow: hidden
+
+@media screen and (max-width: 1024px)
+  #banners
+    .banners-mask
+      .left, .right
+        width: 1.171875%
+
+@media screen and (min-width: 1025px) and (max-width: 1280px)
+  #banners
+    .banners-mask
+      .left, .right
+        width: 10.9375%
+
+@media screen and (min-width: 1441px) and (max-width: 2000px)
+  #banners
+    .banners-mask
+      .left, .right
+        width: 23.958333334%
+
+#banners-carousel
+  height: 368px
+  background: #000
+  padding: 0
+  border: 0
+  margin: 0
+  +border-radius(0)
+  +box-shadow(none)
+  position: relative
+  zoom: 1
+  .flex-viewport
+    width: 1000px
+    margin: 0 auto
+    overflow: visible !important
+  .flex-direction-nav
+    a
+      @extend .flex-direction-nav-a
+      width: 65px
+      height: 54px
+      opacity: 1
+      z-index: 10
+      position: absolute
+      top: 150px
+      &.flex-prev
+        left: 0
+        background-position: 0 0
+        &:hover
+          background-position: 0 -55px
+      &.flex-next
+        right: 0
+        background-position: -65px 0
+        &:hover
+          background-position: -65px -55px
+
+#banners-ul
+  width: 1000px
+  zoom: 1
+  margin: 0 auto
+  padding: 0
+  li
+    width: 1000px
+    float: left
+    height: 368px
+    display: none
+    -webkit-backface-visibility: hidden
+    a
+      display: block
+      img
+        width: 1000px
+        display: block
+
+#banners-thumbs
+  min-height: 110px
+  zoom: 1
+  padding: 0
+  margin: 0
+  border: 0
+  +border-radius(0)
+  +box-shadow(none)
+  position: relative
+  background: url(#{$base-img}/bg-sombra-top.png) repeat-x top
+  .flex-viewport
+    width: 1000px
+    margin: 0 auto
+  ul
+    text-align: center
+    padding-top: 17px
+    li
+      width: 139px
+      //display: inline-block
+      display: none
+      -webkit-backface-visibility: hidden
+      opacity: 0.4
+      margin-right: 5px
+      &.flex-active-slide
+        opacity: 1
+      a
+        @extend .cd-thumb
+        display: block
+        img
+          width: 100%
+          display: block
+
+/* end Banners */
+
+
+
+
+
+/* Content */
+.main-content
+  &.index
+    padding-top: 10px
+  .column-left
+    float: left
+    width: 660px
+  .column-right
+    width: 320px
+    margin-left: 20px
+    float: left
+
+.three-cols
+  .box
+    float: left
+    width: 320px
+    margin-left: 20px
+    &:first-child
+      margin-left: 0
+
+.box
+  .box-header
+    border-bottom: 3px solid #eee
+    margin-bottom: 30px
+    padding-bottom: 10px
+    &.divider
+      .box-title, .count-description
+        float: left
+      .count-description
+        border-left: 1px solid #eee
+        padding-left: 17px
+        margin-left: 17px
+        font: normal 14px/14px $font-regular
+        color: #929bc6
+        text-transform: uppercase
+        strong
+          color: $blue
+          font: normal 44px/40px $font-black
+          display: block
+    .box-title
+      text-transform: uppercase
+      color: $blue
+      font-size: 36px
+      font-family: $font-light
+      letter-spacing: -0.08em
+      line-height: 26px
+      strong
+        display: block
+        font-family: $font-black
+  .box-content-buttons
+    padding-left: 106px
+
+.box-inner
+  margin-bottom: 40px
+  .box-header
+    &.box-header-balloon
+      .box-title, .balloon, .button
+        float: left
+    .box-title
+      font-size: 30px
+      letter-spacing: -0.04em
+      strong
+        letter-spacing: -0.08em
+    .balloon
+      width: 66px
+      padding-top: 2px
+      height: 25px
+      font: normal 18px $font-black
+      color: $blue
+      text-align: center
+      margin-left: 15px
+      @extend .sprite
+      background-position: -343px -82px
+    .button
+      padding: 7px 10px 7px 30px
+      font: normal 13px $font-bold
+      margin-left: 15px
+
+.list-cd
+  li
+    margin-top: 15px
+    margin-bottom: 20px
+    &:first-child
+      margin-top: 0
+
+.list-cd-box
+  padding-left: 90px
+  position: relative
+  height: 80px
+  .list-cd-box-thumb
+    width: 79px
+    float: left
+    position: absolute
+    top: 0
+    left: 0
+  .list-cd-box-title
+    a
+      font-size: 16px
+      font-family: $font-bold
+      margin-top: 10px
+      color: $blue
+      display: block
+      +single-transition(color, .2s, ease-in)
+      &:hover
+        color: $pink
+  .list-cd-box-user
+    @extend .link-pink
+    @extend .link-user
+  .time
+    font-size: 11px
+    display: block
+    margin-top: 5px
+    margin-bottom: 5px
+    color: $gray-light
+
+.list-events-box
+  margin-bottom: 20px
+  .list-events-box-thumb
+    margin-bottom: 10px
+  .list-events-box-a
+    .title, .button
+      +single-transition(all, .2s, ease-in)
+    &:hover
+      .title
+        color: $pink
+      .button
+        color: #fff
+        background-color: $pink
+  .list-events-box-thumb-text
+    position: relative
+    padding-right: 140px
+    .dates
+      font-size: 12px
+      font-weight: 700
+      color: $gray
+    .title
+      color: $blue
+      font-family: $font-bold
+      font-size: 16px
+      display: block
+      margin-top: 5px
+    .local
+      font-size: 11px
+      color: $gray-light
+    .button
+      display: block
+      padding: 10px
+      border: 1px solid $pink
+      font: normal 12px $font-regular
+      text-transform: uppercase
+      color: $pink
+      position: absolute
+      right: 0
+      top: 0
+      +border-radius(3px)
+
+.tab-button
+  display: inline-block
+  font-size: 14px
+  text-transform: uppercase
+  padding: 6px 25px
+  text-align: center
+  font-family: $font-regular
+  @extend .link-pink
+  &.active
+    background: $blue
+    color: #fff
+    font-family: $font-bold
+    +border-radius(4px)
+
+.tab-content, .ng-hide
+  display: none
+
+.ng-show
+  display: block
+
+.message-empty
+  background: #fff
+  color: #888
+  text-align: center
+  padding: 80px
+  border: 5px solid #eee
+  +border-radius(4px)
+  font: normal 13px $font-light
+  text-transform: uppercase
+/* end Content */
+
+
+
+
+
+/* Main */
+#most-downloaded
+  position: relative
+  z-index: 10
+  .most-downloaded-controls
+    position: absolute
+    top: 26px
+    left: 150px
+    width: 170px
+    overflow: hidden
+    a
+      float: left
+
+.most-downloaded-list
+  margin-right: -1px
+  li
+    float: left
+    height: 107px
+    &:first-child
+      height: 214px
+      .hover
+        width: 214px
+        height: 214px
+        .hover-content
+          padding: 25px
+          position: relative
+          .title
+            a
+              font-size: 18px
+              line-height: 1.3em
+          .user
+            margin-top: 10px
+          .downloads
+            position: absolute
+            left: 25px
+            bottom: 25px
+            strong
+              display: block
+      .number
+        font-size: 24px
+        width: 47px
+        height: 39px
+        padding-top: 8px
+        left: -15px
+        top: -15px
+  .button-area
+    .button-arrow
+      padding-top: 37px
+      height: 67px
+      &:hover
+        span
+          background-position: -235px -27px
+      span
+        width: 27px
+        height: 27px
+        top: 38px
+        background-position: -235px 0
+
+.most-downloaded-list-box-cd
+  position: relative
+  margin: 0
+  +box-sizing(border-box)
+  &:hover
+    .cd-thumb
+      border-color: $pink
+    .hover, .number
+      display: block
+  .cd-thumb
+    margin: 0
+  .number
+    display: none
+    width: 29px
+    height: 24px
+    padding-top: 5px
+    color: #fff
+    font: normal 14px $font-bold
+    text-align: center
+    background: #020202
+    //background: $pink
+    position: absolute
+    top: -10px
+    left: -10px
+    z-index: 11
+    +single-transition(opacity, .1s, linear)
+    +border-radius(100%)
+  .hover
+    //opacity: 0
+    display: none
+    position: absolute
+    padding: 3px
+    width: 214px
+    height: 107px
+    border: 1px solid $pink
+    left: 0
+    top: 0
+    background: #fff
+    overflow: hidden
+    z-index: 10
+    +single-transition(opacity, .1s, linear)
+    +border-radius(4px)
+    +box-sizing(border-box)
+    .hover-content
+      background: $pink
+      //background: $blue
+      padding: 15px
+      width: 100%
+      height: 100%
+      +box-sizing(border-box)
+      .user
+        @extend .link-user
+        color: #f3a5c6
+        margin-top: 5px
+        +transition(color, .2s, linear)
+        &:hover
+          color: #fff
+      .title
+        a
+          color: #fff
+          font-family: $font-black
+          font-size: 13px
+          text-transform: uppercase
+          display: block
+          +single-transition(all, .2s, ease-in)
+          &:hover
+            color: #fad4e4
+            text-shadow: 0 1px rgba(0, 0, 0, 0.4)
+      .downloads
+        color: #420620
+        font-family: $font-regular
+        font-size: 12px
+        margin-top: 8px
+        strong
+          font-size: 14px
+          font-family: $font-bold
+
+#lastest-uploads
+  position: relative
+
+#lastest-uploads-list
+  border: 0
+  +box-shadow(none)
+  +border-radius(0)
+  margin: 0
+  position: static
+  background: transparent
+  z-index: 1
+  .flex-viewport
+    height: 464px
+    margin-bottom: 17px
+  .slides
+    width: 320px !important
+    li
+      width: 320px !important
+      float: none !important
+      margin: 0
+      .list-cd-box
+        margin-top: 16px
+        &:first-child
+          margin-top: 0
+  .flex-direction-nav
+    position: absolute
+    left: 0
+    height: 52px
+    bottom: 0
+    a
+      width: 52px
+      height: 52px
+      top: auto
+      bottom: 0
+      margin: 0
+      @extend .flex-direction-nav-a
+      &.flex-next
+        background-position: -130px 0
+        left: 0
+        right: auto
+        &:hover
+          background-position: -130px -52px
+      &.flex-prev
+        left: 53px
+        background-position: -182px 0
+        &:hover
+          background-position: -182px -52px
+/* end Main */
+
+
+
+
+/* Breadcrumb */
+#breadcrumbs
+  margin-top: 38px
+  margin-bottom: 20px
+  .limits
+    border-bottom: 1px solid #efefef
+    padding-bottom: 10px
+  .breadcrumb
+    li
+      display: inline-block
+      font-size: 12px
+      span, .arrow
+        @extend .sprite
+        width: 6px
+        height: 6px
+        background-position: -319px -82px
+        text-indent: -9999em
+        overflow: hidden
+        margin-left: 3px
+        margin-right: 3px
+      a
+        @extend .link-pink
+        &.active
+          color: $blue
+          font-weight: 700
+/* end Breadcrumb */
+
+
+
+
+/* Cd */
+.avatar
+  width: 34px
+  height: 34px
+  overflow: hidden
+  display: inline-block
+  +border-radius(100%)
+  border: 2px solid #ebeeef
+
+.cd-user
+  position: relative
+  padding-left: 45px
+  padding-top: 5px
+  .avatar
+    @extend .avatar
+    display: block
+    position: absolute
+    top: 0
+    left: 0
+  small
+    display: block
+    font-size: 11px
+    color: $gray-light
+  .user
+    @extend .link-pink
+    font-size: 14px
+    font-family: $font-regular
+
+.cd-info
+  margin-bottom: 30px
+  .cd-thumb
+    width: 214px
+    float: left
+  .cd-info-content
+    padding-left: 233px
+    .title
+      text-transform: uppercase
+      color: $blue
+      font: normal 24px $font-black
+      margin: 0 0 10px 0
+      line-height: 24px
+    .desc
+      color: $gray-light
+      font: normal 14px $font-regular
+      margin: 0
+    .dados
+      border-top: 1px solid #f3f3f3
+      padding-top: 13px
+      margin-top: 10px
+      margin-bottom: 20px
+      overflow: hidden
+      dl
+        float: left
+        margin-left: 40px
+        &:first-child
+          margin-left: 0
+        dt
+          display: block
+          text-transform: uppercase
+          font: normal 11px $font-regular
+          color: #999
+        dd
+          font: normal 13px $font-bold
+          color: $blue
+    .button-download-big
+      background: $pink
+      color: #fff
+      float: left
+      &:hover, &:active, &:focus
+        background: #fff
+        color: $pink
+    .cd-user
+      float: right
+
+.cd-share
+  background: #f7f7f7
+  padding: 15px
+  margin-bottom: 30px
+  +border-radius(4px)
+  .col, .col .title, .social, .social > span, input
+    float: left
+  .col
+    &.share
+      width: 417px
+      .social
+        padding-top: 5px
+        span
+          margin-right: 5px
+      #twitter
+        iframe
+          width: 90px !important
+    &.link
+      float: right
+    .title
+      font-weight: 700
+      margin-right: 5px
+      font-size: 12px
+      color: #a4a4a4
+      padding-top: 9px
+      text-shadow: 0 1px 0 #fff
+  input
+    background: #fff
+    padding: 8px
+    font-family: $font-default
+    font-size: 12px
+    width: 160px
+    border-width: 1px
+    +box-shadow(0 1px 0 #fff inset)
+
+#musics
+  .box-header
+    margin-bottom: 0
+
+.musics-list
+  > li
+    overflow: hidden
+    padding-top: 18px
+    padding-bottom: 18px
+    padding-left: 43px
+    border-bottom: 1px dashed #dedede
+    position: relative
+    &:hover, &.hover
+      background: #f6f6f6
+    .number
+      display: block
+      position: absolute
+      top: 14px
+      left: 7px
+      background: $blue
+      color: #fff
+      width: 28px
+      height: 23px
+      padding-top: 5px
+      text-align: center
+      font: normal 14px $font-bold
+      +border-radius(100%)
+    .title
+      a
+        @extend .link-pink
+        font: normal 16px $font-bold
+    .options
+      position: absolute
+      top: 14px
+      right: 10px
+      li
+        float: left
+        margin-left: 12px
+        &:first-child
+          margin-left: 0
+
+/* end Cd */
+
+
+
+
+/* Playlist */
+#playlist
+  position: fixed
+  bottom: 0
+  left: 0
+  width: 100%
+  z-index: 10
+  background: $blue
+  .playlist-plug
+    display: block
+    position: absolute
+    right: 40px
+    width: 40px
+    height: 40px
+    top: -40px
+    background: #404a7d
+    border: 1px solid #404a7d
+    border-bottom: 0
+    +border-radius(4px 4px 0 0)
+    text-indent: -9999em
+    +single-transition(background, .1s, linear)
+    &:hover
+      background: #fff
+    &.closed
+      background: #fff
+      border-color: #3a3a3a
+      span
+        background-position: -431px -82px
+    span
+      @extend .sprite
+      width: 16px
+      height: 16px
+      background-position: -415px -82px
+      position: absolute
+      left: 11px
+      top: 12px
+  .playlist-options
+    padding: 10px 0
+  .playlist-count
+    float: left
+    margin-left: 30px
+    color: #fff
+    padding-top: 5px
+    .title, .desc
+      display: block
+      line-height: 1em
+    .title
+      text-transform: uppercase
+      font: normal 13px $font-regular
+    .desc
+      font: normal 13px $font-black
+  .playlist-controls,
+  .playlist-controls-actions,
+  .playlist-controls-player,
+  .playlist-controls-options
+    float: left
+  .playlist-controls-actions
+    .playlist-controls-actions-button
+      float: left
+      text-indent: -9999em
+      @extend .sprite-controls
+      &.play, &.pause, &.stop
+        width: 46px
+        height: 46px
+        margin-left: 10px
+        margin-right: 10px
+      &.play
+        background-position: 0 0
+        &:hover
+          background-position: 0 -46px
+      &.pause
+        background-position: -51px 0
+        &:hover
+          background-position: -51px -46px
+      &.stop
+        background-position: -102px 0
+        &:hover
+          background-position: -102px -46px
+      &.prev, &.next
+        width: 30px
+        height: 30px
+        margin-top: 8px
+      &.prev
+        background-position: -188px 0
+        &:hover
+          background-position: -188px -30px
+      &.next
+        background-position: -153px 0
+        &:hover
+          background-position: -153px -30px
+  .playlist-controls-player
+    margin-left: 24px
+    padding-top: 8px
+    .playlist-controls-actual
+      font-family: $font-regular
+      font-size: 13px
+      color: #a8b1df
+      .music, .artist
+        color: #fff
+      .music
+        font-family: $font-bold
+    .playlist-controls-progress
+      min-width: 490px
+      padding-top: 5px
+      .playlist-controls-time,
+      .playlist-controls-progress-slider
+        float: left
+      .playlist-controls-time
+        font: normal 13px $font-regular
+        color: #b8bcd1
+      .playlist-controls-progress-slider
+        min-width: 400px
+        height: 7px
+        background: #626b97
+        margin: 5px 10px 0 10px
+        +border-radius(10px)
+  .playlist-musics
+    height: 91px
+    padding: 15px 10px 0 10px
+    background: #404a7d url(#{$base-img}/bg-playlist-musics.png) repeat-x bottom
+    overflow: hidden
+  #playlist-musics-list
+    border: 0
+    margin: 0
+    padding: 0
+    background: transparent
+    +box-shadow(none)
+    +border-radius(0)
+    > ol, > ul
+      li
+        float: left
+    .flex-viewport
+      overflow: hidden
+      margin-right: 40px
+  .playlist-musics-list-ol
+    margin-left: 20px
+    margin-right: 20px
+    .list_item
+      float: left
+      width: 203px
+      margin-left: 11px
+      .text
+        position: relative
+        left: 70px
+        top: -60px
+        .link-pink
+          color: #64D303
+        .music
+          font: normal 13px/13px $font-bold
+          display: block
+          color: #fff
+        .artist
+          font: normal 12px/1em $font-regular
+          color: #a5add7
+      &:first-child
+        margin-left: 0
+      &.active
+        .song_bt
+          background: #fff
+          cursor: default
+          +border-radius(3px)
+        .text
+          .link-pink
+            color: #e11d70
+          .music
+            color: $blue
+          .artist
+            color: #7c8198
+      .song_bt
+        display: block
+        padding: 5px
+        position: relative
+        height: 60px
+        .cd-thumb
+          top: 5px
+          left: 5px
+          position: absolute
+
+/* end Playlist */
+
+
+
+/* Painel */
+.painel-section
+  .col-nav, .painel-section-content
+    float: left
+  .col-nav
+    width: 220px
+    margin-right: 20px
+    ul
+      li
+        &:first-child
+          a
+            +border-radius(4px 4px 0 0)
+            border-top-color: #e3e3e3
+        &:last-child
+          a
+            +border-radius(0 0 4px 4px)
+            border-bottom-color: #e3e3e3
+        a
+          display: block
+          background: #f6f6f6
+          border: 1px solid #e3e3e3
+          border-left: 1px solid #e3e3e3
+          border-right: 1px solid #e3e3e3
+          border-top: 1px solid #fff
+          padding: 10px 20px 10px 40px
+          text-transform: uppercase
+          font: normal 16px $font-regular
+          color: $pink
+          position: relative
+          .icon-16
+            width: 16px
+            height: 16px
+            @extend .sprite-icons
+            position: absolute
+            top: 11px
+            left: 18px
+          .icon-cd
+            background-position: -48px 0
+          .icon-new
+            background-position: -64px 0
+          .icon-config
+            background-position: -80px 0
+          .icon-calendar
+            background-position: -128px 0
+          .icon-pin
+            background-position: -144px 0
+          .icon-lock
+            background-position: -160px 0
+          &.active, &:hover
+            background: $pink
+            color: #fff
+        a.active, a:hover
+          .icon-new
+            background-position: -64px -16px
+          .icon-cd
+            background-position: -48px -16px
+          .icon-config
+            background-position: -80px -16px
+          .icon-calendar
+            background-position: -128px -16px
+          .icon-pin
+            background-position: -144px -16px
+          .icon-lock
+            background-position: -160px -16px
+  .painel-section-content
+    width: 760px
+
+.painel-section-header
+  margin-bottom: 30px
+  .title, .subtitle
+    text-transform: uppercase
+  .title
+    color: $blue
+    font: normal 24px $font-black
+  .subtitle
+    font: normal 14px $font-regular
+    color: #818181
+
+.painel-section-content-title
+  text-transform: uppercase
+  color: $blue
+  font: normal 30px/30px $font-black
+  letter-spacing: -0.06em
+  margin-bottom: 30px
+
+.steps
+  margin-bottom: 35px
+  li
+    float: left
+    width: 230px
+    margin-left: 20px
+    a
+      border-bottom: 3px solid #eee
+      display: block
+      overflow: hidden
+      &.active
+        border-color: $blue
+        span
+          color: $blue
+          &.text
+            font-family: $font-bold
+      span
+        float: left
+        font: normal 18px $font-bold
+        color: #818181
+      .text
+        width: 200px
+        text-align: right
+        text-transform: uppercase
+        font: normal 14px $font-regular
+        color: #818181
+        float: right
+    &:first-child
+      margin-left: 0
+
+.form-row
+  margin-bottom: 20px
+  &.form-row-double
+    &:before
+      content: " "
+      display: table
+    &:after
+      content: " "
+      display: table
+      clear: both
+    *zoom: 1
+    .col
+      width: 370px
+      float: left
+      margin-left: 20px
+      .form-row-field
+        margin-bottom: 20px
+        &.no-margin-bottom
+          margin-bottom: 0
+      &:first-child
+        margin-left: 0
+  .form-row-field
+    &:before
+      content: " "
+      display: table
+    &:after
+      content: " "
+      display: table
+      clear: both
+    *zoom: 1
+    input, select, textarea
+      float: left
+  .legend
+    color: $gray-light
+    font: normal 11px $font-default
+    float: left
+    margin-left: 5px
+    margin-top: 5px
+  .field-240
+    width: 212px
+    max-width: 212px
+  .field-370
+    max-width: 342px
+    width: 342px
+  .field-500
+    width: 472px
+    max-width: 472px
+  textarea
+    height: 50px
+
+.form-list-options
+  li
+    margin-bottom: 10px
+    color: $gray
+    font: normal 13px $font-default
+    .legend
+      margin-left: 25px
+
+.form-label
+  color: $gray
+  font: normal 14px $font-bold
+  span
+    color: #991d1d
+
+.cover-wrapper
+  .cover-thumb
+    width: 176px
+    float: left
+  .cover-option
+    padding-top: 5px
+    padding-left: 190px
+
+.form-default
+  .button-area
+    padding-top: 20px
+  a
+    @extend .link-pink
+/* end Painel */
+
+
+
+.section-header
+  margin-bottom: 30px
+
+.section-title
+  font: normal 32px $font-black
+  color: $blue
+  text-transform: uppercase
+  text-indent: -0.08em
+
+.section-content
+  .area-form, .call-area, .area-form .col
+    float: left
+  .area-form
+    width: 500px
+    margin-right: 20px
+    .col, .form-row-double .col
+      float: left
+      width: 240px
+  .call-area
+    width: 480px
+    .call-area-text
+      text-align: center
+      padding: 110px
+      padding-left: 80px
+      padding-right: 80px
+      .title
+        font: normal 32px $font-light
+        color: $blue
+      .desc
+        font: normal 18px $font-regular
+        color: $gray-light
+        margin: 30px 0
+      .button
+        padding-left: 20px
+        padding-right: 20px
+        padding-top: 20px
+        padding-bottom: 20px
+
+#login
+  .section-content
+    .call-area-text
+      padding-top: 20px
+
+/* Profile */
+.profile-header
+  margin-bottom: 40px
+  .profile-cover
+    height: 368px
+    overflow: hidden
+    z-index: -1
+    position: relative
+    +border-radius(0 0 4px 4px)
+  .profile-dados
+    padding: 20px 40px 0 40px
+    z-index: 2
+    .avatar, .info, .redes
+      float: left
+    .avatar
+      width: 124px
+      height: 124px
+      border-width: 4px
+      border-color: #ebeeef
+      margin-top: -64px
+    .info
+      margin-left: 17px
+      .name
+        font: normal 20px $font-bold
+        color: $blue
+      .desc
+        font: normal 14px $font-regular
+        color: $gray-light
+        display: block
+    .redes
+      border-left: 1px solid #eee
+      padding-left: 30px
+      margin-left: 30px
+
+.profile-content
+  .profile-uploads, .profile-calendar
+    float: left
+  .profile-uploads
+    width: 660px
+    margin-right: 20px
+    .list-cd
+      margin-left: -20px
+      li
+        width: 320px
+        float: left
+        margin-top: 0
+        margin-bottom: 27px
+        margin-left: 20px
+  .profile-calendar
+    width: 320px
+
+.calendar-ul
+  li
+    margin-bottom: 24px
+    overflow: hidden
+    .date
+      width: 36px
+      float: left
+      border-right: 1px solid #eee
+      color: $gray-light
+      font: normal 26px/26px $font-light
+      span
+        display: block
+        font: normal 14px/14px $font-regular
+        text-transform: uppercase
+    .text
+      float: left
+      margin-left: 10px
+      width: 270px
+      .title
+        display: block
+        color: $blue
+        font: normal 18px/18px $font-bold
+      .desc
+        color: $gray-light
+        font: normal 14px $font-regular
+
+.redes
+  ul
+    li
+      float: left
+      margin-left: 8px
+      &:first-child
+        margin-left: 0
+      a
+        display: block
+        @extend .sprite
+        overflow: hidden
+        width: 36px
+        height: 36px
+        text-indent: -9999em
+        &.instagram
+          background-position: -343px 0
+          &:hover
+            background-position: -343px -36px
+        &.twitter
+          background-position: -379px 0
+          &:hover
+            background-position: -379px -36px
+        &.facebook
+          background-position: -415px 0
+          &:hover
+            background-position: -415px -36px
+/* end Profile */
+
+
+
+
+/* Footer */
+#footer
+  margin-top: 100px
+
+.footer-primary
+  background: #4e4e4e url(#{$base-img}/bg-gradient-footer.png) repeat-x top
+  border-bottom: 1px solid #3a3a3a
+  .limits
+    padding-top: 70px
+  .footer-social
+    padding-bottom: 33px
+    border-bottom: 1px solid #3a3a3a
+    ul
+      width: 320px
+      float: left
+      li
+        width: 106px
+        float: left
+        a
+          display: block
+          &:hover
+            .desc
+              color: $pink
+            &#social-instagram
+              .icon
+                background: #a4846b
+            &#social-twitter
+              .icon
+                background: #67b5ed
+            &#social-facebook
+              .icon
+                background: #6882c8
+          .icon, .desc, .desc strong
+            display: block
+            +single-transition(all, .1s, linear)
+          .icon
+            height: 104px
+            position: relative
+            &:before
+              @extend .sprite
+              width: 27px
+              height: 27px
+              content: ''
+              display: block
+              position: absolute
+              top: 38px
+              left: 38px
+          .desc
+            font-size: 11px
+            padding-top: 15px
+            padding-left: 5px
+            color: #fff
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45)
+            strong
+              font-weight: 700
+          &#social-instagram
+            .icon
+              background-color: #866a54
+              +border-radius(4px 0 0 4px)
+              &:before
+                background-position: -235px -64px
+          &#social-twitter
+            .icon
+              background-color: #5ba8df
+              &:before
+                background-position: -261px -64px
+          &#social-facebook
+            width: 108px
+            .icon
+              background-color: #4761a6
+              position: relative
+              &:before
+                background-position: -288px -64px
+              &:after
+                content: ''
+                position: absolute
+                top: 23px
+                right: -16px
+                display: block
+                border-style: solid
+                border-color: transparent transparent transparent #4761a6
+                border-width: 8px
+  #likebox-facebook
+    float: left
+    background: #fff
+    width: 680px
+    padding-bottom: 10px
+    +border-radius(0 4px 4px 4px)
+  .footer-links
+    border-top: 1px solid #686868
+    padding: 35px 0
+    overflow: hidden
+    li
+      float: left
+      margin-left: 22px
+      &:first-child
+        margin-left: 0
+      a
+        font: normal 16px $font-regular
+        color: #d1cfcf
+        text-transform: uppercase
+        +single-transition(color, .1s, linear)
+        &:hover
+          color: #fff
+
+.footer-secondary
+  background: #404a7d
+  border-top: 1px solid #515b8e
+  .limits
+    padding: 20px 0
+    p
+      color: #caccda
+      font-size: 12px
+/* end Footer */
+
+.dragover-err
+  border: 5px dashed red!important
+
+.dragover
+  border: 5px dashed blue!important
+
+.drop-box
+  background: #F8F8F8
+  border: 5px dashed #DDD
+  width: 100%
+  margin-top: 10px
+  margin-bottom: 10px
+  float: left
+
+.enviando
+  opacity: 0.5
+
+.enviada
+  opacity: 1.0
