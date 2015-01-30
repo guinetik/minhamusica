@@ -28,7 +28,7 @@
     "sails-disk": "~0.10.0"
   },
   "scripts": {
-    "start": "sudo node app.js --port=80 --prod",
+    "start": "node app.js --prod",
     "debug": "node debug app.js"
   },
   "main": "app.js",
