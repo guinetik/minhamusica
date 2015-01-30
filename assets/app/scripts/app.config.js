@@ -11,6 +11,11 @@
 angular.module('musicaApp').config(function ($urlRouterProvider, $stateProvider) {
     $urlRouterProvider.otherwise('/');
     $stateProvider
+        .state('home', {
+            url: '/',
+            templateUrl: 'views/main.html',
+            controller: 'MainCtrl'
+        })
         .state('main', {
             url: '',
             templateUrl: 'views/main.html',
