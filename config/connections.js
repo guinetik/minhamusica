@@ -58,11 +58,11 @@ module.exports.connections = {
   ***************************************************************************/
   MongodbServer: {
     adapter: 'sails-mongo',
-    host: 'localhost',
+    host: 'mongodb22639-musicatop.jelastic.websolute.net.br',
     port: 27017,
-    user: '',
-    password: '',
-    database: 'minhamusica'
+    user: 'mtopadmin',
+    password: 'mtop123',
+    database: 'musicatop'
   },
 
   /***************************************************************************
