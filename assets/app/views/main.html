@@ -57,7 +57,7 @@
               <figure class="cd-thumb list-box-cd-thumb">
                 <img src="http://placehold.it/206x206"
                      ng-style="{width: $index==0?206:99, height: $index==0?206:99}"
-                     ng-src="public/img/{{cd.capa}}"
+                     ng-src="/public/img/{{cd.capa}}"
                      alt="{{cd.titulo}}">
               </figure>
             </li>
@@ -91,7 +91,7 @@
                      title=""> <img src="http://placehold.it/71x71"
                                     width="71"
                                     height="71"
-                                    ng-src="public/img/{{cd.capa}}"> </a>
+                                    ng-src="/public/img/{{cd.capa}}"> </a>
                 </figure>
                 <h2 class="list-cd-box-title">
                   <a ui-sref="cd({id:cd.id})"

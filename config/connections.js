@@ -56,7 +56,15 @@ module.exports.connections = {
   * Run: npm install sails-mongo                                             *
   *                                                                          *
   ***************************************************************************/
-  MongodbServer: {
+  MongodbLOCAL: {
+    adapter: 'sails-mongo',
+    host: 'localhost',
+    port: 27017,
+    user: '',
+    password: '',
+    database: 'minhamusica'
+  },
+  MongodbPROD: {
     adapter: 'sails-mongo',
     host: 'mongodb22639-musicatop.jelastic.websolute.net.br',
     port: 27017,

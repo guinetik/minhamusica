@@ -12,7 +12,7 @@
              titler="Ver maior"> <img src="http://placehold.it/206x206"
                                       width="206"
                                       height="206"
-                                      ng-src="public/img/{{cd.capa}}"> </a>
+                                      ng-src="/public/img/{{cd.capa}}"> </a>
         </figure>
         <div class="cd-info-content clearfix">
           <h1 class="title">{{cd.titulo}}</h1>
@@ -39,7 +39,7 @@
             <span class="avatar">
               <img src="http://placehold.it/34x34"
                    style="width: 34px;height:34px"
-                   ng-src="public/img/{{cd.artista.foto}}">
+                   ng-src="/public/img/{{cd.artista.foto}}">
             </span>
             <small>Enviado por:</small>
             <a ui-sref="perfil({id:cd.artista.id})"

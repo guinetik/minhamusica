@@ -22,8 +22,8 @@ function ConfigsCtrl($rootScope, $scope, api, auth, $timeout, $state, toastr, $u
         api.lookup(token, function(result){
           if(result.status == 200) {
             $scope.usuario = result.data;
-            $scope.capa.dataUrl =  $scope.capa.imagem = "public/img/" + $scope.usuario.capa;
-            $scope.foto.dataUrl = $scope.foto.imagem = "public/img/" + $scope.usuario.foto;
+            $scope.capa.dataUrl =  $scope.capa.imagem = "/public/img/" + $scope.usuario.capa;
+            $scope.foto.dataUrl = $scope.foto.imagem = "/public/img/" + $scope.usuario.foto;
             $scope.selectEstado($scope.usuario.cidade.estado);
             $scope.usuario.nascimento = new Date($scope.usuario.nascimento);
             $rootScope.$emit("user-lookup", $scope.usuario);

@@ -51,7 +51,7 @@ function PlayerCtrl($scope, $rootScope, $timeout) {
           title: song.nome,
           id:song.id,
           cd: cd,
-          src: 'public/music/' + song.filename,
+          src: '/public/music/' + song.filename,
           type: 'audio/mp3'
         }
       );
@@ -69,7 +69,7 @@ function PlayerCtrl($scope, $rootScope, $timeout) {
           id:music.id,
           title: music.nome,
           cd: music.cd,
-          src: 'public/music/' + music.filename,
+          src: '/public/music/' + music.filename,
           type: 'audio/mp3'
         }
       );
