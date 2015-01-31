@@ -7,8 +7,8 @@
  * # RegisterCtrl
  * Controller of the musicaApp
  */
-angular.module('musicaApp').controller('SignUpCtrl', ['$scope', 'api', 'toastr', SignUpCtrl]);
-function SignUpCtrl($scope, api, toastr) {
+angular.module('musicaApp').controller('SignUpCtrl', ['$scope', 'api', 'toastr', '$timeout', SignUpCtrl]);
+function SignUpCtrl($scope, api, toastr, $timeout) {
   $scope.usuario = {
     nome: '',
     email: '',
@@ -24,8 +24,13 @@ function SignUpCtrl($scope, api, toastr) {
   $scope.origem = angular.copy($scope.usuario);
   $scope.estados = [];
   $scope.tipos = [];
-  api.getEstados(function(result){
-    $scope.estados = result;
+  $scope.$on('$viewContentLoaded', function (event) {
+    $timeout(function(){
+      api.getEstados(function(result){
+        console.log("result", result);
+        $scope.estados = result;
+      });
+    });
   });
   $scope.submit = function () {
     var user = {

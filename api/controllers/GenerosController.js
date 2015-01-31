@@ -14,7 +14,7 @@ var GenerosController = module.exports = {
     })
   },
   list: function (req, res, next) {
-    Generos.find({}).limit(10).exec(function (err, generos) {
+    Generos.find({}).exec(function (err, generos) {
       if (err) return next(err);
       res.view('genero/index', {
         generos: generos,

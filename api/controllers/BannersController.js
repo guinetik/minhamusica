@@ -76,7 +76,7 @@ var BannersController = module.exports = {
     var proportions = module.exports.proportions;
 
     req.file('img').upload({
-      dirname: uploadPath
+      dirname: pathDir
     }, function onUploadComplete(err, file) {
       if (err) {
         module.exports.msgError = 'Erro no upload da imagem.';
