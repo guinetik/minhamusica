@@ -29,7 +29,7 @@ var Musica = module.exports = {
     }
   },
   afterDestroy: function (deleted_record, next) {
-    var filename = "/Users/guinetik/Developer/projects/HMCL/minhamusica/sapi/assets/music/" + deleted_record[0].filename;
+    var filename = '../../public/music/' + deleted_record[0].filename;
     fs.unlink(filename, function (err) {
       if (err) next(err);
       next();
