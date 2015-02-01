@@ -4,8 +4,16 @@
  * @description :: TODO: You might write a short summary of how this model works and what it represents here.
  * @docs        :: http://sailsjs.org/#!documentation/models
  */
-
+var getCdMeta = require('../services/getCdMeta.js');
 var Cd = module.exports = {
+  beforeUpdate:function(updated, next) {
+    if(updated.id) {
+      getCdMeta(updated.id, function(metadata){
+        updated.meta = metadata;
+        next();
+      })
+    } else next();
+  },
   attributes: {
     artista: {
       model: 'Usuarios'
@@ -15,6 +23,9 @@ var Cd = module.exports = {
     },
     descricao: {
       type: 'string'
+    },
+    meta:{
+      type:"string"
     },
     capa: {
       type: 'string'
@@ -37,6 +48,7 @@ var Cd = module.exports = {
     },
     toJSON: function () {
       var obj = this.toObject();
+      delete obj.meta;
       delete obj.updatedAt;
       return obj;
     }

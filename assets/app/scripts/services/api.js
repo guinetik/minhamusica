@@ -66,6 +66,7 @@ function api(ws, $upload, API_URL) {
   api.updateMusic = function(music, token, cb) {
     var m = {
       id:music.id,
+      cd:music.cd,
       nome:music.nome
     };
     ws.consumeService("musica/update/" + music.id, m, token, cb, false);
