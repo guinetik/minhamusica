@@ -2,7 +2,7 @@
      ng-class="{'active':$parent.$parent.player.playing && $index== $parent.$parent.player.currentTrack-1}"
      ng-repeat="song in media"
      on-finish-render="init()">
-    <a ng-click="$parent.$parent.player.play($index)" class="song_bt">
+    <a ng-click="$parent.$parent.player.play($index)" class="song_bt" title="{{song.title}}">
         <figure class="cd-thumb">
             <img src="http://placehold.it/52x52"
                  width="52"
