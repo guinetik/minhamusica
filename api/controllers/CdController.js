@@ -24,7 +24,14 @@ var CdController = module.exports = {
     var genero = req.query.id;
     Cd.find({genero:genero}).populateAll().exec(function(err, cds) {
       if (err) return res.status(404).send({message: 'Erro consultar o gênero'});
-      return res.status(200).send({genero:cds[0].genero.nome, message:"Ok", cds:cds})
+      if(cds.length >0) {
+        return res.status(200).send({genero:cds[0].genero.nome, message:"Ok", cds:cds});
+      } else {
+        Generos.find({id:genero}).exec(function(err, gen){
+          if (err) return res.status(404).send({message: 'Erro consultar o gênero'});
+          return res.status(200).send({genero:gen.nome, message:"Nenhum CD Encontrado"});
+        });
+      }
     });
   },
   add: function (req, res) {
