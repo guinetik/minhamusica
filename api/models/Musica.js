@@ -32,7 +32,9 @@ var Musica = module.exports = {
     }
   },
   afterDestroy: function (deleted_record, next) {
+    console.log("fd", deleted_record[0]);
     var filename = deleted_record[0].fd;
+    console.log("filename", filename);
     fs.unlink(filename, function (err) {
       if (err) next(err);
       next();
