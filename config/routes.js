@@ -1,10 +1,11 @@
 module.exports.routes = {
+  'get /': '/app',
+  'get /cd/:id': '/app',
   //auth routes
   '/admin/login': 'AuthController.loginAdmin',
   '/admin/logout': 'AuthController.logoutAdmin',
   'post /user/login': 'AuthController.login',
   //banner routes
-  'get /': '/app',
   'get /banner/delete/': 'BannersController.deleteBanner',
   'post /banner/registrar': 'BannersController.createBanner',
   'post /banner/crop': 'BannersController.cropBanner',
