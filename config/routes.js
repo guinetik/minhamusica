@@ -1,6 +1,5 @@
 module.exports.routes = {
   'get /': '/app',
-  'get /cd/:id': '/app',
   //auth routes
   '/admin/login': 'AuthController.loginAdmin',
   '/admin/logout': 'AuthController.logoutAdmin',
