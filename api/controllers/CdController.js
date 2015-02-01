@@ -27,7 +27,7 @@ var CdController = module.exports = {
       if(cds.length >0) {
         return res.status(200).send({genero:cds[0].genero.nome, message:"Ok", cds:cds});
       } else {
-        Generos.find({id:genero}).exec(function(err, gen){
+        Generos.findOne({id:genero}).exec(function(err, gen){
           if (err) return res.status(404).send({message: 'Erro consultar o gênero'});
           return res.status(200).send({genero:gen.nome, message:"Nenhum CD Encontrado", cds:[]});
         });
