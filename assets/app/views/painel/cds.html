@@ -4,9 +4,8 @@
   <div class="cd-info clearfix"
        ng-repeat="cd in cds">
     <figure class="cd-thumb cd-info-thumb">
-      <a href="#"
-         class="view-large"
-         title="Ver maior"> <img src="http://placehold.it/206x206"
+      <a ui-sref="cd({id:cd.id})"
+         class="view-large"> <img src="http://placehold.it/206x206"
                                  fallback-src="http://placehold.it/206x206"
                                  style="width: 206px;height: 206px"
                                  ng-src="/public/img/{{cd.capa}}"
