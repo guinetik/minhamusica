@@ -16,7 +16,7 @@ module.exports = function (id, cb) {
         _.each(cd.musicas, function (m) {
             metadata += m.nome + ".";
         });
-        console.log("metadata", metadata);
+        //console.log("metadata", metadata);
         cb(metadata.slice(0, -1));
     });
 };
