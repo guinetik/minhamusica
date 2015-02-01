@@ -29,7 +29,7 @@ var CdController = module.exports = {
       } else {
         Generos.find({id:genero}).exec(function(err, gen){
           if (err) return res.status(404).send({message: 'Erro consultar o gênero'});
-          return res.status(200).send({genero:gen.nome, message:"Nenhum CD Encontrado"});
+          return res.status(200).send({genero:gen.nome, message:"Nenhum CD Encontrado", cds:[]});
         });
       }
     });
