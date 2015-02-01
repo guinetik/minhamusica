@@ -35,6 +35,9 @@ function cd($timeout, toastr, api, auth, $state, $rootScope) {
             if (result.status == 200) {
               $scope.cd = result;
               $scope.cd.saved = true;
+              if($scope.musicas) {
+                $scope.musicas = $scope.cd.musicas;
+              }
               $scope.capa.dataUrl = $scope.capa.imagem = "/public/img/" + $scope.cd.capa;
               cd.setMusicStatus($scope);
             }

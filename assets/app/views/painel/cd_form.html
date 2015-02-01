@@ -1,196 +1,203 @@
 <article class="painel-section-content">
-  <h2 class="painel-section-content-title">{{title}}</h2>
-  <ol class="steps clearfix">
-    <li>
-      <a style="cursor: pointer"
-         ng-click="toggleState('basic')"
-         ng-class="{'active':view == 'basic'}"
-         title="Informações Básicas"> <span>1</span> <span class="text">Informações Básicas</span> </a>
-    </li>
-    <li>
-      <a
-        style="cursor: pointer"
-         ng-click="toggleState('songs')"
-         ng-class="{'active':view != 'basic'}"
-         title="Upload das Músicas"> <span>2</span> <span class="text">Upload das Músicas</span> </a>
-    </li>
-  </ol>
-  <form ng-submit="submit()"
-        class="form-default"
-        ng-hide="view == 'songs'">
-    <div class="form-row">
-      <label for="titulo"
-             class="form-label">Título: <span>*</span></label>
-      <div class="form-row-field">
-        <input type="text"
-               name="titulo"
-               id="titulo"
-               ng-model="cd.titulo"
-               required
-               placeholder="Nome ou Título do CD"
-               class="field-370">
-        <small class="legend">Ex.: Banda da Internet - Coleção 2015</small>
-      </div>
-    </div>
-    <!-- /.form-row -->
-    <div class="form-row">
-      <label for="descricao"
-             class="form-label">Descrição: <span>*</span></label>
-      <div class="form-row-field">
+    <h2 class="painel-section-content-title">{{title}}</h2>
+    <ol class="steps clearfix">
+        <li>
+            <a style="cursor: pointer"
+               ng-click="toggleState('basic')"
+               ng-class="{'active':view == 'basic'}"
+               title="Informações Básicas"> <span>1</span> <span class="text">Informações Básicas</span> </a>
+        </li>
+        <li>
+            <a
+                    style="cursor: pointer"
+                    ng-click="toggleState('songs')"
+                    ng-class="{'active':view != 'basic'}"
+                    title="Upload das Músicas"> <span>2</span> <span class="text">Upload das Músicas</span> </a>
+        </li>
+    </ol>
+    <form ng-submit="submit()"
+          class="form-default"
+          ng-hide="view == 'songs'">
+        <div class="form-row">
+            <label for="titulo"
+                   class="form-label">Título: <span>*</span></label>
+
+            <div class="form-row-field">
+                <input type="text"
+                       name="titulo"
+                       id="titulo"
+                       ng-model="cd.titulo"
+                       required
+                       placeholder="Nome ou Título do CD"
+                       class="field-370">
+                <small class="legend">Ex.: Banda da Internet - Coleção 2015</small>
+            </div>
+        </div>
+        <!-- /.form-row -->
+        <div class="form-row">
+            <label for="descricao"
+                   class="form-label">Descrição: <span>*</span></label>
+
+            <div class="form-row-field">
         <textarea name="descricao"
                   id="descricao"
                   ng-model="cd.descricao"
                   required
                   placeholder="Escreva uma descrição do CD ou observação"
                   class="field-370"></textarea>
-        <small class="legend">Ex.: Gravação do CD na cidade de Recife, PE</small>
-      </div>
-    </div>
-    <!-- /.form-row -->
-    <div class="form-row form-row-double">
-      <div class="col">
-        <label for="genero"
-               class="form-label">Gênero: <span>*</span></label>
-        <div class="form-row-field">
-          <select name="genero"
-                  id="genero"
-                  required
-                  ng-options="genero.nome for genero in generos track by genero.id"
-                  placeholder="Escreva uma descrição do CD ou observação"
-                  ng-model="cd.genero"
-                  class="field-370">
-            <option value="">Gênero musical predominante do CD</option>
-          </select>
-          <small class="legend">Ex.: MPB</small>
+                <small class="legend">Ex.: Gravação do CD na cidade de Recife, PE</small>
+            </div>
         </div>
-        <ul class="form-list-options">
-          <li>
-            <input type="checkbox"
-                   name="reproduzir"
-                   id="check-reproduzir"> <label for="check-reproduzir"
-                                                 class="form-label">Reproduzir músicas ao finalizar envio</label>
-          </li>
-          <li>
-            <input type="checkbox"
-                   name="privado"
-                   ng-model="cd.private"
-                   id="check-privado"> <label for="check-privado"
-                                              class="form-label">Tornar CD privado ao criá-lo</label>
-            <small class="legend">Ao marcar essa opção, o CD ficará privado por 3 dias.</small>
-          </li>
-        </ul>
-        <!-- /.form-list-options -->
-      </div>
-      <!-- /.col -->
-      <div class="col">
-        <label for="capa"
-               class="form-label">Capa:</label>
-        <div class="cover-wrapper clearfix">
-          <figure class="cover-thumb">
-            <img src="http://placehold.it/175x175"
-                 ng-class="{'enviada':capa.imagem, 'enviando':!capa.imagem}"
-                 style="width: 175px;max-height: 175px"
-                 ng-src="{{capa.dataUrl}}"/>
-          </figure>
-          <div class="cover-option">
-            <button ng-file-select
-                    allow-dir="false"
-                    type="button"
-                    ng-file-change="generateThumb($files[0])"
-                    ng-multiple="false"
-                    accept="image/*.jpg,image/*.png"
-                    class="button-medium">Trocar Capa
-            </button>
-            <small class="legend">Dimensão: 986 x 986px</small>
-          </div>
+        <!-- /.form-row -->
+        <div class="form-row form-row-double">
+            <div class="col">
+                <label for="genero"
+                       class="form-label">Gênero: <span>*</span></label>
+
+                <div class="form-row-field">
+                    <select name="genero"
+                            id="genero"
+                            required
+                            ng-options="genero.nome for genero in generos track by genero.id"
+                            placeholder="Escreva uma descrição do CD ou observação"
+                            ng-model="cd.genero"
+                            class="field-370">
+                        <option value="">Gênero musical predominante do CD</option>
+                    </select>
+                    <small class="legend">Ex.: MPB</small>
+                </div>
+                <ul class="form-list-options">
+                    <li>
+                        <input type="checkbox"
+                               name="reproduzir"
+                               id="check-reproduzir"> <label for="check-reproduzir"
+                                                             class="form-label">Reproduzir músicas ao finalizar
+                        envio</label>
+                    </li>
+                    <li>
+                        <input type="checkbox"
+                               name="privado"
+                               ng-model="cd.private"
+                               id="check-privado"> <label for="check-privado"
+                                                          class="form-label">Tornar CD privado ao criá-lo</label>
+                        <small class="legend">Ao marcar essa opção, o CD ficará privado por 3 dias.</small>
+                    </li>
+                </ul>
+                <!-- /.form-list-options -->
+            </div>
+            <!-- /.col -->
+            <div class="col">
+                <label for="capa"
+                       class="form-label">Capa:</label>
+
+                <div class="cover-wrapper clearfix">
+                    <figure class="cover-thumb">
+                        <img src="http://placehold.it/175x175"
+                             ng-class="{'enviada':capa.imagem, 'enviando':!capa.imagem}"
+                             style="width: 175px;max-height: 175px"
+                             ng-src="{{capa.dataUrl}}"/>
+                    </figure>
+                    <div class="cover-option">
+                        <button ng-file-select
+                                allow-dir="false"
+                                type="button"
+                                ng-file-change="generateThumb($files[0])"
+                                ng-multiple="false"
+                                accept="image/*.jpg,image/*.png"
+                                class="button-medium">Trocar Capa
+                        </button>
+                        <small class="legend">Dimensão: 986 x 986px</small>
+                    </div>
+                </div>
+            </div>
+            <!-- /.col -->
         </div>
-      </div>
-      <!-- /.col -->
+        <!-- /.form-row-double -->
+        <div class="button-area">
+            <button type="submit"
+                    class="button-highlight-arrow"><span></span> Continuar
+            </button>
+        </div>
+    </form>
+    <div ng-hide="view == 'basic'">
+        <div ng-file-drop
+             ng-model="files"
+             ng-file-change="fileDropped($files, $event, $rejectedFiles)"
+             drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
+             ng-multiple="true"
+             allow-dir="false"
+             accept="*mp3"
+             class="drop-box">
+            <p ng-show="cd.musicas.length==0"
+               class="message-empty">
+                Arraste as músicas aqui para enviá-las</p>
+            <table ng-if="cd.musicas.length>0"
+                   style="width: 100%;">
+                <thead>
+                <tr>
+                    <th style="background:#EEEEEE;padding: 10px;">#</th>
+                    <th style="background:#EEEEEE;padding: 10px;">Nome</th>
+                    <th style="background:#EEEEEE;" width="120px">Status</th>
+                    <th style="background:#EEEEEE;" width="200px">Opções</th>
+                </tr>
+                </thead>
+                <tbody ui:sortable
+                       ng:model="cd.musicas">
+                <tr ng-repeat="musica in cd.musicas"
+                    style="cursor: move;">
+                    <td style="background:#EEEEEE;padding: 10px">{{$index}}</td>
+                    <td style="padding:10px;background:#EEEEEE">
+                        <input type="text"
+                               ng-disabled="musica.status!=2"
+                               style="width: 90%"
+                               placeholder="{{musica.name}}"
+                               ng-model="musica.nome"/>
+                    </td>
+                    <td style="background:#EEEEEE">{{musica.message}}</td>
+                    <td style="background:#EEEEEE">
+                        <button class="button"
+                                ng-click="addToPlaylist(musica)"
+                                ng-if="musica.filename != null"
+                                style="color:white">Play
+                        </button>
+                        <button class="button"
+                                ng-if="musica.status < 0"
+                                style="color:white">Reenviar
+                        </button>
+                        <button class="button"
+                                ng-if="musica.status != 2"
+                                style="color:white">Cancelar
+                        </button>
+                        <button class="button"
+                                ng-if="musica.status == 2"
+                                ng-click="updateMusic(musica)"
+                                style="color:white">Renomear
+                        </button>
+                        <button class="button"
+                                ng-if="musica.status == 2"
+                                ng-click="deleteMusic(musica)"
+                                style="color:white">Apagar
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="button-area">
+            <div ng-file-select
+                 ng-model="files"
+                 allow-dir="false"
+                 ng-file-change="fileDropped($files, $event, $rejectedFiles)"
+                 ng-multiple="true"
+                 accept="*mp3"
+                 class="button-highlight-arrow"><span></span>Procurar músicas
+            </div>
+            <button type="submit"
+                    ng-click="salvarCd()"
+                    ng-disabled="cd.musicas.length==0"
+                    style="float: right;margin-right: -10px!important;"
+                    class="button-highlight-arrow"><span></span>Salvar
+            </button>
+        </div>
     </div>
-    <!-- /.form-row-double -->
-    <div class="button-area">
-      <button type="submit"
-              class="button-highlight-arrow"><span></span> Continuar
-      </button>
-    </div>
-  </form>
-  <div ng-hide="view == 'basic'">
-    <div ng-file-drop
-         ng-model="files"
-         ng-file-change="fileDropped($files, $event, $rejectedFiles)"
-         drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
-         ng-multiple="true"
-         allow-dir="false"
-         accept="*mp3"
-         class="drop-box">
-      <p ng-show="cd.musicas.length==0"
-        class="message-empty">
-        Arraste as músicas aqui para enviá-las</p>
-      <table ng-if="cd.musicas.length>0"
-             style="width: 100%;">
-        <thead>
-        <tr>
-          <th style="background:#EEEEEE;padding: 10px;">#</th>
-          <th style="background:#EEEEEE;padding: 10px;">Nome</th>
-          <th style="background:#EEEEEE;" width="120px">Status</th>
-          <th style="background:#EEEEEE;" width="200px">Opções</th>
-        </tr>
-        </thead>
-        <tbody ui:sortable="true"
-               ng:model="cd.musicas">
-        <tr ng-repeat="musica in cd.musicas"
-            style="cursor: move;">
-          <td style="background:#EEEEEE;padding: 10px">{{$index+1}}</td>
-          <td style="padding:10px;background:#EEEEEE"><input type="text"
-                                                             ng-disabled="musica.status!=2"
-                                                             style="width: 90%"
-                                                             placeholder="{{musica.name}}"
-                                                             ng-model="musica.nome"/></td>
-          <td style="background:#EEEEEE">{{musica.message}}</td>
-          <td style="background:#EEEEEE">
-            <button class="button"
-                    ng-click="addToPlaylist(musica)"
-                    ng-if="musica.filename != null"
-                    style="color:white">Play
-            </button>
-            <button class="button"
-                    ng-if="musica.status < 0"
-                    style="color:white">Reenviar
-            </button>
-            <button class="button"
-                    ng-if="musica.status != 2"
-                    style="color:white">Cancelar
-            </button>
-            <button class="button"
-                    ng-if="musica.status == 2"
-                    ng-click="updateMusic(musica)"
-                    style="color:white">Renomear
-            </button>
-            <button class="button"
-                    ng-if="musica.status == 2"
-                    ng-click="deleteMusic(musica)"
-                    style="color:white">Apagar
-            </button>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="button-area">
-      <div ng-file-select
-           ng-model="files"
-           allow-dir="false"
-           ng-file-change="fileDropped($files, $event, $rejectedFiles)"
-           ng-multiple="true"
-           accept="*mp3"
-           class="button-highlight-arrow"><span></span>Procurar músicas
-      </div>
-      <button type="submit"
-              ng-click="salvarCd()"
-              ng-disabled="cd.musicas.length==0"
-              style="float: right;margin-right: -10px!important;"
-              class="button-highlight-arrow"><span></span>Salvar
-      </button>
-    </div>
-  </div>
 </article><!-- /.painel-section-content -->

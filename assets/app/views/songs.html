@@ -13,7 +13,7 @@
     </a>
 
     <p class="text">
-        <strong class="music">{{song.title}}</strong>
+        <strong class="music" style="height: 30px">{{song.title|truncate:48}}</strong>
         <span class="artist"><a class="link-pink" ui-sref="cd({id:cd.id})">{{song.cd.titulo}}</a></span>
         <br/>
         <span class="artist">Enviando por: <a class="link-pink" ui-sref="perfil({id:cd.artista.id})">{{song.cd.artista.nome}}</a></span>

@@ -10,6 +10,7 @@
 angular.module('musicaApp').controller('EditCDCtrl', ['$scope', 'cd', '$stateParams', EditCDCtrl]);
 function EditCDCtrl($scope, cd, $stateParams) {
   $scope.cd = {};
+  $scope.musicas = [];
   $scope.generos = [];
   $scope.capas = [];
   $scope.capa = {};
@@ -34,7 +35,6 @@ function EditCDCtrl($scope, cd, $stateParams) {
     cd.deleteMusic($scope, musica)
   };
   $scope.submit = function () {
-    console.log("cd", $scope.cd);
     cd.update($scope);
   };
   $scope.salvarCd = function() {

@@ -16,6 +16,7 @@ angular.module('musicaApp',
     'angularFileUpload',
     'blockUI',
     'ui',
+    'igTruncate',
     'dcbImgFallback',
     'mediaPlayer',
     'angularMoment']).run(function ($rootScope) {
