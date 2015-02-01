@@ -34,6 +34,11 @@ var Cd = module.exports = {
     musicas: {
       collection: 'Musica',
       via: 'cd'
+    },
+    toJSON: function () {
+      var obj = this.toObject();
+      delete obj.updatedAt;
+      return obj;
     }
   }
 };

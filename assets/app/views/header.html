@@ -25,7 +25,7 @@
          class="genre-trigger">Gêneros <span class="arrow"></span></a>
       <div class="genre-dropdown">
         <ul class="genre-dropdown-ul">
-          <li ng-repeat="genero in generos"><a href="#"
+          <li ng-repeat="genero in generos"><a ui-sref="genero({id:genero.id})"
                                                title="{{genero.descricao}}">{{genero.nome}}</a></li>
         </ul>
       </div>

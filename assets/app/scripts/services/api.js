@@ -188,4 +188,7 @@ function api(ws, $upload, API_URL) {
   api.downloadCD = function(id, cb) {
     ws.consumeService("cd/download/", {id:id}, null, cb, false, "POST");
   };
+  api.getCdsByGenero = function(id, cb) {
+    ws.consumeService("cd/genero?id=" +id, null, null, cb, false, "GET");
+  }
 }

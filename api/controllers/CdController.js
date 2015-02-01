@@ -20,6 +20,13 @@ var CdController = module.exports = {
       }
     });
   },
+  genero:function(req, res) {
+    var genero = req.query.id;
+    Cd.find({genero:genero}).populateAll().exec(function(err, cds) {
+      if (err) return res.status(404).send({message: 'Erro consultar o gênero'});
+      return res.status(200).send({genero:cds[0].genero.nome, message:"Ok", cds:cds})
+    });
+  },
   add: function (req, res) {
     var cd = req.body;
     var token = req.headers.token;
