@@ -89,10 +89,14 @@ angular.module('musicaApp').config(function ($urlRouterProvider, $stateProvider)
             templateUrl: 'views/painel/config_password.html'
         })
         .state('genero', {
-        url: '/genero/:id',
-        controller: 'GeneroCtrl',
-        templateUrl: 'views/genero.html'
-    });
+            url: '/genero/:id',
+            controller: 'GeneroCtrl',
+            templateUrl: 'views/genero.html'
+        }).state('busca', {
+            url: '/busca/:q',
+            controller: 'BuscaCtrl',
+            templateUrl: 'views/busca.html'
+        });
 })
     .constant('API_URL', 'http://musicatop.jelastic.websolute.net.br/')
     //.constant('API_URL', 'http://localhost:1337/')

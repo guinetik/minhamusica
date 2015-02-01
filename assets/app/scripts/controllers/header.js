@@ -44,4 +44,7 @@ function HeaderCtrl($scope , $rootScope, auth, api, $state) {
       $scope.generos = result.generos;
     }
   });
+  $scope.searchCD = function() {
+    $state.go("busca", {q:$scope.query});
+  };
 }

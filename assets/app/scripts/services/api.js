@@ -191,5 +191,8 @@ function api(ws, $upload, API_URL) {
   };
   api.getCdsByGenero = function(id, cb) {
     ws.consumeService("cd/genero?id=" +id, null, null, cb, false, "GET");
+  };
+  api.searchCD = function(q, cb) {
+    ws.consumeService("cd/search?q=" +q, null, null, cb, false, "GET");
   }
 }

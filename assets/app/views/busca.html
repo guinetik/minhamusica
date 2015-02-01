@@ -1,0 +1,56 @@
+<!-- Breadcrumb -->
+<ng-include src="'views/breadcrumb.html'"></ng-include><!-- end Breadcrumb -->
+<section
+        class="main-content">
+    <div class="limits">
+        <h2 class="painel-section-content-title">Resultados da busca</h2>
+        <div class="cd-info clearfix"
+             ng-repeat="cd in cds">
+            <figure class="cd-thumb cd-info-thumb">
+                <a ui-sref="cd({id:cd.id})"
+                   class="view-large"
+                   title="Ver maior"> <img src="http://placehold.it/206x206"
+                                           fallback-src="http://placehold.it/206x206"
+                                           style="width: 206px;height: 206px"
+                                           ng-src="/public/img/{{cd.capa}}"
+                                           alt=""> </a>
+            </figure>
+            <div class="cd-info-content clearfix">
+                <a ui-sref="cd({id:cd.id})">
+                    <h1 class="title">{{cd.titulo}}</h1>
+                </a>
+
+                <p class="desc">{{cd.descricao}}</p>
+
+                <div class="dados">
+                    <dl>
+                        <dt>Data de Envio</dt>
+                        <dd>{{cd.createdAt|date : "dd/MM/yyyy"}}</dd>
+                    </dl>
+                    <dl>
+                        <dt>Músicas</dt>
+                        <dd>{{cd.musicas.length}}</dd>
+                    </dl>
+                    <dl>
+                        <dt>Tamanho</dt>
+                        <dd>145MB</dd>
+                    </dl>
+                    <dl>
+                        <dt>Downloads</dt>
+                        <dd>{{cd.downloads}}</dd>
+                    </dl>
+                </div>
+                <div>
+                    <a ui-sref="cd({id:cd.id})"
+                       class="button-download-big"
+                       title="Ouvir"><span class="icon"></span>Download</a>
+                </div>
+            </div>
+        </div>
+        <div class="box-content"
+             ng-if="cds.length==0">
+            <p class="message-empty">
+                Nenhum CD Encontrado</p>
+        </div>
+    </div>
+</section>

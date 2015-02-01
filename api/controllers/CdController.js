@@ -36,7 +36,7 @@ var CdController = module.exports = {
     },
     search: function (req, res) {
         var query = req.query.q;
-        Cd.find({like: {meta: '%' + query + '%'}}).populateAll().exec(function (err, cds) {
+        Cd.find({meta: {contains: '%' + query + '%'}}).populateAll().exec(function (err, cds) {
             if (err) return res.status(404).send({message: 'Erro ao fazer a busca'});
             return res.status(200).send({message: "Ok", cds: cds});
         });

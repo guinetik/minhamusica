@@ -6,13 +6,13 @@
          href="#"
          title="Minha Música">Minha Música</a>
     </h1>
-    <form action=""
+    <form ng-submit="searchCD()"
           id="search-form">
       <input type="text"
              name="q"
              id="q"
-             value=""
-             placeholder="busque por artistas, músicas ou evento"
+             ng-model="query"
+             placeholder="busque por artistas ou músicas"
              class="search-input">
       <button type="submit"
               id="search-button"
