@@ -10,15 +10,17 @@
 angular.module('musicaApp').controller('PlayerCtrl', ['$scope', '$rootScope', '$timeout', PlayerCtrl]);
 function PlayerCtrl($scope, $rootScope, $timeout) {
   $scope.playload = false;
-  var slickOptions = {
-    lazyLoad:       'ondemand',
-    arrows:         true,
-    dots:           true,
-    infinite:       false,
-    autoplay:       false,
-    slidesToShow:   4,
-    slidesToScroll: 4,
-    cssEase:        'linear'
+  $scope.slickConfig = {
+    dots: false,
+    infinite:false,
+    slidesToShow: 10,
+    slidesToScroll: 1,
+    centerMode: false,
+    variableWidth: true,
+    adaptiveHeight: false,
+    draggable:true,
+    vertical:false,
+    arrows:true
   };
   $scope.hasBeenAddedToPlaylist = function(id) {
     var r = false;
@@ -45,18 +47,22 @@ function PlayerCtrl($scope, $rootScope, $timeout) {
     var songs = angular.copy(cd.musicas).reverse();
     delete cd.musicas;
     functions.playlist.show();
+    $scope.playload = false;
     angular.forEach(songs, function (song, key) {
       $scope.playlist.unshift(
-        {
-          title: song.nome,
-          id:song.id,
-          cd: cd,
-          src: '/public/music/' + song.filename,
-          type: 'audio/mp3'
-        }
+          {
+            title: song.nome,
+            id:song.id,
+            cd: cd,
+            src: '/public/music/' + song.filename,
+            type: 'audio/mp3',
+            mimeType:'image/png'
+          }
       );
       $(".progress").width(0);
+      $scope.playload = false;
       $timeout(function(){
+        $scope.playload = true;
         $scope.player.play(0, false);
       });
     });
@@ -65,16 +71,19 @@ function PlayerCtrl($scope, $rootScope, $timeout) {
     var k = $scope.hasBeenAddedToPlaylist(music.id);
     if(!k) {
       $scope.playlist.unshift(
-        {
-          id:music.id,
-          title: music.nome,
-          cd: music.cd,
-          src: '/public/music/' + music.filename,
-          type: 'audio/mp3'
-        }
+          {
+            id:music.id,
+            title: music.nome,
+            cd: music.cd,
+            src: '/public/music/' + music.filename,
+            type: 'audio/mp3',
+            mimeType:'image/png'
+          }
       );
       functions.playlist.show();
+      $scope.playload = false;
       $timeout(function(){
+        $scope.playload = true;
         $scope.player.play(0, false);
       });
     } else {

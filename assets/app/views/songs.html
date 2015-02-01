@@ -1,0 +1,21 @@
+<div class="list_item slide"
+     ng-class="{'active':$parent.$parent.player.playing && $index== $parent.$parent.player.currentTrack-1}"
+     ng-repeat="song in media"
+     on-finish-render="init()">
+    <a ng-click="$parent.$parent.player.play($index)" class="song_bt">
+        <figure class="cd-thumb">
+            <img src="http://placehold.it/52x52"
+                 width="52"
+                 height="52"
+                 ng-src="/public/img/{{song.cd.capa}}"
+                 alt="">
+        </figure>
+    </a>
+
+    <p class="text">
+        <strong class="music">{{song.title}}</strong>
+        <span class="artist"><a class="link-pink" ui-sref="cd({id:cd.id})">{{song.cd.titulo}}</a></span>
+        <br/>
+        <span class="artist">Enviando por: <a class="link-pink" ui-sref="perfil({id:cd.artista.id})">{{song.cd.artista.nome}}</a></span>
+    </p>
+</div>

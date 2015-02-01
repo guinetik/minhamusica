@@ -3,89 +3,79 @@
      ng-controller="PlayerCtrl"
      ng-show="playlist.length>0"
      class="visible">
-  <audio media-player="player"
-         playlist="playlist"></audio>
-  <a href="javascript:void(0)"
-     class="playlist-plug"
-     title="Esconder Playlist"><span class="icon"></span>Esconder</a>
-  <div class="playlist-options"
-       style="position: relative;left: 50%;width: 450px;margin-left: -360px">
-    <div class="limits clearfix">
-      <!-- /.playlist-count -->
-      <div class="playlist-controls clearfix">
-        <div class="playlist-controls-actions clearfix">
-          <a ng-click="player.prev()"
-             style="cursor: pointer"
-             class="playlist-controls-actions-button prev"
-             title="Anterior">Anterior</a>
-          <!-- play/pause -->
-          <a ng-click="player.playPause()"
-             style="cursor: pointer"
-             ng-class="{'play':!player.playing, 'pause':player.playing}"
-             class="playlist-controls-actions-button"
-             title="Tocar">Tocar</a>
-          <!-- next -->
-          <a ng-click="next(player.currentTrack)"
-             class="playlist-controls-actions-button next"
-             title="Próximo">Próximo</a>
-        </div>
-        <div class="playlist-count">
-          <span class="title">Música</span> <strong class="desc"> <span id="playlist-count-actual">{{player.currentTrack}}</span>
-          de <span id="playlist-count-total">{{playlist.length}}</span> </strong>
-        </div>
-        <!-- /.playlist-controls-actions -->
-        <div class="playlist-controls-player">
-          <div class="playlist-controls-actual">
-            <strong id="playlist-actual-music"
-                    class="music">{{playlist[player.currentTrack-1].title}}</strong>
-            por <span id="playlist-actual-artist"
-                      class="artist">{{playlist[player.currentTrack-1].cd.artista.nome}}</span>
-          </div>
-          <div class="playlist-controls-progress clearfix">
-            <span class="playlist-controls-time init">{{player.formatTime}}</span>
-            <div class="playlist-controls-progress-slider"
-                 ng-click="player.seek(player.duration * seekPercentage($event))">
-              <div class="progress-bar"
-                   role="progressbar"
-                   style="transition:all .3s ease-in-out .1s;height: 2px;background: #FFFFFF;margin-left: 2px;margin-top: 2px;border-radius: 10px;border: 1px solid #FFFFFF;margin-right: 2px"
-                   aria-valuemin="0"
-                   aria-valuemax="100"
-                   ng-style="{ width: player.currentTime*100/player.duration + '%' }"></div>
+    <audio media-player="player"
+           playlist="playlist"></audio>
+    <a href="javascript:void(0)"
+       class="playlist-plug"
+       title="Esconder Playlist"><span class="icon"></span>Esconder</a>
+
+    <div class="playlist-options"
+         style="position: relative;left: 50%;width: 450px;margin-left: -360px">
+        <div class="limits clearfix">
+            <!-- /.playlist-count -->
+            <div class="playlist-controls clearfix">
+                <div class="playlist-controls-actions clearfix">
+                    <a ng-click="player.prev()"
+                       style="cursor: pointer"
+                       class="playlist-controls-actions-button prev"
+                       title="Anterior">Anterior</a>
+                    <!-- play/pause -->
+                    <a ng-click="player.playPause()"
+                       style="cursor: pointer"
+                       ng-class="{'play':!player.playing, 'pause':player.playing}"
+                       class="playlist-controls-actions-button"
+                       title="Tocar">Tocar</a>
+                    <!-- next -->
+                    <a ng-click="next(player.currentTrack)"
+                       class="playlist-controls-actions-button next"
+                       title="Próximo">Próximo</a>
+                </div>
+                <div class="playlist-count">
+                    <span class="title">Música</span> <strong class="desc"> <span id="playlist-count-actual">{{player.currentTrack}}</span>
+                    de <span id="playlist-count-total">{{playlist.length}}</span> </strong>
+                </div>
+                <!-- /.playlist-controls-actions -->
+                <div class="playlist-controls-player">
+                    <div class="playlist-controls-actual">
+                        <strong id="playlist-actual-music"
+                                class="music">{{playlist[player.currentTrack-1].title}}</strong>
+                        por <span id="playlist-actual-artist"
+                                  class="artist">{{playlist[player.currentTrack-1].cd.artista.nome}}</span>
+                    </div>
+                    <div class="playlist-controls-progress clearfix">
+                        <span class="playlist-controls-time init">{{player.formatTime}}</span>
+
+                        <div class="playlist-controls-progress-slider"
+                             ng-click="player.seek(player.duration * seekPercentage($event))">
+                            <div class="progress-bar"
+                                 role="progressbar"
+                                 style="transition:all .3s ease-in-out .1s;height: 2px;background: #FFFFFF;margin-left: 2px;margin-top: 2px;border-radius: 10px;border: 1px solid #FFFFFF;margin-right: 2px"
+                                 aria-valuemin="0"
+                                 aria-valuemax="100"
+                                 ng-style="{ width: player.currentTime*100/player.duration + '%' }"></div>
+                        </div>
+                        <span class="playlist-controls-time end">{{player.formatDuration}}</span>
+                    </div>
+                </div>
+                <!-- /.playlist-controls-player -->
+                <div class="playlist-controls-options"></div>
+                <!-- /.playlist-controls-options -->
             </div>
-            <span class="playlist-controls-time end">{{player.formatDuration}}</span>
-          </div>
         </div>
-        <!-- /.playlist-controls-player -->
-        <div class="playlist-controls-options"></div>
-        <!-- /.playlist-controls-options -->
-      </div>
     </div>
-  </div>
-  <!-- /.playlist-controls -->
-  <div class="playlist-musics">
-    <div id="playlist-musics-list"
-         class="playlist-musics-list-wrapper flexslider">
-      <div class="playlist-musics-list-ol slides clearfix">
-          <div class="list_item"
-               ng-class="{'active':player.playing && $index== player.currentTrack-1}"
-               ng-repeat="song in playlist">
-            <a ng-click="player.play($index)" class="song_bt">
-              <figure class="cd-thumb">
-                <img src="http://placehold.it/52x52"
-                     width="52"
-                     height="52"
-                     ng-src="/public/img/{{song.cd.capa}}"
-                     alt="">
-              </figure>
-            </a>
-            <p class="text">
-              <strong class="music">{{song.title}}</strong>
-              <span class="artist"><a class="link-pink" ui-sref="cd({id:cd.id})">{{song.cd.titulo}}</a></span>
-              <br/>
-              <span class="artist">Enviando por: <a class="link-pink" ui-sref="perfil({id:cd.artista.id})">{{song.cd.artista.nome}}</a></span>
-            </p>
-          </div>
-      </div>
+    <!-- /.playlist-controls -->
+    <div class="playlist-musics">
+        <div id="playlist-musics-list"
+             class="playlist-musics-list-wrapper">
+            <div class="playlist-musics-list-ol slides">
+                <slick settings="slickConfig"
+                       ng-if="playload"
+                       id="play_slide"
+                       control="slickControl"
+                       media="playlist"
+                       src="views/songs.html">
+                </slick>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
