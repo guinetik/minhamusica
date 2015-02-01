@@ -20,7 +20,8 @@ var MusicaController = module.exports = {
         var song = {
           nome: files[0].filename,
           filename: files[0].fd.split("/").pop(),
-          cd: cd
+          cd: cd,
+          fd:files[0].fd
         };
         Musica.create(song).exec(function createCB(err, musica) {
           if (err) {

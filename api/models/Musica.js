@@ -26,10 +26,13 @@ var Musica = module.exports = {
     downloads: {
       type: 'integer',
       defaultsTo: 0
+    },
+    fd: {
+      type: 'string',
     }
   },
   afterDestroy: function (deleted_record, next) {
-    var filename = './../../public/music/' + deleted_record[0].filename;
+    var filename = deleted_record[0].fd;
     fs.unlink(filename, function (err) {
       if (err) next(err);
       next();
