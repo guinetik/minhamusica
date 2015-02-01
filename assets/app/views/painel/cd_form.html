@@ -126,7 +126,7 @@
       <p ng-show="cd.musicas.length==0"
         class="message-empty">
         Arraste as músicas aqui para enviá-las</p>
-      <table ng-show="cd.musicas.length>0"
+      <table ng-if="cd.musicas.length>0"
              style="width: 100%;">
         <thead>
         <tr>
@@ -136,8 +136,10 @@
           <th style="background:#EEEEEE;" width="200px">Opções</th>
         </tr>
         </thead>
-        <tbody>
-        <tr ng-repeat="musica in cd.musicas">
+        <tbody ui:sortable="true"
+               ng:model="cd.musicas">
+        <tr ng-repeat="musica in cd.musicas"
+            style="cursor: move;">
           <td style="background:#EEEEEE;padding: 10px">{{$index+1}}</td>
           <td style="padding:10px;background:#EEEEEE"><input type="text"
                                                              ng-disabled="musica.status!=2"

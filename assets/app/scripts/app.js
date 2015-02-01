@@ -15,6 +15,7 @@ angular.module('musicaApp',
     'bardo.directives',
     'angularFileUpload',
     'blockUI',
+    'ui',
     'dcbImgFallback',
     'mediaPlayer',
     'angularMoment']).run(function ($rootScope) {
