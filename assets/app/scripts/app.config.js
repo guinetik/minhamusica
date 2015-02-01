@@ -94,8 +94,8 @@ angular.module('musicaApp').config(function ($urlRouterProvider, $stateProvider)
         templateUrl: 'views/genero.html'
     });
 })
-    //.constant('API_URL', 'http://musicatop.jelastic.websolute.net.br/')
-    .constant('API_URL', 'http://localhost:1337/')
+    .constant('API_URL', 'http://musicatop.jelastic.websolute.net.br/')
+    //.constant('API_URL', 'http://localhost:1337/')
     .config(function (toastrConfig) {
         angular.extend(toastrConfig, {
             allowHtml: false,
