@@ -47,20 +47,20 @@ module.exports.connections = {
     password: 'mtop123',
     database: 'musicatop'
   },
-  /*'mongo_local': {
+  'mongo_local': {
     adapter: 'sails-mongo',
     host: 'localhost',
     port: 27017,
     user: 'mtopadmin',
     password: 'mtop123',
     database: 'musicatop'
-  }*/
-  'mongo_local': {
+  }
+  /*'mongo_local': {
     adapter: 'sails-mongo',
     host: 'localhost',
     port: 27017,
     user: '',
     password: '',
     database: 'musicatop'
-  }
+  }*/
 };
