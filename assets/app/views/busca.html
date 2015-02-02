@@ -4,6 +4,7 @@
         class="main-content">
     <div class="limits">
         <h2 class="painel-section-content-title">Resultados da busca</h2>
+
         <div class="cd-info clearfix"
              ng-repeat="cd in cds">
             <figure class="cd-thumb cd-info-thumb">
@@ -21,6 +22,13 @@
                 </a>
 
                 <p class="desc">{{cd.descricao}}</p>
+
+                <ol start="1" style="list-style: decimal-leading-zero">
+                    <li ng-repeat="musica in cd.musicas"
+                        style='margin-left: 24px;margin-top: 5px;list-style: decimal-leading-zero;font: normal 13px "pf_square_sans_proregular","Helvetica Neue",Helvetica,Arial,sans-serif;'>
+                        <a class="link-pink" href="#">{{musica.nome}}</a>
+                    </li>
+                </ol>
 
                 <div class="dados">
                     <dl>

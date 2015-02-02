@@ -1,12 +1,22 @@
 <section id="banners">
     <slick settings="slickConfig"
-           style="overflow: hidden;max-height: 368px;"
-           control="scoped-control-handle"
+           style="max-height: 368px;margin-bottom: 0"
+           control="slickHandle"
            media="home.banners"
-           on-directive-init="onDirectiveInit()"
-           is-image="isImage(media)"
-           is-video="isVideo(media)"></slick>
-    </slick>
+           on-directive-init="onDirectiveInit()"></slick>
+    <div class="banners-mask"><span class="left"></span><span class="right"></span></div>
+    <div id="banners-thumbs">
+        <ul class="banners-thumbs-ul slides">
+            <li ng-repeat="banner in home.banners" ng-class="{'active':slickHandle.currentSlide == $index}">
+                <a title="{{banner.titulo}}" ng-click="slickHandle.slickGoTo($index)">
+                    <img ng-src="{{banner.src}}"
+                         src="http://placehold.it/131x42"
+                         fallback-src="http://placehold.it/131x42"
+                         alt="{{banner.titulo}}">
+                </a>
+            </li>
+        </ul>
+    </div>
 </section>
 <section class="main-content index">
     <div class="limits clearfix three-cols">
@@ -41,6 +51,7 @@
                             ng-repeat="cd in home.mais_baixados"
                             class="most-downloaded-list-box-cd">
                             <span class="number">{{$index+1}}</span>
+
                             <div class="hover">
                                 <div class="hover-content">
                                     <h2 class="title">
@@ -52,7 +63,9 @@
                                     <a ui-sref="perfil({id:cd.artista.id})"
                                        class="user"
                                        title="Usuário">Enviado por: {{cd.artista.nome}}</a>
+
                                     <p class="downloads" style="color:white;right: 25px">{{cd.genero.nome}}</p>
+
                                     <p class="downloads"><strong>{{cd.downloads}}</strong> downloads</p>
                                 </div>
                                 <!-- /.hover-content -->
@@ -91,9 +104,9 @@
                                 <figure class="cd-thumb list-cd-box-thumb">
                                     <a ui-sref="cd({id:cd.id})"
                                        title="{{cd.titulo}}"> <img src="http://placehold.it/71x71"
-                                                      width="71"
-                                                      height="71"
-                                                      ng-src="/public/img/{{cd.capa}}"> </a>
+                                                                   width="71"
+                                                                   height="71"
+                                                                   ng-src="/public/img/{{cd.capa}}"> </a>
                                 </figure>
                                 <h2 class="list-cd-box-title">
                                     <a ui-sref="cd({id:cd.id})"
