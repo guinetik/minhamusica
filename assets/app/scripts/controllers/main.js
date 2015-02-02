@@ -24,7 +24,7 @@ function MainCtrl($scope, $rootScope, api, $timeout) {
                 });
                 $timeout(function () {
                     $scope.bannersLoaded = true;
-                });
+                }, 2000);
             } else {
                 window.location.reload();
             }
