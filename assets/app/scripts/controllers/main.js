@@ -22,10 +22,10 @@ function MainCtrl($scope, $rootScope, api, $timeout) {
                     banner.mimeType = 'image/png';
                     banner.src = '/public/img/' + banner.src;
                 });
+                $scope.bannersLoaded = true;
                 $timeout(function () {
-                    $scope.bannersLoaded = true;
                     $scope.slickHandle.slickGoTo(0);
-                }, 2000);
+                }, 1000);
             } else {
                 window.location.reload();
             }
