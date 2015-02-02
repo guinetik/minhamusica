@@ -24,6 +24,7 @@ function MainCtrl($scope, $rootScope, api, $timeout) {
                 });
                 $timeout(function () {
                     $scope.bannersLoaded = true;
+                    $scope.slickHandle.slickGoTo(0);
                 }, 2000);
             } else {
                 window.location.reload();
