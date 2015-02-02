@@ -25,7 +25,7 @@ function MainCtrl($scope, $rootScope, api, $timeout) {
                 $scope.bannersLoaded = true;
                 $timeout(function () {
                     $scope.slickHandle.slickGoTo(0);
-                }, 1000);
+                }, 500);
             } else {
                 window.location.reload();
             }
