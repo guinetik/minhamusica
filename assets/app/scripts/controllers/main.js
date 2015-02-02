@@ -10,6 +10,7 @@
 angular.module('musicaApp').controller('MainCtrl', ['$scope', '$rootScope', 'api', '$timeout', MainCtrl]);
 function MainCtrl($scope, $rootScope, api, $timeout) {
     $scope.home = {};
+    $scope.bannersLoaded = false;
     $scope.$on('$viewContentLoaded', function (event) {
         $timeout($scope.updateHome);
     });
@@ -20,6 +21,9 @@ function MainCtrl($scope, $rootScope, api, $timeout) {
                 angular.forEach($scope.home.banners, function (banner, key) {
                     banner.mimeType = 'image/png';
                     banner.src = '/public/img/' + banner.src;
+                });
+                $timeout(function () {
+                    $scope.bannersLoaded = true;
                 });
             } else {
                 window.location.reload();
