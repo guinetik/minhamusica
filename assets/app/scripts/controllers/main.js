@@ -42,6 +42,7 @@ function MainCtrl($scope, $rootScope, api, $timeout) {
         variableWidth: true,
         adaptiveHeight: false,
         autoplaySpeed: 3000,
+        lazyLoad: 'ondemand',
         onAfterChange: function (slide, index) {
             console.log("index", index);
             $scope.slickHandle.currentSlide = index;
