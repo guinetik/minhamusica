@@ -1,0 +1,77 @@
+{
+  "cssmin": {
+    "target": {
+      "files": [{
+        "src":[
+          "./../bower_components/fancybox/source/jquery.fancybox.css",
+          "./../bower_components/animate.css/animate.css",
+          "./../bower_components/angular-toastr/dist/angular-toastr.css",
+          "./../bower_components/angular-block-ui/dist/angular-block-ui.css",
+          "./../bower_components/slick-carousel/slick/slick.css",
+          "./../bower_components/angular-ui/build/angular-ui.css"
+          ],
+        "dest": "./styles/lib.css"
+      }]
+    }
+  },
+  "uglify": {
+    "options": {
+      "mangle": false
+    },
+    "dist": {
+      "files": {
+        "js/scripts.min.js": [
+          "scripts/app.js"
+          ,"scripts/app.config.js"
+          ,"scripts/directives/validateEquals.js"
+          ,"scripts/controllers/main.js"
+          ,"scripts/controllers/signup.js"
+          ,"scripts/directives/emailValidate.js"
+          ,"scripts/directives/tabs.js"
+          ,"scripts/controllers/login.js"
+          ,"scripts/controllers/header.js"
+          ,"scripts/services/auth.js"
+          ,"scripts/controllers/cd.js"
+          ,"scripts/controllers/genero.js"
+          ,"scripts/controllers/busca.js"
+          ,"scripts/services/api.js"
+          ,"scripts/services/ws.js"
+          ,"scripts/controllers/painel.js"
+          ,"scripts/controllers/novocd.js"
+          ,"scripts/controllers/meuscds.js"
+          ,"scripts/controllers/novoevento.js"
+          ,"scripts/controllers/meuseventos.js"
+          ,"scripts/controllers/configs.js"
+          ,"scripts/controllers/configpassword.js"
+          ,"scripts/controllers/perfil.js"
+          ,"scripts/controllers/editcd.js"
+          ,"scripts/services/cd.js"
+          ,"scripts/controllers/player.js"
+        ],
+        "js/libs.min.js": [
+          "./../bower_components/jquery/dist/jquery.js",
+          "./../bower_components/angular/angular.js",
+          "./../bower_components/angular-ui-router/release/angular-ui-router.js",
+          "./../bower_components/angular-touch/angular-touch.js",
+          "./../bower_components/angular-carousel/dist/angular-carousel.js",
+          "./../bower_components/angular-route/angular-route.js",
+          "./../bower_components/ng-breadcrumbs/dist/ng-breadcrumbs.min.js",
+          "./../bower_components/angular-toastr/dist/angular-toastr.js",
+          "./../bower_components/angular-block-ui/dist/angular-block-ui.js",
+          "./../bower_components/angular-ui/build/angular-ui.js",
+          "./../bower_components/angular-animate/angular-animate.js",
+          "./../bower_components/moment/moment.js",
+          "./../bower_components/angular-moment/angular-moment.js",
+          "./../bower_components/slick-carousel/slick/slick.min.js",
+          "./../bower_components/angular-slick-carousel/dist/slick.js",
+          "./../bower_components/igTruncate/dist/igTruncate.min.js",
+          "./../bower_components/moment/locale/pt-br.js",
+          "./../bower_components/fancybox/source/jquery.fancybox.pack.js",
+          "./../bower_components/danialfarid-angular-file-upload/dist/angular-file-upload-all.min.js",
+          "./../bower_components/angular-img-fallback/angular.dcb-img-fallback.min.js",
+          "./../bower_components/angular-media-player/dist/angular-media-player.min.js"
+        ]
+      }
+    }
+  }
+}
