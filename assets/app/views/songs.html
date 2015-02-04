@@ -2,7 +2,10 @@
      ng-class="{'active':$parent.$parent.player.playing && $index== $parent.$parent.player.currentTrack-1}"
      ng-repeat="song in media"
      on-finish-render="init()">
-    <a ng-click="$parent.$parent.player.play($index)" class="song_bt" title="{{song.title}}" style="cursor: pointer;">
+    <a ng-click="$parent.$parent.player.play($index)"
+       class="song_bt"
+       title="{{song.title}}"
+       style="cursor: pointer;">
         <figure class="cd-thumb">
             <img src="http://placehold.it/52x52"
                  width="52"
@@ -11,10 +14,14 @@
                  alt="">
         </figure>
     </a>
-    <p class="text" title="{{song.title}}">
-        <strong class="music" style="height: 30px">{{song.title|truncate:48}}</strong>
-        <span class="artist"><a class="link-pink" ui-sref="cd({id:cd.id})">{{song.cd.titulo}}</a></span>
-        <br/>
-        <span class="artist">Enviando por: <a class="link-pink" ui-sref="perfil({id:cd.artista.id})">{{song.cd.artista.nome}}</a></span>
+    <p class="text"
+       title="{{song.title}}">
+        <strong class="music"
+                style="height: 30px">{{song.title|truncate:48}}</strong>
+        <span class="artist"><a class="link-pink"
+                                ui-sref="cd({id:cd.id})">{{song.cd.titulo}}</a></span> <br/>
+        <span class="artist">Enviando por: <a class="link-pink"
+                                              ui-sref="perfil({id:song.cd.artista.id})">{{song.cd.artista.nome}}</a>
+        </span>
     </p>
 </div>

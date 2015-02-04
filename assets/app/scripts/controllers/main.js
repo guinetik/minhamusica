@@ -39,6 +39,7 @@ function MainCtrl($scope, $rootScope, api, $timeout) {
         autoplay: true,
         slidesToShow: 1,
         centerMode: true,
+        arrows:true,
         variableWidth: true,
         adaptiveHeight: false,
         autoplaySpeed: 3000,

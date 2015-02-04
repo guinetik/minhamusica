@@ -1107,7 +1107,7 @@ select
     margin-right: 20px
     .list_item
       float: left
-      width: 250px
+      width: 220px!important
       margin-left: 11px
       .text
         position: relative
@@ -1131,6 +1131,7 @@ select
           background: #fff
           cursor: default
           +border-radius(3px)
+          width: 220px
         .text
           .link-pink
             color: #e11d70
@@ -1633,3 +1634,34 @@ select
 
 .enviada
   opacity: 1.0
+#banners
+  .slick-prev, .slick-next
+    z-index: 10000
+    width: 60px
+  .slick-next
+    right: 30px
+  .slick-prev
+    left: 30px
+  .slick-next:before, .slick-prev:before
+    font-family: slick
+    font-size: 60px
+    line-height: 1
+    color: #000
+    opacity: .75
+    -webkit-font-smoothing: antialiased
+#playlist
+  .slick-list
+    padding-left: 10px!important
+    padding-right: 10px!important
+    #banners
+  .slick-prev, .slick-next
+    z-index: 10000
+    width: 30px
+    top: 31px
+  .slick-next:before, .slick-prev:before
+    font-family: slick
+    font-size: 30px
+    line-height: 1
+    color: #FFF
+    opacity: .75
+    -webkit-font-smoothing: antialiased

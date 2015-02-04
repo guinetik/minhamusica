@@ -5,7 +5,7 @@ Use "@extend .sprite-icons !optional" if the extend should be able to fail.
 
 
 Backtrace:
-/Users/guinetik/Developer/projects/HMCL/minhamusica/frontend/app/sass/buttons.sass:23
+/Users/guinetik/Developer/projects/HMCL/minhamusica/assets/app/sass/buttons.sass:23
 /Library/Ruby/Gems/2.0.0/gems/sass-3.4.5/lib/sass/tree/visitors/extend.rb:61:in `block in check_extends_fired!'
 /Library/Ruby/Gems/2.0.0/gems/sass-3.4.5/lib/sass/util/subset_map.rb:106:in `block in each_value'
 /Library/Ruby/Gems/2.0.0/gems/sass-3.4.5/lib/sass/util/subset_map.rb:106:in `each'
