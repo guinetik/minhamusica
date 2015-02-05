@@ -54,6 +54,7 @@ function api(ws, $upload, API_URL) {
                 musica.status = -1;
                 musica.message = 'Erro ao enviar';
             }
+            data.status = status;
             cb(data, status, headers, config);
         });
     };
