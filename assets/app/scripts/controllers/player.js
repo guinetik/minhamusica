@@ -7,8 +7,8 @@
  * # PlayerCtrl
  * Controller of the musicaApp
  */
-angular.module('musicaApp').controller('PlayerCtrl', ['$scope', '$rootScope', '$timeout', PlayerCtrl]);
-function PlayerCtrl($scope, $rootScope, $timeout) {
+angular.module('musicaApp').controller('PlayerCtrl', ['$scope', '$rootScope', '$timeout', '$filter', PlayerCtrl]);
+function PlayerCtrl($scope, $rootScope, $timeout, $filter) {
     $scope.playload = false;
     $scope.slickConfig = {
         dots: false,
@@ -42,12 +42,13 @@ function PlayerCtrl($scope, $rootScope, $timeout) {
         return k;
     };
     $rootScope.$on("add-cd-to-playlist", function (event, _cd) {
+        var orderBy = $filter('orderBy');
         var cd = angular.copy(_cd);
-        var songs = angular.copy(cd.musicas).reverse();
+        var list = orderBy(cd.musicas, 'track', true);
         delete cd.musicas;
         functions.playlist.show();
         $scope.playload = false;
-        angular.forEach(songs, function (song, key) {
+        angular.forEach(list, function (song, key) {
             $scope.playlist.unshift(
                 {
                     title: song.nome,

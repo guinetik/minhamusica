@@ -102,7 +102,7 @@
                 <div class="box-content">
                     <ol class="musics-list">
                         <li class="musics-list-li"
-                            ng-repeat="musica in cd.musicas">
+                            ng-repeat="musica in cd.musicas|orderBy:'track'">
                             <span class="number">{{$index+1}}</span>
 
                             <h2 class="title"

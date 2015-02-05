@@ -141,11 +141,10 @@
                     <th style="background:#EEEEEE;" width="200px">Opções</th>
                 </tr>
                 </thead>
-                <tbody ui:sortable
-                       ng:model="cd.musicas">
-                <tr ng-repeat="musica in cd.musicas"
+                <tbody ng-sortable="sortOptions">
+                <tr ng-repeat="musica in cd.musicas|orderBy:'track'"
                     style="cursor: move;">
-                    <td style="background:#EEEEEE;padding: 10px">{{$index}}</td>
+                    <td style="background:#EEEEEE;padding: 10px">{{musica.track}}</td>
                     <td style="padding:10px;background:#EEEEEE">
                         <input type="text"
                                ng-disabled="musica.status!=2"
