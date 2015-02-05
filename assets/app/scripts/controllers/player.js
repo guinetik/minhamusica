@@ -18,7 +18,7 @@ function PlayerCtrl($scope, $rootScope, $timeout, $filter) {
         adaptiveHeight: false,
         swipe: true,
         vertical: false,
-        slidesToScroll:1,
+        slidesToScroll: 1,
         arrows: true
     };
     $scope.hasBeenAddedToPlaylist = function (id) {
@@ -30,6 +30,9 @@ function PlayerCtrl($scope, $rootScope, $timeout, $filter) {
             }
         });
         return r;
+    };
+    $scope.clearPlaylist = function () {
+        $scope.playlist = [];
     };
     $scope.getSongById = function (id) {
         var k = -1;
