@@ -6,7 +6,7 @@ module.exports = function (id, cb) {
         if (err) {
             if(next) next();
         }
-        console.log("cd", cd);
+        //console.log("cd", cd);
         var metadata = cd.titulo + ".";
         metadata += cd.descricao + ".";
         if(cd.genero) {

@@ -6,10 +6,14 @@
  */
 var fs = require('fs');
 var updateCdMeta = require('../services/updateCdMeta.js');
+var ZipCd = require("../services/zipCd.js");
 var Musica = module.exports = {
     afterCreate: function (newMusic, next) {
         if (newMusic.cd) {
-            updateCdMeta(newMusic.cd, next);
+            ZipCd(newMusic[0].cd, function (aaa) {
+                console.log("ZipCd", aaa);
+                updateCdMeta(newMusic.cd, next);
+            });
         }
     },
     afterDestroy: function (deleted_record, next) {
@@ -17,14 +21,20 @@ var Musica = module.exports = {
         var filename = deleted_record[0].fd;
         fs.unlink(filename, function (err) {
             if (deleted_record[0].cd) {
-                updateCdMeta(deleted_record[0].cd, next);
+                ZipCd(deleted_record[0].cd, function (aaa) {
+                    console.log("ZipCd", aaa);
+                    updateCdMeta(deleted_record[0].cd, next);
+                });
             }
             if (err) next(err);
         });
     },
     afterUpdate: function (newMusic, next) {
         if (newMusic.cd) {
-            updateCdMeta(newMusic.cd, next);
+            ZipCd(newMusic.cd, function (aaa) {
+                console.log("ZipCd", aaa);
+                updateCdMeta(newMusic.cd, next);
+            });
         }
     },
     attributes: {

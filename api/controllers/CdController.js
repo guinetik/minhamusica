@@ -13,9 +13,12 @@ var CdController = module.exports = {
                 var downloadInt = cdFound.downloads + 1;
                 console.log("downloads", cdFound.downloads);
                 Cd.update({id: id}, {downloads: downloadInt}).exec(function afterwards(err2, up) {
-                    console.log("err2", err2);
                     if (err2) return res.status(500).send({message: 'Erro ao computar download'});
-                    return res.status(200).send({message: 'Inicializando o download...', downloads: up[0].downloads});
+                    return res.status(200).send({
+                        message: 'Inicializando o download...',
+                        downloads: up[0].downloads,
+                        url: '/public/downloads/' + id + '.zip'
+                    });
                 });
             }
         });
@@ -76,5 +79,5 @@ var CdController = module.exports = {
                 return res.status(200).send({message: 'Imagem Enviada', imagem: imagem});
             }
         });
-    },
+    }
 };
