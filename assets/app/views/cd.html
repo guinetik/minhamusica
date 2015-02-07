@@ -57,14 +57,15 @@
 
                     <div class="social clearfix">
             <span id="facebook">
-              <div class="fb-like"
-                   data-href=""
-                   data-layout="button_count"
-                   data-action="like"
-                   data-show-faces="false"
-                   data-share="false"></div>
+                <div class="fb-like"
+                     data-href="http://musicatop.jelastic.websolute.net.br/cd/{{cd.id}}"
+                     data-layout="button_count"
+                     data-action="like"
+                     data-show-faces="true"
+                     data-share="false"></div>
             </span><!-- /.facebook -->
-            <span id="twitter">
+            <span id="twitter"
+                  ng-if="cd.musicas.length>0">
               <a href="https://twitter.com/share"
                  class="twitter-share-button">Tweet</a>
 <script>!function (d, s, id) {
@@ -85,7 +86,7 @@
                 <div class="col link">
                     <strong class="title">Link:</strong> <input type="text"
                                                                 readonly="readonly"
-                                                                value="http://musicatop.com/garota-safada-uma-nova-historia-2014">
+                                                                value="http://musicatop.jelastic.websolute.net.br/cd/{{cd.id}}">
                 </div>
             </div>
             <!-- /.cd-share -->
@@ -107,7 +108,8 @@
 
                             <h2 class="title"
                                 style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;max-width: 495px;color: #e11d70;">
-                                <a style="cursor:pointer;" ng-click="addToPlaylist(musica)">{{musica.nome}}</a></h2>
+                                <a style="cursor:pointer;"
+                                   ng-click="addToPlaylist(musica)">{{musica.nome}}</a></h2>
                             <ul class="options">
                                 <li><a ng-click="addToPlaylist(musica)"
                                        class="button-icon"
@@ -131,19 +133,20 @@
             </div>
             <!-- /.#musics -->
             <div id="comments"
+                 ng-show="cd.musicas!=null"
                  class="box box-inner">
                 <div class="box-header clearfix box-header-balloon">
                     <h2 class="box-title">Comentários</h2>
 
                     <div class="balloon comments-count">
-                        <fb:comments-count href='http://musicatop.jelastic.websolute.net.br/cd/{{cd.id}}'/>
-                        </fb:comments-count></div>
+                        <div class="fb-comments-count"
+                             data-href="http://musicatop.jelastic.websolute.net.br/cd/{{cd.id}}"></div>
+                    </div>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-content">
                     <div class="fb-comments"
                          data-href="http://musicatop.jelastic.websolute.net.br/cd/{{cd.id}}"
-                         data-width="660"
                          data-numposts="5"
                          data-colorscheme="light"></div>
                 </div>
@@ -171,8 +174,7 @@
                                     <strong class="dates">01, 02, 03 de JAN/2015</strong>
 
                                     <h2 class="title">Festival de Verão 2015</h2>
-                                    <span class="local">Salvador - BA</span> <span
-                                        class="button">Comprar Ingresso</span>
+                                    <span class="local">Salvador - BA</span> <span class="button">Comprar Ingresso</span>
                                 </div>
                             </a>
                         </li>

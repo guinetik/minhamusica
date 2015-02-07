@@ -121,4 +121,16 @@ angular.module('musicaApp').config(function ($urlRouterProvider, $stateProvider)
     .config(function (blockUIConfig) {
         blockUIConfig.message = 'Carregando';
         blockUIConfig.delay = 10;
+    })
+    .config(function (ezfbProvider) {
+        ezfbProvider.setLocale('pt_br');
+        ezfbProvider.setInitParams({
+            // This is my FB app id for plunker demo app
+            appId: '425861320888040',
+
+            // Module default is `v1.0`.
+            // If you want to use Facebook platform `v2.0`, you'll have to add the following parameter.
+            // https://developers.facebook.com/docs/javascript/reference/FB.init/v2.0
+            version: 'v2.0'
+        });
     });
