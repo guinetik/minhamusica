@@ -17,6 +17,7 @@ var MusicaController = module.exports = {
                 if (err) return res.serverError(err);
                 var song = {
                     nome: files[0].filename,
+                    track: req.body.track,
                     filename: files[0].fd.split("/").pop(),
                     cd: cd,
                     fd: files[0].fd

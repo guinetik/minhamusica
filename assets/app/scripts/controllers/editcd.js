@@ -7,8 +7,8 @@
  * # EditcdCtrl
  * Controller of the musicaApp
  */
-angular.module('musicaApp').controller('EditCDCtrl', ['$scope', 'cd', '$stateParams', '$rootScope', 'auth', '$state', 'api', EditCDCtrl]);
-function EditCDCtrl($scope, cd, $stateParams, $rootScope, auth, $state, api) {
+angular.module('musicaApp').controller('EditCDCtrl', ['$scope', 'cd', '$stateParams', '$rootScope', 'auth', '$state', 'api', '$timeout', EditCDCtrl]);
+function EditCDCtrl($scope, cd, $stateParams, $rootScope, auth, $state, api, $timeout) {
     $scope.cd = {};
     $scope.musicas = [];
     $scope.generos = [];
@@ -53,23 +53,25 @@ function EditCDCtrl($scope, cd, $stateParams, $rootScope, auth, $state, api) {
         $scope.pendingChanges = true;
     };
     $scope.$on('$viewContentLoaded', function (event) {
-        var token = auth.getToken();
-        if (token != "-1") {
-            api.lookup(token, function (result) {
-                if (result.status == 200) {
-                    //inicializar controller
-                    console.log("getCD", result.data);
-                    cd.getCd($scope);
-                    // transmite dados do usuario
-                    $scope.usuario = result.data;
-                    $rootScope.$emit("user-lookup", $scope.usuario);
-                } else {
-                    $state.go("main");
-                }
-            });
-        } else {
-            $state.go("main");
-        }
+        $timeout(function () {
+            var token = auth.getToken();
+            if (token != "-1") {
+                api.lookup(token, function (result) {
+                    if (result.status == 200) {
+                        //inicializar controller
+                        console.log("getCD", result.data);
+                        cd.getCd($scope);
+                        // transmite dados do usuario
+                        $scope.usuario = result.data;
+                        $rootScope.$emit("user-lookup", $scope.usuario);
+                    } else {
+                        $state.go("main");
+                    }
+                });
+            } else {
+                $state.go("main");
+            }
+        });
     });
     $scope.addToPlaylist = function (song) {
         cd.addToPlaylist($scope, song);

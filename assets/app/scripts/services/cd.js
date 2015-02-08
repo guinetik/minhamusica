@@ -39,9 +39,9 @@ function cd($timeout, toastr, api, auth, $state, $rootScope) {
             });
         }
     };
-    cd.saveCd = function($scope) {
+    cd.saveCd = function ($scope) {
         var token = auth.getToken();
-        api.saveCd(token, $scope.cd, function(result){
+        api.saveCd(token, $scope.cd, function (result) {
             if (result.status == 200) {
                 toastr.info(result.message);
                 $scope.pendingChanges = false;
@@ -114,6 +114,7 @@ function cd($timeout, toastr, api, auth, $state, $rootScope) {
         });
     };
     cd.fileDropped = function ($scope, $files, $event, $rejectedFiles) {
+        var token = auth.getToken();
         for (var i = 0; i < $files.length; i++) {
             var filename = $files[i].name;
             if (filename.substr(filename.length - 3, 3) == "mp3") {
@@ -123,9 +124,10 @@ function cd($timeout, toastr, api, auth, $state, $rootScope) {
                 music.status = 0;
                 music.cd = $scope.cd.id;
                 music.nome = file.name;
-                music.track = $scope.cd.musicas.length;
+                music.track = $scope.cd.musicas.length + 1;
+                console.log("music", music);
                 $scope.cd.musicas.push(music);
-                api.addMusic(music, function (data, status, headers, config) {
+                api.addMusic(music, token, function (data, status, headers, config) {
                     if (status == 200) {
                         toastr.info(data.message);
                         config.file.message = 'Enviada';

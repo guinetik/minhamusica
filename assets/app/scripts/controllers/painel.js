@@ -9,8 +9,8 @@
  */
 angular.module('musicaApp').controller('PainelCtrl', ['$scope', 'api', PainelCtrl]);
 function PainelCtrl($scope, api) {
-  $scope.$on('$viewContentLoaded', function (event) {
-    // EQUIVALENTE AO READY DO JQUERY
-    console.log("PainelCtrl:viewContentLoaded");
-  });
+    $scope.$on('$viewContentLoaded', function (event) {
+        // EQUIVALENTE AO READY DO JQUERY
+        console.log("PainelCtrl:viewContentLoaded");
+    });
 }

@@ -119,6 +119,8 @@ angular.module('musicaApp').config(function ($urlRouterProvider, $stateProvider)
         });
     })
     .config(function (blockUIConfig) {
+        blockUIConfig.autoBlock = false;
+        blockUIConfig.resetOnException = false;
         blockUIConfig.message = 'Carregando';
         blockUIConfig.delay = 10;
     })

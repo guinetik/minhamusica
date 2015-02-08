@@ -7,8 +7,8 @@
  * # Api
  * Service in the musicaApp.
  */
-angular.module('musicaApp').service('api', ['ws', '$upload', 'API_URL', api]);
-function api(ws, $upload, API_URL) {
+angular.module('musicaApp').service('api', ['ws', '$upload', 'API_URL', 'blockUI', api]);
+function api(ws, $upload, API_URL, blockUI) {
     var api = this;
     api.getEstados = function (cb) {
         ws.consumeService("data/estados", null, null, cb, false, "GET");
@@ -34,17 +34,22 @@ function api(ws, $upload, API_URL) {
     api.saveCd = function (token, cd, cb) {
         ws.consumeService("cd/save", {id_cd: cd.id}, token, cb, false);
     };
-    api.addMusic = function (musica, cb) {
+    api.addMusic = function (musica, token, cb) {
+        blockUI.start();
         $upload.upload({
             url: API_URL + 'cd/music/add',
             method: 'POST',
-            data: {id_cd: musica.cd},
+            data: {id_cd: musica.cd, track: musica.track},
+            headers: {
+                token: token
+            },
             file: musica.file
         }).progress(function (evt) {
             musica.progress = parseInt(100.0 * evt.loaded / evt.total);
             musica.status = 1;
             musica.message = 'Enviando: ' + musica.progress + '%';
         }).success(function (data, status, headers, config) {
+            blockUI.stop();
             if (status == 200) {
                 musica.status = 2;
                 musica.message = 'Enviada';
@@ -87,10 +92,14 @@ function api(ws, $upload, API_URL) {
         if (capa.cd) {
             data.id = capa.cd;
         }
+        blockUI.start();
         $upload.upload({
             url: API_URL + 'cd/cover/update',
             method: 'POST',
             data: data,
+            headers: {
+                token: token
+            },
             file: file
         }).progress(function (evt) {
             capa.progress = parseInt(100.0 * evt.loaded / evt.total);
@@ -105,6 +114,7 @@ function api(ws, $upload, API_URL) {
                 capa.status = -1;
                 capa.message = 'Erro ao enviar';
             }
+            blockUI.stop();
             cb(data, status, headers, config);
         });
     };
@@ -113,10 +123,14 @@ function api(ws, $upload, API_URL) {
         if (capa.user) {
             data.id_user = capa.user;
         }
+        blockUI.start();
         $upload.upload({
             url: API_URL + 'user/cover/update',
             method: 'POST',
             data: data,
+            headers: {
+                token: token
+            },
             file: file
         }).progress(function (evt) {
             capa.progress = parseInt(100.0 * evt.loaded / evt.total);
@@ -131,6 +145,7 @@ function api(ws, $upload, API_URL) {
                 capa.status = -1;
                 capa.message = 'Erro ao enviar';
             }
+            blockUI.stop();
             cb(data, status, headers, config);
         });
     };
@@ -139,10 +154,14 @@ function api(ws, $upload, API_URL) {
         if (foto.user) {
             data.id_user = foto.user;
         }
+        blockUI.start();
         $upload.upload({
             url: API_URL + 'user/foto/update',
             method: 'POST',
             data: data,
+            headers: {
+                token: token
+            },
             file: file
         }).progress(function (evt) {
             foto.progress = parseInt(100.0 * evt.loaded / evt.total);
@@ -157,6 +176,7 @@ function api(ws, $upload, API_URL) {
                 foto.status = -1;
                 foto.message = 'Erro ao enviar';
             }
+            blockUI.stop();
             cb(data, status, headers, config);
         });
     };

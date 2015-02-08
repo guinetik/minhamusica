@@ -12,22 +12,24 @@ function MeusCDsCtrl($scope, api, auth, toastr, $timeout, $rootScope, $state) {
     $scope.cds = [];
     var token = auth.getToken();
     $scope.$on('$viewContentLoaded', function (event) {
-        console.log("token", token);
-        if (token != "-1") {
-            api.lookup(token, function (result) {
-                if (result.status == 200) {
-                    //inicializar controller
-                    $timeout($scope.updateCollection);
-                    // transmite dados do usuario
-                    $scope.usuario = result.data;
-                    $rootScope.$emit("user-lookup", $scope.usuario);
-                } else {
-                    $state.go("main");
-                }
-            });
-        } else {
-            $state.go("main");
-        }
+        //console.log("token", token);
+        $timeout(function () {
+            if (token != "-1") {
+                api.lookup(token, function (result) {
+                    if (result.status == 200) {
+                        //inicializar controller
+                        $timeout($scope.updateCollection);
+                        // transmite dados do usuario
+                        $scope.usuario = result.data;
+                        $rootScope.$emit("user-lookup", $scope.usuario);
+                    } else {
+                        $state.go("main");
+                    }
+                });
+            } else {
+                $state.go("main");
+            }
+        });
     });
     $scope.updateCollection = function () {
         api.getUserCollection(token, function (result) {

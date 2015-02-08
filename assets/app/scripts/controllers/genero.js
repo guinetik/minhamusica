@@ -10,7 +10,7 @@
  * # MeuscdsCtrl
  * Controller of the musicaApp
  */
-angular.module('musicaApp').controller('GeneroCtrl', ['$scope', 'api', 'toastr','$timeout', '$stateParams', GeneroCtrl]);
+angular.module('musicaApp').controller('GeneroCtrl', ['$scope', 'api', 'toastr', '$timeout', '$stateParams', GeneroCtrl]);
 function GeneroCtrl($scope, api, toastr, $timeout, $stateParams) {
     $scope.cds = [];
     $scope.genero = "";
