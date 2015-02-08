@@ -104,7 +104,7 @@
                     <ol class="musics-list">
                         <li class="musics-list-li"
                             ng-repeat="musica in cd.musicas|orderBy:'track'">
-                            <span class="number">{{$index+1}}</span>
+                            <span class="number">{{musica.track}}</span>
 
                             <h2 class="title"
                                 style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;max-width: 495px;color: #e11d70;">

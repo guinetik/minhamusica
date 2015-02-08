@@ -46,6 +46,7 @@ function CdCtrl($scope, api, $timeout, $stateParams, $rootScope, toastr) {
         alert("SHARE");
     };
     $scope.downloadSong = function (song) {
+        console.log("song", song);
         api.downloadMusic(song, function (result) {
             console.log("downloadMusic", result);
             if (result.status == 200) {
