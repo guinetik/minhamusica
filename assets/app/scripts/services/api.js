@@ -31,6 +31,9 @@ function api(ws, $upload, API_URL) {
     api.addCd = function (token, cd, cb) {
         ws.consumeService("cd/add", cd, token, cb, false);
     };
+    api.saveCd = function (token, cd, cb) {
+        ws.consumeService("cd/save", {id:cd.id}, token, cb, false);
+    };
     api.addMusic = function (musica, cb) {
         $upload.upload({
             url: API_URL + 'cd/music/add',
@@ -196,6 +199,9 @@ function api(ws, $upload, API_URL) {
     };
     api.downloadCD = function (id, cb) {
         ws.consumeService("cd/download/", {id: id}, null, cb, false, "POST");
+    };
+    api.downloadMusic = function (id, cb) {
+        ws.consumeService("musica/download/", {id: id}, null, cb, false, "POST");
     };
     api.getCdsByGenero = function (id, cb) {
         ws.consumeService("cd/genero?id=" + id, null, null, cb, false, "GET");

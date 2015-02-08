@@ -15,6 +15,7 @@ function EditCDCtrl($scope, cd, $stateParams) {
     $scope.capas = [];
     $scope.capa = {};
     $scope.view = "basic";
+    $scope.pendingChanges = false;
     cd.scope = $scope;
     $scope.sortOptions = cd.sortOptions;
     $scope.cd.id = $stateParams.id;
@@ -26,24 +27,30 @@ function EditCDCtrl($scope, cd, $stateParams) {
     };
     $scope.generateThumb = function (file) {
         cd.generateThumb($scope, file);
+        $scope.pendingChanges = true;
     };
     $scope.updateCover = function (file) {
         cd.updateCover($scope, file);
+        $scope.pendingChanges = true;
     };
     $scope.fileDropped = function ($files, $event, $rejectedFiles) {
         cd.fileDropped($scope, $files, $event, $rejectedFiles);
+        $scope.pendingChanges = true;
     };
     $scope.deleteMusic = function (musica) {
-        cd.deleteMusic($scope, musica)
+        cd.deleteMusic($scope, musica);
+        $scope.pendingChanges = true;
     };
     $scope.submit = function () {
         cd.update($scope);
+        $scope.pendingChanges = true;
     };
     $scope.salvarCd = function () {
-        cd.salvarCd($scope);
+        cd.saveCd($scope);
     };
     $scope.updateMusic = function (music) {
         cd.updateMusic($scope, music);
+        $scope.pendingChanges = true;
     };
     $scope.$on('$viewContentLoaded', function (event) {
         cd.getCd($scope);

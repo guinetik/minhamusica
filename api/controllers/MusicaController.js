@@ -4,7 +4,7 @@
  * @description :: Server-side logic for managing musicas
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
-
+var ZipMusic = require("../services/zipMusic.js");
 var MusicaController = module.exports = {
     addMusic: function (req, res) {
         var uploadFile = req.file('file');
@@ -31,16 +31,29 @@ var MusicaController = module.exports = {
             });
         });
     },
-    updateTrack:function(req, res) {
+    updateTrack: function (req, res) {
         var musica = req.body;
-        if(musica.id != null && musica.track != null) {
-            Musica.update({id:musica.id}, {track:musica.track}, function(err, musica){
+        if (musica.id != null && musica.track != null) {
+            Musica.update({id: musica.id}, {track: musica.track}, function (err, musica) {
                 if (err) return res.status(404).send({message: 'Erro ao salvar a música'});
                 return res.status(200).send({message: 'Música Salva com sucesso', musica: musica});
             });
         } else {
             return res.status(400).send({message: 'Request incompleto'});
         }
+    },
+    download: function (req, res) {
+        var id = req.body.id;
+        if (id == null) return res.status(400).send({message: 'Parametros inválidos'});
+        ZipMusic(id, function (result) {
+            if (result) {
+                return res.status(200).send({
+                    message: 'Inicializando download...',
+                    url: '/public/downloads/' + id + '.zip'
+                });
+            } else {
+                return res.status(400).send({message: 'Erro ao fazer o download da musica'});
+            }
+        });
     }
-
 };

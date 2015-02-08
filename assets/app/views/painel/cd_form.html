@@ -8,11 +8,10 @@
                title="Informações Básicas"> <span>1</span> <span class="text">Informações Básicas</span> </a>
         </li>
         <li>
-            <a
-                    style="cursor: pointer"
-                    ng-click="toggleState('songs')"
-                    ng-class="{'active':view != 'basic'}"
-                    title="Upload das Músicas"> <span>2</span> <span class="text">Upload das Músicas</span> </a>
+            <a style="cursor: pointer"
+               ng-click="toggleState('songs')"
+               ng-class="{'active':view != 'basic'}"
+               title="Upload das Músicas"> <span>2</span> <span class="text">Upload das Músicas</span> </a>
         </li>
     </ol>
     <form ng-submit="submit()"
@@ -87,8 +86,7 @@
             </div>
             <!-- /.col -->
             <div class="col">
-                <label for="capa"
-                       class="form-label">Capa:</label>
+                <label class="form-label">Capa:</label>
 
                 <div class="cover-wrapper clearfix">
                     <figure class="cover-thumb">
@@ -137,8 +135,10 @@
                 <tr>
                     <th style="background:#EEEEEE;padding: 10px;">#</th>
                     <th style="background:#EEEEEE;padding: 10px;">Nome</th>
-                    <th style="background:#EEEEEE;" width="120px">Status</th>
-                    <th style="background:#EEEEEE;" width="200px">Opções</th>
+                    <th style="background:#EEEEEE;"
+                        width="120px">Status</th>
+                    <th style="background:#EEEEEE;"
+                        width="200px">Opções</th>
                 </tr>
                 </thead>
                 <tbody ng-sortable="sortOptions">
@@ -199,4 +199,7 @@
             </button>
         </div>
     </div>
+    <p ng-if="pendingChanges"
+       style="font: normal 14px 'pf_square_sans_proregular', Helvetica, Arial, sans-serif;margin-top: 20px;color: #404a7d;border: 1px solid #CCCCCC;padding: 10px;border-radius: 4px;">
+        Você efetuou mudanças no CD. Clique em "Salvar" para concluir a edição.</p>
 </article><!-- /.painel-section-content -->

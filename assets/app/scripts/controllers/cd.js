@@ -46,6 +46,18 @@ function CdCtrl($scope, api, $timeout, $stateParams, $rootScope, toastr) {
         alert("SHARE");
     };
     $scope.downloadSong = function (song) {
-        alert("DOWNLOAD");
+        api.downloadMusic(song, function (result) {
+            console.log("downloadMusic", result);
+            if (result.status == 200) {
+                toastr.info(result.message);
+                window.open(result.url);
+            } else {
+                if (result.message) {
+                    toastr.warning(result.message);
+                } else {
+                    toastr.warning("Houve um erro. tente novamente");
+                }
+            }
+        });
     };
 }

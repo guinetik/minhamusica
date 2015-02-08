@@ -22,7 +22,7 @@
                     <div class="dados">
                         <dl>
                             <dt>Tamanho do CD</dt>
-                            <dd>145MB</dd>
+                            <dd>{{cd.size}}MB</dd>
                         </dl>
                         <dl>
                             <dt>Data de Envio</dt>
@@ -116,7 +116,7 @@
                                        title="Tocar música"><span class="icon-16 icon-play"></span>Tocar música</a></li>
                                 <li><a href="#"
                                        class="button-icon"
-                                       ng-click="downloadSong(musica)"
+                                       ng-click="downloadSong(musica.id)"
                                        title="Baixar música"><span class="icon-16 icon-download"></span>Baixar
                                     música</a></li>
                                 <li><a href="#"

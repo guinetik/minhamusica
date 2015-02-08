@@ -45,7 +45,7 @@ function NovoCDCtrl($scope, cd) {
         cd.create($scope);
     };
     $scope.salvarCd = function () {
-        cd.salvarCd($scope);
+        cd.saveCd($scope);
     };
     $scope.updateMusic = function (music) {
         cd.updateMusic($scope, music);

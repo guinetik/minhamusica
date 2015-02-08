@@ -39,6 +39,17 @@ function cd($timeout, toastr, api, auth, $state, $rootScope) {
             });
         }
     };
+    cd.saveCd = function($scope) {
+        var token = auth.getToken();
+        api.saveCd(token, $scope.cd, function(result){
+            if (result.status == 200) {
+                toastr.info(result.message);
+                $state.go("cd", {id: $scope.cd.id});
+            } else {
+                toastr.warning(result.message);
+            }
+        });
+    };
     cd.addToPlaylist = function ($scope, musica) {
         var song = angular.copy(musica);
         var _cd = angular.copy($scope.cd);
@@ -72,10 +83,6 @@ function cd($timeout, toastr, api, auth, $state, $rootScope) {
             value.status = 2;
             value.message = "Enviada";
         });
-    };
-    cd.salvarCd = function ($scope) {
-        toastr.info("Cd Criado com sucesso!");
-        $state.go("cd", {id: $scope.cd.id});
     };
     cd.generateThumb = function ($scope, file) {
         if (file != null) {
