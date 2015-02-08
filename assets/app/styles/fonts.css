@@ -5,6 +5,7 @@
   font-weight: normal;
   font-style: normal;
 }
+
 @font-face {
   font-family: "pf_square_sans_proextra_black";
   src: url("fonts/pfsquaresanspro-xblack-webfont.eot");
@@ -12,6 +13,7 @@
   font-weight: normal;
   font-style: normal;
 }
+
 @font-face {
   font-family: "pf_square_sans_proregular";
   src: url("fonts/pfsquaresanspro-regular-webfont.eot");
@@ -19,6 +21,7 @@
   font-weight: normal;
   font-style: normal;
 }
+
 @font-face {
   font-family: "pf_square_sans_prolight";
   src: url("fonts/pfsquaresanspro-light-webfont.eot");

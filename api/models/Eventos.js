@@ -36,7 +36,7 @@ var Eventos = module.exports = {
             model: 'Usuarios',
             required: true
         },
-        imagem: {
+        foto: {
             type: 'string',
             required: true
         },

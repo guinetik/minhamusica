@@ -31,6 +31,9 @@ function api(ws, $upload, API_URL, blockUI) {
     api.addCd = function (token, cd, cb) {
         ws.consumeService("cd/add", cd, token, cb, false);
     };
+    api.addEvento = function (token, evento, cb) {
+        ws.consumeService("eventos/create", evento, token, cb, false);
+    };
     api.saveCd = function (token, cd, cb) {
         ws.consumeService("cd/save", {id_cd: cd.id}, token, cb, false);
     };
@@ -157,6 +160,37 @@ function api(ws, $upload, API_URL, blockUI) {
         blockUI.start();
         $upload.upload({
             url: API_URL + 'user/foto/update',
+            method: 'POST',
+            data: data,
+            headers: {
+                token: token
+            },
+            file: file
+        }).progress(function (evt) {
+            foto.progress = parseInt(100.0 * evt.loaded / evt.total);
+            foto.status = 1;
+            foto.message = 'Enviando: ' + foto.progress + '%';
+        }).success(function (data, status, headers, config) {
+            if (status == 200) {
+                foto.status = 2;
+                foto.message = 'Enviada';
+                foto.imagem = data.imagem;
+            } else {
+                foto.status = -1;
+                foto.message = 'Erro ao enviar';
+            }
+            blockUI.stop();
+            cb(data, status, headers, config);
+        });
+    };
+    api.updateEventPicture = function (file, foto, token, cb) {
+        var data = {};
+        if (foto.evento) {
+            data.id_evento = foto.evento;
+        }
+        blockUI.start();
+        $upload.upload({
+            url: API_URL + 'evento/foto/update',
             method: 'POST',
             data: data,
             headers: {

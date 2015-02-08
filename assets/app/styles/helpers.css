@@ -50,8 +50,10 @@
   font: normal 12px "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #991d1d;
   background: #f5dfdf;
-  -moz-border-radius: 3px;
   -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
   border-radius: 3px;
 }
 

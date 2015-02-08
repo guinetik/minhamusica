@@ -31,6 +31,8 @@ module.exports.routes = {
     'post /user/cover/update': 'UsuariosController.updateCover',
     'post /user/foto/update': 'UsuariosController.updateFoto',
     'post /user/password/update': 'UsuariosController.updatePassword',
+    //eventos
+    'post /evento/foto/update': 'EventosController.updateFoto',
     //file management
     'get /public/img/*': {
         controller: 'FileController',

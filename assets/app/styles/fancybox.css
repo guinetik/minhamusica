@@ -55,7 +55,7 @@
 .fancybox-skin {
   position: relative;
   background: #f9f9f9;
-  color: #444;
+  color: #444444;
   text-shadow: none;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
@@ -85,7 +85,7 @@
 
 /* line 73, ../sass/fancybox.sass */
 .fancybox-error {
-  color: #444;
+  color: #444444;
   font: 14px/20px "Helvetica Neue", Helvetica, Arial, sans-serif;
   margin: 0;
   padding: 15px;
@@ -150,7 +150,7 @@
   text-decoration: none;
   background: transparent url("blank.gif");
   /* helps IE */
-  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   z-index: 8040;
 }
 
@@ -158,8 +158,10 @@
 .fancybox-next span,
 .fancybox-prev span {
   background-color: rgba(255, 255, 255, 0.8);
-  -moz-border-radius: 100%;
   -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -o-border-radius: 100%;
   border-radius: 100%;
 }
 
@@ -288,8 +290,8 @@
   -webkit-border-radius: 15px;
   -moz-border-radius: 15px;
   border-radius: 15px;
-  text-shadow: 0 1px 2px #222;
-  color: #FFF;
+  text-shadow: 0 1px 2px #222222;
+  color: white;
   font-weight: bold;
   line-height: 24px;
   white-space: nowrap;
@@ -299,7 +301,7 @@
 .fancybox-title-outside-wrap {
   position: relative;
   margin-top: 10px;
-  color: #fff;
+  color: white;
 }
 
 /* line 240, ../sass/fancybox.sass */
@@ -312,8 +314,8 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  color: #fff;
+  color: white;
   padding: 10px;
-  background: #000;
+  background: black;
   background: rgba(0, 0, 0, 0.8);
 }
