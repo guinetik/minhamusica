@@ -44,6 +44,7 @@ function cd($timeout, toastr, api, auth, $state, $rootScope) {
         api.saveCd(token, $scope.cd, function(result){
             if (result.status == 200) {
                 toastr.info(result.message);
+                $scope.pendingChanges = false;
                 $state.go("cd", {id: $scope.cd.id});
             } else {
                 toastr.warning(result.message);

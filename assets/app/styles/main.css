@@ -2351,7 +2351,7 @@ select:active {
   left: 70px;
   top: -60px;
   line-height: 10px;
-  width: 180px;
+  width: 160px;
 }
 /* line 1118, ../sass/main.sass */
 #playlist .playlist-musics-list-ol .list_item .text .link-pink, #playlist .playlist-musics-list-ol .list_item .text #genre .genre-dropdown ul li a, #genre .genre-dropdown ul li #playlist .playlist-musics-list-ol .list_item .text a, #playlist .playlist-musics-list-ol .list_item .text #header-user p a, #header-user p #playlist .playlist-musics-list-ol .list_item .text a, #playlist .playlist-musics-list-ol .list_item .text #header-user .logged .links li a, #header-user .logged .links li #playlist .playlist-musics-list-ol .list_item .text a, #playlist .playlist-musics-list-ol .list_item .text .list-cd-box .list-cd-box-user, .list-cd-box #playlist .playlist-musics-list-ol .list_item .text .list-cd-box-user, #playlist .playlist-musics-list-ol .list_item .text .tab-button, #playlist .playlist-musics-list-ol .list_item .text #breadcrumbs .breadcrumb li a, #breadcrumbs .breadcrumb li #playlist .playlist-musics-list-ol .list_item .text a, #playlist .playlist-musics-list-ol .list_item .text .cd-user .user, .cd-user #playlist .playlist-musics-list-ol .list_item .text .user, #playlist .playlist-musics-list-ol .list_item .text .musics-list > li .title a, .musics-list > li .title #playlist .playlist-musics-list-ol .list_item .text a, #playlist .playlist-musics-list-ol .list_item .text .form-default a, .form-default #playlist .playlist-musics-list-ol .list_item .text a {

@@ -7,8 +7,8 @@
  * # EditcdCtrl
  * Controller of the musicaApp
  */
-angular.module('musicaApp').controller('EditCDCtrl', ['$scope', 'cd', '$stateParams', EditCDCtrl]);
-function EditCDCtrl($scope, cd, $stateParams) {
+angular.module('musicaApp').controller('EditCDCtrl', ['$scope', 'cd', '$stateParams', '$rootScope', EditCDCtrl]);
+function EditCDCtrl($scope, cd, $stateParams, $rootScope) {
     $scope.cd = {};
     $scope.musicas = [];
     $scope.generos = [];
@@ -57,5 +57,16 @@ function EditCDCtrl($scope, cd, $stateParams) {
     });
     $scope.addToPlaylist = function (song) {
         cd.addToPlaylist($scope, song);
-    }
+    };
+    $scope.$on('$stateChangeStart', function(event) {
+        console.log("$stateChangeStart");
+        if ($scope.pendingChanges) {
+            console.log("PendingChanges");
+            event.preventDefault();
+            var k = confirm("Você fez mudanças no CD. Deseja salvar agora?");
+            if(k) {
+                cd.saveCd($scope);
+            }
+        }
+    });
 }
