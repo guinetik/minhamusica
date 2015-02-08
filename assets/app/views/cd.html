@@ -39,11 +39,11 @@
                        title="Baixar CD"><span class="icon"></span>Baixar CD</a>
 
                     <div class="cd-user">
-            <span class="avatar">
-              <img src="http://placehold.it/34x34"
-                   style="width: 34px;height:34px"
-                   ng-src="/public/img/{{cd.artista.foto}}">
-            </span>
+                        <span class="avatar">
+                            <img src="http://placehold.it/34x34"
+                                 style="width: 34px;height:34px"
+                                 ng-src="/public/img/{{cd.artista.foto}}">
+                        </span>
                         <small>Enviado por:</small>
                         <a ui-sref="perfil({id:cd.artista.id})"
                            class="user">{{cd.artista.nome}}</a>
@@ -56,31 +56,31 @@
                     <strong class="title">Compartilhe:</strong>
 
                     <div class="social clearfix">
-            <span id="facebook">
-                <div class="fb-like"
-                     data-href="http://musicatop.jelastic.websolute.net.br/cd/{{cd.id}}"
-                     data-layout="button_count"
-                     data-action="like"
-                     data-show-faces="true"
-                     data-share="false"></div>
-            </span><!-- /.facebook -->
-            <span id="twitter"
-                  ng-if="cd.musicas.length>0">
-              <a href="https://twitter.com/share"
-                 class="twitter-share-button">Tweet</a>
-<script>!function (d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
-    if (!d.getElementById(id)) {
-        js = d.createElement(s);
-        js.id = id;
-        js.src = p + '://platform.twitter.com/widgets.js';
-        fjs.parentNode.insertBefore(js, fjs);
-    }
-}(document, 'script', 'twitter-wjs');</script>
-            </span><!-- /.twitter -->
-            <span id="gplus">
-              <div class="g-plusone"></div>
-            </span><!-- /.gplus -->
+                        <span id="facebook">
+                            <div class="fb-like"
+                                 data-href="http://musicatop.jelastic.websolute.net.br/cd/{{cd.id}}"
+                                 data-layout="button_count"
+                                 data-action="like"
+                                 data-show-faces="true"
+                                 data-share="false"></div>
+                        </span><!-- /.facebook -->
+                        <span id="twitter"
+                              ng-if="cd.musicas.length>0">
+                            <a href="https://twitter.com/share"
+                               class="twitter-share-button">Tweet</a>
+                            <script>!function (d, s, id) {
+                                var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+                                if (!d.getElementById(id)) {
+                                    js = d.createElement(s);
+                                    js.id = id;
+                                    js.src = p + '://platform.twitter.com/widgets.js';
+                                    fjs.parentNode.insertBefore(js, fjs);
+                                }
+                            }(document, 'script', 'twitter-wjs');</script>
+                        </span><!-- /.twitter -->
+                        <span id="gplus">
+                            <div class="g-plusone"></div>
+                        </span><!-- /.gplus -->
                     </div>
                 </div>
                 <div class="col link">
@@ -118,12 +118,12 @@
                                        class="button-icon"
                                        ng-click="downloadSong(musica.id)"
                                        title="Baixar música"><span class="icon-16 icon-download"></span>Baixar
-                                    música</a></li>
+                                                                                                        música</a></li>
                                 <li><a href="#"
                                        class="button-icon"
                                        ng-click="shareSong(musica)"
                                        title="Compartilhar música"><span class="icon-16 icon-share"></span>Compartilhar
-                                    música</a></li>
+                                                                                                           música</a></li>
                             </ul>
                         </li>
                     </ol>
@@ -201,7 +201,7 @@
                             <h2 class="list-cd-box-title">
                                 <a href="#"
                                    title="Aviões do Forró - Ao Vivo Aracajú - 2014">Aviões do Forró - Ao Vivo Aracajú -
-                                    2014</a>
+                                                                                    2014</a>
                             </h2>
                             <a href="#"
                                class="user list-cd-box-user"

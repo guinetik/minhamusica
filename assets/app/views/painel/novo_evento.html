@@ -1,3 +1,154 @@
 <article class="painel-section-content">
-  <h2 class="painel-section-content-title">Novo Evento</h2>
+    <h2 class="painel-section-content-title">Novo Evento</h2>
+    <section>
+        <div class="section-content clearfix">
+            <div class="area-form">
+                <form ng-submit="submit()"
+                      name="event_form"
+                      class="form-default"
+                      novalidate>
+                    <div class="form-row">
+                        <label for="nome"
+                               class="form-label">Nome do evento: <span>*</span></label>
+                        <div class="form-row-field">
+                            <input id="nome"
+                                   name="nome"
+                                   ng-model="evento.nome"
+                                   type="text"
+                                   placeholder=""
+                                   required
+                                   class="field-500"/>
+
+                            <p class="help-block helper-invalid"
+                               ng-show="register.nome.$touched && register.nome.$invalid">
+                                Por favor digite o nome do evento</p>
+                        </div>
+                    </div>
+                    <!-- /.form-row -->
+                    <div class="form-row">
+                        <label for="descricao"
+                               class="form-label">Descrição: <span>*</span></label>
+
+                        <div class="form-row-field">
+                            <textarea name="descricao"
+                                      id="descricao"
+                                      style="max-width: 500px;width: 470px;"
+                                      ng-model="evento.descricao"
+                                      required
+                                      placeholder="Escreva uma descrição do CD ou observação"
+                                      class="field-370"></textarea>
+                            <small class="legend">Ex.: Gravação do CD na cidade de Recife, PE</small>
+                        </div>
+                    </div>
+                    <!-- /.form-row-double -->
+                    <div class="form-row form-row-double">
+                        <div class="col">
+                            <label for="nascimento"
+                                   class="form-label">Data de Inicio <span>*</span></label>
+
+                            <div class="form-row-field no-margin-bottom">
+                                <input id="nascimento"
+                                       name="nascimento"
+                                       ng-model="evento.inicio"
+                                       type="date"
+                                       placeholder="yyyy-mm-dd"
+                                       required
+                                       class="field-240"/>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col">
+                            <label for="nascimento"
+                                   class="form-label">Data de Encerramento <span>*</span></label>
+
+                            <div class="form-row-field no-margin-bottom">
+                                <input id="nascimento"
+                                       name="nascimento"
+                                       ng-model="usuario.fim"
+                                       type="date"
+                                       placeholder="yyyy-mm-dd"
+                                       required
+                                       class="field-240"/>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.form-row-double -->
+                    <div class="form-row form-row-double">
+                        <div class="col">
+                            <label for="estado"
+                                   class="form-label">Estado: <span>*</span></label>
+
+                            <div class="form-row-field no-margin-bottom">
+                                <select id="estado"
+                                        ng-model="evento.estadoSelecionado"
+                                        ng-options="item.nome for item in estados track by item.sigla"
+                                        required>
+                                    <option value="">Selecione o estado</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col">
+                            <label for="cidade"
+                                   class="form-label">Cidade: <span>*</span></label>
+
+                            <div class="form-row-field no-margin-bottom">
+                                <select id="cidade"
+                                        ng-model="evento.cidadeSelecionada"
+                                        ng-options="item.nome for item in evento.estadoSelecionado.cidades"
+                                        required>
+                                    <option value="">Selecione primeiro o estado</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <div class="form-row">
+                        <label for="link"
+                               class="form-label">Link:</label>
+
+                        <div class="form-row-field">
+                            <input id="link"
+                                   name="link"
+                                   ng-model="evento.link"
+                                   type="text"
+                                   placeholder="Link para o site do evento"
+                                   class="field-500"/>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="cover-wrapper clearfix">
+                            <figure class="cover-thumb">
+                                <img src="http://placehold.it/500x150"
+                                     ng-class="{'enviada':foto.imagem, 'enviando':!foto.imagem}"
+                                     style="width: 500px;height: 150px"
+                                     ng-src="{{foto.dataUrl}}"/>
+
+                                <div style="margin-top: 10px">
+                                    <button ng-file-select
+                                            allow-dir="false"
+                                            ng-model="foto"
+                                            type="button"
+                                            ng-file-change="generateThumb($files[0])"
+                                            ng-multiple="false"
+                                            accept="image/*.jpg,image/*.png"
+                                            class="button-medium">Trocar Foto
+                                    </button>
+                                    <small class="legend">Dimensão: 1000 x 368px</small>
+                                </div>
+                            </figure>
+
+                        </div>
+                    </div>
+                    <div class="button-area">
+                        <button type="submit"
+                                ng-disabled="event_form.$invalid"
+                                class="button-highlight">Cadastrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- /.section-content -->
+    </section>
 </article><!-- /.painel-section-content -->

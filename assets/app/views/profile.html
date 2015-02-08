@@ -2,11 +2,14 @@
   <div class="limits">
     <header class="profile-header">
       <figure class="profile-cover">
-        <img src="http://placehold.it/1000x368" ng-src="/public/img/{{perfil.usuario.capa}}">
+        <img src="http://placehold.it/1000x368"
+             ng-src="/public/img/{{perfil.usuario.capa}}">
       </figure>
       <div class="profile-dados clearfix">
         <figure class="avatar">
-          <img src="http://placehold.it/124x124" style="width: 124px;height: 124px;" ng-src="/public/img/{{perfil.usuario.foto}}">
+          <img src="http://placehold.it/124x124"
+               style="width: 124px;height: 124px;"
+               ng-src="/public/img/{{perfil.usuario.foto}}">
         </figure>
         <div class="info">
           <h1 class="name">{{perfil.usuario.nome}}</h1>
@@ -15,74 +18,87 @@
         </div>
         <div class="redes">
           <ul>
-            <li><a ng-href="{{'http://instagram.com/' + perfil.usuario.instagram}}" target="_blank" title="Instagram" class="instagram">Instagram</a></li>
-            <li><a ng-href="{{'http://twitter.com/' + perfil.usuario.twitter}}" target="_blank" title="Twitter" class="twitter">Twitter</a></li>
-            <li><a ng-href="{{'http://facebook.com/' + perfil.usuario.facebook}}" target="_blank" title="Facebook" class="facebook">Facebook</a></li>
+              <li><a ng-href="{{'http://instagram.com/' + perfil.usuario.instagram}}"
+                     target="_blank"
+                     title="Instagram"
+                     class="instagram">Instagram</a></li>
+              <li><a ng-href="{{'http://twitter.com/' + perfil.usuario.twitter}}"
+                     target="_blank"
+                     title="Twitter"
+                     class="twitter">Twitter</a></li>
+              <li><a ng-href="{{'http://facebook.com/' + perfil.usuario.facebook}}"
+                     target="_blank"
+                     title="Facebook"
+                     class="facebook">Facebook</a></li>
           </ul>
         </div>
       </div>
     </header>
-    <div class="profile-content clearfix">
-      <article class="profile-uploads box">
-        <div class="box-header divider clearfix">
-          <h2 class="box-title"><strong>Últimos</strong> Uploads</h2>
-          <span class="count-description">
-            <strong>{{perfil.cds.length}}</strong> uploads
-          </span>
-        </div>
-        <!-- /.box-header -->
-        <div class="box-content">
-          <ul class="list-cd">
-            <li ng-repeat="cd in perfil.cds">
-              <div class="list-cd-box clearfix">
-                <figure class="cd-thumb list-cd-box-thumb">
-                  <a ui-sref="cd({id:cd.id})" title="{{cd.titulo}}">
-                    <img ng-src="/public/img/{{cd.capa}}"
-                         style="width: 70px;height: 70px;">
-                  </a>
-                </figure>
-                <h2 class="list-cd-box-title">
-                  <a ui-sref="cd({id:cd.id})" title="Aviões do Forró - Ao Vivo Aracajú - 2014">{{cd.titulo}}</a>
-                </h2>
-                <a ui-sref="genero({id:cd.genero.id})" class="user list-cd-box-user" title="">{{cd.genero.nome}}</a>
-                <p class="time">Enviado <span am-time-ago="cd.createdAt"></span></p>
+      <div class="profile-content clearfix">
+          <article class="profile-uploads box">
+              <div class="box-header divider clearfix">
+                  <h2 class="box-title"><strong>Últimos</strong> Uploads</h2>
+                  <span class="count-description">
+                      <strong>{{perfil.cds.length}}</strong> uploads
+                  </span>
               </div>
-              <!-- /.list-cd-box -->
-            </li>
-          </ul>
-        </div>
-        <!-- /.box-content -->
-      </article>
-      <!-- /.profile-uploads -->
-      <article class="profile-calendar box">
-        <div class="box-header">
-          <h2 class="box-title"><strong>Calendário</strong> de Eventos</h2>
-        </div>
-        <!-- /.box-header -->
-        <div class="box-content">
-          <ul class="calendar-ul">
-            <li>
-              <span class="date">09 <span>Jan</span></span>
+              <!-- /.box-header -->
+              <div class="box-content">
+                  <ul class="list-cd">
+                      <li ng-repeat="cd in perfil.cds">
+                          <div class="list-cd-box clearfix">
+                              <figure class="cd-thumb list-cd-box-thumb">
+                                  <a ui-sref="cd({id:cd.id})"
+                                     title="{{cd.titulo}}">
+                                      <img ng-src="/public/img/{{cd.capa}}"
+                                           style="width: 70px;height: 70px;">
+                                  </a>
+                              </figure>
+                              <h2 class="list-cd-box-title">
+                                  <a ui-sref="cd({id:cd.id})"
+                                     title="Aviões do Forró - Ao Vivo Aracajú - 2014">{{cd.titulo}}</a>
+                              </h2>
+                              <a ui-sref="genero({id:cd.genero.id})"
+                                 class="user list-cd-box-user"
+                                 title="">{{cd.genero.nome}}</a>
+                              <p class="time">Enviado <span am-time-ago="cd.createdAt"></span></p>
+                          </div>
+                          <!-- /.list-cd-box -->
+                      </li>
+                  </ul>
+              </div>
+              <!-- /.box-content -->
+          </article>
+          <!-- /.profile-uploads -->
+          <article class="profile-calendar box">
+              <div class="box-header">
+                  <h2 class="box-title"><strong>Calendário</strong> de Eventos</h2>
+              </div>
+              <!-- /.box-header -->
+              <div class="box-content">
+                  <ul class="calendar-ul">
+                      <li>
+                          <span class="date">09 <span>Jan</span></span>
 
-              <div class="text">
-                <strong class="title">Festivão de verão 2015</strong>
-                <span class="desc">Salvador - BA</span>
-              </div>
-            </li>
-            <li>
-              <span class="date">09 <span>Jan</span></span>
+                          <div class="text">
+                              <strong class="title">Festivão de verão 2015</strong>
+                              <span class="desc">Salvador - BA</span>
+                          </div>
+                      </li>
+                      <li>
+                          <span class="date">09 <span>Jan</span></span>
 
-              <div class="text">
-                <strong class="title">Festivão de verão 2015</strong>
-                <span class="desc">Salvador - BA</span>
+                          <div class="text">
+                              <strong class="title">Festivão de verão 2015</strong>
+                              <span class="desc">Salvador - BA</span>
+                          </div>
+                      </li>
+                  </ul>
               </div>
-            </li>
-          </ul>
-        </div>
-        <!-- /.box-content -->
-      </article>
-      <!-- /.profile-calendar -->
-    </div>
+              <!-- /.box-content -->
+          </article>
+          <!-- /.profile-calendar -->
+      </div>
   </div>
-  <!-- /.limits -->
+    <!-- /.limits -->
 </section>

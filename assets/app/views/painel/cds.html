@@ -1,54 +1,51 @@
 <article class="painel-section-content">
-  <h2 class="painel-section-content-title">Meus CDS</h2>
-
-  <div class="cd-info clearfix"
-       ng-repeat="cd in cds">
-    <figure class="cd-thumb cd-info-thumb">
-      <a ui-sref="cd({id:cd.id})"
-         class="view-large"> <img src="http://placehold.it/206x206"
-                                 fallback-src="http://placehold.it/206x206"
-                                 style="width: 206px;height: 206px"
-                                 ng-src="/public/img/{{cd.capa}}"
-                                 alt=""> </a>
-    </figure>
-    <div class="cd-info-content clearfix">
-      <h1 class="title">{{cd.titulo}}</h1>
-
-      <p class="desc">{{cd.descricao}}</p>
-
-      <div class="dados">
-        <dl>
-          <dt>Data de Envio</dt>
-          <dd>{{cd.createdAt|date : "dd/MM/yyyy"}}</dd>
-        </dl>
-        <dl>
-          <dt>Músicas</dt>
-          <dd>{{cd.musicas.length}}</dd>
-        </dl>
-        <dl>
-          <dt>Tamanho</dt>
-          <dd>{{cd.size}}MB</dd>
-        </dl>
-        <dl>
-          <dt>Downloads</dt>
-          <dd>{{cd.downloads}}</dd>
-        </dl>
-      </div>
-      <!-- /.dados -->
-      <div>
-        <a ui-sref="editar_cd({id:cd.id})"
-           class="button-medium"
-           title="Editar CD"><span class="icon"></span>Editar</a>
-        <a href="#"
-           class="button-medium"
-           ng-click="deleteCd(cd)"
-           title="Excluir CD"><span class="icon"></span>Excluir</a>
-      </div>
+    <h2 class="painel-section-content-title">Meus CDS</h2>
+    <div class="cd-info clearfix"
+         ng-repeat="cd in cds">
+        <figure class="cd-thumb cd-info-thumb">
+            <a ui-sref="cd({id:cd.id})"
+               class="view-large"> <img src="http://placehold.it/206x206"
+                                        fallback-src="http://placehold.it/206x206"
+                                        style="width: 206px;height: 206px"
+                                        ng-src="/public/img/{{cd.capa}}"
+                                        alt=""> </a>
+        </figure>
+        <div class="cd-info-content clearfix">
+            <h1 class="title">{{cd.titulo}}</h1>
+            <p class="desc">{{cd.descricao}}</p>
+            <div class="dados">
+                <dl>
+                    <dt>Data de Envio</dt>
+                    <dd>{{cd.createdAt|date : "dd/MM/yyyy"}}</dd>
+                </dl>
+                <dl>
+                    <dt>Músicas</dt>
+                    <dd>{{cd.musicas.length}}</dd>
+                </dl>
+                <dl>
+                    <dt>Tamanho</dt>
+                    <dd>{{cd.size}}MB</dd>
+                </dl>
+                <dl>
+                    <dt>Downloads</dt>
+                    <dd>{{cd.downloads}}</dd>
+                </dl>
+            </div>
+            <!-- /.dados -->
+            <div>
+                <a ui-sref="editar_cd({id:cd.id})"
+                   class="button-medium"
+                   title="Editar CD"><span class="icon"></span>Editar</a>
+                <a href="#"
+                   class="button-medium"
+                   ng-click="deleteCd(cd)"
+                   title="Excluir CD"><span class="icon"></span>Excluir</a>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="box-content"
-       ng-if="cds.length==0">
-    <p class="message-empty">
-      Você não tem nenhum CD Cadastrado</p>
-  </div>
+    <div class="box-content"
+         ng-if="cds.length==0">
+        <p class="message-empty">
+            Você não tem nenhum CD Cadastrado</p>
+    </div>
 </article><!-- /.painel-section-content -->

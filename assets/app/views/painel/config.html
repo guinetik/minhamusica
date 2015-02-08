@@ -1,219 +1,215 @@
 <article class="painel-section-content">
-  <h2 class="painel-section-content-title">Configurações da Conta</h2>
-
-  <form ng-submit="submit()"
-        name="register"
-        class="form-default form-register"
-        novalidate>
-    <div class="form-row">
-      <label for="nome"
-             class="form-label">Nome Completo: <span>*</span></label>
-
-      <div class="form-row-field">
-        <input id="nome"
-               name="nome"
-               ng-model="usuario.nome"
-               type="text"
-               placeholder=""
-               required
-               style="width: 602px"/>
-
-        <p class="help-block helper-invalid"
-           ng-show="register.nome.$touched && register.nome.$invalid">Por favor digite seu nome.</p>
-      </div>
-    </div>
-    <!-- /.form-row -->
-    <div class="form-row">
-      <label for="email"
-             class="form-label">E-mail <span>*</span></label>
-
-      <div class="form-row-field">
-        <input id="email"
-               name="email"
-               ng-model="usuario.email"
-               email-validate
-               type="email"
-               placeholder=""
-               required
-               style="width: 602px"/>
-
-        <p class="help-block helper-invalid"
-           ng-show="register.email.$error.email">Por favor digite seu email corretamente.</p>
-      </div>
-    </div>
-    <!-- /.form-row-double -->
-    <div class="form-row form-row-double">
-      <div class="col" style="width: 310px!important;">
-        <label for=""
-               class="form-label">Sexo: <span>*</span></label>
-
-        <div class="form-row-field no-margin-bottom">
-          <ul class="form-list-options inline">
-            <li><label>Masculino<input name="sexo"
-                                       type="radio"
-                                       ng-model="usuario.sexo"
-                                       value="m"/> </label></li>
-            <li><label>Feminino<input name="sexo"
-                                      type="radio"
-                                      ng-model="usuario.sexo"
-                                      value="f"/> </label></li>
-          </ul>
-          <!-- /.form-list-options -->
-        </div>
-      </div>
-      <!-- /.col -->
-      <div class="col">
-        <label for="nascimento"
-               class="form-label">Data de Nascimento <span>*</span></label>
-
-        <div class="form-row-field no-margin-bottom">
-          <input id="nascimento"
-                 type="date"
-                 name="nascimento"
-                 ng-model="usuario.nascimento"
-                 type="date"
-                 placeholder="yyyy-mm-dd"
-                 required
-                 class="field-240"/>
-        </div>
-      </div>
-      <!-- /.col -->
-    </div>
-    <!-- /.form-row-double -->
-    <div class="form-row form-row-double">
-      <div class="col" style="width: 310px!important;">
-        <label for="estado"
-               class="form-label">Estado: <span>*</span></label>
-
-        <div class="form-row-field no-margin-bottom">
-          <select id="estado"
-                  ng-model="estado"
-                  ng-options="item.nome for item in estados track by item.id"
-                  required>
-            <option value="">Selecione seu estado</option>
-          </select>
-        </div>
-      </div>
-      <!-- /.col -->
-      <div class="col">
-        <label for="cidade"
-               class="form-label">Cidade: <span>*</span></label>
-
-        <div class="form-row-field no-margin-bottom">
-          <select id="cidade"
-                  ng-model="usuario.cidade"
-                  ng-options="item.nome for item in estado.cidades track by item.id"
-                  required>
-            <option value="">Selecione primeiro o estado</option>
-          </select>
-        </div>
-      </div>
-    </div>
-    <div class="form-row">
-      <div style="width: 175px;display: inline-block">
-        <label
-          class="form-label">Foto:</label>
-
-        <div class="cover-wrapper clearfix">
-          <figure class="cover-thumb">
-            <img src="http://placehold.it/175x175"
-                 ng-class="{'enviada':foto.imagem, 'enviando':!foto.imagem}"
-                 style="width: 175px;height: 175px"
-                 ng-src="{{foto.dataUrl}}"/>
-
-            <div style="margin-top: 10px">
-              <button ng-file-select
-                      allow-dir="false"
-                      ng-model="foto"
-                      type="button"
-                      ng-file-change="generateThumb($files[0])"
-                      ng-multiple="false"
-                      accept="image/*.jpg,image/*.png"
-                      class="button-medium">Trocar Foto
-              </button>
-              <small class="legend">Dimensão: 175 x 175px</small>
+    <h2 class="painel-section-content-title">Configurações da Conta</h2>
+    <form ng-submit="submit()"
+          name="register"
+          class="form-default form-register"
+          novalidate>
+        <div class="form-row">
+            <label for="nome"
+                   class="form-label">Nome Completo: <span>*</span></label>
+            <div class="form-row-field">
+                <input id="nome"
+                       name="nome"
+                       ng-model="usuario.nome"
+                       type="text"
+                       placeholder=""
+                       required
+                       style="width: 602px"/>
+                <p class="help-block helper-invalid"
+                   ng-show="register.nome.$touched && register.nome.$invalid">Por favor digite seu nome.</p>
             </div>
-          </figure>
-
         </div>
-      </div>
-      <div style="width: 300px;display: inline-block;float: right;margin-right: 130px">
-        <label
-          class="form-label">Capa:</label>
-        <div class="cover-wrapper clearfix">
-          <figure class="cover-thumb">
-            <img src="http://placehold.it/300x175"
-                 ng-class="{'enviada':capa.imagem, 'enviando':!capa.imagem}"
-                 style="width: 300px;height: 175px"
-                 ng-src="{{capa.dataUrl}}"/>
-            <div style="margin-top: 10px">
-              <button ng-file-select
-                      allow-dir="false"
-                      type="button"
-                      ng-model="capa"
-                      ng-file-change="generateCoverThumb($files[0])"
-                      ng-multiple="false"
-                      accept="image/*.jpg,image/*.png"
-                      class="button-medium">Trocar Capa
-              </button>
-              <small class="legend">Dimensão: 1000 x 368px</small>
+        <!-- /.form-row -->
+        <div class="form-row">
+            <label for="email"
+                   class="form-label">E-mail <span>*</span></label>
+            <div class="form-row-field">
+                <input id="email"
+                       name="email"
+                       ng-model="usuario.email"
+                       email-validate
+                       type="email"
+                       placeholder=""
+                       required
+                       style="width: 602px"/>
+                <p class="help-block helper-invalid"
+                   ng-show="register.email.$error.email">Por favor digite seu email corretamente.</p>
             </div>
-          </figure>
         </div>
-      </div>
-    </div>
-    <div class="form-row" style="display: inline-block;width: 25%">
-      <label for="nome"
-             class="form-label">Twitter</label>
+        <!-- /.form-row-double -->
+        <div class="form-row form-row-double">
+            <div class="col"
+                 style="width: 310px!important;">
+                <label for=""
+                       class="form-label">Sexo: <span>*</span></label>
+                <div class="form-row-field no-margin-bottom">
+                    <ul class="form-list-options inline">
+                        <li><label>Masculino<input name="sexo"
+                                                   type="radio"
+                                                   ng-model="usuario.sexo"
+                                                   value="m"/> </label></li>
+                        <li><label>Feminino<input name="sexo"
+                                                  type="radio"
+                                                  ng-model="usuario.sexo"
+                                                  value="f"/> </label></li>
+                    </ul>
+                    <!-- /.form-list-options -->
+                </div>
+            </div>
+            <!-- /.col -->
+            <div class="col">
+                <label for="nascimento"
+                       class="form-label">Data de Nascimento <span>*</span></label>
+                <div class="form-row-field no-margin-bottom">
+                    <input id="nascimento"
+                           type="date"
+                           name="nascimento"
+                           ng-model="usuario.nascimento"
+                           type="date"
+                           placeholder="yyyy-mm-dd"
+                           required
+                           class="field-240"/>
+                </div>
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.form-row-double -->
+        <div class="form-row form-row-double">
+            <div class="col"
+                 style="width: 310px!important;">
+                <label for="estado"
+                       class="form-label">Estado: <span>*</span></label>
 
-      <div class="form-row-field">
-        <input id="twitter"
-               name="twitter"
-               ng-model="usuario.twitter"
-               type="text"
-               placeholder="twitter.com/"
-               style="width: 90%"/>
+                <div class="form-row-field no-margin-bottom">
+                    <select id="estado"
+                            ng-model="estado"
+                            ng-options="item.nome for item in estados track by item.id"
+                            required>
+                        <option value="">Selecione seu estado</option>
+                    </select>
+                </div>
+            </div>
+            <!-- /.col -->
+            <div class="col">
+                <label for="cidade"
+                       class="form-label">Cidade: <span>*</span></label>
 
-        <p class="help-block helper-invalid"
-           ng-show="register.nome.$touched && register.nome.$invalid">QUal seu Twitter?</p>
-      </div>
-    </div>
-    <div class="form-row" style="display: inline-block;width: 25%;margin-left: 20px;margin-right: 20px">
-      <label for="nome"
-             class="form-label">Facebook</label>
+                <div class="form-row-field no-margin-bottom">
+                    <select id="cidade"
+                            ng-model="usuario.cidade"
+                            ng-options="item.nome for item in estado.cidades track by item.id"
+                            required>
+                        <option value="">Selecione primeiro o estado</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div style="width: 175px;display: inline-block">
+                <label class="form-label">Foto:</label>
 
-      <div class="form-row-field">
-        <input id="facebook"
-               name="facebook"
-               ng-model="usuario.facebook"
-               type="text"
-               placeholder="facebook.com/"
-               style="width: 90%"/>
+                <div class="cover-wrapper clearfix">
+                    <figure class="cover-thumb">
+                        <img src="http://placehold.it/175x175"
+                             ng-class="{'enviada':foto.imagem, 'enviando':!foto.imagem}"
+                             style="width: 175px;height: 175px"
+                             ng-src="{{foto.dataUrl}}"/>
 
-        <p class="help-block helper-invalid"
-           ng-show="register.nome.$touched && register.nome.$invalid">QUal seu facebook?</p>
-      </div>
-    </div>
-    <div class="form-row" style="display: inline-block;width: 25%">
-      <label for="nome"
-             class="form-label">Instagram</label>
+                        <div style="margin-top: 10px">
+                            <button ng-file-select
+                                    allow-dir="false"
+                                    ng-model="foto"
+                                    type="button"
+                                    ng-file-change="generateThumb($files[0])"
+                                    ng-multiple="false"
+                                    accept="image/*.jpg,image/*.png"
+                                    class="button-medium">Trocar Foto
+                            </button>
+                            <small class="legend">Dimensão: 175 x 175px</small>
+                        </div>
+                    </figure>
 
-      <div class="form-row-field">
-        <input id="instagram"
-               name="instagram"
-               ng-model="usuario.instagram"
-               type="text"
-               placeholder="instagram.com/"
-               style="width: 90%"/>
+                </div>
+            </div>
+            <div style="width: 300px;display: inline-block;float: right;margin-right: 130px">
+                <label class="form-label">Capa:</label>
+                <div class="cover-wrapper clearfix">
+                    <figure class="cover-thumb">
+                        <img src="http://placehold.it/300x175"
+                             ng-class="{'enviada':capa.imagem, 'enviando':!capa.imagem}"
+                             style="width: 300px;height: 175px"
+                             ng-src="{{capa.dataUrl}}"/>
+                        <div style="margin-top: 10px">
+                            <button ng-file-select
+                                    allow-dir="false"
+                                    type="button"
+                                    ng-model="capa"
+                                    ng-file-change="generateCoverThumb($files[0])"
+                                    ng-multiple="false"
+                                    accept="image/*.jpg,image/*.png"
+                                    class="button-medium">Trocar Capa
+                            </button>
+                            <small class="legend">Dimensão: 1000 x 368px</small>
+                        </div>
+                    </figure>
+                </div>
+            </div>
+        </div>
+        <div class="form-row"
+             style="display: inline-block;width: 25%">
+            <label for="nome"
+                   class="form-label">Twitter</label>
 
-        <p class="help-block helper-invalid"
-           ng-show="register.nome.$touched && register.nome.$invalid">QUal seu instagram?</p>
-      </div>
-    </div>
-    <div class="button-area">
-      <button type="submit"
-              class="button-highlight-arrow"><span></span> Salvar
-      </button>
-    </div>
-  </form>
+            <div class="form-row-field">
+                <input id="twitter"
+                       name="twitter"
+                       ng-model="usuario.twitter"
+                       type="text"
+                       placeholder="twitter.com/"
+                       style="width: 90%"/>
+
+                <p class="help-block helper-invalid"
+                   ng-show="register.nome.$touched && register.nome.$invalid">QUal seu Twitter?</p>
+            </div>
+        </div>
+        <div class="form-row"
+             style="display: inline-block;width: 25%;margin-left: 20px;margin-right: 20px">
+            <label for="nome"
+                   class="form-label">Facebook</label>
+
+            <div class="form-row-field">
+                <input id="facebook"
+                       name="facebook"
+                       ng-model="usuario.facebook"
+                       type="text"
+                       placeholder="facebook.com/"
+                       style="width: 90%"/>
+
+                <p class="help-block helper-invalid"
+                   ng-show="register.nome.$touched && register.nome.$invalid">QUal seu facebook?</p>
+            </div>
+        </div>
+        <div class="form-row"
+             style="display: inline-block;width: 25%">
+            <label for="nome"
+                   class="form-label">Instagram</label>
+
+            <div class="form-row-field">
+                <input id="instagram"
+                       name="instagram"
+                       ng-model="usuario.instagram"
+                       type="text"
+                       placeholder="instagram.com/"
+                       style="width: 90%"/>
+
+                <p class="help-block helper-invalid"
+                   ng-show="register.nome.$touched && register.nome.$invalid">QUal seu instagram?</p>
+            </div>
+        </div>
+        <div class="button-area">
+            <button type="submit"
+                    class="button-highlight-arrow"><span></span> Salvar
+            </button>
+        </div>
+    </form>
 </article><!-- /.painel-section-content -->
