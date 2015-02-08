@@ -32,7 +32,7 @@ function api(ws, $upload, API_URL) {
         ws.consumeService("cd/add", cd, token, cb, false);
     };
     api.saveCd = function (token, cd, cb) {
-        ws.consumeService("cd/save", {id_cd:cd.id}, token, cb, false);
+        ws.consumeService("cd/save", {id_cd: cd.id}, token, cb, false);
     };
     api.addMusic = function (musica, cb) {
         $upload.upload({
@@ -62,10 +62,10 @@ function api(ws, $upload, API_URL) {
         });
     };
     api.deleteMusic = function (music, token, cb) {
-        ws.consumeService("musica/destroy/" + music.id, {id_music:music.id}, token, cb, false, "POST");
+        ws.consumeService("musica/destroy/" + music.id, {id_music: music.id}, token, cb, false, "POST");
     };
     api.deleteCd = function (cd, token, cb) {
-        ws.consumeService("cd/destroy/" + cd.id, {id_cd:cd.id}, token, cb, false, "POST");
+        ws.consumeService("cd/destroy/" + cd.id, {id_cd: cd.id}, token, cb, false, "POST");
     };
     api.updateMusic = function (music, token, cb) {
         var m = {
@@ -171,7 +171,7 @@ function api(ws, $upload, API_URL) {
     };
     api.updateProfile = function (user, token, cb) {
         var u = {
-            id_user:user.id,
+            id_user: user.id,
             id: user.id,
             nome: user.nome,
             email: user.email,
