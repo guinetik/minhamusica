@@ -10,7 +10,7 @@
 angular.module('musicaApp')
   .factory('auth', function ($window, $rootScope, api) {
     var storage = $window.localStorage;
-    var cachedToken= "-1";;
+    var cachedToken= "-1";
     var cachedUser;
     return {
       setToken: function (token) {

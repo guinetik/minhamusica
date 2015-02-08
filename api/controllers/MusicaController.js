@@ -33,8 +33,8 @@ var MusicaController = module.exports = {
     },
     updateTrack: function (req, res) {
         var musica = req.body;
-        if (musica.id != null && musica.track != null) {
-            Musica.update({id: musica.id}, {track: musica.track}, function (err, musica) {
+        if (musica.id_music != null && musica.track != null) {
+            Musica.update({id: musica.id_music}, {track: musica.track}, function (err, musica) {
                 if (err) return res.status(404).send({message: 'Erro ao salvar a música'});
                 return res.status(200).send({message: 'Música Salva com sucesso', musica: musica});
             });

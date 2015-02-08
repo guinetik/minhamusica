@@ -82,7 +82,7 @@ var UsuariosController = module.exports = {
     if (id != null) {
       Usuarios.findOne({id: id}).populateAll().exec(function findCB(err, usuario) {
         if (err) return res.status(500).send({message: 'Erro ao buscar usuário.'});
-        if (usuario.id) {
+        if (usuario) {
           getUserProfile(usuario);
         } else return res.status(404).send({message: 'Usuário não encontrado!'});
       });
@@ -134,7 +134,7 @@ var UsuariosController = module.exports = {
       if (err) return res.serverError(err);
       var imagem = files[0].fd.split("/").pop();
       if (user.id != null) {
-        Usuarios.update({id: user.id}, {capa: imagem}).exec(function (err, updated) {
+        Usuarios.update({id: user.id_user}, {capa: imagem}).exec(function (err, updated) {
           if (err) return res.status(400).send({message: 'Erro ao atualizar a capa'});
           return res.status(200).send({message: 'Imagem Enviada', imagem: imagem});
         });

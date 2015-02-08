@@ -26,7 +26,7 @@ var CdController = module.exports = {
         });
     },
     save: function (req, res) {
-        var id = req.body.id;
+        var id = req.body.id_cd;
         if (id == null) return res.status(400).send({message: 'Parametros inválidos'});
         updateCdMeta(id, function () {
             ZipCd(id, function (result) {

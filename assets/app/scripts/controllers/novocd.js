@@ -7,8 +7,8 @@
  * # NovocdCtrl
  * Controller of the musicaApp
  */
-angular.module('musicaApp').controller('NovoCDCtrl', ['$scope', 'cd', NovoCDCtrl]);
-function NovoCDCtrl($scope, cd) {
+angular.module('musicaApp').controller('NovoCDCtrl', ['$scope', 'cd', 'api', 'auth', '$state', '$rootScope',  NovoCDCtrl]);
+function NovoCDCtrl($scope, cd, api, auth, $state, $rootScope) {
     $scope.cd = {
         musicas: []
     };
@@ -26,7 +26,22 @@ function NovoCDCtrl($scope, cd) {
         }
     };
     $scope.$on('$viewContentLoaded', function (event) {
-        cd.getGeneros($scope);
+        var token = auth.getToken();
+        if (token != "-1") {
+            api.lookup(token, function (result) {
+                if (result.status == 200) {
+                    //inicializar controller
+                    cd.getGeneros($scope);
+                    // transmite dados do usuario
+                    $scope.usuario = result.data;
+                    $rootScope.$emit("user-lookup", $scope.usuario);
+                } else {
+                    $state.go("main");
+                }
+            });
+        } else {
+            $state.go("main");
+        }
     });
     $scope.generateThumb = function (file) {
         cd.generateThumb($scope, file);

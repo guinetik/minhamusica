@@ -15,12 +15,17 @@ var Musica = module.exports = {
     afterDestroy: function (deleted_record, next) {
         console.log("fd", deleted_record[0]);
         var filename = deleted_record[0].fd;
-        fs.unlink(filename, function (err) {
+        try {
+            fs.unlink(filename, function (err) {
+                if (deleted_record[0].cd) {
+                    updateCdMeta(deleted_record[0].cd, next);
+                }
+            });
+        } catch (err) {
             if (deleted_record[0].cd) {
                 updateCdMeta(deleted_record[0].cd, next);
             }
-            if (err) next(err);
-        });
+        }
     },
     afterUpdate: function (newMusic, next) {
         if (newMusic.cd) {

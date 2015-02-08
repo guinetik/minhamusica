@@ -47,6 +47,7 @@ module.exports.connections = {
     password: 'mtop123',
     database: 'musicatop'
   },
+
   'mongo_local': {
     adapter: 'sails-mongo',
     host: 'mongodb22639-musicatop.jelastic.websolute.net.br',
@@ -55,6 +56,7 @@ module.exports.connections = {
     password: 'mtop123',
     database: 'musicatop'
   }
+
 /*
   'mongo_local': {
       adapter: 'sails-mongo',
@@ -65,4 +67,5 @@ module.exports.connections = {
       database: 'musicatop'
   }
  */
+
 };

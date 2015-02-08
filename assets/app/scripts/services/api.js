@@ -32,7 +32,7 @@ function api(ws, $upload, API_URL) {
         ws.consumeService("cd/add", cd, token, cb, false);
     };
     api.saveCd = function (token, cd, cb) {
-        ws.consumeService("cd/save", {id:cd.id}, token, cb, false);
+        ws.consumeService("cd/save", {id_cd:cd.id}, token, cb, false);
     };
     api.addMusic = function (musica, cb) {
         $upload.upload({
@@ -62,14 +62,14 @@ function api(ws, $upload, API_URL) {
         });
     };
     api.deleteMusic = function (music, token, cb) {
-        ws.consumeService("musica/destroy/" + music.id, null, token, cb, false, "GET");
+        ws.consumeService("musica/destroy/" + music.id, {id_music:music.id}, token, cb, false, "POST");
     };
     api.deleteCd = function (cd, token, cb) {
-        ws.consumeService("cd/destroy/" + cd.id, null, token, cb, false, "GET");
+        ws.consumeService("cd/destroy/" + cd.id, {id_cd:cd.id}, token, cb, false, "POST");
     };
     api.updateMusic = function (music, token, cb) {
         var m = {
-            id: music.id,
+            id_music: music.id,
             cd: music.cd,
             nome: music.nome
         };
@@ -77,7 +77,7 @@ function api(ws, $upload, API_URL) {
     };
     api.updateTrack = function (music, token, cb) {
         var m = {
-            id: music.id,
+            id_music: music.id,
             track: music.track
         };
         ws.consumeService("musica/update/track", m, token, cb, false);
@@ -111,7 +111,7 @@ function api(ws, $upload, API_URL) {
     api.updateUserCover = function (file, capa, token, cb) {
         var data = {};
         if (capa.user) {
-            data.id = capa.user;
+            data.id_user = capa.user;
         }
         $upload.upload({
             url: API_URL + 'user/cover/update',
@@ -137,7 +137,7 @@ function api(ws, $upload, API_URL) {
     api.updateUserFoto = function (file, foto, token, cb) {
         var data = {};
         if (foto.user) {
-            data.id = foto.user;
+            data.id_user = foto.user;
         }
         $upload.upload({
             url: API_URL + 'user/foto/update',
@@ -171,6 +171,7 @@ function api(ws, $upload, API_URL) {
     };
     api.updateProfile = function (user, token, cb) {
         var u = {
+            id_user:user.id,
             id: user.id,
             nome: user.nome,
             email: user.email,
@@ -185,6 +186,7 @@ function api(ws, $upload, API_URL) {
     };
     api.updateCD = function (cd, token, cb) {
         var c = {
+            id_cd: cd.id,
             id: cd.id,
             titulo: cd.titulo,
             descricao: cd.descricao,
@@ -195,6 +197,7 @@ function api(ws, $upload, API_URL) {
         ws.consumeService("cd/update/" + cd.id, c, token, cb, false);
     };
     api.updatePassword = function (user, token, cb) {
+        user.id_user = user.id;
         ws.consumeService("user/password/update", user, token, cb, false);
     };
     api.downloadCD = function (id, cb) {
