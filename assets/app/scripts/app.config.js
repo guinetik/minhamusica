@@ -135,4 +135,13 @@ angular.module('musicaApp').config(function ($urlRouterProvider, $stateProvider)
             // https://developers.facebook.com/docs/javascript/reference/FB.init/v2.0
             version: 'v2.0'
         });
+    }).constant('angularMomentConfig', {
+        calendar : {
+            lastDay : '[Yesterday at] LT',
+            sameDay : '[Today at] LT',
+            nextDay : '[Tomorrow at] LT',
+            lastWeek : '[last] dddd [at] LT',
+            nextWeek : 'dddd [at] LT',
+            sameElse : 'L LT'
+        }
     });

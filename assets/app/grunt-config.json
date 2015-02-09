@@ -8,7 +8,8 @@
           "./../bower_components/angular-toastr/dist/angular-toastr.css",
           "./../bower_components/angular-block-ui/dist/angular-block-ui.css",
           "./../bower_components/slick-carousel/slick/slick.css",
-          "./../bower_components/angular-ui/build/angular-ui.css"
+          "./../bower_components/angular-ui/build/angular-ui.css",
+          "./../bower_components/q-date/dist/qdate-basic.min.css"
           ],
         "dest": "./styles/lib.css"
       }]
@@ -51,6 +52,7 @@
         "js/libs.min.js": [
           "./../bower_components/jquery/dist/jquery.js",
           "./../bower_components/angular/angular.js",
+          "./../bower_components/angular-ui-utils/validate.js",
           "./../bower_components/angular-ui-router/release/angular-ui-router.js",
           "./../bower_components/angular-touch/angular-touch.js",
           "./../bower_components/angular-carousel/dist/angular-carousel.js",
@@ -61,10 +63,12 @@
           "./../bower_components/angular-animate/angular-animate.js",
           "./../bower_components/moment/moment.js",
           "./../bower_components/angular-moment/angular-moment.js",
+          "./../bower_components/moment/locale/pt-br.js",
+          "./../bower_components/angular-dateparser/dist/angular-dateparser.min.js",
+          "./../bower_components/q-date/dist/qdate.js",
           "./../bower_components/slick-carousel/slick/slick.min.js",
           "./../bower_components/angular-slick-carousel/dist/slick.js",
           "./../bower_components/igTruncate/dist/igTruncate.min.js",
-          "./../bower_components/moment/locale/pt-br.js",
           "./../bower_components/sortable/Sortable.js",
           "./../bower_components/sortable/ng-sortable.js",
           "./../bower_components/fancybox/source/jquery.fancybox.pack.js",

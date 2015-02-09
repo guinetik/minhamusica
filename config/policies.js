@@ -28,6 +28,7 @@ module.exports.policies = {
         'perfil': true,
         'updatePassword': ['isOwner'],
         'collection': ['jwtAuth'],
+        'eventos': ['jwtAuth'],
         'updateCover': ['isOwner'],
         'updateFoto': ['isOwner'],
         'update': ['isOwner'],

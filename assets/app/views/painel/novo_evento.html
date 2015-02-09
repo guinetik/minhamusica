@@ -1,10 +1,12 @@
-<article class="painel-section-content">
+
+,<article class="painel-section-content">
     <h2 class="painel-section-content-title">Novo Evento</h2>
     <section>
         <div class="section-content clearfix">
             <div class="area-form">
                 <form ng-submit="submit()"
                       name="event_form"
+                      id="event_form"
                       class="form-default"
                       novalidate>
                     <div class="form-row">
@@ -48,11 +50,15 @@
                                 <input id="inicio"
                                        name="inicio"
                                        ng-model="evento.inicio"
-                                       type="datetime-local"
-                                       min="{{today}}"
-                                       placeholder="yyyy-MM-ddTHH:mm:ss"
+                                       ui-validate="{valid: 'isValidStartDate(evento.inicio)'}"
+                                       type="text"
+                                       q-datetimepicker-popup
+                                       date-parser='dd.MM.yyyy HH:mm'
                                        required
                                        class="field-240"/>
+                                <p class="help-block helper-invalid"
+                                   ng-show="event_form.inicio.$touched && !!event_form.inicio.$error.valid">
+                                    A data inicial deve no futuro</p>
                             </div>
                         </div>
                         <!-- /.col -->
@@ -60,16 +66,17 @@
                             <label for="fim"
                                    class="form-label">Data de Encerramento <span>*</span></label>
                             <div class="form-row-field no-margin-bottom">
-                                <input id="fim"
+                                <input ng-model="evento.fim"
+                                       q-datetimepicker-popup
+                                       id="fim"
                                        name="fim"
-                                       min="{{evento.inicio.toISOString().split('T')[0]}}"
-                                       ng-model="evento.fim"
-                                       type="datetime-local"
-                                       placeholder="yyyy-MM-ddTHH:mm:ss"
+                                       type="text"
+                                       ui-validate="{valid: 'isValidEndDate(evento.fim)'}"
+                                       date-parser='dd.MM.yyyy HH:mm'
                                        required
                                        class="field-240"/>
                                 <p class="help-block helper-invalid"
-                                   ng-show="event_form.fim.$touched && event_form.fim.$invalid">
+                                   ng-show="event_form.fim.$touched && !!event_form.fim.$error.valid">
                                     A data final deve ser maior que a inicial</p>
                             </div>
                         </div>
@@ -132,8 +139,7 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <label
-                               class="form-label">Foto:</label>
+                        <label class="form-label">Foto:</label>
                         <div class="cover-wrapper clearfix">
                             <figure class="cover-thumb">
                                 <img src="http://placehold.it/500x150"
@@ -158,7 +164,7 @@
                     </div>
                     <div class="button-area">
                         <button type="submit"
-                                ng-disabled="event_form.$invalid"
+
                                 class="button-highlight">Cadastrar</button>
                     </div>
                 </form>

@@ -77,20 +77,13 @@
               <!-- /.box-header -->
               <div class="box-content">
                   <ul class="calendar-ul">
-                      <li>
-                          <span class="date">09 <span>Jan</span></span>
-
+                      <li ng-repeat="evento in perfil.eventos">
+                          <span class="date">{{evento.inicio|amDateFormat:'d'}} <span>{{evento.inicio|amDateFormat:'MMM'}}</span></span>
                           <div class="text">
-                              <strong class="title">Festivão de verão 2015</strong>
-                              <span class="desc">Salvador - BA</span>
-                          </div>
-                      </li>
-                      <li>
-                          <span class="date">09 <span>Jan</span></span>
-
-                          <div class="text">
-                              <strong class="title">Festivão de verão 2015</strong>
-                              <span class="desc">Salvador - BA</span>
+                              <strong class="title"><a class="link-pink">{{evento.nome}}</a> </strong>
+                              <span class="desc"><a href="#">{{evento.local}}</a>/{{evento.cidade.nome}}</span>
+                              <br/>
+                              <span class="desc">{{evento.descricao}}</span>
                           </div>
                       </li>
                   </ul>

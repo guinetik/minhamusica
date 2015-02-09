@@ -14,7 +14,7 @@ var Cidade = module.exports = {
       maxLength: 100
     },
     estado: {
-      model: 'estados'
+      model: 'Estados'
     },
     toJSON: function () {
       var obj = this.toObject();

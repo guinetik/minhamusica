@@ -10,6 +10,7 @@
  */
 angular.module('musicaApp',
     ['ui.router',
+        'ui.validate',
         'ngAnimate',
         'toastr',
         'bardo.directives',
@@ -20,6 +21,8 @@ angular.module('musicaApp',
         'ezfb',
         'dcbImgFallback',
         'mediaPlayer',
+        "q-date",
+        "dateParser",
         'angularMoment']).run(function ($rootScope) {
         functions.playlist.init(this);
         // helper function to seek to a percentage

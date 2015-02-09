@@ -9,8 +9,18 @@
  */
 angular.module('musicaApp').controller('NovoEventoCtrl', ['$scope', 'api', 'auth', '$state', '$rootScope', '$timeout', 'toastr', NovoEventoCtrl]);
 function NovoEventoCtrl($scope, api, auth, $state, $rootScope, $timeout, toastr) {
-    $scope.evento = {};
-    $scope.today = $scope.value = new Date().toISOString().split("T")[0];
+    var d = new Date();
+    $scope.evento = {
+        inicio:d,
+        fim:d
+    };
+    $scope.today = new Date().toISOString().split("T")[0];
+    $scope.getDateString = function(datee) {
+        if(datee) {
+            var k = datee.toISOString().split("T")[0];
+        } else k  = $scope.today;
+        return k;
+    };
     $scope.$on('$viewContentLoaded', function (event) {
         $timeout(function () {
             var token = auth.getToken();
@@ -80,5 +90,11 @@ function NovoEventoCtrl($scope, api, auth, $state, $rootScope, $timeout, toastr)
                 });
             }
         }
+    };
+    $scope.isValidStartDate = function($value) {
+        return $value.getTime() > d.getTime();
+    };
+    $scope.isValidEndDate = function($value) {
+        return $value.getTime() > $scope.evento.inicio.getTime();
     };
 }

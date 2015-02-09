@@ -75,6 +75,9 @@ function api(ws, $upload, API_URL, blockUI) {
     api.deleteCd = function (cd, token, cb) {
         ws.consumeService("cd/destroy/" + cd.id, {id_cd: cd.id}, token, cb, false, "POST");
     };
+    api.deleteEvent = function (event, token, cb) {
+        ws.consumeService("eventos/destroy/" + event.id, {id_evento: event.id}, token, cb, false, "POST");
+    };
     api.updateMusic = function (music, token, cb) {
         var m = {
             id_music: music.id,
@@ -216,6 +219,9 @@ function api(ws, $upload, API_URL, blockUI) {
     };
     api.getUserCollection = function (token, cb) {
         ws.consumeService("usuarios/collection", null, token, cb, false, "GET");
+    };
+    api.getUserEvents = function (token, cb) {
+        ws.consumeService("usuarios/eventos", null, token, cb, false, "GET");
     };
     api.getProfile = function (id, cb) {
         ws.consumeService("usuarios/perfil?id=" + id, null, null, cb, false, "GET");
