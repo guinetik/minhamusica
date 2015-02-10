@@ -30,15 +30,20 @@ var CdController = module.exports = {
         if (id == null) return res.status(400).send({message: 'Parametros inválidos'});
         Cd.findOne({id: id}).populateAll().exec(function (err, cd) {
             if (err) return res.status(400).send({message: 'Erro consultar o cd'});
-            if (cd.artista) {
-                Eventos.find({usuario: cd.artista.id}).sort('createdAt DESC').limit(2).populateAll().exec(function (err, eventos) {
-                    if (err) return res.status(400).send({message: 'Erro ao carregar eventos'});
-                    Cd.find({genero: cd.genero.id}).populateAll().limit(2).exec(function (err, related) {
-                        if (err) return res.status(400).send({message: 'Erro ao carregar cds relacionados'});
-                        return res.status(200).send({message: "Ok", cd: cd, eventos: eventos, related: related});
+            try {
+                if (cd.artista!=null) {
+                    Eventos.find({usuario: cd.artista.id}).sort('createdAt DESC').limit(2).populateAll().exec(function (err, eventos) {
+                        if (err) return res.status(400).send({message: 'Erro ao carregar eventos'});
+                        Cd.find({genero: cd.genero.id}).populateAll().limit(2).exec(function (err, related) {
+                            if (err) return res.status(400).send({message: 'Erro ao carregar cds relacionados'});
+                            return res.status(200).send({message: "Ok", cd: cd, eventos: eventos, related: related});
+                        });
                     });
-                });
-            } else {
+                } else {
+                    return res.status(400).send({message: 'Erro consultar o cd'});
+                }
+            } catch(error) {
+                console.log("CdController get", error);
                 return res.status(400).send({message: 'Erro consultar o cd'});
             }
         });
