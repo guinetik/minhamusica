@@ -86,17 +86,21 @@ var CdController = module.exports = {
                 if (err) return res.status(400).send({message: 'Erro ao buscar eventos'});
                 Musica.find().where({nome: {contains: query}}).populate("cd").exec(function (err, musicas) {
                     if (err) return res.status(400).send({message: 'Erro ao buscar musicas'});
-                    var m = [];
-                    _.each(musicas, function (musica) {
-                        Usuarios.findOne({id: musica.cd.artista}).populateAll().exec(function (err, user) {
-                            if (err) return res.status(400).send({message: 'Erro ao buscar artistas'});
-                            musica.cd.artista = user;
-                            m.push(musica);
-                            if(m.length == musicas.length) {
-                                return res.status(200).send({message: "Ok", musicas: m, cds: cds, eventos: events});
-                            }
+                    if(musicas.length > 0) {
+                        var m = [];
+                        _.each(musicas, function (musica) {
+                            Usuarios.findOne({id: musica.cd.artista}).populateAll().exec(function (err, user) {
+                                if (err) return res.status(400).send({message: 'Erro ao buscar artistas'});
+                                musica.cd.artista = user;
+                                m.push(musica);
+                                if(m.length == musicas.length) {
+                                    return res.status(200).send({message: "Ok", musicas: m, cds: cds, eventos: events});
+                                }
+                            });
                         });
-                    });
+                    } else {
+                        return res.status(200).send({message: "Ok", musicas: [], cds: cds, eventos: events});
+                    }
                 });
             });
         });

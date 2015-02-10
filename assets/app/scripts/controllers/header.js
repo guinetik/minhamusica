@@ -26,6 +26,9 @@ function HeaderCtrl($scope, $rootScope, auth, api, $state) {
         console.log("user-lookup", user);
         $scope.user = user;
     });
+    $rootScope.$on("search-query", function (event, q) {
+        $scope.query = q;
+    });
     $rootScope.$on("update-user-token", function (event, token) {
         //console.log("update-user-token", token);
         auth.setToken(token);

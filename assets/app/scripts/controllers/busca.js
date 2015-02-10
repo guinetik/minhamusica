@@ -20,13 +20,16 @@ function BuscaCtrl($scope, api, toastr, $timeout, $stateParams, $rootScope) {
     });
     $scope.searchCD = function () {
         var q = $stateParams.q;
-        api.searchCD(q, function (result) {
-            if (result.status == 200) {
-                $scope.cds = result.cds;
-                $scope.eventos = result.eventos;
-                $scope.musicas = result.musicas;
-            }
-        });
+        if (q != null) {
+            $rootScope.$emit("search-query", q);
+            api.searchCD(q, function (result) {
+                if (result.status == 200) {
+                    $scope.cds = result.cds;
+                    $scope.eventos = result.eventos;
+                    $scope.musicas = result.musicas;
+                }
+            });
+        }
     };
     $scope.addToPlaylist = function (musica, cd) {
         musica.cd = cd;
