@@ -27,7 +27,7 @@ var CdController = module.exports = {
     },
     get: function (req, res) {
         var id = req.query.id;
-        if (id == null) return res.status(400).send({message: 'Parametros inválidos'});
+        if (id == NaN) return res.status(400).send({message: 'Parametros inválidos'});
         Cd.findOne({id: id}).populateAll().exec(function (err, cd) {
             if (err) return res.status(400).send({message: 'Erro consultar o cd'});
             try {
