@@ -56,7 +56,8 @@ function cd($timeout, toastr, api, auth, $state, $rootScope) {
         var _cd = angular.copy($scope.cd);
         delete _cd.musicas;
         song.cd = _cd;
-        $rootScope.$emit("add-to-playlist", song);
+        $rootScope.$emit("add-to-playlist", song)
+        ;
     };
     cd.getCd = function ($scope) {
         $timeout(function () {

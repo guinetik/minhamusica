@@ -1,10 +1,44 @@
 <!-- Breadcrumb -->
 <ng-include src="'views/breadcrumb.html'"></ng-include><!-- end Breadcrumb -->
-<section
-        class="main-content">
+<section class="main-content">
     <div class="limits">
-        <h2 class="painel-section-content-title">Resultados da busca</h2>
+        <h2 class="painel-section-content-title"
+            style="margin-top: 20px">Músicas</h2>
+        <div class="box-content">
+            <ol class="musics-list">
+                <li class="musics-list-li"
+                    ng-repeat="musica in musicas">
+                    <span class="number">{{$index+1}}</span>
 
+                    <h2 class="title"
+                        style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;max-width: 495px;color: #e11d70;">
+                        <a style="cursor:pointer;"
+                           ng-click="addToPlaylist(musica, musica.cd)">{{musica.cd.titulo}} - {{musica.nome}}</a></h2>
+                    <ul class="options">
+                        <li><a ng-click="addToPlaylist(musica, musica.cd)"
+                               class="button-icon"
+                               title="Tocar música"><span class="icon-16 icon-play"></span>Tocar música</a></li>
+                        <li><a href="#"
+                               class="button-icon"
+                               ng-click="downloadSong(musica.id)"
+                               title="Baixar música"><span class="icon-16 icon-download"></span>Baixar
+                                                                                                música</a></li>
+                        <li><a href="#"
+                               class="button-icon"
+                               ng-click="shareSong(musica)"
+                               title="Compartilhar música"><span class="icon-16 icon-share"></span>Compartilhar
+                                                                                                   música</a></li>
+                    </ul>
+                </li>
+            </ol>
+            <!-- /.musics-list -->
+        </div>
+        <div class="box-content"
+             ng-if="musicas.length==0">
+            <p class="message-empty">
+                Nenhum CD Encontrado</p>
+        </div>
+        <h2 class="painel-section-content-title" style="margin-top: 20px">CDs</h2>
         <div class="cd-info clearfix"
              ng-repeat="cd in cds">
             <figure class="cd-thumb cd-info-thumb">
@@ -23,13 +57,15 @@
 
                 <p class="desc">{{cd.descricao}}</p>
 
-                <ol start="1" style="list-style: decimal-leading-zero">
-                    <li ng-repeat="musica in cd.musicas"
+                <ol start="1"
+                    style="list-style: decimal-leading-zero">
+                    <li ng-repeat="musica in cd.musicas|orderBy:'track'"
                         style='margin-left: 24px;margin-top: 5px;list-style: decimal-leading-zero;font: normal 13px "pf_square_sans_proregular","Helvetica Neue",Helvetica,Arial,sans-serif;'>
-                        <a class="link-pink" href="#">{{musica.nome}}</a>
+                        <a class="link-pink"
+                           style="cursor: pointer"
+                           ng-click="addToPlaylist(musica, cd)">{{musica.nome}}</a>
                     </li>
                 </ol>
-
                 <div class="dados">
                     <dl>
                         <dt>Data de Envio</dt>
@@ -59,6 +95,41 @@
              ng-if="cds.length==0">
             <p class="message-empty">
                 Nenhum CD Encontrado</p>
+        </div>
+        <h2 class="painel-section-content-title"
+            style="margin-top: 20px">Eventos</h2>
+        <ul class="list-events">
+            <li class="list-events-box"
+                ng-repeat="evento in eventos">
+                <a ui-sref="evento({id:evento.id})"
+                   class="list-events-box-a">
+                    <div class="list-events-box-thumb-text clearfix">
+                        <h2 class="title"
+                            style="font-size: 20px;margin-bottom: 10px;">{{evento.nome}}</h2>
+                        <figure class="cd-thumb list-events-box-thumb">
+                            <img src="http://placehold.it/800x240"
+                                 style="width: 800px;max-height: 240px;overflow: hidden"
+                                 ng-src="/public/img/{{evento.foto}}">
+                        </figure>
+                        <p style="margin-bottom: 20px;line-height: 20px;width: 800px">
+                            <strong class="dates"
+                                    style="font-size: 16px">{{evento.inicio| amCalendar}}
+                                - {{evento.fim| amCalendar}}</strong>
+                            <br/>
+                            <span class="local"
+                                  style="font-size: 14px">{{evento.local.name}}/{{evento.cidade.nome}}</span>
+                            <br/>
+                            <span class="local"
+                                  style="font-size: 12px">{{evento.descricao}}</span>
+                        </p>
+                    </div>
+                </a>
+            </li>
+        </ul>
+        <div class="box-content"
+             ng-if="eventos.length==0">
+            <p class="message-empty">
+                Nenhum Evento Encontrado</p>
         </div>
     </div>
 </section>

@@ -233,6 +233,9 @@ function api(ws, $upload, API_URL, blockUI) {
             cb(data, status, headers, config);
         });
     };
+    api.getLatestEvents = function (cb) {
+        ws.consumeService("eventos/latest", null, null, cb, false, "GET");
+    };
     api.getUserCollection = function (token, cb) {
         ws.consumeService("usuarios/collection", null, token, cb, false, "GET");
     };

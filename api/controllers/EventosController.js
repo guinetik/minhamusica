@@ -15,9 +15,19 @@ var EventosController = module.exports = {
             return res.status(200).send({message: 'Evento salvo com sucesso', evento: evento});
         });
     },
+    latest: function (req, res) {
+        var today = new Date();
+        Eventos.find().where({inicio: {">=": today}}).populateAll().exec(function (err, eventos) {
+            if (err) {
+                console.log("EventosController.latest ERR", err);
+                return res.status(400).send({message: 'Erro ao consultar os eventos'});
+            }
+            return res.status(200).send({message: 'Ok', eventos: eventos});
+        });
+    },
     update: function (req, res) {
         console.log("id", req.body);
-        Eventos.update({id:req.body.id}, req.body).exec(function createCB(err, evento) {
+        Eventos.update({id: req.body.id}, req.body).exec(function createCB(err, evento) {
             if (err) {
                 console.log("EventosController.create ERR", err);
                 return res.status(400).send({message: 'Erro ao salvar o evento'});

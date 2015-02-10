@@ -28,14 +28,14 @@ var CdController = module.exports = {
     get: function (req, res) {
         var id = req.query.id;
         if (id == null) return res.status(400).send({message: 'Parametros inválidos'});
-        Cd.findOne({id:id}).populateAll().exec(function (err, cd){
+        Cd.findOne({id: id}).populateAll().exec(function (err, cd) {
             if (err) return res.status(400).send({message: 'Erro consultar o cd'});
-            if(cd.artista) {
-                Eventos.find({usuario:cd.artista.id}).sort('createdAt DESC').limit(2).populateAll().exec(function(err, eventos) {
+            if (cd.artista) {
+                Eventos.find({usuario: cd.artista.id}).sort('createdAt DESC').limit(2).populateAll().exec(function (err, eventos) {
                     if (err) return res.status(400).send({message: 'Erro ao carregar eventos'});
-                    Cd.find({genero:cd.genero.id}).populateAll().limit(2).exec(function(err, related){
+                    Cd.find({genero: cd.genero.id}).populateAll().limit(2).exec(function (err, related) {
                         if (err) return res.status(400).send({message: 'Erro ao carregar cds relacionados'});
-                        return res.status(200).send({message: "Ok", cd: cd, eventos:eventos, related:related});
+                        return res.status(200).send({message: "Ok", cd: cd, eventos: eventos, related: related});
                     });
                 });
             } else {
@@ -73,10 +73,32 @@ var CdController = module.exports = {
     },
     search: function (req, res) {
         var query = req.query.q;
+        var today = new Date();
         if (query == null) return res.status(400).send({message: 'Parametros inválidos'});
         Cd.find({meta: {contains: query}}).populateAll().exec(function (err, cds) {
-            if (err) return res.status(404).send({message: 'Erro ao fazer a busca'});
-            return res.status(200).send({message: "Ok", cds: cds});
+            if (err) return res.status(400).send({message: 'Erro ao fazer a busca'});
+            Eventos.find({
+                or: [
+                    {nome: {contains: query}},
+                    {descricao: {contains: query}}
+                ]
+            }).where({inicio: {">=": today}}).populateAll().exec(function (err, events) {
+                if (err) return res.status(400).send({message: 'Erro ao buscar eventos'});
+                Musica.find().where({nome: {contains: query}}).populate("cd").exec(function (err, musicas) {
+                    if (err) return res.status(400).send({message: 'Erro ao buscar musicas'});
+                    var m = [];
+                    _.each(musicas, function (musica) {
+                        Usuarios.findOne({id: musica.cd.artista}).populateAll().exec(function (err, user) {
+                            if (err) return res.status(400).send({message: 'Erro ao buscar artistas'});
+                            musica.cd.artista = user;
+                            m.push(musica);
+                            if(m.length == musicas.length) {
+                                return res.status(200).send({message: "Ok", musicas: m, cds: cds, eventos: events});
+                            }
+                        });
+                    });
+                });
+            });
         });
     },
     add: function (req, res) {

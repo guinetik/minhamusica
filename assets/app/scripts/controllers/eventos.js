@@ -10,18 +10,16 @@
  * # MeuscdsCtrl
  * Controller of the musicaApp
  */
-angular.module('musicaApp').controller('GeneroCtrl', ['$scope', 'api', 'toastr', '$timeout', '$stateParams', EventosCtrl]);
+angular.module('musicaApp').controller('EventosCtrl', ['$scope', 'api', 'toastr', '$timeout', '$stateParams', EventosCtrl]);
 function EventosCtrl($scope, api, toastr, $timeout, $stateParams) {
     $scope.eventos = [];
     $scope.$on('$viewContentLoaded', function (event) {
         $timeout($scope.updateEventos);
     });
     $scope.updateEventos = function () {
-        var id = $stateParams.id;
-        api.getCdsByGenero(id, function (result) {
+        api.getLatestEvents(function (result) {
             if (result.status == 200) {
-                $scope.genero = result.genero;
-                $scope.cds = result.cds;
+                $scope.eventos = result.eventos;
             }
         });
     };

@@ -104,7 +104,7 @@ angular.module('musicaApp').config(function ($urlRouterProvider, $stateProvider)
             controller: 'GeneroCtrl',
             templateUrl: 'views/genero.html'
         }).state('eventos', {
-            url: '/eventos/:id',
+            url: '/eventos',
             controller: 'EventosCtrl',
             templateUrl: 'views/eventos.html'
         }).state('busca', {
