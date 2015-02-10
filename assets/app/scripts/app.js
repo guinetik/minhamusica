@@ -21,6 +21,7 @@ angular.module('musicaApp',
         'ezfb',
         'dcbImgFallback',
         'mediaPlayer',
+        'siyfion.sfTypeahead',
         "q-date",
         "dateParser",
         'angularMoment']).run(function ($rootScope) {

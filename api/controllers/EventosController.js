@@ -9,8 +9,8 @@ var EventosController = module.exports = {
     create: function (req, res) {
         Eventos.create(req.body).exec(function createCB(err, evento) {
             if (err) {
-                if (err) return res.status(404).send({message: 'Erro ao salvar o evento'});
-                console.log(err);
+                console.log("EventosController.create ERR", err);
+                return res.status(400).send({message: 'Erro ao salvar o evento'});
             }
             return res.status(200).send({message: 'Evento salvo com sucesso', evento: evento});
         });

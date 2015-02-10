@@ -75,19 +75,25 @@
                   <h2 class="box-title"><strong>Calendário</strong> de Eventos</h2>
               </div>
               <!-- /.box-header -->
-              <div class="box-content">
-                  <ul class="calendar-ul">
-                      <li ng-repeat="evento in perfil.eventos">
-                          <span class="date">{{evento.inicio|amDateFormat:'d'}} <span>{{evento.inicio|amDateFormat:'MMM'}}</span></span>
-                          <div class="text">
-                              <strong class="title"><a class="link-pink">{{evento.nome}}</a> </strong>
-                              <span class="desc"><a href="#">{{evento.local}}</a>/{{evento.cidade.nome}}</span>
-                              <br/>
-                              <span class="desc">{{evento.descricao}}</span>
+              <ul class="list-events">
+                  <li class="list-events-box"
+                      ng-repeat="evento in perfil.eventos">
+                      <a href="#"
+                         class="list-events-box-a">
+                          <figure class="cd-thumb list-events-box-thumb">
+                              <img src="http://placehold.it/312x110"
+                                   width="312"
+                                   height="110"
+                                   ng-src="/public/img/{{evento.foto}}">
+                          </figure>
+                          <div class="list-events-box-thumb-text clearfix">
+                              <strong class="dates">{{evento.inicio| amCalendar}}</strong>
+                              <h2 class="title">{{evento.nome}}</h2>
+                              <span class="local">{{evento.local.name}} / {{evento.cidade.nome}}</span> <span class="button">Saiba Mais</span>
                           </div>
-                      </li>
-                  </ul>
-              </div>
+                      </a>
+                  </li>
+              </ul>
               <!-- /.box-content -->
           </article>
           <!-- /.profile-calendar -->

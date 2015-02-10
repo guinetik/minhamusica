@@ -7,22 +7,25 @@ function ws($rootScope, $http, API_URL, blockUI) {
     var ws = this;
     var m = "POST";
     ws.baseURL = API_URL;
-    ws.consumeService = function (endpoint, params, token, cb, overrideBase, method) {
+    ws.consumeService = function (endpoint, params, token, cb, overrideBase, method, shouldBlockUI) {
         var serviceURL;
-        var headers = {
-            'content-type': 'application/json'
-        };
-        if (!params) params = {};
-        if (!method) method = m;
         if (token) {
+            var headers = {
+                'content-type': 'application/json'
+            };
             headers.token = token;
-        }
+        } else  headers = null;
+        if (shouldBlockUI == null) shouldBlockUI = true;
+        if (!params) params = null;
+        if (!method) method = m;
+
         if (!overrideBase) {
             serviceURL = ws.baseURL + endpoint;
         } else {
             serviceURL = endpoint;
         }
-        blockUI.start();
+        console.log("method", method);
+        if(shouldBlockUI) blockUI.start();
         $http({
             url: serviceURL,
             method: method,

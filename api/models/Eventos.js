@@ -17,7 +17,7 @@ var Eventos = module.exports = {
             required: true
         },
         local: {
-            type: 'string',
+            type: 'json',
             required: true
         },
         cidade: {
@@ -42,7 +42,7 @@ var Eventos = module.exports = {
         },
         link: {
             type: 'string',
-            required: true
+            required: false
         },
         toJSON: function () {
             var obj = this.toObject();

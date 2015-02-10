@@ -1,4 +1,5 @@
-<section id="banners" ng-show="bannersLoaded">
+<section id="banners"
+         ng-show="bannersLoaded">
     <slick settings="slickConfig"
            style="max-height: 368px;margin-bottom: 0"
            control="slickHandle"
@@ -8,8 +9,10 @@
     <div class="banners-mask"><span class="left"></span><span class="right"></span></div>
     <div id="banners-thumbs">
         <ul class="banners-thumbs-ul slides">
-            <li ng-repeat="banner in home.banners" ng-class="{'active':slickHandle.currentSlide == $index}">
-                <a title="{{banner.titulo}}" ng-click="slickHandle.slickGoTo($index)">
+            <li ng-repeat="banner in home.banners"
+                ng-class="{'active':slickHandle.currentSlide == $index}">
+                <a title="{{banner.titulo}}"
+                   ng-click="slickHandle.slickGoTo($index)">
                     <img ng-src="{{banner.src}}"
                          src="http://placehold.it/131x42"
                          fallback-src="http://placehold.it/131x42"
@@ -65,7 +68,8 @@
                                        class="user"
                                        title="Usuário">Enviado por: {{cd.artista.nome}}</a>
 
-                                    <p class="downloads" style="color:white;right: 25px">{{cd.genero.nome}}</p>
+                                    <p class="downloads"
+                                       style="color:white;right: 25px">{{cd.genero.nome}}</p>
 
                                     <p class="downloads"><strong>{{cd.downloads}}</strong> downloads</p>
                                 </div>
@@ -145,16 +149,21 @@
                    ng-if="home.eventos.length == 0">
                     Nenhum evento cadastrado no momento. </p>-->
                 <ul class="list-events">
-                    <li class="list-events-box">
+                    <li class="list-events-box"
+                        ng-repeat="evento in home.eventos">
                         <a href="#"
                            class="list-events-box-a">
                             <figure class="cd-thumb list-events-box-thumb">
-                                <img src="http://placehold.it/312x110">
+                                <img src="http://placehold.it/312x110"
+                                     width="312"
+                                     height="110"
+                                     ng-src="/public/img/{{evento.foto}}">
                             </figure>
                             <div class="list-events-box-thumb-text clearfix">
-                                <strong class="dates">01, 02, 03 de JAN/2015</strong>
-                                <h2 class="title">Festival de Verão 2015</h2>
-                                <span class="local">Salvador - BA</span> <span class="button">Comprar Ingresso</span>
+                                <strong class="dates">{{evento.inicio| amCalendar}}</strong>
+                                <h2 class="title">{{evento.nome}}</h2>
+                                <span class="local">{{evento.local.name}}
+                                    / {{evento.cidade.nome}}</span> <span class="button">Saiba Mais</span>
                             </div>
                         </a>
                     </li>

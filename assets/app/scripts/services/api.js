@@ -32,6 +32,7 @@ function api(ws, $upload, API_URL, blockUI) {
         ws.consumeService("cd/add", cd, token, cb, false);
     };
     api.addEvento = function (token, evento, cb) {
+        evento.local = evento.local.name;
         ws.consumeService("eventos/create", evento, token, cb, false);
     };
     api.saveCd = function (token, cd, cb) {
@@ -271,5 +272,20 @@ function api(ws, $upload, API_URL, blockUI) {
     };
     api.searchCD = function (q, cb) {
         ws.consumeService("cd/search?q=" + q, null, null, cb, false, "GET");
-    }
+    };
+    api.searchPlace = function(query, cidade, cb) {
+        var cid = "EKMXJ3PZOKGAGZIVNWTRLXTTSMW4KOXSD0X0RROJCBNYDYB4";
+        var shh = "NMTM2OWFGHC3XDINPQBWT4LO1HSOLLAWZGJKNRABFSBSFOS2";
+        var url = "https://api.foursquare.com/v2/venues/search";
+        url += "?client_id=" + cid;
+        url += "&client_secret=" + shh;
+        url += "&v=20130815";
+        url += "&near=" + cidade.nome;
+        url += "&query=" + query;
+        ws.consumeService(url, null, null, function(result){
+            //console.log("searchPlace", result);
+            cb(result);
+        }, true, "GET", false);
+
+    };
 }

@@ -1,5 +1,4 @@
-
-,<article class="painel-section-content">
+<article class="painel-section-content">
     <h2 class="painel-section-content-title">Novo Evento</h2>
     <section>
         <div class="section-content clearfix">
@@ -117,7 +116,12 @@
                         <div class="form-row-field">
                             <input id="local"
                                    name="local"
-                                   ng-model="evento.local"
+                                   sf-typeahead
+                                   ng-change="searchPlaces()"
+                                   options="typeaheadOptions"
+                                   datasets="suggestions"
+                                   ng-disabled="evento.cidade ==null"
+                                   ng-model="evento.local.name"
                                    type="text"
                                    placeholder="Local do evento. Powered by Foursquare"
                                    class="field-500"/>
@@ -164,7 +168,6 @@
                     </div>
                     <div class="button-area">
                         <button type="submit"
-
                                 class="button-highlight">Cadastrar</button>
                     </div>
                 </form>

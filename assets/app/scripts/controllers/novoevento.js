@@ -11,14 +11,14 @@ angular.module('musicaApp').controller('NovoEventoCtrl', ['$scope', 'api', 'auth
 function NovoEventoCtrl($scope, api, auth, $state, $rootScope, $timeout, toastr) {
     var d = new Date();
     $scope.evento = {
-        inicio:d,
-        fim:d
+        inicio: d,
+        fim: d
     };
     $scope.today = new Date().toISOString().split("T")[0];
-    $scope.getDateString = function(datee) {
-        if(datee) {
+    $scope.getDateString = function (datee) {
+        if (datee) {
             var k = datee.toISOString().split("T")[0];
-        } else k  = $scope.today;
+        } else k = $scope.today;
         return k;
     };
     $scope.$on('$viewContentLoaded', function (event) {
@@ -44,7 +44,7 @@ function NovoEventoCtrl($scope, api, auth, $state, $rootScope, $timeout, toastr)
             }
         });
     });
-    $scope.submit = function() {
+    $scope.submit = function () {
         var token = auth.getToken();
         api.addEvento(token, $scope.evento, function (result) {
             if (result.status == 200) {
@@ -91,10 +91,52 @@ function NovoEventoCtrl($scope, api, auth, $state, $rootScope, $timeout, toastr)
             }
         }
     };
-    $scope.isValidStartDate = function($value) {
+    $scope.isValidStartDate = function ($value) {
         return $value.getTime() > d.getTime();
     };
-    $scope.isValidEndDate = function($value) {
+    $scope.isValidEndDate = function ($value) {
         return $value.getTime() > $scope.evento.inicio.getTime();
     };
+    //4sq search & autocomplete
+    $scope.searchPlaces = function () {
+        if ($scope.evento.local && $scope.evento.cidade) {
+            if($scope.evento.local.name.length > 2) {
+                api.searchPlace($scope.evento.local.name, $scope.evento.cidade, function (result) {
+                    console.log("result", result);
+                    if (result.status == 200) {
+                        $scope.updateAutoComplete(result.response.venues);
+                    }
+                });
+            }
+        }
+    };
+    $scope.updateAutoComplete = function(venues) {
+        if(!$scope.placesCollection) {
+            $scope.placesCollection = new Bloodhound({
+                datumTokenizer: function (d) {
+                    return Bloodhound.tokenizers.whitespace(d.name);
+                },
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                local:venues
+            });
+            // initialize the bloodhound suggestion engine
+            $scope.placesCollection.initialize();
+            // Typeahead options object
+            $scope.typeaheadOptions = {
+                highlight: true
+            };
+            // Single dataset example
+            $scope.suggestions = {
+                displayKey: 'name',
+                source: $scope.placesCollection.ttAdapter()
+            };
+        } else {
+            $scope.placesCollection.clear();
+            angular.forEach(venues, function(venue, key){
+                console.log("venue", venue.id, venue.name);
+                $scope.placesCollection.add(venue);
+            });
+        }
+    };
+    $scope.updateAutoComplete([{name:"B"}]);
 }
