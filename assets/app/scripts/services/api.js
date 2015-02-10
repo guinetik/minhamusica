@@ -87,6 +87,20 @@ function api(ws, $upload, API_URL, blockUI) {
         };
         ws.consumeService("musica/update/" + music.id, m, token, cb, false);
     };
+    api.updateEvent = function (event, token, cb) {
+        var e = {
+            id:event.id,
+            id_event: event.id,
+            nome:event.nome,
+            local:event.local.name,
+            cidade:event.cidade.id,
+            inicio:event.inicio,
+            fim:event.fim,
+            foto:event.foto,
+            link:event.link
+        };
+        ws.consumeService("eventos/update/" + event.id, e, token, cb, false);
+    };
     api.updateTrack = function (music, token, cb) {
         var m = {
             id_music: music.id,
@@ -229,6 +243,9 @@ function api(ws, $upload, API_URL, blockUI) {
     };
     api.getCD = function (id, cb) {
         ws.consumeService("cd/" + id, null, null, cb, false, "GET");
+    };
+    api.getEvent = function (id, cb) {
+        ws.consumeService("eventos/" + id, null, null, cb, false, "GET");
     };
     api.updateProfile = function (user, token, cb) {
         var u = {

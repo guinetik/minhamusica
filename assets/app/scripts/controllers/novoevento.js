@@ -7,8 +7,8 @@
  * # NovoeventoCtrl
  * Controller of the musicaApp
  */
-angular.module('musicaApp').controller('NovoEventoCtrl', ['$scope', 'api', 'auth', '$state', '$rootScope', '$timeout', 'toastr', NovoEventoCtrl]);
-function NovoEventoCtrl($scope, api, auth, $state, $rootScope, $timeout, toastr) {
+angular.module('musicaApp').controller('NovoEventoCtrl', ['$scope', 'api', 'auth', '$state', '$rootScope', '$timeout', 'toastr', '$stateParams', NovoEventoCtrl]);
+function NovoEventoCtrl($scope, api, auth, $state, $rootScope, $timeout, toastr, $stateParams) {
     var d = new Date();
     $scope.evento = {
         inicio: d,
@@ -30,6 +30,23 @@ function NovoEventoCtrl($scope, api, auth, $state, $rootScope, $timeout, toastr)
                         //inicializar controller
                         api.getEstados(function (result) {
                             $scope.estados = result;
+                            if ($stateParams.id) {
+                                api.getEvent($stateParams.id, function (result) {
+                                    console.log("getEvent", result);
+                                    if (result.status == 200) {
+                                        $scope.evento = result;
+                                        $scope.foto = {dataUrl:'/public/img/' + $scope.evento.foto, imagem:$scope.evento.foto};
+                                        $scope.evento.inicio = new Date(result.inicio);
+                                        $scope.evento.fim = new Date(result.fim);
+                                        $scope.getEstadoSelecionado(result.cidade.estado);
+                                        var c = result.cidade;
+                                        $timeout(function(){
+                                            console.log("CCCCC", c);
+                                            $scope.evento.cidade = c;
+                                        });
+                                    }
+                                });
+                            }
                         });
                         // transmite dados do usuario
                         $scope.usuario = result.data;
@@ -46,19 +63,35 @@ function NovoEventoCtrl($scope, api, auth, $state, $rootScope, $timeout, toastr)
     });
     $scope.submit = function () {
         var token = auth.getToken();
-        api.addEvento(token, $scope.evento, function (result) {
-            if (result.status == 200) {
-                toastr.success(result.message);
-                $state.go("meus_eventos");
-            } else {
-                console.log("error", result);
-                if (result.message != null) {
-                    toastr.warning(result.message);
+        if($scope.evento.id) {
+            api.updateEvent($scope.evento, token, function (result) {
+                if (result.status == 200) {
+                    toastr.success(result.message);
+                    $state.go("meus_eventos");
                 } else {
-                    toastr.warning("Ocorreu um erro ao salvar o evento:" + result.status);
+                    console.log("error", result);
+                    if (result.message != null) {
+                        toastr.warning(result.message);
+                    } else {
+                        toastr.warning("Ocorreu um erro ao salvar o evento:" + result.status);
+                    }
                 }
-            }
-        });
+            });
+        } else {
+            api.addEvento(token, $scope.evento, function (result) {
+                if (result.status == 200) {
+                    toastr.success(result.message);
+                    $state.go("meus_eventos");
+                } else {
+                    console.log("error", result);
+                    if (result.message != null) {
+                        toastr.warning(result.message);
+                    } else {
+                        toastr.warning("Ocorreu um erro ao salvar o evento:" + result.status);
+                    }
+                }
+            });
+        }
     };
     $scope.updateEventPicture = function (file) {
         console.log("updateEventPicture");
@@ -91,6 +124,13 @@ function NovoEventoCtrl($scope, api, auth, $state, $rootScope, $timeout, toastr)
             }
         }
     };
+    $scope.getEstadoSelecionado = function (estado) {
+        angular.forEach($scope.estados, function(e, key) {
+            if(e.id == estado) {
+                $scope.evento.estadoSelecionado = e;
+            }
+        });
+    };
     $scope.isValidStartDate = function ($value) {
         return $value.getTime() > d.getTime();
     };
@@ -100,7 +140,7 @@ function NovoEventoCtrl($scope, api, auth, $state, $rootScope, $timeout, toastr)
     //4sq search & autocomplete
     $scope.searchPlaces = function () {
         if ($scope.evento.local && $scope.evento.cidade) {
-            if($scope.evento.local.name.length > 2) {
+            if ($scope.evento.local.name.length > 2) {
                 api.searchPlace($scope.evento.local.name, $scope.evento.cidade, function (result) {
                     console.log("result", result);
                     if (result.status == 200) {
@@ -110,14 +150,14 @@ function NovoEventoCtrl($scope, api, auth, $state, $rootScope, $timeout, toastr)
             }
         }
     };
-    $scope.updateAutoComplete = function(venues) {
-        if(!$scope.placesCollection) {
+    $scope.updateAutoComplete = function (venues) {
+        if (!$scope.placesCollection) {
             $scope.placesCollection = new Bloodhound({
                 datumTokenizer: function (d) {
                     return Bloodhound.tokenizers.whitespace(d.name);
                 },
                 queryTokenizer: Bloodhound.tokenizers.whitespace,
-                local:venues
+                local: venues
             });
             // initialize the bloodhound suggestion engine
             $scope.placesCollection.initialize();
@@ -132,11 +172,11 @@ function NovoEventoCtrl($scope, api, auth, $state, $rootScope, $timeout, toastr)
             };
         } else {
             $scope.placesCollection.clear();
-            angular.forEach(venues, function(venue, key){
+            angular.forEach(venues, function (venue, key) {
                 console.log("venue", venue.id, venue.name);
                 $scope.placesCollection.add(venue);
             });
         }
     };
-    $scope.updateAutoComplete([{name:"B"}]);
+    $scope.updateAutoComplete([{name: "B"}]);
 }

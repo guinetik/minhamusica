@@ -15,6 +15,15 @@ var EventosController = module.exports = {
             return res.status(200).send({message: 'Evento salvo com sucesso', evento: evento});
         });
     },
+    update: function (req, res) {
+        Eventos.update({id:req.body.id}, req.body).exec(function createCB(err, evento) {
+            if (err) {
+                console.log("EventosController.create ERR", err);
+                return res.status(400).send({message: 'Erro ao salvar o evento'});
+            }
+            return res.status(200).send({message: 'Evento salvo com sucesso', evento: evento});
+        });
+    },
     updateFoto: function (req, res) {
         var uploadFile = req.file('file');
         var evento = req.body;

@@ -70,6 +70,12 @@ angular.module('musicaApp').config(function ($urlRouterProvider, $stateProvider)
             controller: 'NovoEventoCtrl',
             templateUrl: 'views/painel/novo_evento.html'
         }).
+        state('editar_evento', {
+            parent: "painel",
+            url: '/eventos/edit/:id',
+            controller: 'NovoEventoCtrl',
+            templateUrl: 'views/painel/novo_evento.html'
+        }).
         state('meus_eventos', {
             parent: "painel",
             url: '/eventos',
