@@ -38,6 +38,7 @@ function NovoEventoCtrl($scope, api, auth, $state, $rootScope, $timeout, toastr,
                                         $scope.evento.descricao = result.descricao;
                                         $scope.evento.local.name = result.local;
                                         $scope.evento.foto = result.foto;
+                                        $scope.evento.id = $stateParams.id;
                                         $scope.foto = {dataUrl:'/public/img/' + result.foto, imagem:result.foto};
                                         $scope.evento.inicio = new Date(result.inicio);
                                         $scope.evento.fim = new Date(result.fim);
@@ -62,8 +63,11 @@ function NovoEventoCtrl($scope, api, auth, $state, $rootScope, $timeout, toastr,
     });
     $scope.submit = function () {
         var token = auth.getToken();
-        if($scope.evento.id) {
+        if($stateParams.id!=null) {
+            console.log("UpdateEvent");
+            $scope.evento.id = $stateParams.id;
             api.updateEvent($scope.evento, token, function (result) {
+                console.log("Result", result);
                 if (result.status == 200) {
                     toastr.success(result.message);
                     $state.go("meus_eventos");

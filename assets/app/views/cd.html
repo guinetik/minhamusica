@@ -163,22 +163,25 @@
                 <!-- /.box-header -->
                 <div class="box-content">
                     <ul class="list-events">
-                        <li class="list-events-box">
-                            <a href="#"
-                               class="list-events-box-a">
-                                <figure class="cd-thumb list-events-box-thumb">
-                                    <img src="http://placehold.it/312x110"
-                                         alt="">
-                                </figure>
-                                <div class="list-events-box-thumb-text clearfix">
-                                    <strong class="dates">01, 02, 03 de JAN/2015</strong>
-
-                                    <h2 class="title">Festival de Verão 2015</h2>
-                                    <span class="local">Salvador - BA</span> <span class="button">Comprar Ingresso</span>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
+                    <li class="list-events-box"
+                        ng-repeat="evento in eventos">
+                        <a ui-sref="evento({id:evento.id})"
+                           class="list-events-box-a">
+                            <figure class="cd-thumb list-events-box-thumb">
+                                <img src="http://placehold.it/312x110"
+                                     width="312"
+                                     height="110"
+                                     ng-src="/public/img/{{evento.foto}}">
+                            </figure>
+                            <div class="list-events-box-thumb-text clearfix">
+                                <strong class="dates">{{evento.inicio| amCalendar}}</strong>
+                                <h2 class="title">{{evento.nome}}</h2>
+                                <span class="local">{{evento.local.name}}
+                                    / {{evento.cidade.nome}}</span> <span class="button">Saiba Mais</span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
                     <!-- /.list-events -->
                 </div>
                 <!-- /.box-content -->
@@ -192,22 +195,27 @@
                 <!-- /.box-header -->
                 <div class="box-content">
                     <ul class="list-cd">
-                        <li class="list-cd-box clearfix">
-                            <figure class="cd-thumb list-cd-box-thumb">
-                                <a href="#"
-                                   title=""> <img src="http://placehold.it/71x71"
-                                                  alt=""> </a>
-                            </figure>
-                            <h2 class="list-cd-box-title">
-                                <a href="#"
-                                   title="Aviões do Forró - Ao Vivo Aracajú - 2014">Aviões do Forró - Ao Vivo Aracajú -
-                                                                                    2014</a>
-                            </h2>
-                            <a href="#"
-                               class="user list-cd-box-user"
-                               title="">BuchechaCDs</a> <span class="time">há 3 min atrás</span>
-                        </li>
-                    </ul>
+                      <li ng-repeat="cd in related">
+                          <div class="list-cd-box clearfix">
+                              <figure class="cd-thumb list-cd-box-thumb">
+                                  <a ui-sref="cd({id:cd.id})"
+                                     title="{{cd.titulo}}">
+                                      <img ng-src="/public/img/{{cd.capa}}"
+                                           style="width: 70px;height: 70px;">
+                                  </a>
+                              </figure>
+                              <h2 class="list-cd-box-title">
+                                  <a ui-sref="cd({id:cd.id})"
+                                     title="Aviões do Forró - Ao Vivo Aracajú - 2014">{{cd.titulo}}</a>
+                              </h2>
+                              <a ui-sref="genero({id:cd.genero.id})"
+                                 class="user list-cd-box-user"
+                                 title="">{{cd.genero.nome}}</a>
+                              <p class="time">Enviado <span am-time-ago="cd.createdAt"></span></p>
+                          </div>
+                          <!-- /.list-cd-box -->
+                      </li>
+                  </ul>
                 </div>
                 <!-- /.box-content -->
             </div>

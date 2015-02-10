@@ -10,12 +10,16 @@
 angular.module('musicaApp').controller('CdCtrl', ['$scope', 'api', '$timeout', '$stateParams', '$rootScope', 'toastr', CdCtrl]);
 function CdCtrl($scope, api, $timeout, $stateParams, $rootScope, toastr) {
     $scope.cd = {};
+    $scope.eventos =[];
+    $scope.related = [];
     $scope.cd.id = $stateParams.id;
     $scope.$on('$viewContentLoaded', function (event) {
         $timeout(function () {
             api.getCD($scope.cd.id, function (result) {
                 if (result.status == 200) {
-                    $scope.cd = result;
+                    $scope.cd = result.cd;
+                    $scope.eventos = result.eventos;
+                    $scope.related = result.related;
                 }
             });
         });

@@ -11,7 +11,7 @@ var CdController = module.exports = {
         var id = req.body.id;
         if (id == null) return res.status(400).send({message: 'Parametros inválidos'});
         Cd.findOne({id: id}).exec(function findCB(err, cdFound) {
-            if (err) return res.status(404).send({message: 'Erro ao computar download'});
+            if (err) return res.status(400).send({message: 'Erro ao computar download'});
             if (cdFound) {
                 var downloadInt = cdFound.downloads + 1;
                 Cd.update({id: id}, {downloads: downloadInt}).exec(function afterwards(err2, up) {
@@ -22,6 +22,24 @@ var CdController = module.exports = {
                         url: '/public/downloads/' + id + '.zip'
                     });
                 });
+            }
+        });
+    },
+    get: function (req, res) {
+        var id = req.query.id;
+        if (id == null) return res.status(400).send({message: 'Parametros inválidos'});
+        Cd.findOne({id:id}).populateAll().exec(function (err, cd){
+            if (err) return res.status(400).send({message: 'Erro consultar o cd'});
+            if(cd.artista) {
+                Eventos.find({usuario:cd.artista.id}).sort('createdAt DESC').limit(2).populateAll().exec(function(err, eventos) {
+                    if (err) return res.status(400).send({message: 'Erro ao carregar eventos'});
+                    Cd.find({genero:cd.genero.id}).populateAll().limit(2).exec(function(err, related){
+                        if (err) return res.status(400).send({message: 'Erro ao carregar cds relacionados'});
+                        return res.status(200).send({message: "Ok", cd: cd, eventos:eventos, related:related});
+                    });
+                });
+            } else {
+                return res.status(400).send({message: 'Erro consultar o cd'});
             }
         });
     },

@@ -16,6 +16,7 @@ var EventosController = module.exports = {
         });
     },
     update: function (req, res) {
+        console.log("id", req.body);
         Eventos.update({id:req.body.id}, req.body).exec(function createCB(err, evento) {
             if (err) {
                 console.log("EventosController.create ERR", err);
