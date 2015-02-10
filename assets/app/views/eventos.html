@@ -1,0 +1,40 @@
+<!-- Breadcrumb -->
+<ng-include src="'views/breadcrumb.html'"></ng-include><!-- end Breadcrumb -->
+<section class="main-content">
+    <div class="limits">
+        <h2 class="painel-section-content-title">{{genero}}</h2>
+        <ul class="list-events">
+            <li class="list-events-box"
+                ng-repeat="evento in eventos">
+                <a ui-sref="evento({id:evento.id})"
+                   class="list-events-box-a">
+                    <div class="list-events-box-thumb-text clearfix">
+                        <h2 class="title"
+                            style="font-size: 20px;margin-bottom: 10px;">{{evento.nome}}</h2>
+                        <figure class="cd-thumb list-events-box-thumb">
+                            <img src="http://placehold.it/800x240"
+                                 style="width: 800px;max-height: 240px;overflow: hidden"
+                                 ng-src="/public/img/{{evento.foto}}">
+                        </figure>
+                        <p style="margin-bottom: 20px;line-height: 20px;width: 800px">
+                            <strong class="dates"
+                                    style="font-size: 16px">{{evento.inicio| amCalendar}}
+                                - {{evento.fim| amCalendar}}</strong>
+                            <br/>
+                            <span class="local"
+                                  style="font-size: 14px">{{evento.local.name}}/{{evento.cidade.nome}}</span>
+                            <br/>
+                            <span class="local"
+                                  style="font-size: 12px">{{evento.descricao}}</span>
+                        </p>
+                    </div>
+                </a>
+            </li>
+        </ul>
+        <div class="box-content"
+             ng-if="cds.length==0">
+            <p class="message-empty">
+                Nenhum CD Encontrado</p>
+        </div>
+    </div>
+</section>

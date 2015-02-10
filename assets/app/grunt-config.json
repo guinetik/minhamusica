@@ -36,6 +36,7 @@
           ,"scripts/controllers/genero.js"
           ,"scripts/controllers/busca.js"
           ,"scripts/controllers/evento.js"
+          ,"scripts/controllers/eventos.js"
           ,"scripts/services/api.js"
           ,"scripts/services/ws.js"
           ,"scripts/controllers/painel.js"

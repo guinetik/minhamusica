@@ -65,7 +65,7 @@ function cd($timeout, toastr, api, auth, $state, $rootScope) {
                     $scope.generos = result.generos;
                     api.getCD($scope.cd.id, function (result) {
                         if (result.status == 200) {
-                            $scope.cd = result;
+                            $scope.cd = result.cd;
                             $scope.cd.saved = true;
                             if ($scope.musicas) {
                                 $scope.musicas = $scope.cd.musicas;

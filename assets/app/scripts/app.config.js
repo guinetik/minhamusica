@@ -103,6 +103,10 @@ angular.module('musicaApp').config(function ($urlRouterProvider, $stateProvider)
             url: '/genero/:id',
             controller: 'GeneroCtrl',
             templateUrl: 'views/genero.html'
+        }).state('eventos', {
+            url: '/eventos/:id',
+            controller: 'EventosCtrl',
+            templateUrl: 'views/eventos.html'
         }).state('busca', {
             url: '/busca/:q',
             controller: 'BuscaCtrl',

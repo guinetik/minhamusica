@@ -59,7 +59,6 @@ function EditCDCtrl($scope, cd, $stateParams, $rootScope, auth, $state, api, $ti
                 api.lookup(token, function (result) {
                     if (result.status == 200) {
                         //inicializar controller
-                        console.log("getCD", result.data);
                         cd.getCd($scope);
                         // transmite dados do usuario
                         $scope.usuario = result.data;
