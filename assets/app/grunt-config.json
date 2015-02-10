@@ -35,6 +35,7 @@
           ,"scripts/controllers/cd.js"
           ,"scripts/controllers/genero.js"
           ,"scripts/controllers/busca.js"
+          ,"scripts/controllers/evento.js"
           ,"scripts/services/api.js"
           ,"scripts/services/ws.js"
           ,"scripts/controllers/painel.js"
@@ -51,7 +52,10 @@
         ],
         "js/libs.min.js": [
           "./../bower_components/jquery/dist/jquery.js",
-          "./../bower_components/angular/angular.js",
+          "./../bower_components/angular/angular.min.js",
+          "./../bower_components/angular-google-maps/dist/angular-google-maps.min.js",
+          "./../bower_components/lodash/dist/lodash.min.js",
+          "./../bower_components/angular-google-maps/dist/lodash.min.js",
           "./../bower_components/angular-typeahead/angular-typeahead.js",
           "./../bower_components/angular-ui-utils/validate.js",
           "./../bower_components/angular-ui-router/release/angular-ui-router.js",

@@ -1,0 +1,117 @@
+<section id="profile">
+  <div class="limits">
+    <header class="profile-header">
+      <figure class="profile-cover">
+        <img src="http://placehold.it/1000x368"
+             width="1000"
+             height="368"
+             ng-src="/public/img/{{evento.foto}}">
+      </figure>
+      <div class="profile-dados clearfix">
+        <figure class="avatar">
+          <img src="http://placehold.it/124x124"
+               style="width: 124px;height: 124px;"
+               ng-src="/public/img/{{evento.usuario.foto}}">
+        </figure>
+          <div class="info">
+              <h1 class="name"
+                  style="font-size: 32px">{{evento.nome}}</h1>
+              <p class="desc">{{evento.inicio| amCalendar}} - {{evento.fim| amCalendar}}<br/>{{evento.cidade.nome}}</p>
+          </div>
+          <div class="redes"
+               style="float: right">
+              <ul>
+                  <li><a ng-href="http://instagram.com/{{evento.usuario.instagram}}"
+                         target="_blank"
+                         title="Instagram"
+                         class="instagram">Instagram</a></li>
+                  <li><a ng-href="http://twitter.com/{{evento.usuario.twitter}}"
+                         target="_blank"
+                         title="Twitter"
+                         class="twitter">Twitter</a></li>
+                  <li><a ng-href="http://facebook.com/{{evento.usuario.facebook}}"
+                         target="_blank"
+                         title="Facebook"
+                         class="facebook">Facebook</a></li>
+              </ul>
+          </div>
+      </div>
+    </header>
+      <div class="profile-content clearfix">
+          <div class="box"
+               style="margin-bottom: 25px">
+              <div style="float:right;margin-top: -5px">
+                  <a ng-href="{{evento.link}}"
+                     target="_blank"
+                     ng-if="evento.link!=null"
+                     class="button-medium"
+                     title="Site do Evento"><span class="icon"></span>Visitar site do Evento</a>
+              </div>
+              <div class="box-header">
+                  <h2 class="box-title"><strong style="display: inline">Descrição</strong> do Evento</h2>
+              </div>
+              <p style="font-family: 'pf_square_sans_proregular';font-size: 14px;color: #888888">{{evento.descricao}}</p>
+          </div>
+          <div class="box"
+               style="margin-bottom: 25px">
+              <div class="box-header">
+                  <h2 class="box-title"><strong style="display: inline">Local:</strong> {{evento.local.name}}</h2>
+              </div>
+              <ui-gmap-google-map center='map.center'
+                                  zoom='map.zoom'
+                                  options="map.options">
+                  <ui-gmap-marker coords="marker.coords"
+                                  options="marker.options"
+                                  events="marker.events"
+                                  idkey="marker.id">
+                  </ui-gmap-marker>
+              </ui-gmap-google-map>
+              <div style="float:right;margin-top: 20px">
+                  <a ng-href="{{evento.local.url}}"
+                     target="_blank"
+                     ng-if="evento.local.url!=null"
+                     class="button-medium"
+                     title="Site do Local"><span class="icon"></span>Site</a>
+                  <a ng-href="http://maps.google.com/?q={{evento.local.name}}"
+                     target="_blank"
+                     class="button-medium"
+                     title="Abrir no GoogleMaps"><span class="icon"></span>GoogleMaps</a>
+                  <a ng-href="http://foursquare.com/v/{{evento.local.id}}"
+                     target="_blank"
+                     class="button-medium"
+                     title="Abrir no Foursquare"><span class="icon"></span>Foursquare</a>
+              </div>
+              <p class="desc"
+                 style="font-family: 'pf_square_sans_proregular';font-size: 14px;color: #888888;margin-top: 20px">
+                  <span ng-repeat="address_line in evento.local.location.formattedAddress">{{address_line}}<br/></span>
+                  <span ng-if="evento.local.contact.formattedPhone!=null">{{evento.local.contact.formattedPhone}}
+                      <br/></span>
+              </p>
+          </div>
+          <div class="box"
+               style="margin-bottom: 25px">
+              <div id="comments"
+                   class="box box-inner">
+                  <div class="box-header clearfix box-header-balloon">
+                      <h2 class="box-title"><strong>Comentários</strong></h2>
+
+                      <div class="balloon comments-count">
+                          <div class="fb-comments-count"
+                               data-href="http://musicatop.jelastic.websolute.net.br/eventos/{{evento.id}}"></div>
+                      </div>
+                  </div>
+                  <!-- /.box-header -->
+                  <div class="box-content">
+                      <div class="fb-comments"
+                           style="width: 1000px"
+                           data-href="http://musicatop.jelastic.websolute.net.br/eventos/{{evento.id}}"
+                           data-numposts="5"
+                           data-colorscheme="light"></div>
+                  </div>
+                  <!-- /.box-content -->
+              </div>
+          </div>
+      </div>
+  </div>
+    <!-- /.limits -->
+</section>

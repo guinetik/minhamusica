@@ -23,6 +23,7 @@ angular.module('musicaApp',
         'mediaPlayer',
         'siyfion.sfTypeahead',
         "q-date",
+        'uiGmapgoogle-maps',
         "dateParser",
         'angularMoment']).run(function ($rootScope) {
         functions.playlist.init(this);

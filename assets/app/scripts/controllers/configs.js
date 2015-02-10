@@ -19,14 +19,24 @@ function ConfigsCtrl($rootScope, $scope, api, auth, $timeout, $state, toastr, $u
         $timeout(function () {
             api.lookup(token, function (result) {
                 if (result.status == 200) {
-                    $scope.usuario = result.data;
-                    $scope.capa.dataUrl = $scope.capa.imagem = "/public/img/" + $scope.usuario.capa;
-                    $scope.foto.dataUrl = $scope.foto.imagem = "/public/img/" + $scope.usuario.foto;
-                    $scope.selectEstado($scope.usuario.cidade.estado);
-                    $scope.usuario.nascimento = new Date($scope.usuario.nascimento);
-                    $rootScope.$emit("user-lookup", $scope.usuario);
+                    var user = result.data;
                     api.getEstados(function (result) {
                         $scope.estados = result;
+                        $scope.usuario.id = user.id;
+                        $scope.usuario.capa = user.capa;
+                        $scope.usuario.foto = user.foto;
+                        $scope.usuario.nome = user.nome;
+                        $scope.usuario.email = user.email;
+                        $scope.usuario.twitter =user.twitter;
+                        $scope.usuario.facebook =user.facebook;
+                        $scope.usuario.sexo = user.sexo;
+                        $scope.usuario.instagram =user.instagram;
+                        $scope.capa.dataUrl = $scope.capa.imagem = "/public/img/" + user.capa;
+                        $scope.foto.dataUrl = $scope.foto.imagem = "/public/img/" + user.foto;
+                        $scope.getEstadoSelecionado(user.cidade.estado);
+                        $scope.getCidadeSelecionada(user.cidade.id);
+                        $scope.usuario.nascimento = new Date(user.nascimento);
+                        $rootScope.$emit("user-lookup", $scope.usuario);
                     });
                 } else {
                     $state.go("main");
@@ -34,10 +44,19 @@ function ConfigsCtrl($rootScope, $scope, api, auth, $timeout, $state, toastr, $u
             });
         });
     });
-    $scope.selectEstado = function (id) {
-        angular.forEach($scope.estados, function (value, key) {
-            if (value.id == id) {
-                $scope.estado = value;
+    $scope.getCidadeSelecionada = function (id) {
+        angular.forEach($scope.estado.cidades, function(c, key) {
+            if(c.id == id) {
+                $scope.usuario.cidade = c;
+            }
+        });
+    };
+    $scope.getEstadoSelecionado = function (estado) {
+        console.log("fowkefo", estado);
+        angular.forEach($scope.estados, function(e, key) {
+            console.log("estado", e.id, estado);
+            if(e.id == estado) {
+                $scope.estado = e;
             }
         });
     };

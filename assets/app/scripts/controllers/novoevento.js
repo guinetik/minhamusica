@@ -34,16 +34,15 @@ function NovoEventoCtrl($scope, api, auth, $state, $rootScope, $timeout, toastr,
                                 api.getEvent($stateParams.id, function (result) {
                                     console.log("getEvent", result);
                                     if (result.status == 200) {
-                                        $scope.evento = result;
-                                        $scope.foto = {dataUrl:'/public/img/' + $scope.evento.foto, imagem:$scope.evento.foto};
+                                        $scope.evento.nome = result.nome;
+                                        $scope.evento.descricao = result.descricao;
+                                        $scope.evento.local.name = result.local;
+                                        $scope.evento.foto = result.foto;
+                                        $scope.foto = {dataUrl:'/public/img/' + result.foto, imagem:result.foto};
                                         $scope.evento.inicio = new Date(result.inicio);
                                         $scope.evento.fim = new Date(result.fim);
                                         $scope.getEstadoSelecionado(result.cidade.estado);
-                                        var c = result.cidade;
-                                        $timeout(function(){
-                                            console.log("CCCCC", c);
-                                            $scope.evento.cidade = c;
-                                        });
+                                        $scope.getCidadeSelecionada(result.cidade.id);
                                     }
                                 });
                             }
@@ -123,6 +122,13 @@ function NovoEventoCtrl($scope, api, auth, $state, $rootScope, $timeout, toastr,
                 });
             }
         }
+    };
+    $scope.getCidadeSelecionada = function (id) {
+        angular.forEach($scope.evento.estadoSelecionado.cidades, function(c, key) {
+            if(c.id == id) {
+                $scope.evento.cidade = c;
+            }
+        });
     };
     $scope.getEstadoSelecionado = function (estado) {
         angular.forEach($scope.estados, function(e, key) {

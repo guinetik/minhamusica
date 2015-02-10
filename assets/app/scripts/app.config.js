@@ -31,6 +31,11 @@ angular.module('musicaApp').config(function ($urlRouterProvider, $stateProvider)
             controller: 'PerfilCtrl',
             templateUrl: 'views/profile.html'
         })
+        .state('evento', {
+            url: '/evento/:id',
+            controller: 'EventoCtrl',
+            templateUrl: 'views/evento.html'
+        })
         .state('signup', {
             url: '/signup',
             templateUrl: 'views/signup.html',
@@ -122,6 +127,13 @@ angular.module('musicaApp').config(function ($urlRouterProvider, $stateProvider)
             },
             tapToDismiss: true,
             timeOut: 1000
+        });
+    })
+    .config(function(uiGmapGoogleMapApiProvider) {
+        uiGmapGoogleMapApiProvider.configure({
+            //    key: 'your api key',
+            v: '3.17',
+            libraries: ''
         });
     })
     .config(function (blockUIConfig) {
