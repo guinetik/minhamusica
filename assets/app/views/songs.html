@@ -4,8 +4,7 @@
      on-finish-render="init()">
     <a ng-click="$parent.$parent.player.play($index)"
        class="song_bt"
-       title="{{song.title}}"
-       style="cursor: pointer;">
+       title="{{song.title}}">
         <figure class="cd-thumb">
             <img src="http://placehold.it/52x52"
                  width="52"
@@ -16,11 +15,10 @@
     </a>
     <p class="text"
        title="{{song.title}}">
-        <strong class="music"
-                style="height: 30px">{{song.title |truncate:40}}</strong>
+        <strong class="music">{{song.title |truncate:40}}</strong>
         <span class="artist"><a class="link-pink"
                                 ui-sref="cd({id:song.cd.id})">{{song.cd.titulo}}</a></span> <br/>
-        <span class="artist">Enviando por: <a class="link-pink"
+        <span class="artist">Enviado por: <a class="link-pink"
                                               ui-sref="perfil({id:song.cd.artista.id})">{{song.cd.artista.nome}}</a>
         </span>
     </p>

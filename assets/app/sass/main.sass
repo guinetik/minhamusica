@@ -94,9 +94,6 @@ select
   z-index: 20
   top: 0
   height: 107px
-  .limits
-  //padding-top: 20px
-  //padding-bottom: 20px
   .logo, #search-form, #genre, #header-user
     float: left
   #search-form, #genre, #header-user
@@ -233,9 +230,9 @@ select
     position: relative
     padding-left: 48px
     .welcome
-    font-family: $font-bold
-    font-size: 14px
-    color: $gray-light
+      font-family: $font-bold
+      font-size: 14px
+      color: $gray-light
     .avatar
       position: absolute
       left: 0
@@ -257,7 +254,11 @@ select
 
 
 /* Banners */
+#banners .slick-prev, 
+#banners .slick-next,  
 .flex-direction-nav-a
+  width: 65px
+  height: 54px
   background-image: url(#{$base-img}/sprite.png) !important
   background-repeat: no-repeat !important
   opacity: 1 !important
@@ -265,14 +266,28 @@ select
   text-align: left
   text-indent: -9999em
   display: block
+  top: 45%
   cursor: pointer
   position: absolute
   +single-transition(none)
+  z-index: 9
   &:focus
     outline: 0
   &:before
     display: none !important
 
+#banners .slick-prev
+  left: 0
+  background-position: 0 0
+  &:hover
+    background-position: 0 -55px
+#banners .slick-next
+  right: 0
+  background-position: -65px 0
+  &:hover
+    background-position: -65px -55px      
+      
+      
 #banners
   overflow: hidden
   position: relative
@@ -330,29 +345,6 @@ select
   +box-shadow(none)
   position: relative
   zoom: 1
-  .flex-viewport
-    width: 1000px
-    margin: 0 auto
-    overflow: visible !important
-  .flex-direction-nav
-    a
-      @extend .flex-direction-nav-a
-      width: 65px
-      height: 54px
-      opacity: 1
-      z-index: 10
-      position: absolute
-      top: 150px
-      &.flex-prev
-        left: 0
-        background-position: 0 0
-        &:hover
-          background-position: 0 -55px
-      &.flex-next
-        right: 0
-        background-position: -65px 0
-        &:hover
-          background-position: -65px -55px
 
 #banners-ul
   width: 1000px
@@ -398,6 +390,7 @@ select
       a
         @extend .cd-thumb
         display: block
+        cursor: pointer
         img
           width: 100%
           display: block
@@ -516,6 +509,11 @@ select
   .list-cd-box-user
     @extend .link-pink
     @extend .link-user
+  .genre
+    font-family: $font-regular
+    font-size: 12px
+    display: block
+    margin: 5px 0
   .time
     font-size: 11px
     display: block
@@ -752,7 +750,7 @@ select
     li
       width: 320px !important
       float: none !important
-      margin: 0
+      //margin: 0
       .list-cd-box
         margin-top: 16px
         &:first-child
@@ -978,6 +976,19 @@ select
   width: 100%
   z-index: 10
   background: $blue
+  .button-clear-playlist
+    color: #FFF
+    text-indent: 0
+    border-color: #FFF
+    position: absolute
+    right: 50px
+    top: 30px
+    z-index: 10000
+    span
+      position: relative
+      top: 5px
+      left: 9px
+      font-size: 14px
   .playlist-plug
     display: block
     position: absolute
@@ -1030,6 +1041,7 @@ select
     .playlist-controls-actions-button
       float: left
       text-indent: -9999em
+      cursor: pointer
       @extend .sprite-controls
       &.play, &.pause, &.stop
         width: 46px
@@ -1077,6 +1089,8 @@ select
       .playlist-controls-time,
       .playlist-controls-progress-slider
         float: left
+        .progress-bar
+          cursor: ew-resize
       .playlist-controls-time
         font: normal 13px $font-regular
         color: #b8bcd1
@@ -1111,6 +1125,8 @@ select
       float: left
       width: 220px!important
       margin-left: 11px
+      a
+        cursor: pointer
       .text
         position: relative
         left: 70px
@@ -1118,10 +1134,12 @@ select
         line-height: 10px
         width: 160px
         .link-pink
-          color: #64D303
+          //color: #64D303
+          color: #fff
         .music
-          font: normal 13px/13px $font-bold
+          font: normal 13px/1.2 $font-bold
           display: block
+          height: 30px
           color: #fff
         .artist
           font: normal 12px/1em $font-regular
@@ -1384,8 +1402,8 @@ select
         color: $gray-light
         margin: 30px 0
       .button
-        padding-left: 20px
-        padding-right: 20px
+        padding-left: 30px
+        padding-right: 30px
         padding-top: 20px
         padding-bottom: 20px
 
@@ -1636,26 +1654,26 @@ select
 
 .enviada
   opacity: 1.0
-#banners
-  .slick-prev, .slick-next
-    z-index: 10000
-    width: 60px
-  .slick-next
-    right: 30px
-  .slick-prev
-    left: 30px
-  .slick-next:before, .slick-prev:before
-    font-family: slick
-    font-size: 60px
-    line-height: 1
-    color: #e11d70
-    opacity: .75
-    -webkit-font-smoothing: antialiased
+//#banners
+//  .slick-prev, .slick-next
+//    z-index: 10000
+//    width: 60px
+//  .slick-next
+//    right: 30px
+//  .slick-prev
+//    left: 30px
+//  .slick-next:before, .slick-prev:before
+//    font-family: slick
+//    font-size: 60px
+//    line-height: 1
+//    color: #e11d70
+//    opacity: .75
+//    -webkit-font-smoothing: antialiased
+//      
 #playlist
   .slick-list
     padding-left: 10px!important
     padding-right: 10px!important
-    #banners
   .slick-prev, .slick-next
     z-index: 10000
     width: 30px
@@ -1672,3 +1690,91 @@ select
   opacity: 0.5
   td
     background-color: #6A91B3!important
+    
+    
+    
+
+/* Autocomplete */
+/* scaffolding
+/* -----------
+
+.tt-dropdown-menu, .gist
+  text-align: left
+
+.ng-touched.ng-invalid
+  border-color: red !important
+
+.typeahead, .tt-query, .tt-hint
+  width: 396px
+  height: 30px
+  padding: 8px 12px
+  font-size: 24px
+  line-height: 30px
+  border: 2px solid #ccc
+  -webkit-border-radius: 8px
+  -moz-border-radius: 8px
+  border-radius: 8px
+  outline: none
+
+.typeahead
+  background-color: #fff
+  &:focus
+    border: 2px solid #0097cf
+
+.tt-query
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075)
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075)
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075)
+
+.tt-hint
+  color: #999
+
+.tt-dropdown-menu
+  width: 422px
+  margin-top: 12px
+  padding: 8px 0
+  background-color: #fff
+  border: 1px solid #ccc
+  border: 1px solid rgba(0, 0, 0, 0.2)
+  -webkit-border-radius: 8px
+  -moz-border-radius: 8px
+  border-radius: 8px
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2)
+  -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2)
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2)
+
+.tt-suggestion
+  padding: 3px 20px
+  font-size: 18px
+  line-height: 24px
+  &.tt-cursor
+    color: #fff
+    background-color: #0097cf
+  p
+    margin: 0
+
+.twitter-typeahead
+  .tt-hint
+    display: block
+    height: 34px
+    padding: 6px 12px
+    font-size: 14px
+    line-height: 1.428571429
+    border: 1px solid transparent
+    border-radius: 4px
+  .hint-small
+    height: 30px
+    padding: 5px 10px
+    font-size: 12px
+    border-radius: 3px
+    line-height: 1.5
+  .hint-large
+    height: 45px
+    padding: 10px 16px
+    font-size: 18px
+    border-radius: 6px
+    line-height: 1.33
+
+.angular-google-map-container
+  height: 400px
+/* end Autocomplete */

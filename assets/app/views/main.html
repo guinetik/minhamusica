@@ -102,9 +102,8 @@
             <!-- /.box-header -->
             <div class="box-content">
                 <div id="lastest-uploads-list">
-                    <ul class="list-cd slides">
-                        <li ng-repeat="cd in home.uploads"
-                            style="margin-top: 10px;margin-bottom: 10px">
+                    <ul class="list-cd slides" settings="slickConfigVertical">
+                        <li ng-repeat="cd in home.uploads">
                             <div class="list-cd-box clearfix">
                                 <figure class="cd-thumb list-cd-box-thumb">
                                     <a ui-sref="cd({id:cd.id})"
@@ -117,8 +116,7 @@
                                     <a ui-sref="cd({id:cd.id})"
                                        title="{{cd.titulo}}">{{cd.titulo}}</a>
                                 </h2>
-                                <span style="font-size: 12px;font-family: 'pf_square_sans_proregular','Helvetica Neue',Helvetica,Arial,sans-serif;">{{cd.genero.nome}}</span>
-                                <br/>
+                                <span class="genre">{{cd.genero.nome}}</span>
                                 <a ui-sref="perfil({id:cd.artista.id})"
                                    class="user list-cd-box-user"
                                    title="Enviado por {{cd.artista.nome}}">Enviado por {{cd.artista.nome}}</a>

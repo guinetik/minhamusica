@@ -49,4 +49,19 @@ function MainCtrl($scope, $rootScope, api, $timeout) {
             $scope.$apply();
         }
     };
+    $scope.slickConfigVertical = {
+        dots: false,
+        autoplay: true,
+        slidesToShow: 5,
+        centerMode: false,
+        arrows: true,
+        vertical: true,
+        adaptiveHeight: true,
+        autoplaySpeed: 3000,
+        lazyLoad: 'progressive'
+//        onAfterChange: function (slide, index) {
+//            $scope.slickHandle.currentSlide = index;
+//            $scope.$apply();
+//        }
+    };
 }
