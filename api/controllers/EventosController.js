@@ -17,7 +17,9 @@ var EventosController = module.exports = {
     },
     latest: function (req, res) {
         var today = new Date();
-        Eventos.find().where({inicio: {">=": today}}).populateAll().exec(function (err, eventos) {
+        Eventos.find().
+            //where({inicio: {">=": today}}).
+            populateAll().exec(function (err, eventos) {
             if (err) {
                 console.log("EventosController.latest ERR", err);
                 return res.status(400).send({message: 'Erro ao consultar os eventos'});
