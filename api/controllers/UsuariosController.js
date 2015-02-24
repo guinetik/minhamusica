@@ -171,7 +171,7 @@ var UsuariosController = module.exports = {
         uploadFile.upload({dirname: '../../public/img'}, function onUploadComplete(err, files) {
             if (err) return res.serverError(err);
             var imagem = files[0].fd.split("/").pop();
-            if (user.id != null) {
+            if (user.id_user != null) {
                 Usuarios.update({id: user.id_user}, {capa: imagem}).exec(function (err, updated) {
                     if (err) return res.status(400).send({message: 'Erro ao atualizar a capa'});
                     return res.status(200).send({message: 'Imagem Enviada', imagem: imagem});
@@ -187,13 +187,13 @@ var UsuariosController = module.exports = {
         uploadFile.upload({dirname: '../../public/img'}, function onUploadComplete(err, files) {
             if (err) return res.serverError(err);
             var imagem = files[0].fd.split("/").pop();
-            if (user.id != null) {
-                Usuarios.update({id: user.id}, {foto: imagem}).exec(function (err, updated) {
+            if (user.id_user != null) {
+                Usuarios.update({id: user.id_user}, {foto: imagem}).exec(function (err, updated) {
                     if (err) return res.status(400).send({message: 'Erro ao atualizar a foto'});
                     return res.status(200).send({message: 'Imagem Enviada', imagem: imagem});
                 });
             } else {
-                return res.status(200).send({message: 'Imagem Enviada', imagem: imagem});
+                return res.status(200).send({message: 'Imagem Enviada!', imagem: imagem});
             }
         });
     }
