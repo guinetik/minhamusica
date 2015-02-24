@@ -1,3 +1,4 @@
+var findOneByToken = require('../services/findOneByToken.js');
 module.exports = function (req, res, next) {
     if (!req.headers || !req.headers.token) {
         return res.status(401).send({
@@ -9,7 +10,7 @@ module.exports = function (req, res, next) {
     console.log("id_cd", req.body.id_cd);
     console.log("id_music", req.body.id_music);
     console.log("id_user", req.body.id_user);
-    Usuarios.findOneByToken(req.headers['token'], function (result) {
+    findOneByToken(req.headers['token'], function (result) {
         if (result) {
             if (req.body.id_cd != undefined) {
                 Cd.findOne({id: req.body.id_cd}).exec(function (err, cd) {
@@ -33,7 +34,7 @@ module.exports = function (req, res, next) {
                         });
                     }
                 });
-            } else  if (req.body.id_music != undefined) {
+            } else if (req.body.id_music != undefined) {
                 Musica.findOne({id: req.body.id_music}).populateAll().exec(function (err, musica) {
                     if (err) {
                         return res.status(401).send({
@@ -56,7 +57,7 @@ module.exports = function (req, res, next) {
                         });
                     }
                 });
-            } else  if (req.body.id_user != undefined) {
+            } else if (req.body.id_user != undefined) {
                 Usuarios.findOne({id: req.body.id_user}).populateAll().exec(function (err, user) {
                     if (err) {
                         return res.status(401).send({
@@ -65,7 +66,7 @@ module.exports = function (req, res, next) {
                     }
                     //console.log("user", user);
                     try {
-                        if (user.id == result.id) {
+                        if (user.id == req.body.id_user) {
                             next();
                         } else {
                             return res.status(401).send({

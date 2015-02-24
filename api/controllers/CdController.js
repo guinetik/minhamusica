@@ -87,7 +87,7 @@ var CdController = module.exports = {
                     {nome: {contains: query}},
                     {descricao: {contains: query}}
                 ]
-            }).where({inicio: {">=": today}}).populateAll().exec(function (err, events) {
+            }).populateAll().exec(function (err, events) {
                 if (err) return res.status(400).send({message: 'Erro ao buscar eventos'});
                 Musica.find().where({nome: {contains: query}}).populate("cd").exec(function (err, musicas) {
                     if (err) return res.status(400).send({message: 'Erro ao buscar musicas'});

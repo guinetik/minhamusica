@@ -36,6 +36,17 @@
                    ng-show="register.email.$error.email">Por favor digite seu email corretamente.</p>
             </div>
         </div>
+         <div class="form-row">
+            <label for="descricao"
+                   class="form-label">Perfil:</label>
+            <div class="form-row-field">
+                <textarea name="descricao"
+                          id="descricao"
+                          style="width: 602px"
+                          ng-model="usuario.about"
+                          placeholder="Escreva algo sobre você. Sua carreira, etc"></textarea>
+            </div>
+        </div>
         <!-- /.form-row-double -->
         <div class="form-row form-row-double">
             <div class="col"

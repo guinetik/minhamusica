@@ -1,3 +1,4 @@
+var findOneByToken = require('../services/findOneByToken.js');
 module.exports = function (req, res, next) {
     if (!req.headers || !req.headers.token) {
         return res.status(401).send({
@@ -5,7 +6,7 @@ module.exports = function (req, res, next) {
         });
     }
     console.log("token", req.headers['token'], req.headers.token);
-    Usuarios.findOneByToken(req.headers['token'], function (result) {
+    findOneByToken(req.headers['token'], function (result) {
         if (result) {
             next();
         } else {

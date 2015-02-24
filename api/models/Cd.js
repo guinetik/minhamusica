@@ -54,6 +54,8 @@ var Cd = module.exports = {
             var obj = this.toObject();
             delete obj.meta;
             delete obj.updatedAt;
+            delete obj.meta;
+            delete obj.private;
             return obj;
         }
     }

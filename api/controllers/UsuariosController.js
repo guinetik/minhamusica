@@ -1,4 +1,5 @@
 var createSendToken = require('../services/createSendToken.js');
+var findOneByToken = require('../services/findOneByToken.js');
 var bcrypt = require('bcrypt-nodejs');
 /**
  * UserController
@@ -14,16 +15,35 @@ var UsuariosController = module.exports = {
             createSendToken(s, res);
         });
     },
+    artists: function (req, res) {
+        Usuarios.find().sort('createdAt DESC').populateAll().exec(function (err, usuarios) {
+            if (err) return res.status(500).send({message: 'Erro ao buscar usuários.'});
+            var artistas = [];
+            _.each(usuarios, function (artista) {
+                Cd.find().where({'artista': artista.id}).sort('createdAt DESC').limit(2).exec(function (err2, c) {
+                    if (err2) return res.status(500).send({message: 'ultimos cds do usuario.'});
+                    artista.cds = c;
+                    artistas.push(artista);
+                    if (artistas.length == usuarios.length) {
+                        return res.status(200).send({
+                            message: 'Artists found',
+                            data: artistas
+                        })
+                    }
+                });
+            });
+        });
+    },
     lookup: function (req, res) {
         var token = req.headers.token;
         if (!token) {
             res.status(401).send({message: 'Token inválido'});
         }
-        Usuarios.findOneByToken(token, function (result) {
+        findOneByToken(token, function (result) {
             if (result) {
                 return res.status(200).send({
-                    message: 'User found',
-                    data: result.toJSON()
+                    message: 'User founds',
+                    data: result[0]
                 });
             } else {
                 return res.status(404).send({
@@ -45,7 +65,7 @@ var UsuariosController = module.exports = {
         if (!new_password) {
             res.status(400).send({message: 'Você deve informar a nova senha'});
         }
-        Usuarios.findOneByToken(token, function (result) {
+        findOneByToken(token, function (result) {
             if (result) {
                 bcrypt.compare(current_password, result.senha, function (err, valid) {
                     if (err) return res.status(401);
@@ -88,7 +108,7 @@ var UsuariosController = module.exports = {
             });
         } else {
             if (token != null) {
-                Usuarios.findOneByToken(token, function (result) {
+                findOneByToken(token, function (result) {
                     if (result) {
                         getUserProfile(result);
                     } else return res.status(404).send({message: 'Usuário não encontrado!'});
@@ -114,7 +134,7 @@ var UsuariosController = module.exports = {
         if (!token) {
             res.status(403).send({message: 'Token inválido'});
         }
-        Usuarios.findOneByToken(token, function (usuario) {
+        findOneByToken(token, function (usuario) {
             if (usuario) {
                 Eventos.find().where({'usuario': usuario.id}).populateAll().sort('createdAt DESC').exec(function (err, c) {
                     if (err) return res.status(500).send({message: 'Erro ao consultar os eventos.'});
@@ -132,7 +152,7 @@ var UsuariosController = module.exports = {
         if (!token) {
             res.status(403).send({message: 'Token inválido'});
         }
-        Usuarios.findOneByToken(token, function (usuario) {
+        findOneByToken(token, function (usuario) {
             if (usuario) {
                 Cd.find().where({'artista': usuario.id}).populateAll().sort('createdAt DESC').exec(function (err, c) {
                     if (err) return res.status(500).send({message: 'Erro ao trazer os cds do usuario.'});

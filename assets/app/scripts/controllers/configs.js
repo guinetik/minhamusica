@@ -29,6 +29,7 @@ function ConfigsCtrl($rootScope, $scope, api, auth, $timeout, $state, toastr, $u
                         $scope.usuario.email = user.email;
                         $scope.usuario.twitter =user.twitter;
                         $scope.usuario.facebook =user.facebook;
+                        $scope.usuario.about = user.about;
                         $scope.usuario.sexo = user.sexo;
                         $scope.usuario.instagram =user.instagram;
                         $scope.capa.dataUrl = $scope.capa.imagem = "/public/img/" + user.capa;
