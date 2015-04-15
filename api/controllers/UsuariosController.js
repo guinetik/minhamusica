@@ -154,6 +154,7 @@ var UsuariosController = module.exports = {
         }
         findOneByToken(token, function (usuario) {
             if (usuario) {
+                console.log("Usuario.collection", usuario.id);
                 Cd.find().where({'artista': usuario.id}).populateAll().sort('createdAt DESC').exec(function (err, c) {
                     if (err) return res.status(500).send({message: 'Erro ao trazer os cds do usuario.'});
                     return res.status(200).send({cds: c, message: 'Cds obtidos com sucesso'});
