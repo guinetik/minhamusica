@@ -6,6 +6,7 @@
  */
 var ZipCd = require("../services/zipCd.js");
 var updateCdMeta = require('../services/updateCdMeta.js');
+var findOneByToken = require('../services/findOneByToken.js');
 var CdController = module.exports = {
     download: function (req, res) {
         var id = req.body.id;
@@ -116,7 +117,7 @@ var CdController = module.exports = {
         if (!token) {
             res.status(401).send({message: 'Token inválido'});
         }
-        Usuarios.findOneByToken(token, function (result) {
+        findOneByToken(token, function (result) {
             if (!result) {
                 res.status(404).send({message: 'Artista não encontrado'})
             }
