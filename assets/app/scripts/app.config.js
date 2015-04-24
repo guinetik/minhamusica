@@ -111,6 +111,18 @@ angular.module('musicaApp').config(function ($urlRouterProvider, $stateProvider)
             url: '/busca/:q',
             controller: 'BuscaCtrl',
             templateUrl: 'views/busca.html'
+        }).state('termos', {
+            url: '/termos',
+            templateUrl: 'views/termos.html'
+        }).state('privacidade', {
+            url: '/privacidade',
+            templateUrl: 'views/policies.html'
+        }).state('sobre', {
+            url: '/sobre',
+            templateUrl: 'views/sobre.html'
+        }).state('contato', {
+            url: '/contato',
+            templateUrl: 'views/contato.html'
         });
 })
     .constant('API_URL', '/')

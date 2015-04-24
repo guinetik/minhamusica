@@ -25,6 +25,9 @@ angular.module('musicaApp',
         "q-date",
         'uiGmapgoogle-maps',
         "dateParser",
+        'ui.bootstrap',
+        'ui.utils.masks',
+        "dialogs",
         'angularMoment']).run(function ($rootScope) {
         functions.playlist.init(this);
         // helper function to seek to a percentage

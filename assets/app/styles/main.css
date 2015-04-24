@@ -732,7 +732,7 @@ select:active {
   border: 1px solid #e11d70;
   text-transform: uppercase;
   cursor: pointer;
-  padding: 8px;
+  padding: 8px!important;
   position: relative;
   -webkit-transition: all, 0.2s, linear;
   -moz-transition: all, 0.2s, linear;
@@ -791,10 +791,10 @@ select:active {
   text-align: right;
   padding-left: 0;
   padding-bottom: 0;
-  padding-right: 54px;
-  padding-top: 18px;
+  padding-right: 54px!important;
+  padding-top: 18px!important;
   width: 158px;
-  height: 32px;
+  height: 50px;
   background: white;
   line-height: 1em;
 }

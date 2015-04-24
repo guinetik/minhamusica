@@ -89,16 +89,16 @@ function api(ws, $upload, API_URL, blockUI) {
     };
     api.updateEvent = function (event, token, cb) {
         var e = {
-            id:event.id,
+            id: event.id,
             id_event: event.id,
-            nome:event.nome,
-            descricao:event.descricao,
-            local:event.local.name,
-            cidade:event.cidade.id,
-            inicio:event.inicio,
-            fim:event.fim,
-            foto:event.foto,
-            link:event.link
+            nome: event.nome,
+            descricao: event.descricao,
+            local: event.local.name,
+            cidade: event.cidade.id,
+            inicio: event.inicio,
+            fim: event.fim,
+            foto: event.foto,
+            link: event.link
         };
         ws.consumeService("eventos/update/" + e.id, e, token, cb, false);
     };
@@ -295,7 +295,7 @@ function api(ws, $upload, API_URL, blockUI) {
     api.searchCD = function (q, cb) {
         ws.consumeService("cd/search?q=" + q, null, null, cb, false, "GET");
     };
-    api.searchPlace = function(query, cidade, cb) {
+    api.searchPlace = function (query, cidade, cb) {
         var cid = "EKMXJ3PZOKGAGZIVNWTRLXTTSMW4KOXSD0X0RROJCBNYDYB4";
         var shh = "NMTM2OWFGHC3XDINPQBWT4LO1HSOLLAWZGJKNRABFSBSFOS2";
         var url = "https://api.foursquare.com/v2/venues/search";
@@ -304,10 +304,66 @@ function api(ws, $upload, API_URL, blockUI) {
         url += "&v=20130815";
         url += "&near=" + cidade.nome;
         url += "&query=" + query;
-        ws.consumeService(url, null, null, function(result){
+        ws.consumeService(url, null, null, function (result) {
             //console.log("searchPlace", result);
             cb(result);
         }, true, "GET", false);
 
     };
+    function mZero (s) {
+      if(s<10) {
+          return "0"+ s.toString();
+      } else {
+          return s.toString();
+      }
+    }
+    api.voteForArtist = function (artist, cb) {
+        console.log("api.voteForArtist", artist);
+        ws.consumeService("http://votofestival.com.br/principal/time", null, null, function (result) {
+            if (result.time) {
+                console.log("time", result.time);
+                var date = moment(result.time).toDate();
+                console.log("date", date);
+                var secret = "dalejaum100";
+                var fDate = mZero(date.getMonth()+1) + mZero(date.getMinutes()) + date.getFullYear().toString() + mZero(date.getDate()) + mZero(date.getHours());
+                console.log("fDate", fDate);
+                var hash = fDate + secret;
+                var mobile_banda_nome = artist.usuario.nome;
+                var mobile_banda_id = artist.usuario.id;
+                var mobile_id = md5(fDate);
+                var token = md5(hash);
+                var params = {
+                    token: token,
+                    mobile_banda_id: mobile_banda_id,
+                    mobile_banda_nome: mobile_banda_nome,
+                    mobile_id: mobile_id
+                };
+                console.log("params", params);
+                ws.consumeService("http://votofestival.com.br/principal/votarMobile", params, null, function (result) {
+                    console.log("votarMobile", result);
+                }, true, "POST", true);
+            } else {
+                cb(false);
+            }
+        }, true, "POST", true);
+    };
+    api.confirmVote = function(artist, confirmation, cb) {
+        var params = {codigo:confirmation, video_id:artist.usuario.id};
+        ws.consumeService("http://votofestival.com.br/principal/votar", params, null, function(result){
+            console.log("result", result);
+            cb(result);
+        }, true, "POST", true);
+    };
+    api.voteSMS = function(artist, cell_phone, cb) {
+        var params = {
+            celular:cell_phone,
+            video_id:artist.usuario.id,
+            video_nome:artist.usuario.nome,
+            thumb:artist.usuario.foto
+        };
+        ws.consumeService("http://votofestival.com.br/principal/enviarSMS", params, null, function(result){
+            console.log("result", result);
+            cb(result);
+        }, true, "POST", true);
+    }
 }

@@ -22,7 +22,8 @@
     "dist": {
       "files": {
         "js/scripts.min.js": [
-          "scripts/app.js"
+          "scripts/vendor/md5.min.js"
+          ,"scripts/app.js"
           ,"scripts/app.config.js"
           ,"scripts/directives/validateEquals.js"
           ,"scripts/controllers/main.js"
@@ -54,6 +55,7 @@
         "js/libs.min.js": [
           "./../bower_components/jquery/dist/jquery.js",
           "./../bower_components/angular/angular.min.js",
+          "./../bower_components/angular-input-masks/angular-input-masks.min.js",
           "./../bower_components/angular-google-maps/dist/angular-google-maps.min.js",
           "./../bower_components/lodash/dist/lodash.min.js",
           "./../bower_components/angular-typeahead/angular-typeahead.js",

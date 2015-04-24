@@ -10,6 +10,7 @@ function ws($rootScope, $http, API_URL, blockUI) {
     ws.consumeService = function (endpoint, params, token, cb, overrideBase, method, shouldBlockUI) {
         var serviceURL;
         if (token) {
+            console.log("tem token");
             var headers = {
                 'content-type': 'application/json'
             };
