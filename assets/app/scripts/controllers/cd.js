@@ -9,7 +9,7 @@
  */
 angular.module('musicaApp').controller('CdCtrl', ['$scope', 'api', '$timeout', '$stateParams', '$rootScope', 'toastr', CdCtrl]);
 function CdCtrl($scope, api, $timeout, $stateParams, $rootScope, toastr) {
-    $scope.cd = {};
+    $scope.cd = {artista:{id:0}};
     $scope.eventos =[];
     $scope.related = [];
     $scope.cd.id = $stateParams.id;

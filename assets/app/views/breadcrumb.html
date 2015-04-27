@@ -1,10 +1,6 @@
-<div id="breadcrumbs" class="background-color:red;height:100px;width:100px">
-  <div class="limits">
-    <ol class="breadcrumb clearfix">
-      <li>
-        <a sref="main" href="#" title="Página Inicial">Página Inicial</a>
-        <span class="arrow">></span>
-      </li>
-    </ol>
-  </div>
-</div><!-- /#breadcrumbs -->
+<ol class="breadcrumb">
+    <li ng-repeat="step in steps" ng-class="{active: $last}" ng-switch="$last || !!step.abstract">
+        <a ng-switch-when="false" href="{{step.ncyBreadcrumbLink}}">{{step.ncyBreadcrumbLabel}}</a>
+        <span ng-switch-when="true">{{step.ncyBreadcrumbLabel}}</span>
+    </li>
+</ol>

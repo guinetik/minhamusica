@@ -11,6 +11,7 @@
 angular.module('musicaApp',
     ['ui.router',
         'ui.validate',
+        'ncy-angular-breadcrumb',
         'ngAnimate',
         'toastr',
         'bardo.directives',

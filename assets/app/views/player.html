@@ -11,6 +11,7 @@
     <a href="javascript:void(0)"
        class="playlist-plug"
        title="Esconder Playlist"><span class="icon"></span>Esconder</a>
+
     <div class="playlist-options"
          style="position: relative;left: 50%;width: 450px;margin-left: -360px">
         <div class="limits clearfix">
@@ -33,7 +34,8 @@
                        title="Próximo">Próximo</a>
                 </div>
                 <div class="playlist-count">
-                    <span class="title">Música</span> <strong class="desc"> <span id="playlist-count-actual">{{player.currentTrack}}</span>
+                    <span class="title">Música</span> <strong class="desc"> <span
+                        id="playlist-count-actual">{{player.currentTrack}}</span>
                     de <span id="playlist-count-total">{{playlist.length}}</span> </strong>
                 </div>
                 <!-- /.playlist-controls-actions -->
@@ -46,11 +48,12 @@
                     </div>
                     <div class="playlist-controls-progress clearfix">
                         <span class="playlist-controls-time init">{{player.formatTime}}</span>
+
                         <div class="playlist-controls-progress-slider"
                              ng-click="player.seek(player.duration * seekPercentage($event))">
                             <div class="progress-bar"
                                  role="progressbar"
-                                 style="transition:all .3s ease-in-out .1s;height: 2px;background: #FFFFFF;margin-left: 2px;margin-top: 2px;border-radius: 10px;border: 1px solid #FFFFFF;margin-right: 2px"
+                                 style="transition:all .3s ease-in-out .1s;height: 4px;background: #FFFFFF;margin-left: 2px;margin-top: 2px;border-radius: 20px;border: 1px solid #FFFFFF;margin-right: 2px"
                                  aria-valuemin="0"
                                  aria-valuemax="100"
                                  ng-style="{ width: player.currentTime*100/player.duration + '%' }"></div>

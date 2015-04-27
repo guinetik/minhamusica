@@ -21,51 +21,58 @@
 
 module.exports.connections = {
 
-  /***************************************************************************
-  *                                                                          *
-  * Local disk storage for DEVELOPMENT ONLY                                  *
-  *                                                                          *
-  * Installed by default.                                                    *
-  *                                                                          *
-  ***************************************************************************/
-  localDiskDb: {
-    adapter: 'sails-disk'
-  },
-  /***************************************************************************
-  *                                                                          *
-  * MongoDB is the leading NoSQL database.                                   *
-  * http://en.wikipedia.org/wiki/MongoDB                                     *
-  *                                                                          *
-  * Run: npm install sails-mongo                                             *
-  *                                                                          *
-  ***************************************************************************/
-  'mongo_prod': {
-    adapter: 'sails-mongo',
-    host: 'mongodb22639-musicatop.jelastic.websolute.net.br',
-    port: 27017,
-    user: 'mtopadmin',
-    password: 'mtop123',
-    database: 'musicatop'
-  },
+    /***************************************************************************
+     *                                                                          *
+     * Local disk storage for DEVELOPMENT ONLY                                  *
+     *                                                                          *
+     * Installed by default.                                                    *
+     *                                                                          *
+     ***************************************************************************/
+    localDiskDb: {
+        adapter: 'sails-disk'
+    },
+    /***************************************************************************
+     *                                                                          *
+     * MongoDB is the leading NoSQL database.                                   *
+     * http://en.wikipedia.org/wiki/MongoDB                                     *
+     *                                                                          *
+     * Run: npm install sails-mongo                                             *
+     *                                                                          *
+     ***************************************************************************/
+    /*'mongo_prod': {
+        adapter: 'sails-mongo',
+        host: 'mongodb22639-musicatop.jelastic.websolute.net.br',
+        port: 27017,
+        user: 'mtopadmin',
+        password: 'mtop123',
+        database: 'musicatop'
+    },
 
-  'mongo_local': {
-    adapter: 'sails-mongo',
-    host: 'mongodb22639-musicatop.jelastic.websolute.net.br',
-    port: 27017,
-    user: 'mtopadmin',
-    password: 'mtop123',
-    database: 'musicatop'
-  }
+    'mongo_local': {
+     adapter: 'sails-mongo',
+     host: 'mongodb22639-musicatop.jelastic.websolute.net.br',
+     port: 27017,
+     user: 'mtopadmin',
+     password: 'mtop123',
+     database: 'musicatop'
+     }*/
 
-/*
-  'mongo_local': {
-      adapter: 'sails-mongo',
-      host: 'localhost',
-      port: 27017,
-      user: '',
-      password: '',
-      database: 'musicatop'
-  }
- */
+    'mongo_prod': {
+        adapter: 'sails-mongo',
+        host: 'localhost',
+        port: 27017,
+        user: '',
+        password: '',
+        database: 'musicatop'
+    },
+
+    'mongo_local': {
+        adapter: 'sails-mongo',
+        host: 'localhost',
+        port: 27017,
+        user: '',
+        password: '',
+        database: 'musicatop'
+    }
 
 };
