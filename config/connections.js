@@ -39,7 +39,7 @@ module.exports.connections = {
      * Run: npm install sails-mongo                                             *
      *                                                                          *
      ***************************************************************************/
-    /*'mongo_prod': {
+    'mongo_prod': {
         adapter: 'sails-mongo',
         host: 'mongodb22639-musicatop.jelastic.websolute.net.br',
         port: 27017,
@@ -55,9 +55,9 @@ module.exports.connections = {
      user: 'mtopadmin',
      password: 'mtop123',
      database: 'musicatop'
-     }*/
+     }
 
-    'mongo_prod': {
+    /*'mongo_prod': {
         adapter: 'sails-mongo',
         host: 'localhost',
         port: 27017,
@@ -73,6 +73,6 @@ module.exports.connections = {
         user: '',
         password: '',
         database: 'musicatop'
-    }
+    }*/
 
 };
